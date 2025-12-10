@@ -34,7 +34,7 @@ enum AUDIT_LOG_ACTION {
   USER_RESEND_VERIFICATION
   USER_FORGOT_PASSWORD
   USER_RESET_PASSWORD
-  USER_VERIFYIED
+  USER_VERIFIED
   USER_SUSPENDED
   USER_APPROVED
   USER_PASSWORD_CHANGED
@@ -90,14 +90,11 @@ model Session {
   userId String
 
   // Fields
-  token             String  @unique
+  token             String @unique
   userAgent         String
   ipAddress         String
   deviceFingerprint String
-  deviceName        String?
-  deviceBrand       String?
-  deviceModel       String?
-  location          String?
+  metadata    Json?
 
   // Enums
   deviceType SESSION_DEVICE_TYPE @default(OTHER)

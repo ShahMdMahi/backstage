@@ -732,10 +732,7 @@ export const SessionScalarFieldEnum = {
   userAgent: "userAgent",
   ipAddress: "ipAddress",
   deviceFingerprint: "deviceFingerprint",
-  deviceName: "deviceName",
-  deviceBrand: "deviceBrand",
-  deviceModel: "deviceModel",
-  location: "location",
+  metadata: "metadata",
   deviceType: "deviceType",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -853,6 +850,22 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Json"
+>;
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "QueryMode"
+>;
+
+/**
  * Reference to a field of type 'SESSION_DEVICE_TYPE'
  */
 export type EnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
@@ -870,22 +883,6 @@ export type ListEnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   "Boolean"
->;
-
-/**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "Json"
->;
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "QueryMode"
 >;
 
 /**

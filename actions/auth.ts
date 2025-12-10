@@ -3,15 +3,17 @@
 import {
   RegisterData,
   ResendVerificationData,
+  VerifyEmailData,
   LoginData,
   ForgotPasswordData,
   ResetPasswordData,
   registerSchema,
   resendVerificationSchema,
+  verifyEmailSchema,
   loginSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
-} from "@/types/auth";
+} from "@/validators/auth";
 import { prisma } from "@/lib/prisma";
 import * as argon2 from "argon2";
 import z from "zod";
@@ -24,7 +26,13 @@ import {
 } from "./email";
 import { redis } from "@/lib/redis";
 import { getDeviceInfo } from "@/lib/device-info";
+import { createSession, revokeCurrentSession } from "./session";
 
+/**
+ * Register a new user
+ * @param data Registration data
+ * @returns Result of the registration attempt
+ */
 export async function register(data: RegisterData): Promise<{
   success: boolean;
   message: string;
@@ -127,6 +135,11 @@ export async function register(data: RegisterData): Promise<{
   }
 }
 
+/**
+ * Resend verification email to a user
+ * @param data Resend verification data
+ * @returns Result of the resend verification attempt
+ */
 export async function resendVerification(
   data: ResendVerificationData
 ): Promise<{
@@ -232,6 +245,144 @@ export async function resendVerification(
   }
 }
 
+/**
+ * Verify user's email
+ * @param token Verification token
+ * @returns Result of the email verification attempt
+ */
+export async function verify(data: VerifyEmailData): Promise<{
+  success: boolean;
+  message: string;
+  data: null;
+  errors: ReturnType<typeof z.treeifyError> | unknown | null;
+}> {
+  try {
+    const validate = await verifyEmailSchema.safeParseAsync(data);
+
+    if (!validate.success) {
+      return {
+        success: false,
+        message: "Validation failed",
+        data: null,
+        errors: z.treeifyError(validate.error),
+      };
+    }
+
+    const deviceInfo = await getDeviceInfo();
+
+    const tokenData = await redis.get(
+      `email_verification_token:${validate.data.token}`
+    );
+
+    if (!tokenData) {
+      return {
+        success: false,
+        message: "Validation failed",
+        data: null,
+        errors: z.treeifyError(
+          new z.ZodError([
+            {
+              code: "custom",
+              message: "Invalid or expired token",
+              path: ["token"],
+            },
+          ])
+        ),
+      };
+    }
+
+    const userExists = await prisma.$transaction(async (tx) => {
+      return await tx.user.findUnique({
+        where: {
+          email: tokenData,
+        },
+      });
+    });
+
+    if (!userExists) {
+      return {
+        success: false,
+        message: "Validation failed",
+        data: null,
+        errors: z.treeifyError(
+          new z.ZodError([
+            {
+              code: "custom",
+              message: "User not found",
+              path: ["token"],
+            },
+          ])
+        ),
+      };
+    }
+
+    const verifiedUser = await prisma.$transaction(async (tx) => {
+      return await tx.user.update({
+        where: {
+          id: userExists.id,
+        },
+        data: {
+          verifiedAt: new Date(),
+        },
+      });
+    });
+
+    if (!verifiedUser) {
+      return {
+        success: false,
+        message: "Email verification failed",
+        data: null,
+        errors: z.treeifyError(
+          new z.ZodError([
+            {
+              code: "custom",
+              message: "Email verification failed",
+              path: ["token"],
+            },
+          ])
+        ),
+      };
+    }
+
+    await redis.del(`email_verification_token:${validate.data.token}`);
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.USER_VERIFIED,
+        entity: AUDIT_LOG_ENTITY.USER,
+        entityId: verifiedUser.id,
+        description: `User ${verifiedUser.email} verified their email.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: {
+          connect: { id: verifiedUser.id },
+        },
+      });
+    } catch (error) {
+      console.error("Failed to log audit event for email verification:", error);
+    }
+
+    return {
+      success: true,
+      message: "Email verified successfully",
+      data: null,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Email verification failed:", error);
+    return {
+      success: false,
+      message: "Email verification failed",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+/**
+ * Log in a user
+ * @param data Login data
+ * @returns Result of the login attempt
+ */
 export async function login(data: LoginData): Promise<{
   success: boolean;
   message: string;
@@ -350,7 +501,24 @@ export async function login(data: LoginData): Promise<{
       };
     }
 
-    // TODO: Verify password and handle session
+    const session = await createSession(userExists.id, deviceInfo);
+
+    if (!session.success) {
+      return {
+        success: false,
+        message: "Login failed",
+        data: null,
+        errors: z.treeifyError(
+          new z.ZodError([
+            {
+              code: "custom",
+              message: "Login failed",
+              path: ["email", "password"],
+            },
+          ])
+        ),
+      };
+    }
 
     try {
       await logAuditEvent({
@@ -384,6 +552,11 @@ export async function login(data: LoginData): Promise<{
   }
 }
 
+/**
+ * Initiate forgot password process
+ * @param data Forgot password data
+ * @returns Result of the forgot password attempt
+ */
 export async function forgotPassword(data: ForgotPasswordData): Promise<{
   success: boolean;
   message: string;
@@ -467,6 +640,11 @@ export async function forgotPassword(data: ForgotPasswordData): Promise<{
   }
 }
 
+/**
+ * Reset user password
+ * @param data Reset password data
+ * @returns Result of the reset password attempt
+ */
 export async function resetPassword(data: ResetPasswordData): Promise<{
   success: boolean;
   message: string;
@@ -575,7 +753,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
         action: AUDIT_LOG_ACTION.USER_RESET_PASSWORD,
         entity: AUDIT_LOG_ENTITY.USER,
         entityId: userExists.id,
-        description: `User with token ${validate.data.token} reset their password.`,
+        description: `User ${userExists.email} reset their password.`,
         metadata: { deviceInfo: JSON.stringify(deviceInfo) },
         user: {
           connect: { id: userExists.id },
@@ -596,6 +774,63 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
     return {
       success: false,
       message: "Reset password failed",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+/**
+ * Logout user by revoking their session
+ * @param sessionToken Session token
+ * @returns Result of the logout attempt
+ */
+export async function logout(): Promise<{
+  success: boolean;
+  message: string;
+  data: null;
+  errors: unknown | null;
+}> {
+  try {
+    const deviceInfo = await getDeviceInfo();
+
+    const session = await revokeCurrentSession(deviceInfo);
+
+    if (!session.success) {
+      return {
+        success: false,
+        message: "Failed to revoke session",
+        data: null,
+        errors: null,
+      };
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.USER_LOGGED_OUT,
+        entity: AUDIT_LOG_ENTITY.SESSION,
+        entityId: session.data?.id ?? "",
+        description: `Session revoked for user ID ${session.data?.userId ?? ""} on logout.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: {
+          connect: { id: session.data?.userId ?? "" },
+        },
+      });
+    } catch (error) {
+      console.error("Failed to log audit event for logout:", error);
+    }
+
+    return {
+      success: true,
+      message: "Logout successful",
+      data: null,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Logout failed:", error);
+    return {
+      success: false,
+      message: "Logout failed",
       data: null,
       errors: error,
     };

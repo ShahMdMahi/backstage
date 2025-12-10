@@ -31,10 +31,6 @@ export type SessionMinAggregateOutputType = {
   userAgent: string | null;
   ipAddress: string | null;
   deviceFingerprint: string | null;
-  deviceName: string | null;
-  deviceBrand: string | null;
-  deviceModel: string | null;
-  location: string | null;
   deviceType: $Enums.SESSION_DEVICE_TYPE | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -50,10 +46,6 @@ export type SessionMaxAggregateOutputType = {
   userAgent: string | null;
   ipAddress: string | null;
   deviceFingerprint: string | null;
-  deviceName: string | null;
-  deviceBrand: string | null;
-  deviceModel: string | null;
-  location: string | null;
   deviceType: $Enums.SESSION_DEVICE_TYPE | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -69,10 +61,7 @@ export type SessionCountAggregateOutputType = {
   userAgent: number;
   ipAddress: number;
   deviceFingerprint: number;
-  deviceName: number;
-  deviceBrand: number;
-  deviceModel: number;
-  location: number;
+  metadata: number;
   deviceType: number;
   createdAt: number;
   updatedAt: number;
@@ -89,10 +78,6 @@ export type SessionMinAggregateInputType = {
   userAgent?: true;
   ipAddress?: true;
   deviceFingerprint?: true;
-  deviceName?: true;
-  deviceBrand?: true;
-  deviceModel?: true;
-  location?: true;
   deviceType?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -108,10 +93,6 @@ export type SessionMaxAggregateInputType = {
   userAgent?: true;
   ipAddress?: true;
   deviceFingerprint?: true;
-  deviceName?: true;
-  deviceBrand?: true;
-  deviceModel?: true;
-  location?: true;
   deviceType?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -127,10 +108,7 @@ export type SessionCountAggregateInputType = {
   userAgent?: true;
   ipAddress?: true;
   deviceFingerprint?: true;
-  deviceName?: true;
-  deviceBrand?: true;
-  deviceModel?: true;
-  location?: true;
+  metadata?: true;
   deviceType?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -226,10 +204,7 @@ export type SessionGroupByOutputType = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName: string | null;
-  deviceBrand: string | null;
-  deviceModel: string | null;
-  location: string | null;
+  metadata: runtime.JsonValue | null;
   deviceType: $Enums.SESSION_DEVICE_TYPE;
   createdAt: Date;
   updatedAt: Date;
@@ -264,10 +239,7 @@ export type SessionWhereInput = {
   userAgent?: Prisma.StringFilter<"Session"> | string;
   ipAddress?: Prisma.StringFilter<"Session"> | string;
   deviceFingerprint?: Prisma.StringFilter<"Session"> | string;
-  deviceName?: Prisma.StringNullableFilter<"Session"> | string | null;
-  deviceBrand?: Prisma.StringNullableFilter<"Session"> | string | null;
-  deviceModel?: Prisma.StringNullableFilter<"Session"> | string | null;
-  location?: Prisma.StringNullableFilter<"Session"> | string | null;
+  metadata?: Prisma.JsonNullableFilter<"Session">;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFilter<"Session">
     | $Enums.SESSION_DEVICE_TYPE;
@@ -286,10 +258,7 @@ export type SessionOrderByWithRelationInput = {
   userAgent?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   deviceFingerprint?: Prisma.SortOrder;
-  deviceName?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deviceBrand?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deviceModel?: Prisma.SortOrderInput | Prisma.SortOrder;
-  location?: Prisma.SortOrderInput | Prisma.SortOrder;
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   deviceType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -310,10 +279,7 @@ export type SessionWhereUniqueInput = Prisma.AtLeast<
     userAgent?: Prisma.StringFilter<"Session"> | string;
     ipAddress?: Prisma.StringFilter<"Session"> | string;
     deviceFingerprint?: Prisma.StringFilter<"Session"> | string;
-    deviceName?: Prisma.StringNullableFilter<"Session"> | string | null;
-    deviceBrand?: Prisma.StringNullableFilter<"Session"> | string | null;
-    deviceModel?: Prisma.StringNullableFilter<"Session"> | string | null;
-    location?: Prisma.StringNullableFilter<"Session"> | string | null;
+    metadata?: Prisma.JsonNullableFilter<"Session">;
     deviceType?:
       | Prisma.EnumSESSION_DEVICE_TYPEFilter<"Session">
       | $Enums.SESSION_DEVICE_TYPE;
@@ -338,10 +304,7 @@ export type SessionOrderByWithAggregationInput = {
   userAgent?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   deviceFingerprint?: Prisma.SortOrder;
-  deviceName?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deviceBrand?: Prisma.SortOrderInput | Prisma.SortOrder;
-  deviceModel?: Prisma.SortOrderInput | Prisma.SortOrder;
-  location?: Prisma.SortOrderInput | Prisma.SortOrder;
+  metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   deviceType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -367,22 +330,7 @@ export type SessionScalarWhereWithAggregatesInput = {
   userAgent?: Prisma.StringWithAggregatesFilter<"Session"> | string;
   ipAddress?: Prisma.StringWithAggregatesFilter<"Session"> | string;
   deviceFingerprint?: Prisma.StringWithAggregatesFilter<"Session"> | string;
-  deviceName?:
-    | Prisma.StringNullableWithAggregatesFilter<"Session">
-    | string
-    | null;
-  deviceBrand?:
-    | Prisma.StringNullableWithAggregatesFilter<"Session">
-    | string
-    | null;
-  deviceModel?:
-    | Prisma.StringNullableWithAggregatesFilter<"Session">
-    | string
-    | null;
-  location?:
-    | Prisma.StringNullableWithAggregatesFilter<"Session">
-    | string
-    | null;
+  metadata?: Prisma.JsonNullableWithAggregatesFilter<"Session">;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEWithAggregatesFilter<"Session">
     | $Enums.SESSION_DEVICE_TYPE;
@@ -407,10 +355,7 @@ export type SessionCreateInput = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName?: string | null;
-  deviceBrand?: string | null;
-  deviceModel?: string | null;
-  location?: string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?: $Enums.SESSION_DEVICE_TYPE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -427,10 +372,7 @@ export type SessionUncheckedCreateInput = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName?: string | null;
-  deviceBrand?: string | null;
-  deviceModel?: string | null;
-  location?: string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?: $Enums.SESSION_DEVICE_TYPE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -445,10 +387,7 @@ export type SessionUpdateInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -475,10 +414,7 @@ export type SessionUncheckedUpdateInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -504,10 +440,7 @@ export type SessionCreateManyInput = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName?: string | null;
-  deviceBrand?: string | null;
-  deviceModel?: string | null;
-  location?: string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?: $Enums.SESSION_DEVICE_TYPE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -522,10 +455,7 @@ export type SessionUpdateManyMutationInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -551,10 +481,7 @@ export type SessionUncheckedUpdateManyInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -590,10 +517,7 @@ export type SessionCountOrderByAggregateInput = {
   userAgent?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   deviceFingerprint?: Prisma.SortOrder;
-  deviceName?: Prisma.SortOrder;
-  deviceBrand?: Prisma.SortOrder;
-  deviceModel?: Prisma.SortOrder;
-  location?: Prisma.SortOrder;
+  metadata?: Prisma.SortOrder;
   deviceType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -609,10 +533,6 @@ export type SessionMaxOrderByAggregateInput = {
   userAgent?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   deviceFingerprint?: Prisma.SortOrder;
-  deviceName?: Prisma.SortOrder;
-  deviceBrand?: Prisma.SortOrder;
-  deviceModel?: Prisma.SortOrder;
-  location?: Prisma.SortOrder;
   deviceType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -628,10 +548,6 @@ export type SessionMinOrderByAggregateInput = {
   userAgent?: Prisma.SortOrder;
   ipAddress?: Prisma.SortOrder;
   deviceFingerprint?: Prisma.SortOrder;
-  deviceName?: Prisma.SortOrder;
-  deviceBrand?: Prisma.SortOrder;
-  deviceModel?: Prisma.SortOrder;
-  location?: Prisma.SortOrder;
   deviceType?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -744,10 +660,7 @@ export type SessionCreateWithoutUserInput = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName?: string | null;
-  deviceBrand?: string | null;
-  deviceModel?: string | null;
-  location?: string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?: $Enums.SESSION_DEVICE_TYPE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -762,10 +675,7 @@ export type SessionUncheckedCreateWithoutUserInput = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName?: string | null;
-  deviceBrand?: string | null;
-  deviceModel?: string | null;
-  location?: string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?: $Enums.SESSION_DEVICE_TYPE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -825,10 +735,7 @@ export type SessionScalarWhereInput = {
   userAgent?: Prisma.StringFilter<"Session"> | string;
   ipAddress?: Prisma.StringFilter<"Session"> | string;
   deviceFingerprint?: Prisma.StringFilter<"Session"> | string;
-  deviceName?: Prisma.StringNullableFilter<"Session"> | string | null;
-  deviceBrand?: Prisma.StringNullableFilter<"Session"> | string | null;
-  deviceModel?: Prisma.StringNullableFilter<"Session"> | string | null;
-  location?: Prisma.StringNullableFilter<"Session"> | string | null;
+  metadata?: Prisma.JsonNullableFilter<"Session">;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFilter<"Session">
     | $Enums.SESSION_DEVICE_TYPE;
@@ -845,10 +752,7 @@ export type SessionCreateManyUserInput = {
   userAgent: string;
   ipAddress: string;
   deviceFingerprint: string;
-  deviceName?: string | null;
-  deviceBrand?: string | null;
-  deviceModel?: string | null;
-  location?: string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?: $Enums.SESSION_DEVICE_TYPE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -863,10 +767,7 @@ export type SessionUpdateWithoutUserInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -891,10 +792,7 @@ export type SessionUncheckedUpdateWithoutUserInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -919,10 +817,7 @@ export type SessionUncheckedUpdateManyWithoutUserInput = {
   userAgent?: Prisma.StringFieldUpdateOperationsInput | string;
   ipAddress?: Prisma.StringFieldUpdateOperationsInput | string;
   deviceFingerprint?: Prisma.StringFieldUpdateOperationsInput | string;
-  deviceName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceBrand?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  deviceModel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   deviceType?:
     | Prisma.EnumSESSION_DEVICE_TYPEFieldUpdateOperationsInput
     | $Enums.SESSION_DEVICE_TYPE;
@@ -952,10 +847,7 @@ export type SessionSelect<
     userAgent?: boolean;
     ipAddress?: boolean;
     deviceFingerprint?: boolean;
-    deviceName?: boolean;
-    deviceBrand?: boolean;
-    deviceModel?: boolean;
-    location?: boolean;
+    metadata?: boolean;
     deviceType?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -978,10 +870,7 @@ export type SessionSelectCreateManyAndReturn<
     userAgent?: boolean;
     ipAddress?: boolean;
     deviceFingerprint?: boolean;
-    deviceName?: boolean;
-    deviceBrand?: boolean;
-    deviceModel?: boolean;
-    location?: boolean;
+    metadata?: boolean;
     deviceType?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -1004,10 +893,7 @@ export type SessionSelectUpdateManyAndReturn<
     userAgent?: boolean;
     ipAddress?: boolean;
     deviceFingerprint?: boolean;
-    deviceName?: boolean;
-    deviceBrand?: boolean;
-    deviceModel?: boolean;
-    location?: boolean;
+    metadata?: boolean;
     deviceType?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
@@ -1026,10 +912,7 @@ export type SessionSelectScalar = {
   userAgent?: boolean;
   ipAddress?: boolean;
   deviceFingerprint?: boolean;
-  deviceName?: boolean;
-  deviceBrand?: boolean;
-  deviceModel?: boolean;
-  location?: boolean;
+  metadata?: boolean;
   deviceType?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
@@ -1048,10 +931,7 @@ export type SessionOmit<
   | "userAgent"
   | "ipAddress"
   | "deviceFingerprint"
-  | "deviceName"
-  | "deviceBrand"
-  | "deviceModel"
-  | "location"
+  | "metadata"
   | "deviceType"
   | "createdAt"
   | "updatedAt"
@@ -1095,10 +975,7 @@ export type $SessionPayload<
       userAgent: string;
       ipAddress: string;
       deviceFingerprint: string;
-      deviceName: string | null;
-      deviceBrand: string | null;
-      deviceModel: string | null;
-      location: string | null;
+      metadata: runtime.JsonValue | null;
       deviceType: $Enums.SESSION_DEVICE_TYPE;
       createdAt: Date;
       updatedAt: Date;
@@ -1717,10 +1594,7 @@ export interface SessionFieldRefs {
   readonly userAgent: Prisma.FieldRef<"Session", "String">;
   readonly ipAddress: Prisma.FieldRef<"Session", "String">;
   readonly deviceFingerprint: Prisma.FieldRef<"Session", "String">;
-  readonly deviceName: Prisma.FieldRef<"Session", "String">;
-  readonly deviceBrand: Prisma.FieldRef<"Session", "String">;
-  readonly deviceModel: Prisma.FieldRef<"Session", "String">;
-  readonly location: Prisma.FieldRef<"Session", "String">;
+  readonly metadata: Prisma.FieldRef<"Session", "Json">;
   readonly deviceType: Prisma.FieldRef<"Session", "SESSION_DEVICE_TYPE">;
   readonly createdAt: Prisma.FieldRef<"Session", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Session", "DateTime">;
