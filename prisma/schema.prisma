@@ -1,14 +1,142 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  output   = "../lib/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum ROLE {
+  SYSTEM_ADMIN
+  SYSTEM_MANAGER
+  SYSTEM_USER
+  ACCOUNT_ADMIN
+  ACCOUNT_MANAGER
+  ACCOUNT_USER
+  ARTIST
+  USER
+}
+
+enum SESSION_DEVICE_TYPE {
+  DESKTOP
+  LAPTOP
+  TABLET
+  MOBILE
+  OTHER
+}
+
+enum AUDIT_LOG_ACTION {
+  // User Actions
+  USER_REGISTERED
+  USER_LOGGED_IN
+  USER_LOGGED_OUT
+  USER_RESEND_VERIFICATION
+  USER_FORGOT_PASSWORD
+  USER_RESET_PASSWORD
+  USER_VERIFYIED
+  USER_SUSPENDED
+  USER_APPROVED
+  USER_PASSWORD_CHANGED
+  USER_UPDATED
+  USER_DELETED
+
+  // Session Actions
+  SESSION_CREATED
+  SESSION_REVOKED
+  SESSION_ACCESSED
+}
+
+enum AUDIT_LOG_ENTITY {
+  USER
+  SESSION
+}
+
+model User {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+
+  // Fields
+  name     String
+  email    String  @unique
+  password String
+  phone    String
+  avatar   String?
+
+  // Enums
+  role ROLE @default(USER)
+
+  // Relations
+  sessions  Session[]
+  auditLogs AuditLog[]
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  verifiedAt  DateTime?
+  approvedAt  DateTime?
+  suspendedAt DateTime?
+
+  // Indexes & Constraints
+}
+
+model Session {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  userId String
+
+  // Fields
+  token             String  @unique
+  userAgent         String
+  ipAddress         String
+  deviceFingerprint String
+  deviceName        String?
+  deviceBrand       String?
+  deviceModel       String?
+  location          String?
+
+  // Enums
+  deviceType SESSION_DEVICE_TYPE @default(OTHER)
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Timestamps
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  accessedAt DateTime?
+
+  // Indexes & Constraints
+}
+
+model AuditLog {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  userId String?
+
+  // Fields
+  entityId    String
+  bySystem    Boolean @default(false)
+  description String?
+  metadata    Json?
+
+  // Enums
+  action AUDIT_LOG_ACTION
+  entity AUDIT_LOG_ENTITY
+
+  // Relations
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+
+  // Indexes & Constraints
 }
