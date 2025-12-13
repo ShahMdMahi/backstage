@@ -32,6 +32,7 @@ async function processUserById(
         role: true,
         verifiedAt: true,
         approvedAt: true,
+        suspendedAt: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -48,6 +49,9 @@ async function processUserById(
         const approved = user.approvedAt
           ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
           : "N/A";
+        const suspended = user.suspendedAt
+          ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+          : "N/A";
         const created = format(
           addHours(user.createdAt, 6),
           "dd/MM/yyyy HH:mm:ss"
@@ -63,6 +67,7 @@ async function processUserById(
         message += `   **Role:** ${user.role}\n`;
         message += `   **Verified At:** ${verified}\n`;
         message += `   **Approved At:** ${approved}\n`;
+        message += `   **Suspended At:** ${suspended}\n`;
         message += `   **Created At:** ${created}\n`;
         message += `   **Updated At:** ${updated}\n\n`;
       }
@@ -106,6 +111,7 @@ async function processUserByEmail(
         role: true,
         verifiedAt: true,
         approvedAt: true,
+        suspendedAt: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -122,6 +128,9 @@ async function processUserByEmail(
         const approved = user.approvedAt
           ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
           : "N/A";
+        const suspended = user.suspendedAt
+          ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+          : "N/A";
         const created = format(
           addHours(user.createdAt, 6),
           "dd/MM/yyyy HH:mm:ss"
@@ -137,6 +146,7 @@ async function processUserByEmail(
         message += `   **Role:** ${user.role}\n`;
         message += `   **Verified At:** ${verified}\n`;
         message += `   **Approved At:** ${approved}\n`;
+        message += `   **Suspended At:** ${suspended}\n`;
         message += `   **Created At:** ${created}\n`;
         message += `   **Updated At:** ${updated}\n\n`;
       }
@@ -148,47 +158,6 @@ async function processUserByEmail(
   }
   try {
     await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
-  } catch (error) {
-    console.error("Error sending message:", error);
-  }
-}
-
-async function processApproveUser(
-  bot: TelegramBot,
-  chatId: number,
-  groupId: string,
-  id: string
-) {
-  if (chatId.toString() !== groupId) {
-    try {
-      await bot.sendMessage(chatId, "Unauthorized chat.");
-    } catch (error) {
-      console.error("Error sending unauthorized message:", error);
-    }
-    return;
-  }
-  let message = "An error occurred while approving the user.";
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: id },
-      select: { id: true, name: true, approvedAt: true },
-    });
-    if (!user) {
-      message = "No user found with that ID.";
-    } else if (user.approvedAt) {
-      message = `User ${user.name} is already approved.`;
-    } else {
-      await prisma.user.update({
-        where: { id: id },
-        data: { approvedAt: new Date() },
-      });
-      message = `User ${user.name} has been approved.`;
-    }
-  } catch (error) {
-    console.error("Error approving user:", error);
-  }
-  try {
-    await bot.sendMessage(chatId, message);
   } catch (error) {
     console.error("Error sending message:", error);
   }
@@ -223,9 +192,9 @@ export function registerCommands(
   /users - Get all registered users
   /users_unverified - Get unverified users
   /users_unapproved - Get unapproved users
+  /users_suspended - Get suspended users
   /users_id - Get user by ID (will prompt for ID)
   /users_email - Get user by email (will prompt for email)
-  /approve_user - Approve a user by ID (will prompt for ID)
 `
       );
     } catch (error) {
@@ -277,9 +246,9 @@ export function registerCommands(
   /users - Get all registered users
   /users_unverified - Get unverified users
   /users_unapproved - Get unapproved users
+  /users_suspended - Get suspended users
   /users_id - Get user by ID (will prompt for ID)
   /users_email - Get user by email (will prompt for email)
-  /approve_user - Approve a user by ID (will prompt for ID)
 `
       );
     } catch (error) {
@@ -319,41 +288,42 @@ export function registerCommands(
       }
       return;
     }
-    try {
-      if (!msg.text) return;
-      const args = msg.text.split(" ").slice(1);
-      const whereClause: {
-        id?: string;
-        email?: string;
-        verifiedAt?: null;
-        approvedAt?: null;
-      } = {};
-      let title = "Total Registered Users";
+    if (!msg.text) return;
+    const args = msg.text.split(" ").slice(1);
+    const whereClause: {
+      id?: string;
+      email?: string;
+      verifiedAt?: null;
+      approvedAt?: null;
+    } = {};
+    let title = "Total Registered Users";
 
-      if (args.length > 0) {
-        const filter = args[0].toLowerCase();
-        if (filter === "unverified") {
-          whereClause.verifiedAt = null;
-          title = "Unverified Users";
-        } else if (filter === "unapproved") {
-          whereClause.approvedAt = null;
-          title = "Unapproved Users";
-        } else if (filter === "id" && args[1]) {
-          whereClause.id = args[1];
-          title = `User with ID: ${args[1]}`;
-        } else if (filter === "email" && args[1]) {
-          whereClause.email = args[1];
-          title = `User with Email: ${args[1]}`;
-        } else {
-          await bot.sendMessage(
-            chatId,
-            "Invalid /users command. Use /help for available options.",
-            { parse_mode: "Markdown" }
-          );
-          return;
-        }
+    if (args.length > 0) {
+      const filter = args[0].toLowerCase();
+      if (filter === "unverified") {
+        whereClause.verifiedAt = null;
+        title = "Unverified Users";
+      } else if (filter === "unapproved") {
+        whereClause.approvedAt = null;
+        title = "Unapproved Users";
+      } else if (filter === "id" && args[1]) {
+        whereClause.id = args[1];
+        title = `User with ID: ${args[1]}`;
+      } else if (filter === "email" && args[1]) {
+        whereClause.email = args[1];
+        title = `User with Email: ${args[1]}`;
+      } else {
+        await bot.sendMessage(
+          chatId,
+          "Invalid /users command. Use /help for available options.",
+          { parse_mode: "Markdown" }
+        );
+        return;
       }
+    }
 
+    let message = "An error occurred while fetching user data.";
+    try {
       const users = await prisma.user.findMany({
         where: whereClause,
         select: {
@@ -363,12 +333,13 @@ export function registerCommands(
           role: true,
           verifiedAt: true,
           approvedAt: true,
+          suspendedAt: true,
           createdAt: true,
           updatedAt: true,
         },
       });
 
-      let message = `📋 ${title}: ${users.length}\n\n`;
+      message = `📋 ${title}: ${users.length}\n\n`;
 
       if (users.length > 0) {
         for (let i = 0; i < users.length; i++) {
@@ -378,6 +349,9 @@ export function registerCommands(
             : "N/A";
           const approved = user.approvedAt
             ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+            : "N/A";
+          const suspended = user.suspendedAt
+            ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
             : "N/A";
           const created = format(
             addHours(user.createdAt, 6),
@@ -394,11 +368,15 @@ export function registerCommands(
           message += `   **Role:** ${user.role}\n`;
           message += `   **Verified At:** ${verified}\n`;
           message += `   **Approved At:** ${approved}\n`;
+          message += `   **Suspended At:** ${suspended}\n`;
           message += `   **Created At:** ${created}\n`;
           message += `   **Updated At:** ${updated}\n\n`;
         }
       }
-
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+    try {
       await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
     } catch (error) {
       console.error("Error sending message:", error);
@@ -418,6 +396,7 @@ export function registerCommands(
         }
         return;
       }
+      let message = "An error occurred while fetching user data.";
       try {
         const users = await prisma.user.findMany({
           where: {
@@ -430,12 +409,13 @@ export function registerCommands(
             role: true,
             verifiedAt: true,
             approvedAt: true,
+            suspendedAt: true,
             createdAt: true,
             updatedAt: true,
           },
         });
 
-        let message = `📋 Unverified Users: ${users.length}\n\n`;
+        message = `📋 Unverified Users: ${users.length}\n\n`;
 
         if (users.length > 0) {
           for (let i = 0; i < users.length; i++) {
@@ -445,6 +425,9 @@ export function registerCommands(
               : "N/A";
             const approved = user.approvedAt
               ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+              : "N/A";
+            const suspended = user.suspendedAt
+              ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
               : "N/A";
             const created = format(
               addHours(user.createdAt, 6),
@@ -461,11 +444,15 @@ export function registerCommands(
             message += `   **Role:** ${user.role}\n`;
             message += `   **Verified At:** ${verified}\n`;
             message += `   **Approved At:** ${approved}\n`;
+            message += `   **Suspended At:** ${suspended}\n`;
             message += `   **Created At:** ${created}\n`;
             message += `   **Updated At:** ${updated}\n\n`;
           }
         }
-
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+      try {
         await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
       } catch (error) {
         console.error("Error sending message:", error);
@@ -486,6 +473,7 @@ export function registerCommands(
         }
         return;
       }
+      let message = "An error occurred while fetching user data.";
       try {
         const users = await prisma.user.findMany({
           where: {
@@ -498,12 +486,13 @@ export function registerCommands(
             role: true,
             verifiedAt: true,
             approvedAt: true,
+            suspendedAt: true,
             createdAt: true,
             updatedAt: true,
           },
         });
 
-        let message = `📋 Unapproved Users: ${users.length}\n\n`;
+        message = `📋 Unapproved Users: ${users.length}\n\n`;
 
         if (users.length > 0) {
           for (let i = 0; i < users.length; i++) {
@@ -513,6 +502,9 @@ export function registerCommands(
               : "N/A";
             const approved = user.approvedAt
               ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+              : "N/A";
+            const suspended = user.suspendedAt
+              ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
               : "N/A";
             const created = format(
               addHours(user.createdAt, 6),
@@ -529,11 +521,94 @@ export function registerCommands(
             message += `   **Role:** ${user.role}\n`;
             message += `   **Verified At:** ${verified}\n`;
             message += `   **Approved At:** ${approved}\n`;
+            message += `   **Suspended At:** ${suspended}\n`;
             message += `   **Created At:** ${created}\n`;
             message += `   **Updated At:** ${updated}\n\n`;
           }
         }
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+      try {
+        await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+      } catch (error) {
+        console.error("Error sending message:", error);
+      }
+    }
+  );
 
+  // /Register /users_suspended - Get suspended users
+  bot.onText(
+    new RegExp(`^\\/users_suspended(?:@${botUsername})?$`, "i"),
+    async (msg) => {
+      const chatId = msg.chat.id;
+      if (chatId.toString() !== groupId) {
+        try {
+          await bot.sendMessage(chatId, "Unauthorized chat.");
+        } catch (error) {
+          console.error("Error sending unauthorized message:", error);
+        }
+        return;
+      }
+      let message = "An error occurred while fetching user data.";
+      try {
+        const users = await prisma.user.findMany({
+          where: {
+            suspendedAt: {
+              not: null,
+            },
+          },
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            role: true,
+            verifiedAt: true,
+            approvedAt: true,
+            suspendedAt: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        });
+
+        message = `📋 Suspended Users: ${users.length}\n\n`;
+
+        if (users.length > 0) {
+          for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+            const verified = user.verifiedAt
+              ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
+              : "N/A";
+            const approved = user.approvedAt
+              ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+              : "N/A";
+            const suspended = user.suspendedAt
+              ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+              : "N/A";
+            const created = format(
+              addHours(user.createdAt, 6),
+              "dd/MM/yyyy HH:mm:ss"
+            );
+            const updated = format(
+              addHours(user.updatedAt, 6),
+              "dd/MM/yyyy HH:mm:ss"
+            );
+
+            message += `${i + 1}. **${user.name}**\n`;
+            message += `   **ID:** \`${user.id}\`\n`;
+            message += `   **Email:** \`${user.email}\`\n`;
+            message += `   **Role:** ${user.role}\n`;
+            message += `   **Verified At:** ${verified}\n`;
+            message += `   **Approved At:** ${approved}\n`;
+            message += `   **Suspended At:** ${suspended}\n`;
+            message += `   **Created At:** ${created}\n`;
+            message += `   **Updated At:** ${updated}\n\n`;
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+      try {
         await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
       } catch (error) {
         console.error("Error sending message:", error);
@@ -583,27 +658,6 @@ export function registerCommands(
     }
   );
 
-  // /Register /approve_user - Approve a user by ID
-  bot.onText(
-    new RegExp(`^\\/approve_user(?:@${botUsername})?$`, "i"),
-    async (msg) => {
-      const chatId = msg.chat.id;
-      if (chatId.toString() !== groupId) {
-        try {
-          await bot.sendMessage(chatId, "Unauthorized chat.");
-        } catch (error) {
-          console.error("Error sending unauthorized message:", error);
-        }
-        return;
-      }
-      const userId = msg.from?.id;
-      if (userId) {
-        userStates.set(userId, "waiting_for_approve_id");
-        await bot.sendMessage(chatId, "Please enter the user ID to approve:");
-      }
-    }
-  );
-
   // Handle user inputs for ID and email
   bot.on("message", (msg) => {
     const userId = msg.from?.id;
@@ -620,11 +674,6 @@ export function registerCommands(
         userStates.delete(userId);
         // Process email
         processUserByEmail(bot, msg.chat.id, groupId, email);
-      } else if (state === "waiting_for_approve_id") {
-        const id = msg.text.trim();
-        userStates.delete(userId);
-        // Process approve
-        processApproveUser(bot, msg.chat.id, groupId, id);
       }
     }
   });
