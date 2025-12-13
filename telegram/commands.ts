@@ -152,7 +152,14 @@ export function registerCommands(
 
           let message = "An error occurred while fetching user data.";
           try {
-            const users = await getUserAllUsersForBot();
+            const data = await getUserAllUsersForBot();
+
+            if (!data.success) {
+              message = "Failed to retrieve users.";
+              return;
+            }
+
+            const users = data.users;
 
             message = `📋 Total users: ${users.length}\n\n`;
 
@@ -169,11 +176,11 @@ export function registerCommands(
                   ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
                   : "N/A";
                 const created = format(
-                  addHours(user.createdAt, 6),
+                  addHours(user.createdAt!, 6),
                   "dd/MM/yyyy HH:mm:ss"
                 );
                 const updated = format(
-                  addHours(user.updatedAt, 6),
+                  addHours(user.updatedAt!, 6),
                   "dd/MM/yyyy HH:mm:ss"
                 );
 

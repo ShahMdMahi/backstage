@@ -1,8 +1,12 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { User } from "@/lib/prisma/client";
 
-export async function getUserAllUsersForBot() {
+export async function getUserAllUsersForBot(): Promise<{
+  success: boolean;
+  users: Partial<User>[] | [];
+}> {
   try {
     const users = await prisma.user.findMany({
       select: {
@@ -17,52 +21,14 @@ export async function getUserAllUsersForBot() {
         updatedAt: true,
       },
     });
-    return users;
+
+    if (users.length < 0) {
+      return { success: false, users: [] };
+    }
+
+    return { success: true, users };
   } catch (error) {
     console.error("Error fetching users for bot:", error);
-  }
-}
-
-export async function getUserByIdForBot(userId: string) {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        verifiedAt: true,
-        approvedAt: true,
-        suspendedAt: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
-    return user;
-  } catch (error) {
-    console.error(`Error fetching user ${userId} for bot:`, error);
-  }
-}
-
-export async function getUserByEmailForBot(email: string) {
-  try {
-    const user = await prisma.user.findUnique({
-      where: { email },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        verifiedAt: true,
-        approvedAt: true,
-        suspendedAt: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
-    return user;
-  } catch (error) {
-    console.error(`Error fetching user with email ${email} for bot:`, error);
+    return { success: false, users: [] };
   }
 }
