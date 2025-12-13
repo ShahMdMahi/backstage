@@ -3,6 +3,9 @@ import dedent from "dedent";
 import { format, addHours } from "date-fns";
 import { getUserAllUsersForBot } from "@/actions/user";
 
+const escapeHtml = (str: string = "N/A") =>
+  str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 export function registerCommands(
   bot: TelegramBot,
   groupId: string,
@@ -184,22 +187,22 @@ export function registerCommands(
                   "dd/MM/yyyy HH:mm:ss"
                 );
 
-                message += `${i + 1}. **${user.name}**\n`;
-                message += `   **ID:** \`${user.id}\`\n`;
-                message += `   **Email:** \`${user.email}\`\n`;
-                message += `   **Role:** ${user.role}\n`;
-                message += `   **Verified At:** ${verified}\n`;
-                message += `   **Approved At:** ${approved}\n`;
-                message += `   **Suspended At:** ${suspended}\n`;
-                message += `   **Created At:** ${created}\n`;
-                message += `   **Updated At:** ${updated}\n\n`;
+                message += `${i + 1}. <b>${escapeHtml(user.name)}</b>\n`;
+                message += `   <b>ID:</b> <code>${escapeHtml(user.id)}</code>\n`;
+                message += `   <b>Email:</b> <code>${escapeHtml(user.email)}</code>\n`;
+                message += `   <b>Role:</b> ${escapeHtml(user.role)}\n`;
+                message += `   <b>Verified At:</b> ${escapeHtml(verified)}\n`;
+                message += `   <b>Approved At:</b> ${escapeHtml(approved)}\n`;
+                message += `   <b>Suspended At:</b> ${escapeHtml(suspended)}\n`;
+                message += `   <b>Created At:</b> ${escapeHtml(created)}\n`;
+                message += `   <b>Updated At:</b> ${escapeHtml(updated)}\n\n`;
               }
             }
           } catch (error) {
             console.error("Error fetching users:", error);
           }
           try {
-            await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+            await bot.sendMessage(chatId, message, { parse_mode: "HTML" });
           } catch (error) {
             console.error("Error sending message:", error);
           }
