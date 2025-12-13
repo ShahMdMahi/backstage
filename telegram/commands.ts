@@ -6,6 +6,10 @@ import { getUserAllUsersForBot } from "@/actions/user";
 
 const userStates = new Map<number, string>();
 
+function escapeMarkdown(text: string): string {
+  return text.replace(/([*_`\[\]])/g, "\\$1");
+}
+
 async function processUserById(
   bot: TelegramBot,
   chatId: number,
@@ -39,7 +43,7 @@ async function processUserById(
       },
     });
 
-    message = `📋 User with ID: ${id}\n\n`;
+    message = `📋 User with ID: ${escapeMarkdown(id)}\n\n`;
 
     if (users.length > 0) {
       for (let i = 0; i < users.length; i++) {
@@ -62,9 +66,9 @@ async function processUserById(
           "dd/MM/yyyy HH:mm:ss"
         );
 
-        message += `${i + 1}. **${user.name}**\n`;
-        message += `   **ID:** \`${user.id}\`\n`;
-        message += `   **Email:** \`${user.email}\`\n`;
+        message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
+        message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
+        message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
         message += `   **Role:** ${user.role}\n`;
         message += `   **Verified At:** ${verified}\n`;
         message += `   **Approved At:** ${approved}\n`;
@@ -118,7 +122,7 @@ async function processUserByEmail(
       },
     });
 
-    message = `📋 User with Email: ${email}\n\n`;
+    message = `📋 User with Email: ${escapeMarkdown(email)}\n\n`;
 
     if (users.length > 0) {
       for (let i = 0; i < users.length; i++) {
@@ -141,9 +145,9 @@ async function processUserByEmail(
           "dd/MM/yyyy HH:mm:ss"
         );
 
-        message += `${i + 1}. **${user.name}**\n`;
-        message += `   **ID:** \`${user.id}\`\n`;
-        message += `   **Email:** \`${user.email}\`\n`;
+        message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
+        message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
+        message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
         message += `   **Role:** ${user.role}\n`;
         message += `   **Verified At:** ${verified}\n`;
         message += `   **Approved At:** ${approved}\n`;
@@ -439,9 +443,9 @@ export function registerCommands(
                     "dd/MM/yyyy HH:mm:ss"
                   );
 
-                  message += `${i + 1}. **${user.name}**\n`;
-                  message += `   **ID:** \`${user.id}\`\n`;
-                  message += `   **Email:** \`${user.email}\`\n`;
+                  message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
+                  message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
+                  message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
                   message += `   **Role:** ${user.role}\n`;
                   message += `   **Verified At:** ${verified}\n`;
                   message += `   **Approved At:** ${approved}\n`;
@@ -533,9 +537,9 @@ export function registerCommands(
                     "dd/MM/yyyy HH:mm:ss"
                   );
 
-                  message += `${i + 1}. **${user.name}**\n`;
-                  message += `   **ID:** \`${user.id}\`\n`;
-                  message += `   **Email:** \`${user.email}\`\n`;
+                  message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
+                  message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
+                  message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
                   message += `   **Role:** ${user.role}\n`;
                   message += `   **Verified At:** ${verified}\n`;
                   message += `   **Approved At:** ${approved}\n`;
@@ -629,9 +633,9 @@ export function registerCommands(
                     "dd/MM/yyyy HH:mm:ss"
                   );
 
-                  message += `${i + 1}. **${user.name}**\n`;
-                  message += `   **ID:** \`${user.id}\`\n`;
-                  message += `   **Email:** \`${user.email}\`\n`;
+                  message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
+                  message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
+                  message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
                   message += `   **Role:** ${user.role}\n`;
                   message += `   **Verified At:** ${verified}\n`;
                   message += `   **Approved At:** ${approved}\n`;
