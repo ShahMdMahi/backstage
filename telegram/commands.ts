@@ -187,7 +187,7 @@ export function registerCommands(
                   "dd/MM/yyyy HH:mm:ss"
                 );
 
-                message += `${i + 1}. *${escapeMarkdownV2(user.name)}*\n`;
+                message += `${i + 1}\. *${escapeMarkdownV2(user.name)}*\n`;
                 message += `   *ID:* \`${escapeMarkdownV2(user.id)}\`\n`;
                 message += `   *Email:* \`${escapeMarkdownV2(user.email)}\`\n`;
                 message += `   *Role:* ${escapeMarkdownV2(user.role)}\n`;
