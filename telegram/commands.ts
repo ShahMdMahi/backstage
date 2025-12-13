@@ -46,6 +46,9 @@ export function registerCommands(
   /help - Show this help message
   /info - Get information about this bot
   /users - Get all registered users
+  /users_unverified - Get all unverified users
+  /users_unapproved - Get all unapproved users
+  /users_suspended - Get all suspended users
 `
             );
           } catch (error) {
@@ -110,6 +113,9 @@ export function registerCommands(
   /help - Show this help message
   /info - Get information about this bot
   /users - Get all registered users
+  /users_unverified - Get all unverified users
+  /users_unapproved - Get all unapproved users
+  /users_suspended - Get all suspended users
 `
             );
           } catch (error) {
