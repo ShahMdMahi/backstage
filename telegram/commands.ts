@@ -3,8 +3,13 @@ import dedent from "dedent";
 import { format, addHours } from "date-fns";
 import { getUserAllUsersForBot } from "./user";
 
-const escapeMarkdownV2 = (str: string = "N/A") =>
-  str.replace(/[_\*\[\]\(\)~`>#+-=|\{\}\.!]/g, "\\$&");
+function escapeMarkdownV2(value: unknown): string {
+  return String(value).replace(/[_*[\]()~`>#+\-=|{}.!]/g, "\\$&");
+}
+
+function code(value: unknown): string {
+  return `\`${escapeMarkdownV2(value)}\``;
+}
 
 export function registerCommands(
   bot: TelegramBot,
@@ -187,9 +192,9 @@ export function registerCommands(
                   "dd/MM/yyyy HH:mm:ss"
                 );
 
-                message += `${i + 1}\. *${escapeMarkdownV2(user.name)}*\n`;
-                message += `   *ID:* ${escapeMarkdownV2(user.id)}\n`;
-                message += `   *Email:* ${escapeMarkdownV2(user.email)}\n`;
+                message += `${i + 1}\\. *${escapeMarkdownV2(user.name)}*\n`;
+                message += `   *ID:* ${code(user.id)}\n`;
+                message += `   *Email:* ${code(user.email)}\n`;
                 message += `   *Role:* ${escapeMarkdownV2(user.role)}\n`;
                 message += `   *Verified At:* ${escapeMarkdownV2(verified)}\n`;
                 message += `   *Approved At:* ${escapeMarkdownV2(approved)}\n`;
