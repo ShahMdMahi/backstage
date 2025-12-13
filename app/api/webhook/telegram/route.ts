@@ -64,7 +64,7 @@ bot.on("message", async (msg) => {
         case "/info":
           bot.sendMessage(
             chatId,
-            "This bot is built using Node.js and the node-telegram-bot-api library."
+            "🤖 I'm the RoyalMotionIT Record Label Dashboard Telegram bot, here to assist you with notifications and updates and actions from your dashboard application."
           );
           break;
         default:
