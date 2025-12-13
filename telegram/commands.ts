@@ -8,7 +8,14 @@ export function registerCommands(
 ) {
   bot.onText(new RegExp(`^\\/start(?:@${botUsername})?$`, "i"), async (msg) => {
     const chatId = msg.chat.id;
-    if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
+    if (chatId.toString() !== groupId) {
+      try {
+        await bot.sendMessage(chatId, "Unauthorized chat.");
+      } catch (error) {
+        console.error("Error sending unauthorized message:", error);
+      }
+      return;
+    }
     try {
       await bot.sendMessage(
         chatId,
@@ -29,7 +36,14 @@ export function registerCommands(
     new RegExp(`^\\/status(?:@${botUsername})?$`, "i"),
     async (msg) => {
       const chatId = msg.chat.id;
-      if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
+      if (chatId.toString() !== groupId) {
+        try {
+          await bot.sendMessage(chatId, "Unauthorized chat.");
+        } catch (error) {
+          console.error("Error sending unauthorized message:", error);
+        }
+        return;
+      }
       try {
         await bot.sendMessage(chatId, "✅ The bot is online and running.");
       } catch (error) {
@@ -40,7 +54,14 @@ export function registerCommands(
 
   bot.onText(new RegExp(`^\\/help(?:@${botUsername})?$`, "i"), async (msg) => {
     const chatId = msg.chat.id;
-    if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
+    if (chatId.toString() !== groupId) {
+      try {
+        await bot.sendMessage(chatId, "Unauthorized chat.");
+      } catch (error) {
+        console.error("Error sending unauthorized message:", error);
+      }
+      return;
+    }
     try {
       await bot.sendMessage(
         chatId,
@@ -59,7 +80,14 @@ export function registerCommands(
 
   bot.onText(new RegExp(`^\\/info(?:@${botUsername})?$`, "i"), async (msg) => {
     const chatId = msg.chat.id;
-    if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
+    if (chatId.toString() !== groupId) {
+      try {
+        await bot.sendMessage(chatId, "Unauthorized chat.");
+      } catch (error) {
+        console.error("Error sending unauthorized message:", error);
+      }
+      return;
+    }
     try {
       await bot.sendMessage(
         chatId,
