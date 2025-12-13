@@ -2,6 +2,7 @@ import TelegramBot from "node-telegram-bot-api";
 import dedent from "dedent";
 import { prisma } from "@/lib/prisma";
 import { format, addHours } from "date-fns";
+import { getUserAllUsersForBot } from "@/actions/user";
 
 const userStates = new Map<number, string>();
 
@@ -289,57 +290,12 @@ export function registerCommands(
       return;
     }
     if (!msg.text) return;
-    const args = msg.text.split(" ").slice(1);
-    const whereClause: {
-      id?: string;
-      email?: string;
-      verifiedAt?: null;
-      approvedAt?: null;
-    } = {};
-    let title = "Total Registered Users";
-
-    if (args.length > 0) {
-      const filter = args[0].toLowerCase();
-      if (filter === "unverified") {
-        whereClause.verifiedAt = null;
-        title = "Unverified Users";
-      } else if (filter === "unapproved") {
-        whereClause.approvedAt = null;
-        title = "Unapproved Users";
-      } else if (filter === "id" && args[1]) {
-        whereClause.id = args[1];
-        title = `User with ID: ${args[1]}`;
-      } else if (filter === "email" && args[1]) {
-        whereClause.email = args[1];
-        title = `User with Email: ${args[1]}`;
-      } else {
-        await bot.sendMessage(
-          chatId,
-          "Invalid /users command. Use /help for available options.",
-          { parse_mode: "Markdown" }
-        );
-        return;
-      }
-    }
 
     let message = "An error occurred while fetching user data.";
     try {
-      const users = await prisma.user.findMany({
-        where: whereClause,
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          role: true,
-          verifiedAt: true,
-          approvedAt: true,
-          suspendedAt: true,
-          createdAt: true,
-          updatedAt: true,
-        },
-      });
+      const users = await getUserAllUsersForBot();
 
-      message = `📋 ${title}: ${users.length}\n\n`;
+      message = `📋 Total users: ${users.length}\n\n`;
 
       if (users.length > 0) {
         for (let i = 0; i < users.length; i++) {
