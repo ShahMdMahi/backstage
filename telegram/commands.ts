@@ -33,11 +33,6 @@ export function registerCommands(
   /help - Show this help message
   /info - Get information about this bot
   /users - Get all registered users
-  /users_unverified - Get unverified users
-  /users_unapproved - Get unapproved users
-  /users_suspended - Get suspended users
-  /users_id - Get user by ID (will prompt for ID)
-  /users_email - Get user by email (will prompt for email)
 `
             );
           } catch (error) {
@@ -102,11 +97,6 @@ export function registerCommands(
   /help - Show this help message
   /info - Get information about this bot
   /users - Get all registered users
-  /users_unverified - Get unverified users
-  /users_unapproved - Get unapproved users
-  /users_suspended - Get suspended users
-  /users_id - Get user by ID (will prompt for ID)
-  /users_email - Get user by email (will prompt for email)
 `
             );
           } catch (error) {
