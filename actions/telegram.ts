@@ -2,14 +2,15 @@
 
 import { telegramBot } from "@/lib/telegram";
 import { AuditLog, User } from "@/lib/prisma/client";
+import dedent from "dedent";
 
-const telegramChannelId = process.env.TELEGRAM_CHANNEL_ID!;
+const telegramGroupId = process.env.TELEGRAM_GROUP_ID!;
 
 export async function sendFormattedAuditLog(
   auditLog: AuditLog & { user: User | null }
 ): Promise<void> {
   try {
-    const message = `
+    const message = dedent`
 🔔 **Audit Log Alert**
 
 **Action:** \`${auditLog.action}\`
@@ -22,7 +23,7 @@ export async function sendFormattedAuditLog(
 ${auditLog.metadata ? `**Metadata:**\n\`\`\`json\n${JSON.stringify(auditLog.metadata, null, 2)}\n\`\`\`` : ""}
     `.trim();
 
-    await telegramBot.sendMessage(telegramChannelId, message, {
+    await telegramBot.sendMessage(telegramGroupId, message, {
       parse_mode: "Markdown",
     });
   } catch (error) {

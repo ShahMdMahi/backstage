@@ -1,0 +1,28 @@
+import TelegramBot from "node-telegram-bot-api";
+import { NextRequest, NextResponse } from "next/server";
+
+// The bot instance needs to be outside the POST function so listeners persist across calls
+const token = process.env.TELEGRAM_BOT_TOKEN!;
+// Set up the bot for webhooks (no polling option here)
+const bot = new TelegramBot(token);
+
+// Register your message listeners here:
+bot.on("message", (msg) => {
+  const chatId = msg.chat.id;
+  // Your custom logic goes here. Example:
+  bot.sendMessage(chatId, "Hello from your Vercel-hosted bot!");
+});
+
+// The POST handler receives updates from Telegram
+export async function POST(req: NextRequest) {
+  const body = await req.json(); // Parse the JSON body from Telegram
+  bot.processUpdate(body); // Process the update using the library's method
+
+  // Must return a 200 status quickly to confirm receipt to Telegram
+  return NextResponse.json({ status: "OK" });
+}
+
+// A GET handler is useful for initial setup or verification
+export async function GET() {
+  return NextResponse.json({ status: "Bot webhook endpoint ready." });
+}
