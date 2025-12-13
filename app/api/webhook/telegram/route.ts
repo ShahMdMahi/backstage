@@ -1,5 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
 import { NextRequest, NextResponse } from "next/server";
+import { commandListener } from "@/actions/telegram";
 
 // The bot instance needs to be outside the POST function so listeners persist across calls
 const token = process.env.TELEGRAM_BOT_TOKEN!;
@@ -7,10 +8,13 @@ const token = process.env.TELEGRAM_BOT_TOKEN!;
 const bot = new TelegramBot(token);
 
 // Register your message listeners here:
-bot.on("message", (msg) => {
+bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
-  // Your custom logic goes here. Example:
-  bot.sendMessage(chatId, "Hello from your Vercel-hosted bot!");
+  await commandListener(
+    chatId,
+    msg.text?.split(" ")[0].substring(1) || "",
+    msg.text?.split(" ").slice(1) || []
+  );
 });
 
 // The POST handler receives updates from Telegram
