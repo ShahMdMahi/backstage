@@ -28,7 +28,10 @@ bot.on("message", async (msg) => {
         commandEntity.offset + commandEntity.length
       );
       // Normalize command for easier matching (strip bot username if present)
-      const normalizedCommand = command.replace(`@${botUsername}`, "");
+      const normalizedCommand = command.replace(
+        new RegExp(`@${botUsername}$`, "i"),
+        ""
+      );
 
       switch (normalizedCommand) {
         case "/start":
@@ -52,6 +55,7 @@ bot.on("message", async (msg) => {
             dedent`
           Available commands:
           /start - Start interaction with the bot
+          /status - Check if the bot is online
           /help - Show this help message
           /info - Get information about this bot
         `
