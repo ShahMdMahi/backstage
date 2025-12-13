@@ -188,8 +188,8 @@ export function registerCommands(
                 );
 
                 message += `${i + 1}\. *${escapeMarkdownV2(user.name)}*\n`;
-                message += `   *ID:* \`${escapeMarkdownV2(user.id)}\`\n`;
-                message += `   *Email:* \`${escapeMarkdownV2(user.email)}\`\n`;
+                message += `   *ID:* ${escapeMarkdownV2(user.id)}\n`;
+                message += `   *Email:* ${escapeMarkdownV2(user.email)}\n`;
                 message += `   *Role:* ${escapeMarkdownV2(user.role)}\n`;
                 message += `   *Verified At:* ${escapeMarkdownV2(verified)}\n`;
                 message += `   *Approved At:* ${escapeMarkdownV2(approved)}\n`;
