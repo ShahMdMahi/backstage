@@ -199,7 +199,7 @@ export function registerCommands(
             console.error("Error fetching users:", error);
           }
           try {
-            await bot.sendMessage(chatId, message, { parse_mode: "HTML" });
+            await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
           } catch (error) {
             console.error("Error sending message:", error);
           }
