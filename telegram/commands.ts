@@ -10,6 +10,13 @@ function escapeMarkdown(text: string): string {
   return text.replace(/([*_`\[\]])/g, "\\$1");
 }
 
+function escapeHTML(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 async function processUserById(
   bot: TelegramBot,
   chatId: number,
@@ -66,15 +73,15 @@ async function processUserById(
           "dd/MM/yyyy HH:mm:ss"
         );
 
-        message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
-        message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
-        message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
-        message += `   **Role:** ${user.role}\n`;
-        message += `   **Verified At:** ${verified}\n`;
-        message += `   **Approved At:** ${approved}\n`;
-        message += `   **Suspended At:** ${suspended}\n`;
-        message += `   **Created At:** ${created}\n`;
-        message += `   **Updated At:** ${updated}\n\n`;
+        message += `${i + 1}. <b>${escapeHTML(user.name)}</b>\n`;
+        message += `   <b>ID:</b> <code>${escapeHTML(user.id)}</code>\n`;
+        message += `   <b>Email:</b> <code>${escapeHTML(user.email)}</code>\n`;
+        message += `   <b>Role:</b> ${user.role}\n`;
+        message += `   <b>Verified At:</b> ${verified}\n`;
+        message += `   <b>Approved At:</b> ${approved}\n`;
+        message += `   <b>Suspended At:</b> ${suspended}\n`;
+        message += `   <b>Created At:</b> ${created}\n`;
+        message += `   <b>Updated At:</b> ${updated}\n\n`;
       }
     } else {
       message += "No user found with that ID.";
@@ -83,7 +90,7 @@ async function processUserById(
     console.error("Error fetching user:", error);
   }
   try {
-    await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+    await bot.sendMessage(chatId, message, { parse_mode: "HTML" });
   } catch (error) {
     console.error("Error sending message:", error);
   }
@@ -145,15 +152,15 @@ async function processUserByEmail(
           "dd/MM/yyyy HH:mm:ss"
         );
 
-        message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
-        message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
-        message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
-        message += `   **Role:** ${user.role}\n`;
-        message += `   **Verified At:** ${verified}\n`;
-        message += `   **Approved At:** ${approved}\n`;
-        message += `   **Suspended At:** ${suspended}\n`;
-        message += `   **Created At:** ${created}\n`;
-        message += `   **Updated At:** ${updated}\n\n`;
+        message += `${i + 1}. <b>${escapeHTML(user.name)}</b>\n`;
+        message += `   <b>ID:</b> <code>${escapeHTML(user.id)}</code>\n`;
+        message += `   <b>Email:</b> <code>${escapeHTML(user.email)}</code>\n`;
+        message += `   <b>Role:</b> ${user.role}\n`;
+        message += `   <b>Verified At:</b> ${verified}\n`;
+        message += `   <b>Approved At:</b> ${approved}\n`;
+        message += `   <b>Suspended At:</b> ${suspended}\n`;
+        message += `   <b>Created At:</b> ${created}\n`;
+        message += `   <b>Updated At:</b> ${updated}\n\n`;
       }
     } else {
       message += "No user found with that email.";
@@ -162,7 +169,7 @@ async function processUserByEmail(
     console.error("Error fetching user:", error);
   }
   try {
-    await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+    await bot.sendMessage(chatId, message, { parse_mode: "HTML" });
   } catch (error) {
     console.error("Error sending message:", error);
   }
@@ -367,7 +374,7 @@ export function registerCommands(
             console.error("Error fetching users:", error);
           }
           try {
-            await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+            await bot.sendMessage(chatId, message, { parse_mode: "HTML" });
           } catch (error) {
             console.error("Error sending message:", error);
           }
@@ -443,15 +450,15 @@ export function registerCommands(
                     "dd/MM/yyyy HH:mm:ss"
                   );
 
-                  message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
-                  message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
-                  message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
-                  message += `   **Role:** ${user.role}\n`;
-                  message += `   **Verified At:** ${verified}\n`;
-                  message += `   **Approved At:** ${approved}\n`;
-                  message += `   **Suspended At:** ${suspended}\n`;
-                  message += `   **Created At:** ${created}\n`;
-                  message += `   **Updated At:** ${updated}\n\n`;
+                  message += `${i + 1}. <b>${escapeHTML(user.name)}</b>\n`;
+                  message += `   <b>ID:</b> <code>${escapeHTML(user.id)}</code>\n`;
+                  message += `   <b>Email:</b> <code>${escapeHTML(user.email)}</code>\n`;
+                  message += `   <b>Role:</b> ${user.role}\n`;
+                  message += `   <b>Verified At:</b> ${verified}\n`;
+                  message += `   <b>Approved At:</b> ${approved}\n`;
+                  message += `   <b>Suspended At:</b> ${suspended}\n`;
+                  message += `   <b>Created At:</b> ${created}\n`;
+                  message += `   <b>Updated At:</b> ${updated}\n\n`;
                 }
               }
             } catch (error) {
@@ -459,7 +466,7 @@ export function registerCommands(
             }
             try {
               await bot.sendMessage(chatId, message, {
-                parse_mode: "Markdown",
+                parse_mode: "HTML",
               });
             } catch (error) {
               console.error("Error sending message:", error);
@@ -537,15 +544,15 @@ export function registerCommands(
                     "dd/MM/yyyy HH:mm:ss"
                   );
 
-                  message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
-                  message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
-                  message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
-                  message += `   **Role:** ${user.role}\n`;
-                  message += `   **Verified At:** ${verified}\n`;
-                  message += `   **Approved At:** ${approved}\n`;
-                  message += `   **Suspended At:** ${suspended}\n`;
-                  message += `   **Created At:** ${created}\n`;
-                  message += `   **Updated At:** ${updated}\n\n`;
+                  message += `${i + 1}. <b>${escapeHTML(user.name)}</b>\n`;
+                  message += `   <b>ID:</b> <code>${escapeHTML(user.id)}</code>\n`;
+                  message += `   <b>Email:</b> <code>${escapeHTML(user.email)}</code>\n`;
+                  message += `   <b>Role:</b> ${user.role}\n`;
+                  message += `   <b>Verified At:</b> ${verified}\n`;
+                  message += `   <b>Approved At:</b> ${approved}\n`;
+                  message += `   <b>Suspended At:</b> ${suspended}\n`;
+                  message += `   <b>Created At:</b> ${created}\n`;
+                  message += `   <b>Updated At:</b> ${updated}\n\n`;
                 }
               }
             } catch (error) {
@@ -553,7 +560,7 @@ export function registerCommands(
             }
             try {
               await bot.sendMessage(chatId, message, {
-                parse_mode: "Markdown",
+                parse_mode: "HTML",
               });
             } catch (error) {
               console.error("Error sending message:", error);
@@ -633,15 +640,15 @@ export function registerCommands(
                     "dd/MM/yyyy HH:mm:ss"
                   );
 
-                  message += `${i + 1}. **${escapeMarkdown(user.name)}**\n`;
-                  message += `   **ID:** \`${escapeMarkdown(user.id)}\`\n`;
-                  message += `   **Email:** \`${escapeMarkdown(user.email)}\`\n`;
-                  message += `   **Role:** ${user.role}\n`;
-                  message += `   **Verified At:** ${verified}\n`;
-                  message += `   **Approved At:** ${approved}\n`;
-                  message += `   **Suspended At:** ${suspended}\n`;
-                  message += `   **Created At:** ${created}\n`;
-                  message += `   **Updated At:** ${updated}\n\n`;
+                  message += `${i + 1}. <b>${escapeHTML(user.name)}</b>\n`;
+                  message += `   <b>ID:</b> <code>${escapeHTML(user.id)}</code>\n`;
+                  message += `   <b>Email:</b> <code>${escapeHTML(user.email)}</code>\n`;
+                  message += `   <b>Role:</b> ${user.role}\n`;
+                  message += `   <b>Verified At:</b> ${verified}\n`;
+                  message += `   <b>Approved At:</b> ${approved}\n`;
+                  message += `   <b>Suspended At:</b> ${suspended}\n`;
+                  message += `   <b>Created At:</b> ${created}\n`;
+                  message += `   <b>Updated At:</b> ${updated}\n\n`;
                 }
               }
             } catch (error) {
@@ -649,7 +656,7 @@ export function registerCommands(
             }
             try {
               await bot.sendMessage(chatId, message, {
-                parse_mode: "Markdown",
+                parse_mode: "HTML",
               });
             } catch (error) {
               console.error("Error sending message:", error);

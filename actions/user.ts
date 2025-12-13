@@ -20,6 +20,49 @@ export async function getUserAllUsersForBot() {
     return users;
   } catch (error) {
     console.error("Error fetching users for bot:", error);
-    throw error;
+  }
+}
+
+export async function getUserByIdForBot(userId: string) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        verifiedAt: true,
+        approvedAt: true,
+        suspendedAt: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error(`Error fetching user ${userId} for bot:`, error);
+  }
+}
+
+export async function getUserByEmailForBot(email: string) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true,
+        verifiedAt: true,
+        approvedAt: true,
+        suspendedAt: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    return user;
+  } catch (error) {
+    console.error(`Error fetching user with email ${email} for bot:`, error);
   }
 }
