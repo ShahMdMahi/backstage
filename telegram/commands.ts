@@ -1,7 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import dedent from "dedent";
 import { format, addHours } from "date-fns";
-import { getUserAllUsersForBot } from "@/actions/user";
+import { getUserAllUsersForBot } from "./user";
 
 const escapeMarkdownV2 = (str: string = "N/A") =>
   str.replace(/[_\*\[\]\(\)~`>#+-=|\{\}\.!]/g, "\\$&");
