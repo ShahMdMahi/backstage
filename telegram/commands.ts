@@ -19,6 +19,7 @@ async function processUserById(
     }
     return;
   }
+  let message = "An error occurred while fetching user data.";
   try {
     const users = await prisma.user.findMany({
       where: {
@@ -36,7 +37,7 @@ async function processUserById(
       },
     });
 
-    let message = `📋 User with ID: ${id}\n\n`;
+    message = `📋 User with ID: ${id}\n\n`;
 
     if (users.length > 0) {
       for (let i = 0; i < users.length; i++) {
@@ -68,7 +69,10 @@ async function processUserById(
     } else {
       message += "No user found with that ID.";
     }
-
+  } catch (error) {
+    console.error("Error fetching user:", error);
+  }
+  try {
     await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
   } catch (error) {
     console.error("Error sending message:", error);
@@ -89,6 +93,7 @@ async function processUserByEmail(
     }
     return;
   }
+  let message = "An error occurred while fetching user data.";
   try {
     const users = await prisma.user.findMany({
       where: {
@@ -106,7 +111,7 @@ async function processUserByEmail(
       },
     });
 
-    let message = `📋 User with Email: ${email}\n\n`;
+    message = `📋 User with Email: ${email}\n\n`;
 
     if (users.length > 0) {
       for (let i = 0; i < users.length; i++) {
@@ -138,8 +143,52 @@ async function processUserByEmail(
     } else {
       message += "No user found with that email.";
     }
-
+  } catch (error) {
+    console.error("Error fetching user:", error);
+  }
+  try {
     await bot.sendMessage(chatId, message, { parse_mode: "Markdown" });
+  } catch (error) {
+    console.error("Error sending message:", error);
+  }
+}
+
+async function processApproveUser(
+  bot: TelegramBot,
+  chatId: number,
+  groupId: string,
+  id: string
+) {
+  if (chatId.toString() !== groupId) {
+    try {
+      await bot.sendMessage(chatId, "Unauthorized chat.");
+    } catch (error) {
+      console.error("Error sending unauthorized message:", error);
+    }
+    return;
+  }
+  let message = "An error occurred while approving the user.";
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: id },
+      select: { id: true, name: true, approvedAt: true },
+    });
+    if (!user) {
+      message = "No user found with that ID.";
+    } else if (user.approvedAt) {
+      message = `User ${user.name} is already approved.`;
+    } else {
+      await prisma.user.update({
+        where: { id: id },
+        data: { approvedAt: new Date() },
+      });
+      message = `User ${user.name} has been approved.`;
+    }
+  } catch (error) {
+    console.error("Error approving user:", error);
+  }
+  try {
+    await bot.sendMessage(chatId, message);
   } catch (error) {
     console.error("Error sending message:", error);
   }
@@ -167,9 +216,16 @@ export function registerCommands(
         dedent`
   Hello! I'm your RoyalMotionIT Record Label Dashboard's Telegram bot.
   Here are some commands you can use:
+  /start - Start interaction with the bot
   /status - Check if the bot is online
-  /help - Get a list of commands
+  /help - Show this help message
   /info - Get information about this bot
+  /users - Get all registered users
+  /users_unverified - Get unverified users
+  /users_unapproved - Get unapproved users
+  /users_id - Get user by ID (will prompt for ID)
+  /users_email - Get user by email (will prompt for email)
+  /approve_user - Approve a user by ID (will prompt for ID)
 `
       );
     } catch (error) {
@@ -223,6 +279,7 @@ export function registerCommands(
   /users_unapproved - Get unapproved users
   /users_id - Get user by ID (will prompt for ID)
   /users_email - Get user by email (will prompt for email)
+  /approve_user - Approve a user by ID (will prompt for ID)
 `
       );
     } catch (error) {
@@ -526,6 +583,27 @@ export function registerCommands(
     }
   );
 
+  // /Register /approve_user - Approve a user by ID
+  bot.onText(
+    new RegExp(`^\\/approve_user(?:@${botUsername})?$`, "i"),
+    async (msg) => {
+      const chatId = msg.chat.id;
+      if (chatId.toString() !== groupId) {
+        try {
+          await bot.sendMessage(chatId, "Unauthorized chat.");
+        } catch (error) {
+          console.error("Error sending unauthorized message:", error);
+        }
+        return;
+      }
+      const userId = msg.from?.id;
+      if (userId) {
+        userStates.set(userId, "waiting_for_approve_id");
+        await bot.sendMessage(chatId, "Please enter the user ID to approve:");
+      }
+    }
+  );
+
   // Handle user inputs for ID and email
   bot.on("message", (msg) => {
     const userId = msg.from?.id;
@@ -542,6 +620,11 @@ export function registerCommands(
         userStates.delete(userId);
         // Process email
         processUserByEmail(bot, msg.chat.id, groupId, email);
+      } else if (state === "waiting_for_approve_id") {
+        const id = msg.text.trim();
+        userStates.delete(userId);
+        // Process approve
+        processApproveUser(bot, msg.chat.id, groupId, id);
       }
     }
   });
