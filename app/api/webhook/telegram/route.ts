@@ -1,6 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
 import { NextRequest, NextResponse } from "next/server";
-import dedent from "dedent";
+import { registerCommands } from "@/telegram/commands";
 
 // The bot instance needs to be outside the POST function so listeners persist across calls
 const token = process.env.TELEGRAM_BOT_TOKEN!;
@@ -9,51 +9,7 @@ const botUsername = process.env.TELEGRAM_BOT_USERNAME!;
 // Set up the bot for webhooks (no polling option here)
 const bot = new TelegramBot(token);
 
-// Register command listeners here:
-bot.onText(new RegExp(`^\\/start(?:@${botUsername})?$`, "i"), async (msg) => {
-  const chatId = msg.chat.id;
-  if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
-  bot.sendMessage(
-    chatId,
-    dedent`
-  Hello! I'm your RoyalMotionIT Record Label Dashboard's Telegram bot.
-  Here are some commands you can use:
-  /status - Check if the bot is online
-  /help - Get a list of commands
-  /info - Get information about this bot
-`
-  );
-});
-
-bot.onText(new RegExp(`^\\/status(?:@${botUsername})?$`, "i"), async (msg) => {
-  const chatId = msg.chat.id;
-  if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
-  bot.sendMessage(chatId, "✅ The bot is online and running.");
-});
-
-bot.onText(new RegExp(`^\\/help(?:@${botUsername})?$`, "i"), async (msg) => {
-  const chatId = msg.chat.id;
-  if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
-  bot.sendMessage(
-    chatId,
-    dedent`
-  Available commands:
-  /start - Start interaction with the bot
-  /status - Check if the bot is online
-  /help - Show this help message
-  /info - Get information about this bot
-`
-  );
-});
-
-bot.onText(new RegExp(`^\\/info(?:@${botUsername})?$`, "i"), async (msg) => {
-  const chatId = msg.chat.id;
-  if (msg.chat.type !== "private" && chatId.toString() !== groupId) return;
-  bot.sendMessage(
-    chatId,
-    "🤖 I'm the RoyalMotionIT Record Label Dashboard Telegram bot, here to assist you with notifications and updates and actions from your dashboard application."
-  );
-});
+registerCommands(bot, groupId, botUsername);
 
 // The POST handler receives updates from Telegram
 export async function POST(req: NextRequest) {
