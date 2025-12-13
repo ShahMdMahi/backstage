@@ -11,10 +11,26 @@ const bot = new TelegramBot(token);
 
 registerCommands(bot, groupId, botUsername);
 
+// Declare global for pending promises
+declare global {
+  var pendingPromises: Promise<void>[] | undefined;
+}
+
 // The POST handler receives updates from Telegram
 export async function POST(req: NextRequest) {
   const body = await req.json(); // Parse the JSON body from Telegram
-  bot.processUpdate(body); // Process the update using the library's method
+
+  // Initialize pending promises array
+  global.pendingPromises = [];
+
+  // Process the update
+  bot.processUpdate(body);
+
+  // Wait for all async operations to complete
+  await Promise.all(global.pendingPromises);
+
+  // Clean up
+  global.pendingPromises = undefined;
 
   // Must return a 200 status quickly to confirm receipt to Telegram
   return NextResponse.json({ status: "OK" });
