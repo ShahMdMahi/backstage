@@ -1,9 +1,9 @@
-import { LoginForm } from "@/components/auth/login-form";
+import { VerifyForm } from "@/components/auth/verify-form";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Login() {
+export default async function Verify() {
   return (
     <div className="relative mx-auto w-full max-w-sm">
       {/* Theme Toggle in top right */}
@@ -25,7 +25,7 @@ export default async function Login() {
       {/* Description */}
       <div className="mb-5 text-center">
         <h1 className="text-foreground text-2xl font-bold tracking-tight">
-          Welcome back
+          Verify
         </h1>
         <p className="text-muted-foreground mt-1 text-sm">
           Real Music, Real Impact
@@ -33,23 +33,23 @@ export default async function Login() {
       </div>
 
       {/* Form */}
-      <LoginForm />
+      <VerifyForm />
 
       {/* Link */}
       <div className="text-muted-foreground mt-4 text-center text-xs">
         <p>
-          Don&apos;t have an account?{" "}
+          Already verfied your account?{" "}
           <Link
-            href="/auth/register"
+            href="/auth/login"
             className="text-primary focus-visible:ring-ring font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           >
-            Sign Up
+            Sign In
           </Link>
         </p>
       </div>
       <div className="text-muted-foreground mt-4 text-center text-xs">
         <p>
-          Don&apos;t verified your account yet?{" "}
+          Verification link expired?{" "}
           <Link
             href="/auth/resend-verification"
             className="text-primary focus-visible:ring-ring font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"

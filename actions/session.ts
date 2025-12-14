@@ -253,47 +253,40 @@ export async function getCurrentSession(): Promise<{
       };
     }
 
-    await prisma.$transaction(async (tx) => {
-      await tx.session.update({
-        where: {
-          token: sessionToken,
-        },
-        data: {
-          expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // Extend by 1 day
-          accessedAt: new Date(),
-        },
-      });
-    });
+    // await prisma.$transaction(async (tx) => {
+    //   await tx.session.update({
+    //     where: {
+    //       token: sessionToken,
+    //     },
+    //     data: {
+    //       expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // Extend by 1 day
+    //       accessedAt: new Date(),
+    //     },
+    //   });
+    // });
 
-    cookieManager.delete("session_token");
-    cookieManager.set("session_token", sessionToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 24 * 60 * 60, // 1 day
-    });
+    // cookieManager.delete("session_token");
+    // cookieManager.set("session_token", sessionToken, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "strict",
+    //   maxAge: 24 * 60 * 60, // 1 day
+    // });
 
-    try {
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_ACCESSED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.id,
-        description: `Session accessed for user ID ${session.userId}`,
-        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-        user: {
-          connect: { id: session.userId },
-        },
-      });
-    } catch (error) {
-      console.error("Failed to log audit event for session access:", error);
-    }
-
-    cookieManager.set("session_token", sessionToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 24 * 60 * 60, // 1 day
-    });
+    // try {
+    //   await logAuditEvent({
+    //     action: AUDIT_LOG_ACTION.SESSION_ACCESSED,
+    //     entity: AUDIT_LOG_ENTITY.SESSION,
+    //     entityId: session.id,
+    //     description: `Session accessed for user ID ${session.userId}`,
+    //     metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+    //     user: {
+    //       connect: { id: session.userId },
+    //     },
+    //   });
+    // } catch (error) {
+    //   console.error("Failed to log audit event for session access:", error);
+    // }
 
     return {
       success: true,

@@ -1,11 +1,10 @@
 "use client";
 
 import type React from "react";
-import { loginSchema, type LoginData } from "@/validators/auth";
+import { registerSchema, type RegisterData } from "@/validators/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import {
   Field,
@@ -16,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { login } from "@/actions/auth";
+import { register as registerUser } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
@@ -62,7 +61,7 @@ function extractServerErrors(errors: unknown): ExtractedErrors {
   return { fieldErrors };
 }
 
-export function LoginForm() {
+export function RegisterForm() {
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [formMessage, setFormMessage] = useState<string | null>(null);
@@ -72,24 +71,24 @@ export function LoginForm() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<LoginData>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<RegisterData>({
+    resolver: zodResolver(registerSchema),
     mode: "onSubmit",
   });
 
-  const onSubmit = async (data: LoginData) => {
+  const onSubmit = async (data: RegisterData) => {
     setSubmitting(true);
     setFormMessage(null);
 
     try {
-      const result = await login(data);
+      const result = await registerUser(data);
 
       if (!result.success) {
         const { fieldErrors } = extractServerErrors(result.errors);
 
         // Set field errors
         Object.entries(fieldErrors).forEach(([field, message]) => {
-          setError(field as keyof LoginData, {
+          setError(field as keyof RegisterData, {
             type: "manual",
             message,
           });
@@ -99,16 +98,18 @@ export function LoginForm() {
           setFormMessage(result.message);
           toast.error(result.message);
         } else {
-          setFormMessage("Login failed. Please try again.");
-          toast.error("Login failed. Please try again.");
+          setFormMessage("Registration failed. Please try again.");
+          toast.error("Registration failed. Please try again.");
         }
         return;
       }
 
-      toast.success(result.message || "Successfully logged in!");
-      router.push("/");
+      toast.success(
+        result.message || "Registration successful! You can now log in."
+      );
+      router.push("/auth/login");
     } catch (error) {
-      console.error("Login error:", error);
+      console.error("Registration error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");
       toast.error("An unexpected error occurred. Please try again.");
     } finally {
@@ -129,6 +130,32 @@ export function LoginForm() {
       )}
 
       <FieldGroup>
+        {/* Name Field */}
+        <Field data-invalid={!!errors.name}>
+          <FieldLabel
+            htmlFor="name"
+            className="text-foreground text-xs font-medium"
+          >
+            Full Name
+          </FieldLabel>
+          <Input
+            id="name"
+            type="text"
+            placeholder="Full Name"
+            autoComplete="name"
+            {...register("name")}
+            aria-invalid={!!errors.name}
+            className="border-border bg-background/50 dark:bg-background/10 focus-visible:ring-ring text-foreground placeholder:text-muted-foreground h-10 rounded-md transition-all duration-300"
+            disabled={submitting}
+          />
+          {errors.name && (
+            <FieldError
+              errors={[{ message: errors.name.message || "Invalid name" }]}
+              className="text-xs"
+            />
+          )}
+        </Field>
+
         {/* Email Field */}
         <Field data-invalid={!!errors.email}>
           <FieldLabel
@@ -155,22 +182,42 @@ export function LoginForm() {
           )}
         </Field>
 
+        {/* Phone Field */}
+        <Field data-invalid={!!errors.phone}>
+          <FieldLabel
+            htmlFor="phone"
+            className="text-foreground text-xs font-medium"
+          >
+            Phone Number
+          </FieldLabel>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="01xxxxxxxxx"
+            autoComplete="tel"
+            {...register("phone")}
+            aria-invalid={!!errors.phone}
+            className="border-border bg-background/50 dark:bg-background/10 focus-visible:ring-ring text-foreground placeholder:text-muted-foreground h-10 rounded-md transition-all duration-300"
+            disabled={submitting}
+          />
+          {errors.phone && (
+            <FieldError
+              errors={[
+                { message: errors.phone.message || "Invalid phone number" },
+              ]}
+              className="text-xs"
+            />
+          )}
+        </Field>
+
         {/* Password Field */}
         <Field data-invalid={!!errors.password}>
-          <div className="flex items-center justify-between">
-            <FieldLabel
-              htmlFor="password"
-              className="text-foreground text-xs font-medium"
-            >
-              Password
-            </FieldLabel>
-            <Link
-              href="/auth/forgot-password"
-              className="text-muted-foreground hover:text-primary focus-visible:ring-ring text-xs focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-            >
-              Forgot your password?
-            </Link>
-          </div>
+          <FieldLabel
+            htmlFor="password"
+            className="text-foreground text-xs font-medium"
+          >
+            Password
+          </FieldLabel>
           <div className="relative">
             <PasswordInput {...register("password")} disabled={submitting} />
           </div>
@@ -178,6 +225,34 @@ export function LoginForm() {
             <FieldError
               errors={[
                 { message: errors.password.message || "Invalid password" },
+              ]}
+              className="text-xs"
+            />
+          )}
+        </Field>
+
+        {/* Confirm Password Field */}
+        <Field data-invalid={!!errors.confirmPassword}>
+          <FieldLabel
+            htmlFor="confirmPassword"
+            className="text-foreground text-xs font-medium"
+          >
+            Confirm Password
+          </FieldLabel>
+          <div className="relative">
+            <PasswordInput
+              id="confirmPassword"
+              {...register("confirmPassword")}
+              disabled={submitting}
+            />
+          </div>
+          {errors.confirmPassword && (
+            <FieldError
+              errors={[
+                {
+                  message:
+                    errors.confirmPassword.message || "Passwords must match",
+                },
               ]}
               className="text-xs"
             />
@@ -194,10 +269,10 @@ export function LoginForm() {
         {submitting ? (
           <>
             <Spinner className="mr-2" />
-            Signing In...
+            Creating Account...
           </>
         ) : (
-          <>Sign In</>
+          <>Create Account</>
         )}
       </Button>
     </form>
@@ -206,6 +281,7 @@ export function LoginForm() {
 
 function PasswordInput({
   disabled,
+  id,
   ...props
 }: React.InputHTMLAttributes<HTMLInputElement> & { disabled?: boolean }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -213,9 +289,12 @@ function PasswordInput({
   return (
     <>
       <Input
+        id={id}
         type={showPassword ? "text" : "password"}
         placeholder="Password"
-        autoComplete="current-password"
+        autoComplete={
+          id === "confirmPassword" ? "new-password" : "new-password"
+        }
         {...props}
         aria-invalid={props["aria-invalid"]}
         className="border-border bg-background/50 dark:bg-background/10 focus-visible:ring-ring text-foreground placeholder:text-muted-foreground h-10 rounded-md pr-10 transition-all duration-300"

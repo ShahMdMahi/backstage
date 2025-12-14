@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { getCurrentSession } from "@/actions/session";
 
 export const metadata: Metadata = {
   title: "RoyalMotionIT Records",
@@ -19,6 +20,8 @@ const geist = Geist({
 export default async function MainLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const session = await getCurrentSession();
+  console.log(session);
   return (
     <html lang="en" className={`${geist.variable}`} suppressHydrationWarning>
       <body>

@@ -1,6 +1,8 @@
 import Image from "next/image";
-// import { redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { getCurrentSession } from "@/actions/session";
 
 const images = Array.from({ length: 39 }, (_, i) => `/posters/${i + 1}.jpg`);
 
@@ -20,8 +22,8 @@ export default async function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  //   const session = await auth();
-  //   if (session?.user) redirect("/");
+  const session = await getCurrentSession();
+  if (session?.data?.user) redirect("/");
 
   return (
     <div className="grid h-screen w-screen grid-cols-1 overflow-hidden lg:grid-cols-[60%_40%]">
@@ -55,11 +57,15 @@ export default async function AuthLayout({
         </div>
       </div>
 
-      {/* Right panel with auth form */}
-      <div className="bg-background flex min-h-0 items-center justify-center p-4 lg:p-6">
-        <div className="flex w-full max-w-[400px] flex-col justify-center lg:max-w-[450px]">
-          <div className="w-full">{children}</div>
-        </div>
+      {/* Right panel with auth form - scrollable */}
+      <div className="bg-background flex min-h-0 flex-col justify-center p-4 lg:p-6">
+        <ScrollArea className="h-full w-full">
+          <div className="flex w-full items-center justify-center px-4 py-8 lg:px-6">
+            <div className="w-full max-w-[400px] lg:max-w-[450px]">
+              <div className="w-full">{children}</div>
+            </div>
+          </div>
+        </ScrollArea>
       </div>
     </div>
   );

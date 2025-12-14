@@ -64,7 +64,7 @@ export async function register(data: RegisterData): Promise<{
     if (userExists) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User already exists with this email.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -90,6 +90,15 @@ export async function register(data: RegisterData): Promise<{
         },
       });
     });
+
+    if (!newUser) {
+      return {
+        success: false,
+        message: "User registration failed",
+        data: null,
+        errors: null,
+      };
+    }
 
     try {
       await sendWelcomeEmail(newUser.email, newUser.name);
@@ -128,7 +137,7 @@ export async function register(data: RegisterData): Promise<{
     console.error("Registration failed:", error);
     return {
       success: false,
-      message: "Registration failed",
+      message: "Registration failed due to an unexpected error",
       data: null,
       errors: error,
     };
@@ -173,7 +182,7 @@ export async function resendVerification(
     if (!userExists) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User with this email not found.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -190,7 +199,7 @@ export async function resendVerification(
     if (userExists.verifiedAt) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User with this email is already verifed",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -238,7 +247,7 @@ export async function resendVerification(
     console.error("Resend verification failed:", error);
     return {
       success: false,
-      message: "Resend verification failed",
+      message: "Resend verification failed due to an unexpected error",
       data: null,
       errors: error,
     };
@@ -277,7 +286,7 @@ export async function verify(data: VerifyEmailData): Promise<{
     if (!tokenData) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "Invalid or expired verfication token",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -302,7 +311,7 @@ export async function verify(data: VerifyEmailData): Promise<{
     if (!userExists) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "Unable to find user associated with this token.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -327,7 +336,7 @@ export async function verify(data: VerifyEmailData): Promise<{
       });
     });
 
-    if (!verifiedUser) {
+    if (!verifiedUser.verifiedAt) {
       return {
         success: false,
         message: "Email verification failed",
@@ -371,7 +380,7 @@ export async function verify(data: VerifyEmailData): Promise<{
     console.error("Email verification failed:", error);
     return {
       success: false,
-      message: "Email verification failed",
+      message: "Email verification failed due to an unexpected error",
       data: null,
       errors: error,
     };
@@ -414,7 +423,7 @@ export async function login(data: LoginData): Promise<{
     if (!userExists) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "Invalid email or password",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -436,7 +445,7 @@ export async function login(data: LoginData): Promise<{
     if (!userExists.verifiedAt) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User with this email is not verified.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -453,7 +462,7 @@ export async function login(data: LoginData): Promise<{
     if (!userExists.approvedAt) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User with this email is not approved yet.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -470,7 +479,7 @@ export async function login(data: LoginData): Promise<{
     if (userExists.suspendedAt) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User with this email is suspended.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -492,7 +501,7 @@ export async function login(data: LoginData): Promise<{
     if (!passwordMatch) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "Invalid email or password",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -516,7 +525,7 @@ export async function login(data: LoginData): Promise<{
     if (!session.success) {
       return {
         success: false,
-        message: "Login failed",
+        message: "Login failed due to session creation error",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -560,7 +569,7 @@ export async function login(data: LoginData): Promise<{
     console.error("Login failed:", error);
     return {
       success: false,
-      message: "Login failed",
+      message: "Login failed due to an unexpected error",
       data: null,
       errors: error,
     };
@@ -603,7 +612,7 @@ export async function forgotPassword(data: ForgotPasswordData): Promise<{
     if (!userExists) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "User with this email not found.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -648,7 +657,7 @@ export async function forgotPassword(data: ForgotPasswordData): Promise<{
     console.error("Forgot password failed:", error);
     return {
       success: false,
-      message: "Forgot password failed",
+      message: "Forgot password failed due to an unexpected error",
       data: null,
       errors: error,
     };
@@ -687,7 +696,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
     if (!tokenData) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "Invalid or expired password reset token",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -712,7 +721,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
     if (!userExists) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "Unable to find user associated with this token.",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
@@ -788,7 +797,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
     console.error("Reset password failed:", error);
     return {
       success: false,
-      message: "Reset password failed",
+      message: "Reset password failed due to an unexpected error",
       data: null,
       errors: error,
     };
@@ -845,7 +854,7 @@ export async function logout(): Promise<{
     console.error("Logout failed:", error);
     return {
       success: false,
-      message: "Logout failed",
+      message: "Logout failed due to an unexpected error",
       data: null,
       errors: error,
     };
