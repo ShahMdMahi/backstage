@@ -2,6 +2,7 @@ onlyBuiltDependencies:
   - "@prisma/engines"
   - argon2
   - esbuild
+  - msw
   - prisma
   - sharp
   - unrs-resolver

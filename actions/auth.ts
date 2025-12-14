@@ -69,7 +69,7 @@ export async function register(data: RegisterData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Email already in use",
               path: ["email"],
             },
@@ -178,7 +178,7 @@ export async function resendVerification(
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Email not found",
               path: ["email"],
             },
@@ -195,7 +195,7 @@ export async function resendVerification(
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Email is already verified",
               path: ["email"],
             },
@@ -282,7 +282,7 @@ export async function verify(data: VerifyEmailData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Invalid or expired token",
               path: ["token"],
             },
@@ -307,7 +307,7 @@ export async function verify(data: VerifyEmailData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "User not found",
               path: ["token"],
             },
@@ -335,7 +335,7 @@ export async function verify(data: VerifyEmailData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Email verification failed",
               path: ["token"],
             },
@@ -419,9 +419,14 @@ export async function login(data: LoginData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Invalid email or password",
-              path: ["email", "password"],
+              path: ["email"],
+            },
+            {
+              code: z.ZodIssueCode.custom,
+              message: "Invalid email or password",
+              path: ["password"],
             },
           ])
         ),
@@ -436,7 +441,7 @@ export async function login(data: LoginData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Email is not verified",
               path: ["email"],
             },
@@ -453,7 +458,7 @@ export async function login(data: LoginData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Account is not approved yet",
               path: ["email"],
             },
@@ -470,7 +475,7 @@ export async function login(data: LoginData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Account is suspended",
               path: ["email"],
             },
@@ -492,9 +497,14 @@ export async function login(data: LoginData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Invalid email or password",
-              path: ["email", "password"],
+              path: ["email"],
+            },
+            {
+              code: z.ZodIssueCode.custom,
+              message: "Invalid email or password",
+              path: ["password"],
             },
           ])
         ),
@@ -511,9 +521,14 @@ export async function login(data: LoginData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Login failed",
-              path: ["email", "password"],
+              path: ["email"],
+            },
+            {
+              code: z.ZodIssueCode.custom,
+              message: "Login failed",
+              path: ["password"],
             },
           ])
         ),
@@ -593,7 +608,7 @@ export async function forgotPassword(data: ForgotPasswordData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Email not found",
               path: ["email"],
             },
@@ -677,7 +692,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "Invalid or expired token",
               path: ["token"],
             },
@@ -702,7 +717,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "User not found",
               path: ["email"],
             },
@@ -724,7 +739,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
         errors: z.treeifyError(
           new z.ZodError([
             {
-              code: "custom",
+              code: z.ZodIssueCode.custom,
               message: "New password must be different from the old password",
               path: ["newPassword"],
             },

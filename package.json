@@ -40,6 +40,7 @@
     "@react-email/components": "1.0.1",
     "@react-email/render": "^2.0.0",
     "@tanstack/react-form": "^1.27.2",
+    "@tanstack/zod-form-adapter": "^0.42.1",
     "argon2": "^0.44.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
