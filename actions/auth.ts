@@ -53,12 +53,10 @@ export async function register(data: RegisterData): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
-    const userExists = await prisma.$transaction(async (tx) => {
-      return await tx.user.findUnique({
-        where: {
-          email: validate.data.email,
-        },
-      });
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email: validate.data.email,
+      },
     });
 
     if (userExists) {
@@ -171,12 +169,10 @@ export async function resendVerification(
 
     const deviceInfo = await getDeviceInfo();
 
-    const userExists = await prisma.$transaction(async (tx) => {
-      return await tx.user.findUnique({
-        where: {
-          email: validate.data.email,
-        },
-      });
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email: validate.data.email,
+      },
     });
 
     if (!userExists) {
@@ -300,12 +296,10 @@ export async function verify(data: VerifyEmailData): Promise<{
       };
     }
 
-    const userExists = await prisma.$transaction(async (tx) => {
-      return await tx.user.findUnique({
-        where: {
-          email: tokenData,
-        },
-      });
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email: tokenData,
+      },
     });
 
     if (!userExists) {
@@ -412,12 +406,10 @@ export async function login(data: LoginData): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
-    const userExists = await prisma.$transaction(async (tx) => {
-      return await tx.user.findUnique({
-        where: {
-          email: validate.data.email,
-        },
-      });
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email: validate.data.email,
+      },
     });
 
     if (!userExists) {
@@ -601,12 +593,10 @@ export async function forgotPassword(data: ForgotPasswordData): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
-    const userExists = await prisma.$transaction(async (tx) => {
-      return await tx.user.findUnique({
-        where: {
-          email: validate.data.email,
-        },
-      });
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email: validate.data.email,
+      },
     });
 
     if (!userExists) {
@@ -710,12 +700,10 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
       };
     }
 
-    const userExists = await prisma.$transaction(async (tx) => {
-      return await tx.user.findUnique({
-        where: {
-          email: tokenData,
-        },
-      });
+    const userExists = await prisma.user.findUnique({
+      where: {
+        email: tokenData,
+      },
     });
 
     if (!userExists) {

@@ -115,15 +115,13 @@ export async function getCurrentSession(): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
-    const session = await prisma.$transaction(async (tx) => {
-      return await tx.session.findUnique({
-        where: {
-          token: sessionToken,
-        },
-        include: {
-          user: true,
-        },
-      });
+    const session = await prisma.session.findUnique({
+      where: {
+        token: sessionToken,
+      },
+      include: {
+        user: true,
+      },
     });
 
     if (!session) {

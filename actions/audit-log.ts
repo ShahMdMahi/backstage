@@ -47,15 +47,13 @@ export async function getAllAuditLogs(): Promise<{
   error: unknown | null;
 }> {
   try {
-    const auditLogs = await prisma.$transaction(async (tx) => {
-      return await tx.auditLog.findMany({
-        orderBy: {
-          createdAt: "desc",
-        },
-        include: {
-          user: true,
-        },
-      });
+    const auditLogs = await prisma.auditLog.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+      include: {
+        user: true,
+      },
     });
 
     if (auditLogs.length === 0) {
