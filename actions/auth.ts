@@ -737,13 +737,12 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
           new z.ZodError([
             {
               code: z.ZodIssueCode.custom,
-              message: "New password must be different from the old password",
+              message: "Use a different password",
               path: ["password"],
             },
             {
               code: z.ZodIssueCode.custom,
-              message:
-                "Confirm password must be different from the old password",
+              message: "Use a different password",
               path: ["confirmPassword"],
             },
           ])
