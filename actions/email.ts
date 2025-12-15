@@ -39,7 +39,7 @@ export async function sendVerificationEmail(email: string): Promise<void> {
       EX: 24 * 60 * 60, // 24 hours
     });
     const expiresIn = "24 hours";
-    const verificationUrl = `${getBaseUrl()}/verify-email?token=${token}`;
+    const verificationUrl = `${getBaseUrl()}/auth/verify?token=${token}`;
     const emailHtml = await render(
       VerificationEmailTemplate({ email, expiresIn, verificationUrl })
     );
@@ -61,7 +61,7 @@ export async function sendPasswordResetEmail(email: string): Promise<void> {
       EX: 60 * 60, // 1 hour
     });
     const expiresIn = "1 hour";
-    const resetUrl = `${getBaseUrl()}/reset-password?token=${token}`;
+    const resetUrl = `${getBaseUrl()}/auth/reset-password?token=${token}`;
     const emailHtml = await render(
       PasswordResetEmailTemplate({ email, expiresIn, resetUrl })
     );
