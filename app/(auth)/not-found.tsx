@@ -1,23 +1,29 @@
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
-import { Logo } from "@/components/shared/logo";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="relative mx-auto flex w-full max-w-sm flex-col items-center justify-center px-4 py-8">
+    <div className="relative mx-auto w-full max-w-sm">
       {/* Theme Toggle in top right */}
-      <div className="absolute top-4 right-4 z-10">
+      <div className="absolute top-0 right-0 z-10">
         <ThemeToggle />
       </div>
 
-      {/* Logo */}
-      <div className="mb-8">
-        <Logo />
+      {/* Logo in center */}
+      <div className="mb-4 flex justify-center">
+        <Image
+          src="/icon_logo.png"
+          alt="Royal Records Logo"
+          width={48}
+          height={48}
+          className="h-12 w-12"
+        />
       </div>
 
-      {/* 404 Content */}
-      <div className="text-center">
+      {/* Description */}
+      <div className="mb-5 text-center">
         <h1 className="text-foreground text-8xl font-bold tracking-tight">
           404
         </h1>
@@ -31,7 +37,7 @@ export default function NotFound() {
       </div>
 
       {/* Action Button */}
-      <div className="mt-8">
+      <div className="mt-8 flex justify-center">
         <Button asChild size="lg">
           <Link href="/">Go Home</Link>
         </Button>
