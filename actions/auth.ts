@@ -731,14 +731,20 @@ export async function resetPassword(data: ResetPasswordData): Promise<{
     if (compareOldPassword) {
       return {
         success: false,
-        message: "Validation failed",
+        message: "New password must be different from the old password",
         data: null,
         errors: z.treeifyError(
           new z.ZodError([
             {
               code: z.ZodIssueCode.custom,
               message: "New password must be different from the old password",
-              path: ["newPassword"],
+              path: ["password"],
+            },
+            {
+              code: z.ZodIssueCode.custom,
+              message:
+                "Confirm password must be different from the old password",
+              path: ["confirmPassword"],
             },
           ])
         ),
