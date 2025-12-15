@@ -8,6 +8,7 @@ datasource db {
 }
 
 enum ROLE {
+  DEVELOPER
   SYSTEM_ADMIN
   SYSTEM_MANAGER
   SYSTEM_USER
