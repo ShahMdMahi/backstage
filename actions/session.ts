@@ -270,12 +270,7 @@ export async function getCurrentSession(): Promise<{
           entityId: session.id,
           description: `Session revoked due to missing user for user ID ${session.userId}`,
           metadata: {
-            originalDeviceInfo: (
-              session.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
+            deviceInfo: JSON.stringify(deviceInfo),
           },
           user: {
             connect: { id: session.userId },
@@ -314,12 +309,7 @@ export async function getCurrentSession(): Promise<{
           entityId: session.id,
           description: `Session revoked due to unverified email for user ID ${session.userId}`,
           metadata: {
-            originalDeviceInfo: (
-              session.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
+            deviceInfo: JSON.stringify(deviceInfo),
           },
           user: {
             connect: { id: session.userId },
@@ -358,12 +348,7 @@ export async function getCurrentSession(): Promise<{
           entityId: session.id,
           description: `Session revoked due to unapproved user for user ID ${session.userId}`,
           metadata: {
-            originalDeviceInfo: (
-              session.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
+            deviceInfo: JSON.stringify(deviceInfo),
           },
           user: {
             connect: { id: session.userId },
@@ -402,12 +387,7 @@ export async function getCurrentSession(): Promise<{
           entityId: session.id,
           description: `Session revoked due to suspended user for user ID ${session.userId}`,
           metadata: {
-            originalDeviceInfo: (
-              session.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
+            deviceInfo: JSON.stringify(deviceInfo),
           },
           user: {
             connect: { id: session.userId },
