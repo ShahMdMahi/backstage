@@ -560,6 +560,7 @@ export function registerCommands(
 
               let user;
               try {
+                console.log("Fetching user by email for bot:", email);
                 const data = await getUserByEmailForBot(email);
 
                 if (!data.success || !data.user) {
@@ -637,10 +638,8 @@ export function registerCommands(
                       ],
                     },
                   });
-                  return;
                 } catch (error) {
                   console.error("Error sending message:", error);
-                  return;
                 }
                 return;
               } catch (error) {
@@ -703,6 +702,7 @@ export function registerCommands(
 
               let user;
               try {
+                console.log("Fetching user by ID for bot:", id);
                 const data = await getUserByIdForBot(id);
                 if (!data.success || !data.user) {
                   message = `No user found with the ID ${escapeMarkdownV2(
@@ -779,11 +779,10 @@ export function registerCommands(
                       ],
                     },
                   });
-                  return;
                 } catch (error) {
                   console.error("Error sending message:", error);
-                  return;
                 }
+                return;
               } catch (error) {
                 console.error("Error fetching user by ID:", error);
                 message = "An error occurred while fetching user data.";
