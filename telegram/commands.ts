@@ -504,7 +504,7 @@ export function registerCommands(
 
   // /Register /user_email - Get user by email
   bot.onText(
-    new RegExp(`^\\/user_email (.+)(?:@${botUsername})?$`, "i"),
+    new RegExp(`^\\/user_email(?:@${botUsername})?$`, "i"),
     async (msg) => {
       if (global.pendingPromises) {
         global.pendingPromises.push(
@@ -531,8 +531,13 @@ export function registerCommands(
                 },
               }
             );
+            console.log(
+              "Prompt sent for /user_email, message_id:",
+              prompt.message_id
+            );
 
             bot.onReplyToMessage(chatId, prompt.message_id, async (reply) => {
+              console.log("Reply received for /user_email:", reply.text);
               const email = reply.text?.trim();
               if (!email) {
                 message = "No email address provided.";
@@ -640,7 +645,7 @@ export function registerCommands(
 
   // /Register /user_id - Get user by ID
   bot.onText(
-    new RegExp(`^\\/user_id (.+)(?:@${botUsername})?$`, "i"),
+    new RegExp(`^\\/user_id(?:@${botUsername})?$`, "i"),
     async (msg) => {
       if (global.pendingPromises) {
         global.pendingPromises.push(
@@ -667,8 +672,13 @@ export function registerCommands(
                 },
               }
             );
+            console.log(
+              "Prompt sent for /user_id, message_id:",
+              prompt.message_id
+            );
 
             bot.onReplyToMessage(chatId, prompt.message_id, async (reply) => {
+              console.log("Reply received for /user_id:", reply.text);
               const id = reply.text?.trim();
               if (!id) {
                 message = "No ID provided.";
