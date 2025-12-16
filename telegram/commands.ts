@@ -52,6 +52,7 @@ export function registerCommands(
   /users_unapproved - Get all unapproved users
   /users_suspended - Get all suspended users
   /user_email - Get user details by email address
+  /user_id - Get user details by user ID
 `
             );
           } catch (error) {
@@ -120,6 +121,7 @@ export function registerCommands(
   /users_unapproved - Get all unapproved users
   /users_suspended - Get all suspended users
   /user_email - Get user details by email address
+  /user_id - Get user details by user ID
 `
             );
           } catch (error) {
