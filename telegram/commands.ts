@@ -175,7 +175,9 @@ export function registerCommands(
           }
           if (!msg.text) return;
 
-          let message = "An error occurred while fetching user data.";
+          let message = escapeMarkdownV2(
+            "An error occurred while fetching user data."
+          );
           try {
             const data = await getUserAllUsersForBot();
 
@@ -253,8 +255,9 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message =
-              "An error occurred while fetching unverified user data.";
+            let message = escapeMarkdownV2(
+              "An error occurred while fetching unverified user data."
+            );
             try {
               const data = await getAllUnverifiedUsersForBot();
 
@@ -342,8 +345,9 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message =
-              "An error occurred while fetching unapproved user data.";
+            let message = escapeMarkdownV2(
+              "An error occurred while fetching unapproved user data."
+            );
             try {
               const data = await getAllUnapprovedUsersForBot();
 
@@ -431,8 +435,9 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message =
-              "An error occurred while fetching suspended user data.";
+            let message = escapeMarkdownV2(
+              "An error occurred while fetching suspended user data."
+            );
             try {
               const data = await getAllSuspendedUsersForBot();
 
@@ -520,7 +525,9 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message = "An error occurred while fetching user data.";
+            let message = escapeMarkdownV2(
+              "An error occurred while fetching user data."
+            );
             const prompt = await bot.sendMessage(
               chatId,
               "Please enter the email address of the user you want to look up:",
@@ -661,7 +668,9 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message = "An error occurred while fetching user data.";
+            let message = escapeMarkdownV2(
+              "An error occurred while fetching user data."
+            );
             const prompt = await bot.sendMessage(
               chatId,
               "Please enter the ID of the user you want to look up:",

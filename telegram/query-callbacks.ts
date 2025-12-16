@@ -1,6 +1,4 @@
 import TelegramBot from "node-telegram-bot-api";
-// import dedent from "dedent";
-// import { format, addHours } from "date-fns";
 import {
   approveUserByIdForBot,
   unapproveUserByIdForBot,
@@ -56,7 +54,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
               if (result.success && result.user) {
                 await bot.sendMessage(
                   chatId!,
-                  `✅ Approved user ${code(result.user.id)} successfully.`,
+                  `✅ Approved user ${code(result.user.id)} ${escapeMarkdownV2("successfully.")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               } else {
@@ -64,7 +62,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   chatId!,
                   `⚠️ User ${code(
                     id
-                  )} could not be approved \(maybe already approved\)\.`,
+                  )} ${escapeMarkdownV2("could not be approved (maybe already approved).")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               }
@@ -80,7 +78,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
               if (result.success && result.user) {
                 await bot.sendMessage(
                   chatId!,
-                  `✅ Unapproved user ${code(result.user.id)} successfully.`,
+                  `✅ Unapproved user ${code(result.user.id)} ${escapeMarkdownV2("successfully.")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               } else {
@@ -88,7 +86,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   chatId!,
                   `⚠️ User ${code(
                     id
-                  )} could not be unapproved \(maybe already unapproved\)\.`,
+                  )} ${escapeMarkdownV2("could not be unapproved (maybe already unapproved).")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               }
@@ -104,7 +102,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
               if (result.success && result.user) {
                 await bot.sendMessage(
                   chatId!,
-                  `✅ Suspended user ${code(result.user.id)} successfully.`,
+                  `✅ Suspended user ${code(result.user.id)} ${escapeMarkdownV2("successfully.")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               } else {
@@ -112,7 +110,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   chatId!,
                   `⚠️ User ${code(
                     id
-                  )} could not be suspended \(maybe already suspended\)\.`,
+                  )} ${escapeMarkdownV2("could not be suspended (maybe already suspended).")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               }
@@ -128,7 +126,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
               if (result.success && result.user) {
                 await bot.sendMessage(
                   chatId!,
-                  `✅ Unsuspended user ${code(result.user.id)} successfully.`,
+                  `✅ Unsuspended user ${code(result.user.id)} ${escapeMarkdownV2("successfully.")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               } else {
@@ -136,7 +134,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   chatId!,
                   `⚠️ User ${code(
                     id
-                  )} could not be unsuspended \(maybe already unsuspended\)\.`,
+                  )} ${escapeMarkdownV2("could not be unsuspended (maybe already unsuspended).")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               }
@@ -154,7 +152,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   chatId!,
                   `✅ Resent verification email for user ${code(
                     result.user.id
-                  )} successfully.`,
+                  )} ${escapeMarkdownV2("successfully.")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               } else {
@@ -162,7 +160,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   chatId!,
                   `⚠️ Verification email for user ${code(
                     id
-                  )} could not be resent \(maybe already verified\)\.`,
+                  )} ${escapeMarkdownV2("could not be resent (maybe already verified).")}`,
                   { parse_mode: "MarkdownV2" }
                 );
               }
@@ -176,9 +174,13 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
             }
           } else if (action?.includes("cancel_action")) {
             try {
-              await bot.sendMessage(chatId!, "Action cancelled.", {
-                parse_mode: "MarkdownV2",
-              });
+              await bot.sendMessage(
+                chatId!,
+                escapeMarkdownV2("Action cancelled."),
+                {
+                  parse_mode: "MarkdownV2",
+                }
+              );
             } catch (error) {
               console.error("Error sending cancel action message:", error);
             } finally {
@@ -189,7 +191,7 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
             try {
               await bot.sendMessage(
                 chatId!,
-                `Unknown action: ${code(action)}.`,
+                `${escapeMarkdownV2("Unknown action:")} ${code(action)}${escapeMarkdownV2(".")}`,
                 { parse_mode: "MarkdownV2" }
               );
             } catch (error) {
