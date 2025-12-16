@@ -1,6 +1,7 @@
 import TelegramBot from "node-telegram-bot-api";
 import { NextRequest, NextResponse } from "next/server";
 import { registerCommands } from "@/telegram/commands";
+import { registerQueryCallbacks } from "@/telegram/query-callbacks";
 
 // The bot instance needs to be outside the POST function so listeners persist across calls
 const token = process.env.TELEGRAM_BOT_TOKEN!;
@@ -10,6 +11,7 @@ const botUsername = process.env.TELEGRAM_BOT_USERNAME!;
 const bot = new TelegramBot(token);
 
 registerCommands(bot, groupId, botUsername);
+registerQueryCallbacks(bot, groupId);
 
 // Declare global for pending promises
 declare global {

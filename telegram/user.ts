@@ -1,3 +1,4 @@
+import { sendVerificationEmail } from "@/actions/email";
 import { prisma } from "@/lib/prisma";
 import { User } from "@/lib/prisma/client";
 
@@ -182,6 +183,133 @@ export async function getUserByEmailForBot(email: string): Promise<{
     return { success: true, user };
   } catch (error) {
     console.error("Error fetching user by email for bot:", error);
+    return { success: false, user: null };
+  }
+}
+
+export async function approveUserByIdForBot(
+  id: string
+): Promise<{ success: boolean; user: Partial<User> | null }> {
+  try {
+    const user = await prisma.user.update({
+      where: { id },
+      data: { approvedAt: new Date() },
+      select: {
+        id: true,
+        approvedAt: true,
+      },
+    });
+
+    if (!user.approvedAt) {
+      return { success: false, user: null };
+    }
+
+    return { success: true, user };
+  } catch (error) {
+    console.error("Error approving user by ID for bot:", error);
+    return { success: false, user: null };
+  }
+}
+
+export async function unapproveUserByIdForBot(
+  id: string
+): Promise<{ success: boolean; user: Partial<User> | null }> {
+  try {
+    const user = await prisma.user.update({
+      where: { id },
+      data: { approvedAt: null },
+      select: {
+        id: true,
+        approvedAt: true,
+      },
+    });
+
+    if (user.approvedAt) {
+      return { success: false, user: null };
+    }
+
+    return { success: true, user };
+  } catch (error) {
+    console.error("Error unapproving user by ID for bot:", error);
+    return { success: false, user: null };
+  }
+}
+
+export async function suspendUserByIdForBot(
+  id: string
+): Promise<{ success: boolean; user: Partial<User> | null }> {
+  try {
+    const user = await prisma.user.update({
+      where: { id },
+      data: { suspendedAt: new Date() },
+      select: {
+        id: true,
+        suspendedAt: true,
+      },
+    });
+
+    if (!user.suspendedAt) {
+      return { success: false, user: null };
+    }
+
+    return { success: true, user };
+  } catch (error) {
+    console.error("Error suspending user by ID for bot:", error);
+    return { success: false, user: null };
+  }
+}
+
+export async function unsuspendUserByIdForBot(
+  id: string
+): Promise<{ success: boolean; user: Partial<User> | null }> {
+  try {
+    const user = await prisma.user.update({
+      where: { id },
+      data: { suspendedAt: null },
+      select: {
+        id: true,
+        suspendedAt: true,
+      },
+    });
+
+    if (user.suspendedAt) {
+      return { success: false, user: null };
+    }
+
+    return { success: true, user };
+  } catch (error) {
+    console.error("Error unsuspending user by ID for bot:", error);
+    return { success: false, user: null };
+  }
+}
+
+export async function resendVerificationEmailByIdForBot(
+  id: string
+): Promise<{ success: boolean; user: Partial<User> | null }> {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        verifiedAt: true,
+      },
+    });
+
+    if (!user) {
+      return { success: false, user: null };
+    }
+
+    if (user.verifiedAt) {
+      return { success: false, user: null };
+    }
+
+    await sendVerificationEmail(user.email);
+
+    return { success: true, user };
+  } catch (error) {
+    console.error("Error resending verification email by ID for bot:", error);
     return { success: false, user: null };
   }
 }

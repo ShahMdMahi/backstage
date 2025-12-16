@@ -6,6 +6,8 @@ import {
   getAllUnapprovedUsersForBot,
   getAllUnverifiedUsersForBot,
   getUserAllUsersForBot,
+  getUserByEmailForBot,
+  getUserByIdForBot,
 } from "./user";
 
 function escapeMarkdownV2(value: unknown): string {
@@ -49,6 +51,7 @@ export function registerCommands(
   /users_unverified - Get all unverified users
   /users_unapproved - Get all unapproved users
   /users_suspended - Get all suspended users
+  /user_email - Get user details by email address
 `
             );
           } catch (error) {
@@ -116,6 +119,7 @@ export function registerCommands(
   /users_unverified - Get all unverified users
   /users_unapproved - Get all unapproved users
   /users_suspended - Get all suspended users
+  /user_email - Get user details by email address
 `
             );
           } catch (error) {
@@ -490,6 +494,266 @@ export function registerCommands(
             } catch (error) {
               console.error("Error sending message:", error);
             }
+          })()
+        );
+      }
+    }
+  );
+
+  // /Register /user_email - Get user by email
+  bot.onText(
+    new RegExp(`^\\/user_email (.+)(?:@${botUsername})?$`, "i"),
+    async (msg) => {
+      if (global.pendingPromises) {
+        global.pendingPromises.push(
+          (async () => {
+            const chatId = msg.chat.id;
+            if (chatId.toString() !== groupId) {
+              try {
+                await bot.sendMessage(chatId, "Unauthorized chat.");
+              } catch (error) {
+                console.error("Error sending unauthorized message:", error);
+              }
+              return;
+            }
+            if (!msg.text) return;
+
+            let message = "An error occurred while fetching user data.";
+            const prompt = await bot.sendMessage(
+              chatId,
+              "Please enter the email address of the user you want to look up:",
+              {
+                reply_markup: {
+                  force_reply: true,
+                  input_field_placeholder: "example@email.com",
+                },
+              }
+            );
+
+            bot.onReplyToMessage(chatId, prompt.message_id, async (reply) => {
+              const email = reply.text?.trim();
+              if (!email) {
+                message = "No email address provided.";
+                await bot.sendMessage(chatId, message);
+                return;
+              }
+
+              if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                message = "Invalid email address format. Please try again.";
+                await bot.sendMessage(chatId, message);
+                return;
+              }
+
+              let user;
+              try {
+                const data = await getUserByEmailForBot(email);
+
+                if (!data.success || !data.user) {
+                  message = `No user found with the email address ${escapeMarkdownV2(
+                    email
+                  )}.`;
+                  await bot.sendMessage(chatId, message, {
+                    parse_mode: "MarkdownV2",
+                  });
+                  return;
+                }
+
+                user = data.user;
+                message = `📋 User details for ${code(user.email)}`;
+
+                const verified = user.verifiedAt
+                  ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                  : "N/A";
+                const approved = user.approvedAt
+                  ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                  : "N/A";
+                const suspended = user.suspendedAt
+                  ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                  : "N/A";
+                const created = format(
+                  addHours(user.createdAt!, 6),
+                  "dd/MM/yyyy HH:mm:ss"
+                );
+                const updated = format(
+                  addHours(user.updatedAt!, 6),
+                  "dd/MM/yyyy HH:mm:ss"
+                );
+
+                message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
+                message += `\n*ID:* ${code(user.id)}`;
+                message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
+                message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
+                message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
+                message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
+                message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
+                message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
+              } catch (error) {
+                console.error("Error fetching user by email:", error);
+                message = "An error occurred while fetching user data.";
+                await bot.sendMessage(chatId, message);
+                return;
+              }
+
+              try {
+                await bot.sendMessage(chatId, message, {
+                  parse_mode: "MarkdownV2",
+                  reply_markup: {
+                    inline_keyboard: [
+                      [
+                        user?.verifiedAt
+                          ? {
+                              text: user?.approvedAt
+                                ? "Unapprove User"
+                                : "Approve User",
+                              callback_data: user?.approvedAt
+                                ? `unapprove_user_${user.id}`
+                                : `approve_user_${user.id}`,
+                            }
+                          : {
+                              text: "Resend Verification Email",
+                              callback_data: `resend_verification_${user.id}`,
+                            },
+                        {
+                          text: user?.suspendedAt
+                            ? "Unsuspend User"
+                            : "Suspend User",
+                          callback_data: user?.suspendedAt
+                            ? `unsuspend_user_${user.id}`
+                            : `suspend_user_${user.id}`,
+                        },
+                      ],
+                      [{ text: "Cancel", callback_data: "cancel_action" }],
+                    ],
+                  },
+                });
+              } catch (error) {
+                console.error("Error sending message:", error);
+              }
+            });
+          })()
+        );
+      }
+    }
+  );
+
+  // /Register /user_id - Get user by ID
+  bot.onText(
+    new RegExp(`^\\/user_id (.+)(?:@${botUsername})?$`, "i"),
+    async (msg) => {
+      if (global.pendingPromises) {
+        global.pendingPromises.push(
+          (async () => {
+            const chatId = msg.chat.id;
+            if (chatId.toString() !== groupId) {
+              try {
+                await bot.sendMessage(chatId, "Unauthorized chat.");
+              } catch (error) {
+                console.error("Error sending unauthorized message:", error);
+              }
+              return;
+            }
+            if (!msg.text) return;
+
+            let message = "An error occurred while fetching user data.";
+            const prompt = await bot.sendMessage(
+              chatId,
+              "Please enter the email address of the user you want to look up:",
+              {
+                reply_markup: {
+                  force_reply: true,
+                  input_field_placeholder: "example@email.com",
+                },
+              }
+            );
+
+            bot.onReplyToMessage(chatId, prompt.message_id, async (reply) => {
+              const id = reply.text?.trim();
+              if (!id) {
+                message = "No ID provided.";
+                await bot.sendMessage(chatId, message);
+                return;
+              }
+
+              let user;
+              try {
+                const data = await getUserByIdForBot(id);
+                if (!data.success || !data.user) {
+                  message = `No user found with the ID ${escapeMarkdownV2(
+                    id
+                  )}.`;
+                  await bot.sendMessage(chatId, message, {
+                    parse_mode: "MarkdownV2",
+                  });
+                  return;
+                }
+
+                user = data.user;
+                message = `📋 User details for ${code(user.id)}`;
+
+                const verified = user.verifiedAt
+                  ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                  : "N/A";
+                const approved = user.approvedAt
+                  ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                  : "N/A";
+                const suspended = user.suspendedAt
+                  ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                  : "N/A";
+                const created = format(
+                  addHours(user.createdAt!, 6),
+                  "dd/MM/yyyy HH:mm:ss"
+                );
+                const updated = format(
+                  addHours(user.updatedAt!, 6),
+                  "dd/MM/yyyy HH:mm:ss"
+                );
+
+                message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
+                message += `\n*ID:* ${code(user.id)}`;
+                message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
+                message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
+                message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
+                message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
+                message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
+                message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
+              } catch (error) {
+                console.error("Error fetching user by ID:", error);
+                message = "An error occurred while fetching user data.";
+                await bot.sendMessage(chatId, message);
+                return;
+              }
+
+              try {
+                await bot.sendMessage(chatId, message, {
+                  parse_mode: "MarkdownV2",
+                  reply_markup: {
+                    inline_keyboard: [
+                      [
+                        {
+                          text: user?.approvedAt
+                            ? "Unapprove User"
+                            : "Approve User",
+                          callback_data: user?.approvedAt
+                            ? `unapprove_user_${user.id}`
+                            : `approve_user_${user.id}`,
+                        },
+                        {
+                          text: user?.suspendedAt
+                            ? "Unsuspend User"
+                            : "Suspend User",
+                          callback_data: user?.suspendedAt
+                            ? `unsuspend_user_${user.id}`
+                            : `suspend_user_${user.id}`,
+                        },
+                      ],
+                      [{ text: "Cancel", callback_data: "cancel_action" }],
+                    ],
+                  },
+                });
+              } catch (error) {
+                console.error("Error sending message:", error);
+              }
+            });
           })()
         );
       }
