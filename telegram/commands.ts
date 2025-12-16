@@ -23,7 +23,8 @@ async function askForReply(
   bot: TelegramBot,
   chatId: number,
   promptMessageId: number,
-  timeoutMs = 30_000
+  timeoutMs = 30_000,
+  expectedFromUserId?: number
 ): Promise<TelegramBot.Message> {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(() => {
@@ -32,10 +33,15 @@ async function askForReply(
     }, timeoutMs);
 
     const handler = (msg: TelegramBot.Message) => {
-      if (
-        msg.chat.id === chatId &&
-        msg.reply_to_message?.message_id === promptMessageId
-      ) {
+      // Accept either an explicit reply to the prompt message OR a direct next message from the same user
+      const isReplyToPrompt =
+        msg.reply_to_message?.message_id === promptMessageId;
+      const isFromExpectedUser =
+        expectedFromUserId !== undefined && msg.from?.id === expectedFromUserId;
+
+      if (msg.chat.id !== chatId) return;
+
+      if (isReplyToPrompt || isFromExpectedUser) {
         bot.removeListener("message", handler);
         clearTimeout(timer);
         resolve(msg);
@@ -545,8 +551,8 @@ export function registerCommands(
 
   // /Register /user_email - Get user by email
   bot.onText(
-    new RegExp(`^\\/user_email(?:@${botUsername})?$`, "i"),
-    async (msg) => {
+    new RegExp(`^\\/user_email(?:@${botUsername})?(?:\s+(.+))?$`, "i"),
+    async (msg, match) => {
       if (global.pendingPromises) {
         global.pendingPromises.push(
           (async () => {
@@ -561,150 +567,155 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message = escapeMarkdownV2(
-              "An error occurred while fetching user data."
-            );
-            const prompt = await bot.sendMessage(
-              chatId,
-              "Please enter the email address of the user you want to look up:",
-              {
-                reply_markup: {
-                  force_reply: true,
-                  input_field_placeholder: "example@email.com",
-                },
-              }
-            );
-            console.log(
-              "Prompt sent for /user_email, message_id:",
-              prompt.message_id
-            );
+            // If the user provided an argument inline (/user_email <email>) use it directly
+            const inlineEmail = match?.[1]?.trim();
+            let email: string | undefined = inlineEmail;
 
-            try {
-              const reply = await askForReply(
-                bot,
+            if (!email) {
+              const prompt = await bot.sendMessage(
                 chatId,
-                prompt.message_id,
-                30000
+                "Please enter the email address of the user you want to look up:",
+                {
+                  reply_markup: {
+                    force_reply: true,
+                    input_field_placeholder: "example@email.com",
+                  },
+                }
               );
-              console.log("Reply received for /user_email:", reply.text);
-              const email = reply.text?.trim();
-              if (!email) {
-                await bot.sendMessage(chatId, "No email address provided.");
-                return;
-              }
-
-              if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                await bot.sendMessage(
-                  chatId,
-                  "Invalid email address format. Please try again."
-                );
-                return;
-              }
+              console.log(
+                "Prompt sent for /user_email, message_id:",
+                prompt.message_id
+              );
 
               try {
-                console.log("Fetching user by email for bot:", email);
-                let data;
-                try {
-                  data = await withTimeout(getUserByEmailForBot(email), 8_000);
-                } catch (err) {
-                  console.error(
-                    "Timeout or error fetching user by email:",
-                    err
-                  );
-                  await bot.sendMessage(
-                    chatId,
-                    "Request timed out while fetching user data. Please try again."
-                  );
+                const reply = await askForReply(
+                  bot,
+                  chatId,
+                  prompt.message_id,
+                  30000,
+                  msg.from?.id
+                );
+                console.log("Reply received for /user_email:", reply.text);
+                email = reply.text?.trim();
+                if (!email) {
+                  await bot.sendMessage(chatId, "No email address provided.");
                   return;
                 }
-
-                if (!data.success || !data.user) {
-                  console.log("No user found for email:", email);
-                  message = `No user found with the email address ${escapeMarkdownV2(
-                    email
-                  )}.`;
-                  await bot.sendMessage(chatId, message, {
-                    parse_mode: "MarkdownV2",
-                  });
-                  return;
-                }
-
-                const user = data.user;
-                console.log("User data for bot by email", user);
-                message = `📋 User details for ${code(user.email)}`;
-
-                const verified = user.verifiedAt
-                  ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
-                  : "N/A";
-                const approved = user.approvedAt
-                  ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
-                  : "N/A";
-                const suspended = user.suspendedAt
-                  ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
-                  : "N/A";
-                const created = format(
-                  addHours(user.createdAt!, 6),
-                  "dd/MM/yyyy HH:mm:ss"
+              } catch (err) {
+                console.log("No reply received for /user_email:", err);
+                await bot.sendMessage(
+                  chatId,
+                  "No reply received — cancelled. (If in a group, bot privacy may block plain replies; use `/user_email <email>` or DM the bot.)"
                 );
-                const updated = format(
-                  addHours(user.updatedAt!, 6),
-                  "dd/MM/yyyy HH:mm:ss"
+                return;
+              }
+            }
+
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+              await bot.sendMessage(
+                chatId,
+                "Invalid email address format. Please try again."
+              );
+              return;
+            }
+
+            try {
+              console.log("Fetching user by email for bot:", email);
+              let data;
+              try {
+                data = await withTimeout(getUserByEmailForBot(email), 8_000);
+              } catch (err) {
+                console.error("Timeout or error fetching user by email:", err);
+                await bot.sendMessage(
+                  chatId,
+                  "Request timed out while fetching user data. Please try again."
                 );
+                return;
+              }
 
-                message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
-                message += `\n*ID:* ${code(user.id)}`;
-                message += `\n*Email:* ${code(user.email)}`;
-                message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
-                message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
-                message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
-                message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
-                message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
-                message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
-
-                console.log("Sending user details with action buttons");
+              if (!data.success || !data.user) {
+                console.log("No user found for email:", email);
+                const message = `No user found with the email address ${escapeMarkdownV2(
+                  email
+                )}.`;
                 await bot.sendMessage(chatId, message, {
                   parse_mode: "MarkdownV2",
-                  reply_markup: {
-                    inline_keyboard: [
-                      [
-                        user?.verifiedAt
-                          ? {
-                              text: user?.approvedAt
-                                ? "Unapprove User"
-                                : "Approve User",
-                              callback_data: user?.approvedAt
-                                ? `unapprove_user_${user.id}`
-                                : `approve_user_${user.id}`,
-                            }
-                          : {
-                              text: "Resend Verification Email",
-                              callback_data: `resend_verification_${user.id}`,
-                            },
-                        {
-                          text: user?.suspendedAt
-                            ? "Unsuspend User"
-                            : "Suspend User",
-                          callback_data: user?.suspendedAt
-                            ? `unsuspend_user_${user.id}`
-                            : `suspend_user_${user.id}`,
-                        },
-                      ],
-                      [{ text: "Cancel", callback_data: "cancel_action" }],
-                    ],
-                  },
                 });
-                console.log(
-                  "User details sent with action buttons for email:",
-                  user.email
-                );
-              } catch (error) {
-                console.error("Error fetching user by email:", error);
-                message = "An error occurred while fetching user data.";
-                await bot.sendMessage(chatId, message);
+                return;
               }
-            } catch (err) {
-              console.log("No reply received for /user_email:", err);
-              await bot.sendMessage(chatId, "No reply received — cancelled.");
+
+              const user = data.user;
+              console.log("User data for bot by email", user);
+              let message = `📋 User details for ${code(user.email)}`;
+
+              const verified = user.verifiedAt
+                ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                : "N/A";
+              const approved = user.approvedAt
+                ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                : "N/A";
+              const suspended = user.suspendedAt
+                ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                : "N/A";
+              const created = format(
+                addHours(user.createdAt!, 6),
+                "dd/MM/yyyy HH:mm:ss"
+              );
+              const updated = format(
+                addHours(user.updatedAt!, 6),
+                "dd/MM/yyyy HH:mm:ss"
+              );
+
+              message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
+              message += `\n*ID:* ${code(user.id)}`;
+              message += `\n*Email:* ${code(user.email)}`;
+              message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
+              message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
+              message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
+              message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
+              message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
+              message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
+
+              console.log("Sending user details with action buttons");
+              await bot.sendMessage(chatId, message, {
+                parse_mode: "MarkdownV2",
+                reply_markup: {
+                  inline_keyboard: [
+                    [
+                      user?.verifiedAt
+                        ? {
+                            text: user?.approvedAt
+                              ? "Unapprove User"
+                              : "Approve User",
+                            callback_data: user?.approvedAt
+                              ? `unapprove_user_${user.id}`
+                              : `approve_user_${user.id}`,
+                          }
+                        : {
+                            text: "Resend Verification Email",
+                            callback_data: `resend_verification_${user.id}`,
+                          },
+                      {
+                        text: user?.suspendedAt
+                          ? "Unsuspend User"
+                          : "Suspend User",
+                        callback_data: user?.suspendedAt
+                          ? `unsuspend_user_${user.id}`
+                          : `suspend_user_${user.id}`,
+                      },
+                    ],
+                    [{ text: "Cancel", callback_data: "cancel_action" }],
+                  ],
+                },
+              });
+              console.log(
+                "User details sent with action buttons for email:",
+                user.email
+              );
+            } catch (error) {
+              console.error("Error fetching user by email:", error);
+              const message = "An error occurred while fetching user data.";
+              await bot.sendMessage(chatId, message);
             }
           })()
         );
@@ -714,8 +725,8 @@ export function registerCommands(
 
   // /Register /user_id - Get user by ID
   bot.onText(
-    new RegExp(`^\\/user_id(?:@${botUsername})?$`, "i"),
-    async (msg) => {
+    new RegExp(`^\\/user_id(?:@${botUsername})?(?:\s+(.+))?$`, "i"),
+    async (msg, match) => {
       if (global.pendingPromises) {
         global.pendingPromises.push(
           (async () => {
@@ -730,138 +741,145 @@ export function registerCommands(
             }
             if (!msg.text) return;
 
-            let message = escapeMarkdownV2(
-              "An error occurred while fetching user data."
-            );
-            const prompt = await bot.sendMessage(
-              chatId,
-              "Please enter the ID of the user you want to look up:",
-              {
-                reply_markup: {
-                  force_reply: true,
-                  input_field_placeholder: "user ID",
-                },
+            // If provided inline (/user_id <id>) use it
+            let id = match?.[1]?.trim();
+
+            if (!id) {
+              const prompt = await bot.sendMessage(
+                chatId,
+                "Please enter the ID of the user you want to look up:",
+                {
+                  reply_markup: {
+                    force_reply: true,
+                    input_field_placeholder: "user ID",
+                  },
+                }
+              );
+              console.log(
+                "Prompt sent for /user_id, message_id:",
+                prompt.message_id
+              );
+
+              try {
+                const reply = await askForReply(
+                  bot,
+                  chatId,
+                  prompt.message_id,
+                  30000,
+                  msg.from?.id
+                );
+                console.log("Reply received for /user_id:", reply.text);
+                id = reply.text?.trim();
+                if (!id) {
+                  await bot.sendMessage(chatId, "No ID provided.");
+                  return;
+                }
+              } catch (err) {
+                console.log("No reply received for /user_id:", err);
+                await bot.sendMessage(
+                  chatId,
+                  "No reply received — cancelled. (If in a group, bot privacy may block plain replies; use `/user_id <id>` or DM the bot.)"
+                );
+                return;
               }
-            );
-            console.log(
-              "Prompt sent for /user_id, message_id:",
-              prompt.message_id
-            );
+            }
 
             try {
-              const reply = await askForReply(
-                bot,
-                chatId,
-                prompt.message_id,
-                30000
-              );
-              console.log("Reply received for /user_id:", reply.text);
-              const id = reply.text?.trim();
-              if (!id) {
-                await bot.sendMessage(chatId, "No ID provided.");
+              console.log("Fetching user by ID for bot:", id);
+              let data;
+              try {
+                data = await withTimeout(getUserByIdForBot(id), 8_000);
+              } catch (err) {
+                console.error("Timeout or error fetching user by ID:", err);
+                await bot.sendMessage(
+                  chatId,
+                  "Request timed out while fetching user data. Please try again."
+                );
+                return;
+              }
+              if (!data.success || !data.user) {
+                console.log("No user found for ID:", id);
+                const message = `No user found with the ID ${escapeMarkdownV2(
+                  id
+                )}.`;
+                await bot.sendMessage(chatId, message, {
+                  parse_mode: "MarkdownV2",
+                });
                 return;
               }
 
-              try {
-                console.log("Fetching user by ID for bot:", id);
-                let data;
-                try {
-                  data = await withTimeout(getUserByIdForBot(id), 8_000);
-                } catch (err) {
-                  console.error("Timeout or error fetching user by ID:", err);
-                  await bot.sendMessage(
-                    chatId,
-                    "Request timed out while fetching user data. Please try again."
-                  );
-                  return;
-                }
-                if (!data.success || !data.user) {
-                  console.log("No user found for ID:", id);
-                  message = `No user found with the ID ${escapeMarkdownV2(
-                    id
-                  )}.`;
-                  await bot.sendMessage(chatId, message, {
-                    parse_mode: "MarkdownV2",
-                  });
-                  return;
-                }
+              const user = data.user;
+              console.log("User data for bot by ID", user);
+              let message = `📋 User details for ${code(user.id)}`;
 
-                const user = data.user;
-                console.log("User data for bot by ID", user);
-                message = `📋 User details for ${code(user.id)}`;
+              const verified = user.verifiedAt
+                ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                : "N/A";
+              const approved = user.approvedAt
+                ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                : "N/A";
+              const suspended = user.suspendedAt
+                ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
+                : "N/A";
+              const created = format(
+                addHours(user.createdAt!, 6),
+                "dd/MM/yyyy HH:mm:ss"
+              );
+              const updated = format(
+                addHours(user.updatedAt!, 6),
+                "dd/MM/yyyy HH:mm:ss"
+              );
 
-                const verified = user.verifiedAt
-                  ? format(addHours(user.verifiedAt, 6), "dd/MM/yyyy HH:mm:ss")
-                  : "N/A";
-                const approved = user.approvedAt
-                  ? format(addHours(user.approvedAt, 6), "dd/MM/yyyy HH:mm:ss")
-                  : "N/A";
-                const suspended = user.suspendedAt
-                  ? format(addHours(user.suspendedAt, 6), "dd/MM/yyyy HH:mm:ss")
-                  : "N/A";
-                const created = format(
-                  addHours(user.createdAt!, 6),
-                  "dd/MM/yyyy HH:mm:ss"
-                );
-                const updated = format(
-                  addHours(user.updatedAt!, 6),
-                  "dd/MM/yyyy HH:mm:ss"
-                );
+              message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
+              message += `\n*ID:* ${code(user.id)}`;
+              message += `\n*Email:* ${code(user.email)}`;
+              message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
+              message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
+              message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
+              message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
+              message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
+              message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
 
-                message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
-                message += `\n*ID:* ${code(user.id)}`;
-                message += `\n*Email:* ${code(user.email)}`;
-                message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
-                message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
-                message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
-                message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
-                message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
-                message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
-
-                console.log("Sending user details with action buttons");
-                await bot.sendMessage(chatId, message, {
-                  parse_mode: "MarkdownV2",
-                  reply_markup: {
-                    inline_keyboard: [
-                      [
-                        user?.verifiedAt
-                          ? {
-                              text: user?.approvedAt
-                                ? "Unapprove User"
-                                : "Approve User",
-                              callback_data: user?.approvedAt
-                                ? `unapprove_user_${user.id}`
-                                : `approve_user_${user.id}`,
-                            }
-                          : {
-                              text: "Resend Verification Email",
-                              callback_data: `resend_verification_${user.id}`,
-                            },
-                        {
-                          text: user?.suspendedAt
-                            ? "Unsuspend User"
-                            : "Suspend User",
-                          callback_data: user?.suspendedAt
-                            ? `unsuspend_user_${user.id}`
-                            : `suspend_user_${user.id}`,
-                        },
-                      ],
-                      [{ text: "Cancel", callback_data: "cancel_action" }],
+              console.log("Sending user details with action buttons");
+              await bot.sendMessage(chatId, message, {
+                parse_mode: "MarkdownV2",
+                reply_markup: {
+                  inline_keyboard: [
+                    [
+                      user?.verifiedAt
+                        ? {
+                            text: user?.approvedAt
+                              ? "Unapprove User"
+                              : "Approve User",
+                            callback_data: user?.approvedAt
+                              ? `unapprove_user_${user.id}`
+                              : `approve_user_${user.id}`,
+                          }
+                        : {
+                            text: "Resend Verification Email",
+                            callback_data: `resend_verification_${user.id}`,
+                          },
+                      {
+                        text: user?.suspendedAt
+                          ? "Unsuspend User"
+                          : "Suspend User",
+                        callback_data: user?.suspendedAt
+                          ? `unsuspend_user_${user.id}`
+                          : `suspend_user_${user.id}`,
+                      },
                     ],
-                  },
-                });
-                console.log(
-                  "User details sent with action buttons for ID:",
-                  user.id
-                );
-              } catch (error) {
-                console.error("Error fetching user by ID:", error);
-                message = "An error occurred while fetching user data.";
-                await bot.sendMessage(chatId, message);
-              }
-            } catch (err) {
-              console.log("No reply received for /user_id:", err);
-              await bot.sendMessage(chatId, "No reply received — cancelled.");
+                    [{ text: "Cancel", callback_data: "cancel_action" }],
+                  ],
+                },
+              });
+              console.log(
+                "User details sent with action buttons for ID:",
+                user.id
+              );
+            } catch (error) {
+              console.error("Error fetching user by ID:", error);
+              const message = "An error occurred while fetching user data.";
+              await bot.sendMessage(chatId, message);
             }
           })()
         );
