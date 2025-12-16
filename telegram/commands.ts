@@ -573,6 +573,7 @@ export function registerCommands(
                 }
 
                 user = data.user;
+                console.log("User data for bot by email", user);
                 message = `📋 User details for ${code(user.email)}`;
 
                 const verified = user.verifiedAt
@@ -604,6 +605,7 @@ export function registerCommands(
                 message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
 
                 try {
+                  console.log("Sending user details with action buttons");
                   await bot.sendMessage(chatId, message, {
                     parse_mode: "MarkdownV2",
                     reply_markup: {
@@ -635,9 +637,12 @@ export function registerCommands(
                       ],
                     },
                   });
+                  return;
                 } catch (error) {
                   console.error("Error sending message:", error);
+                  return;
                 }
+                return;
               } catch (error) {
                 console.error("Error fetching user by email:", error);
                 message = "An error occurred while fetching user data.";
@@ -710,6 +715,7 @@ export function registerCommands(
                 }
 
                 user = data.user;
+                console.log("User data for bot by ID", user);
                 message = `📋 User details for ${code(user.id)}`;
 
                 const verified = user.verifiedAt
@@ -741,6 +747,7 @@ export function registerCommands(
                 message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
 
                 try {
+                  console.log("Sending user details with action buttons");
                   await bot.sendMessage(chatId, message, {
                     parse_mode: "MarkdownV2",
                     reply_markup: {
@@ -772,8 +779,10 @@ export function registerCommands(
                       ],
                     },
                   });
+                  return;
                 } catch (error) {
                   console.error("Error sending message:", error);
+                  return;
                 }
               } catch (error) {
                 console.error("Error fetching user by ID:", error);
