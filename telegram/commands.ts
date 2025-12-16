@@ -659,11 +659,11 @@ export function registerCommands(
             let message = "An error occurred while fetching user data.";
             const prompt = await bot.sendMessage(
               chatId,
-              "Please enter the email address of the user you want to look up:",
+              "Please enter the ID of the user you want to look up:",
               {
                 reply_markup: {
                   force_reply: true,
-                  input_field_placeholder: "example@email.com",
+                  input_field_placeholder: "user ID",
                 },
               }
             );
@@ -731,14 +731,19 @@ export function registerCommands(
                   reply_markup: {
                     inline_keyboard: [
                       [
-                        {
-                          text: user?.approvedAt
-                            ? "Unapprove User"
-                            : "Approve User",
-                          callback_data: user?.approvedAt
-                            ? `unapprove_user_${user.id}`
-                            : `approve_user_${user.id}`,
-                        },
+                        user?.verifiedAt
+                          ? {
+                              text: user?.approvedAt
+                                ? "Unapprove User"
+                                : "Approve User",
+                              callback_data: user?.approvedAt
+                                ? `unapprove_user_${user.id}`
+                                : `approve_user_${user.id}`,
+                            }
+                          : {
+                              text: "Resend Verification Email",
+                              callback_data: `resend_verification_${user.id}`,
+                            },
                         {
                           text: user?.suspendedAt
                             ? "Unsuspend User"
