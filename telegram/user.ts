@@ -1,3 +1,5 @@
+"use server";
+
 import { sendVerificationEmail } from "@/actions/email";
 import { prisma } from "@/lib/prisma";
 import { User } from "@/lib/prisma/client";

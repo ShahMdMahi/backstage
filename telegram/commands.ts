@@ -595,6 +595,7 @@ export function registerCommands(
 
                 message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
                 message += `\n*ID:* ${code(user.id)}`;
+                message += `\n*Email:* ${code(user.email)}`;
                 message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
                 message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
                 message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
@@ -731,6 +732,7 @@ export function registerCommands(
 
                 message += `\n*Name:* ${escapeMarkdownV2(user.name)}`;
                 message += `\n*ID:* ${code(user.id)}`;
+                message += `\n*Email:* ${code(user.email)}`;
                 message += `\n*Role:* ${escapeMarkdownV2(user.role?.replace(/_/g, " ").replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase()))}`;
                 message += `\n*Verified At:* ${escapeMarkdownV2(verified)}`;
                 message += `\n*Approved At:* ${escapeMarkdownV2(approved)}`;
