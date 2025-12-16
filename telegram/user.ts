@@ -131,8 +131,10 @@ export async function getUserByIdForBot(userId: string): Promise<{
   success: boolean;
   user: Partial<User> | null;
 }> {
+  let start = Date.now();
   try {
     console.log("Fetching user by ID for bot:", userId);
+    start = Date.now();
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -148,6 +150,11 @@ export async function getUserByIdForBot(userId: string): Promise<{
       },
     });
 
+    const duration = Date.now() - start;
+    console.log(
+      `Prisma: findUnique(user by id) took ${duration}ms for id=${userId}`
+    );
+
     if (!user) {
       console.log("User not found by ID for bot:", userId);
       return { success: false, user: null };
@@ -156,7 +163,8 @@ export async function getUserByIdForBot(userId: string): Promise<{
     console.log("User found by ID for bot:", user);
     return { success: true, user };
   } catch (error) {
-    console.error("Error fetching user by ID for bot:", error);
+    const duration = Date.now() - start;
+    console.error("Error fetching user by ID for bot:", error, { duration });
     return { success: false, user: null };
   }
 }
@@ -165,8 +173,10 @@ export async function getUserByEmailForBot(email: string): Promise<{
   success: boolean;
   user: Partial<User> | null;
 }> {
+  let start = Date.now();
   try {
     console.log("Fetching user by email for bot:", email);
+    start = Date.now();
     const user = await prisma.user.findUnique({
       where: { email },
       select: {
@@ -182,6 +192,11 @@ export async function getUserByEmailForBot(email: string): Promise<{
       },
     });
 
+    const duration = Date.now() - start;
+    console.log(
+      `Prisma: findUnique(user by email) took ${duration}ms for email=${email}`
+    );
+
     if (!user) {
       console.log("User not found by email for bot:", email);
       return { success: false, user: null };
@@ -190,7 +205,8 @@ export async function getUserByEmailForBot(email: string): Promise<{
     console.log("User found by email for bot:", user);
     return { success: true, user };
   } catch (error) {
-    console.error("Error fetching user by email for bot:", error);
+    const duration = Date.now() - start;
+    console.error("Error fetching user by email for bot:", error, { duration });
     return { success: false, user: null };
   }
 }

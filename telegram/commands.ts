@@ -18,6 +18,42 @@ function code(value: unknown): string {
   return `\`${escapeMarkdownV2(value)}\``;
 }
 
+// Helper: await a single reply to a prompt message (removes listener on resolve/reject)
+async function askForReply(
+  bot: TelegramBot,
+  chatId: number,
+  promptMessageId: number,
+  timeoutMs = 30_000
+): Promise<TelegramBot.Message> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      bot.removeListener("message", handler);
+      reject(new Error("reply timeout"));
+    }, timeoutMs);
+
+    const handler = (msg: TelegramBot.Message) => {
+      if (
+        msg.chat.id === chatId &&
+        msg.reply_to_message?.message_id === promptMessageId
+      ) {
+        bot.removeListener("message", handler);
+        clearTimeout(timer);
+        resolve(msg);
+      }
+    };
+
+    bot.on("message", handler);
+  });
+}
+
+// Helper: run a promise with a short timeout so the bot can fail fast and respond to users
+function withTimeout<T>(promise: Promise<T>, ms = 8_000): Promise<T> {
+  const timeout = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error("operation timeout")), ms);
+  });
+  return Promise.race([promise, timeout]) as Promise<T>;
+}
+
 export function registerCommands(
   bot: TelegramBot,
   groupId: string,
@@ -543,24 +579,44 @@ export function registerCommands(
               prompt.message_id
             );
 
-            bot.onReplyToMessage(chatId, prompt.message_id, async (reply) => {
+            try {
+              const reply = await askForReply(
+                bot,
+                chatId,
+                prompt.message_id,
+                30000
+              );
               console.log("Reply received for /user_email:", reply.text);
               const email = reply.text?.trim();
               if (!email) {
-                message = "No email address provided.";
-                await bot.sendMessage(chatId, message);
+                await bot.sendMessage(chatId, "No email address provided.");
                 return;
               }
 
               if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                message = "Invalid email address format. Please try again.";
-                await bot.sendMessage(chatId, message);
+                await bot.sendMessage(
+                  chatId,
+                  "Invalid email address format. Please try again."
+                );
                 return;
               }
 
               try {
                 console.log("Fetching user by email for bot:", email);
-                const data = await getUserByEmailForBot(email);
+                let data;
+                try {
+                  data = await withTimeout(getUserByEmailForBot(email), 8_000);
+                } catch (err) {
+                  console.error(
+                    "Timeout or error fetching user by email:",
+                    err
+                  );
+                  await bot.sendMessage(
+                    chatId,
+                    "Request timed out while fetching user data. Please try again."
+                  );
+                  return;
+                }
 
                 if (!data.success || !data.user) {
                   console.log("No user found for email:", email);
@@ -646,7 +702,10 @@ export function registerCommands(
                 message = "An error occurred while fetching user data.";
                 await bot.sendMessage(chatId, message);
               }
-            });
+            } catch (err) {
+              console.log("No reply received for /user_email:", err);
+              await bot.sendMessage(chatId, "No reply received — cancelled.");
+            }
           })()
         );
       }
@@ -689,18 +748,33 @@ export function registerCommands(
               prompt.message_id
             );
 
-            bot.onReplyToMessage(chatId, prompt.message_id, async (reply) => {
+            try {
+              const reply = await askForReply(
+                bot,
+                chatId,
+                prompt.message_id,
+                30000
+              );
               console.log("Reply received for /user_id:", reply.text);
               const id = reply.text?.trim();
               if (!id) {
-                message = "No ID provided.";
-                await bot.sendMessage(chatId, message);
+                await bot.sendMessage(chatId, "No ID provided.");
                 return;
               }
 
               try {
                 console.log("Fetching user by ID for bot:", id);
-                const data = await getUserByIdForBot(id);
+                let data;
+                try {
+                  data = await withTimeout(getUserByIdForBot(id), 8_000);
+                } catch (err) {
+                  console.error("Timeout or error fetching user by ID:", err);
+                  await bot.sendMessage(
+                    chatId,
+                    "Request timed out while fetching user data. Please try again."
+                  );
+                  return;
+                }
                 if (!data.success || !data.user) {
                   console.log("No user found for ID:", id);
                   message = `No user found with the ID ${escapeMarkdownV2(
@@ -785,7 +859,10 @@ export function registerCommands(
                 message = "An error occurred while fetching user data.";
                 await bot.sendMessage(chatId, message);
               }
-            });
+            } catch (err) {
+              console.log("No reply received for /user_id:", err);
+              await bot.sendMessage(chatId, "No reply received — cancelled.");
+            }
           })()
         );
       }
