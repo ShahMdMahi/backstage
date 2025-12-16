@@ -601,47 +601,47 @@ export function registerCommands(
                 message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
                 message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
                 message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
+
+                try {
+                  await bot.sendMessage(chatId, message, {
+                    parse_mode: "MarkdownV2",
+                    reply_markup: {
+                      inline_keyboard: [
+                        [
+                          user?.verifiedAt
+                            ? {
+                                text: user?.approvedAt
+                                  ? "Unapprove User"
+                                  : "Approve User",
+                                callback_data: user?.approvedAt
+                                  ? `unapprove_user_${user.id}`
+                                  : `approve_user_${user.id}`,
+                              }
+                            : {
+                                text: "Resend Verification Email",
+                                callback_data: `resend_verification_${user.id}`,
+                              },
+                          {
+                            text: user?.suspendedAt
+                              ? "Unsuspend User"
+                              : "Suspend User",
+                            callback_data: user?.suspendedAt
+                              ? `unsuspend_user_${user.id}`
+                              : `suspend_user_${user.id}`,
+                          },
+                        ],
+                        [{ text: "Cancel", callback_data: "cancel_action" }],
+                      ],
+                    },
+                  });
+                } catch (error) {
+                  console.error("Error sending message:", error);
+                }
               } catch (error) {
                 console.error("Error fetching user by email:", error);
                 message = "An error occurred while fetching user data.";
                 await bot.sendMessage(chatId, message);
                 return;
-              }
-
-              try {
-                await bot.sendMessage(chatId, message, {
-                  parse_mode: "MarkdownV2",
-                  reply_markup: {
-                    inline_keyboard: [
-                      [
-                        user?.verifiedAt
-                          ? {
-                              text: user?.approvedAt
-                                ? "Unapprove User"
-                                : "Approve User",
-                              callback_data: user?.approvedAt
-                                ? `unapprove_user_${user.id}`
-                                : `approve_user_${user.id}`,
-                            }
-                          : {
-                              text: "Resend Verification Email",
-                              callback_data: `resend_verification_${user.id}`,
-                            },
-                        {
-                          text: user?.suspendedAt
-                            ? "Unsuspend User"
-                            : "Suspend User",
-                          callback_data: user?.suspendedAt
-                            ? `unsuspend_user_${user.id}`
-                            : `suspend_user_${user.id}`,
-                        },
-                      ],
-                      [{ text: "Cancel", callback_data: "cancel_action" }],
-                    ],
-                  },
-                });
-              } catch (error) {
-                console.error("Error sending message:", error);
               }
             });
           })()
@@ -737,47 +737,47 @@ export function registerCommands(
                 message += `\n*Suspended At:* ${escapeMarkdownV2(suspended)}`;
                 message += `\n*Created At:* ${escapeMarkdownV2(created)}`;
                 message += `\n*Updated At:* ${escapeMarkdownV2(updated)}`;
+
+                try {
+                  await bot.sendMessage(chatId, message, {
+                    parse_mode: "MarkdownV2",
+                    reply_markup: {
+                      inline_keyboard: [
+                        [
+                          user?.verifiedAt
+                            ? {
+                                text: user?.approvedAt
+                                  ? "Unapprove User"
+                                  : "Approve User",
+                                callback_data: user?.approvedAt
+                                  ? `unapprove_user_${user.id}`
+                                  : `approve_user_${user.id}`,
+                              }
+                            : {
+                                text: "Resend Verification Email",
+                                callback_data: `resend_verification_${user.id}`,
+                              },
+                          {
+                            text: user?.suspendedAt
+                              ? "Unsuspend User"
+                              : "Suspend User",
+                            callback_data: user?.suspendedAt
+                              ? `unsuspend_user_${user.id}`
+                              : `suspend_user_${user.id}`,
+                          },
+                        ],
+                        [{ text: "Cancel", callback_data: "cancel_action" }],
+                      ],
+                    },
+                  });
+                } catch (error) {
+                  console.error("Error sending message:", error);
+                }
               } catch (error) {
                 console.error("Error fetching user by ID:", error);
                 message = "An error occurred while fetching user data.";
                 await bot.sendMessage(chatId, message);
                 return;
-              }
-
-              try {
-                await bot.sendMessage(chatId, message, {
-                  parse_mode: "MarkdownV2",
-                  reply_markup: {
-                    inline_keyboard: [
-                      [
-                        user?.verifiedAt
-                          ? {
-                              text: user?.approvedAt
-                                ? "Unapprove User"
-                                : "Approve User",
-                              callback_data: user?.approvedAt
-                                ? `unapprove_user_${user.id}`
-                                : `approve_user_${user.id}`,
-                            }
-                          : {
-                              text: "Resend Verification Email",
-                              callback_data: `resend_verification_${user.id}`,
-                            },
-                        {
-                          text: user?.suspendedAt
-                            ? "Unsuspend User"
-                            : "Suspend User",
-                          callback_data: user?.suspendedAt
-                            ? `unsuspend_user_${user.id}`
-                            : `suspend_user_${user.id}`,
-                        },
-                      ],
-                      [{ text: "Cancel", callback_data: "cancel_action" }],
-                    ],
-                  },
-                });
-              } catch (error) {
-                console.error("Error sending message:", error);
               }
             });
           })()
