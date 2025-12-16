@@ -30,6 +30,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
               await bot.sendMessage(chatId!, "Unauthorized chat.");
             } catch (error) {
               console.error("Error sending unauthorized message:", error);
+            } finally {
+              await bot.answerCallbackQuery(query.id);
             }
             return;
           }
@@ -56,6 +58,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                 }
               } catch (error) {
                 console.error("Error sending approve user message:", error);
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
             case action?.startsWith("unapprove_user_"):
@@ -79,6 +83,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                 }
               } catch (error) {
                 console.error("Error sending unapprove user message:", error);
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
             case action?.startsWith("suspend_user_"):
@@ -102,6 +108,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                 }
               } catch (error) {
                 console.error("Error sending suspend user message:", error);
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
             case action?.startsWith("unsuspend_user_"):
@@ -125,6 +133,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                 }
               } catch (error) {
                 console.error("Error sending unsuspend user message:", error);
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
             case action?.startsWith("resend_verification_"):
@@ -153,6 +163,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                   "Error sending resend verification message:",
                   error
                 );
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
             case action?.includes("cancel_action"):
@@ -162,6 +174,8 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                 });
               } catch (error) {
                 console.error("Error sending cancel action message:", error);
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
             default:
@@ -173,9 +187,12 @@ export function registerQueryCallbacks(bot: TelegramBot, groupId: string) {
                 );
               } catch (error) {
                 console.error("Error sending unknown action message:", error);
+              } finally {
+                await bot.answerCallbackQuery(query.id);
               }
               break;
           }
+          await bot.answerCallbackQuery(query.id);
         })()
       );
     }
