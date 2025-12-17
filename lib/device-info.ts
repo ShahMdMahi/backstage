@@ -95,16 +95,26 @@ function mapDeviceType(deviceType: string | undefined): SESSION_DEVICE_TYPE {
   const type = deviceType.toLowerCase();
 
   switch (type) {
-    case "mobile":
-      return SESSION_DEVICE_TYPE.MOBILE;
+    case "desktop":
+      return SESSION_DEVICE_TYPE.DESKTOP;
     case "tablet":
       return SESSION_DEVICE_TYPE.TABLET;
-    case "smarttv":
-    case "wearable":
+    case "mobile":
+      return SESSION_DEVICE_TYPE.MOBILE;
+    case "console":
+      return SESSION_DEVICE_TYPE.CONSOLE;
     case "embedded":
+      return SESSION_DEVICE_TYPE.EMBEDDED;
+    case "smarttv":
+      return SESSION_DEVICE_TYPE.SMARTTV;
+    case "wearable":
+      return SESSION_DEVICE_TYPE.WEARABLE;
+    case "xr":
+      return SESSION_DEVICE_TYPE.XR;
+    case "other":
       return SESSION_DEVICE_TYPE.OTHER;
     default:
-      return SESSION_DEVICE_TYPE.DESKTOP;
+      return SESSION_DEVICE_TYPE.OTHER;
   }
 }
 

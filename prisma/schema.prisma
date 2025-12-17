@@ -21,9 +21,13 @@ enum ROLE {
 
 enum SESSION_DEVICE_TYPE {
   DESKTOP
-  LAPTOP
   TABLET
   MOBILE
+  CONSOLE
+  EMBEDDED
+  SMARTTV
+  WEARABLE
+  XR
   OTHER
 }
 
@@ -95,7 +99,7 @@ model Session {
   userAgent         String
   ipAddress         String
   deviceFingerprint String
-  metadata    Json?
+  metadata          Json?
 
   // Enums
   deviceType SESSION_DEVICE_TYPE @default(OTHER)
