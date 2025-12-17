@@ -2,7 +2,7 @@ import "@/app/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
-import { ThemeProvider } from "@/components/shared/theme-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {

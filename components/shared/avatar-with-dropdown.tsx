@@ -11,19 +11,13 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { getInitials } from "@/lib/utils";
-import {
-  Home,
-  Moon,
-  Sun,
-  User as UserIcon,
-  CreditCard,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { Home, Moon, Sun, UserIcon, Settings, LogOut } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Session, User } from "@/lib/prisma/browser";
+import { logout } from "@/actions/auth";
+import { toast } from "sonner";
 
 export function AvatarWithDropdown({
   session,
@@ -138,17 +132,6 @@ export function AvatarWithDropdown({
             tabIndex={0}
             className="flex items-center gap-2"
             aria-label="Go to Settings"
-            onClick={() => router.push("/subscription")}
-            onKeyDown={(e) =>
-              handleKeyDown(e, () => router.push("/subscription"))
-            }
-          >
-            <CreditCard className="mr-2 h-4 w-4" /> Subscription
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            tabIndex={0}
-            className="flex items-center gap-2"
-            aria-label="Go to Settings"
             onClick={() => router.push("/settings")}
             onKeyDown={(e) => handleKeyDown(e, () => router.push("/settings"))}
           >
@@ -160,9 +143,25 @@ export function AvatarWithDropdown({
           tabIndex={0}
           className="text-destructive focus:text-destructive flex items-center gap-2"
           aria-label="Log out"
-          onClick={() => router.push("/auth/sign-out")}
+          onClick={async () => {
+            const result = await logout();
+            if (result.success) {
+              toast.success(result.message || "Logged out successfully");
+              router.push("/auth/login");
+            } else {
+              toast.error(result.message || "Failed to log out");
+            }
+          }}
           onKeyDown={(e) =>
-            handleKeyDown(e, () => router.push("/auth/sign-out"))
+            handleKeyDown(e, async () => {
+              const result = await logout();
+              if (result.success) {
+                toast.success(result.message || "Logged out successfully");
+                router.push("/auth/login");
+              } else {
+                toast.error(result.message || "Failed to log out");
+              }
+            })
           }
         >
           <LogOut className="mr-2 h-4 w-4" /> Log out

@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  CreditCard,
-  Home,
-  LogOut,
-  Moon,
-  Settings,
-  Sun,
-  User as UserIcon,
-} from "lucide-react";
+import { Home, LogOut, Moon, Settings, Sun, UserIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -30,6 +22,8 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import * as React from "react";
 import { Session, User } from "@/lib/prisma/browser";
+import { logout } from "@/actions/auth";
+import { toast } from "sonner";
 
 export function NavUser({
   session,
@@ -143,24 +137,13 @@ export function NavUser({
               <DropdownMenuItem
                 tabIndex={0}
                 className="flex items-center gap-2"
-                aria-label="Go to Profile"
+                aria-label="Go to Settings"
                 onClick={() => router.push("/profile")}
                 onKeyDown={(e) =>
                   handleKeyDown(e, () => router.push("/profile"))
                 }
               >
                 <UserIcon className="mr-2 h-4 w-4" /> Profile
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                tabIndex={0}
-                className="flex items-center gap-2"
-                aria-label="Go to Settings"
-                onClick={() => router.push("/subscription")}
-                onKeyDown={(e) =>
-                  handleKeyDown(e, () => router.push("/subscription"))
-                }
-              >
-                <CreditCard className="mr-2 h-4 w-4" /> Subscription
               </DropdownMenuItem>
               <DropdownMenuItem
                 tabIndex={0}
@@ -179,9 +162,25 @@ export function NavUser({
               tabIndex={0}
               className="text-destructive focus:text-destructive flex items-center gap-2"
               aria-label="Log out"
-              onClick={() => router.push("/auth/sign-out")}
+              onClick={async () => {
+                const result = await logout();
+                if (result.success) {
+                  toast.success(result.message || "Logged out successfully");
+                  router.push("/auth/sign-in");
+                } else {
+                  toast.error(result.message || "Failed to log out");
+                }
+              }}
               onKeyDown={(e) =>
-                handleKeyDown(e, () => router.push("/auth/sign-out"))
+                handleKeyDown(e, async () => {
+                  const result = await logout();
+                  if (result.success) {
+                    toast.success(result.message || "Logged out successfully");
+                    router.push("/auth/login");
+                  } else {
+                    toast.error(result.message || "Failed to log out");
+                  }
+                })
               }
             >
               <LogOut className="mr-2 h-4 w-4" /> Log out
