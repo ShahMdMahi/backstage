@@ -10,12 +10,6 @@ datasource db {
 enum ROLE {
   DEVELOPER
   SYSTEM_ADMIN
-  SYSTEM_MANAGER
-  SYSTEM_USER
-  ACCOUNT_ADMIN
-  ACCOUNT_MANAGER
-  ACCOUNT_USER
-  ARTIST
   USER
 }
 
@@ -29,6 +23,30 @@ enum SESSION_DEVICE_TYPE {
   WEARABLE
   XR
   OTHER
+}
+
+enum WORKSPACE_ACCOUNT_TYPE {
+  B2B
+  LABEL
+  ARTIST
+}
+
+enum WORKSPACE_ACCOUNT_STATUS {
+  ACTIVE
+  SUSPENDED
+  CANCELLED
+}
+
+enum WORKSPACE_ACCOUNT_ACCESS_ROLE {
+  ADMIN
+  MANAGER
+  ARTIST
+  MEMBER
+}
+
+enum WORKSPACE_ACCOUNT_ACCESS_STATUS {
+  ACTIVE
+  SUSPENDED
 }
 
 enum AUDIT_LOG_ACTION {
@@ -50,6 +68,11 @@ enum AUDIT_LOG_ACTION {
   SESSION_CREATED
   SESSION_REVOKED
   SESSION_ACCESSED
+
+  // Workspace Account Actions
+  WORKSPACE_ACCOUNT_CREATED
+  WORKSPACE_ACCOUNT_UPDATED
+  WORKSPACE_ACCOUNT_DELETED
 }
 
 enum AUDIT_LOG_ENTITY {
@@ -74,8 +97,11 @@ model User {
   role ROLE @default(USER)
 
   // Relations
-  sessions  Session[]
-  auditLogs AuditLog[]
+  sessions                         Session[]
+  ownWorkspaceAccount              WorkspaceAccount?
+  sharedWorkspaceAccountAccesses   SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessUser")
+  assignedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessAssigner")
+  auditLogs                        AuditLog[]
 
   // Timestamps
   createdAt   DateTime  @default(now())
@@ -115,6 +141,71 @@ model Session {
   accessedAt DateTime?
 
   // Indexes & Constraints
+  @@index([token]) // Ensures fast lookups by token (e.g., during authentication).
+  @@index([userId]) // Speeds up queries filtering by user (e.g., get all sessions for a user).
+  @@index([expiresAt]) // Optimizes expiration checks (e.g., find expired sessions for cleanup).
+  @@index([revokedAt]) // Improves queries for revoked sessions (e.g., filter active ones).
+  @@index([accessedAt]) // Enhances recent access queries (e.g., sort by last accessed).
+  @@index([userId, expiresAt]) // Composite index for combined user and expiration filters (e.g., active sessions per user).
+}
+
+model WorkspaceAccount {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  ownerId String @unique
+
+  // Fields
+  name        String
+  legalName   String
+  description String
+  logo        String
+  metadata    Json?
+
+  // Enums
+  type   WORKSPACE_ACCOUNT_TYPE
+  status WORKSPACE_ACCOUNT_STATUS @default(ACTIVE)
+
+  // Relations
+  owner          User                           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  sharedAccesses SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  subscriptionStatsAt DateTime
+  subscriptionEndsAt  DateTime
+
+  // Indexes & Constraints
+}
+
+model SharedWorkspaceAccountAccess {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+  userId             String
+  assignerId         String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+  role   WORKSPACE_ACCOUNT_ACCESS_ROLE   @default(MEMBER)
+  status WORKSPACE_ACCOUNT_ACCESS_STATUS @default(ACTIVE)
+
+  // Relations
+  workspaceAccount WorkspaceAccount @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  user             User             @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
+  assigner         User             @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
 }
 
 model AuditLog {
@@ -125,7 +216,7 @@ model AuditLog {
   userId String?
 
   // Fields
-  entityId    String
+  entityId    String?
   bySystem    Boolean @default(false)
   description String?
   metadata    Json?

@@ -414,6 +414,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never
 export const ModelName = {
   User: "User",
   Session: "Session",
+  WorkspaceAccount: "WorkspaceAccount",
+  SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
   AuditLog: "AuditLog",
 } as const;
 
@@ -436,7 +438,12 @@ export type TypeMap<
     omit: GlobalOmitOptions;
   };
   meta: {
-    modelProps: "user" | "session" | "auditLog";
+    modelProps:
+      | "user"
+      | "session"
+      | "workspaceAccount"
+      | "sharedWorkspaceAccountAccess"
+      | "auditLog";
     txIsolationLevel: TransactionIsolationLevel;
   };
   model: {
@@ -588,6 +595,158 @@ export type TypeMap<
           args: Prisma.SessionCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.SessionCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    WorkspaceAccount: {
+      payload: Prisma.$WorkspaceAccountPayload<ExtArgs>;
+      fields: Prisma.WorkspaceAccountFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.WorkspaceAccountFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.WorkspaceAccountFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>;
+        };
+        findFirst: {
+          args: Prisma.WorkspaceAccountFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.WorkspaceAccountFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>;
+        };
+        findMany: {
+          args: Prisma.WorkspaceAccountFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>[];
+        };
+        create: {
+          args: Prisma.WorkspaceAccountCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>;
+        };
+        createMany: {
+          args: Prisma.WorkspaceAccountCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.WorkspaceAccountCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>[];
+        };
+        delete: {
+          args: Prisma.WorkspaceAccountDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>;
+        };
+        update: {
+          args: Prisma.WorkspaceAccountUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>;
+        };
+        deleteMany: {
+          args: Prisma.WorkspaceAccountDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.WorkspaceAccountUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.WorkspaceAccountUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>[];
+        };
+        upsert: {
+          args: Prisma.WorkspaceAccountUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$WorkspaceAccountPayload>;
+        };
+        aggregate: {
+          args: Prisma.WorkspaceAccountAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWorkspaceAccount>;
+        };
+        groupBy: {
+          args: Prisma.WorkspaceAccountGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.WorkspaceAccountGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.WorkspaceAccountCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.WorkspaceAccountCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    SharedWorkspaceAccountAccess: {
+      payload: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>;
+      fields: Prisma.SharedWorkspaceAccountAccessFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.SharedWorkspaceAccountAccessFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.SharedWorkspaceAccountAccessFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>;
+        };
+        findFirst: {
+          args: Prisma.SharedWorkspaceAccountAccessFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.SharedWorkspaceAccountAccessFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>;
+        };
+        findMany: {
+          args: Prisma.SharedWorkspaceAccountAccessFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>[];
+        };
+        create: {
+          args: Prisma.SharedWorkspaceAccountAccessCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>;
+        };
+        createMany: {
+          args: Prisma.SharedWorkspaceAccountAccessCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.SharedWorkspaceAccountAccessCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>[];
+        };
+        delete: {
+          args: Prisma.SharedWorkspaceAccountAccessDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>;
+        };
+        update: {
+          args: Prisma.SharedWorkspaceAccountAccessUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>;
+        };
+        deleteMany: {
+          args: Prisma.SharedWorkspaceAccountAccessDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.SharedWorkspaceAccountAccessUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.SharedWorkspaceAccountAccessUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>[];
+        };
+        upsert: {
+          args: Prisma.SharedWorkspaceAccountAccessUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SharedWorkspaceAccountAccessPayload>;
+        };
+        aggregate: {
+          args: Prisma.SharedWorkspaceAccountAccessAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSharedWorkspaceAccountAccess>;
+        };
+        groupBy: {
+          args: Prisma.SharedWorkspaceAccountAccessGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.SharedWorkspaceAccountAccessGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.SharedWorkspaceAccountAccessCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.SharedWorkspaceAccountAccessCountAggregateOutputType>
             | number;
         };
       };
@@ -744,6 +903,40 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum =
   (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum];
 
+export const WorkspaceAccountScalarFieldEnum = {
+  id: "id",
+  ownerId: "ownerId",
+  name: "name",
+  legalName: "legalName",
+  description: "description",
+  logo: "logo",
+  metadata: "metadata",
+  type: "type",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  subscriptionStatsAt: "subscriptionStatsAt",
+  subscriptionEndsAt: "subscriptionEndsAt",
+} as const;
+
+export type WorkspaceAccountScalarFieldEnum =
+  (typeof WorkspaceAccountScalarFieldEnum)[keyof typeof WorkspaceAccountScalarFieldEnum];
+
+export const SharedWorkspaceAccountAccessScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  userId: "userId",
+  assignerId: "assignerId",
+  metadata: "metadata",
+  role: "role",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type SharedWorkspaceAccountAccessScalarFieldEnum =
+  (typeof SharedWorkspaceAccountAccessScalarFieldEnum)[keyof typeof SharedWorkspaceAccountAccessScalarFieldEnum];
+
 export const AuditLogScalarFieldEnum = {
   id: "id",
   userId: "userId",
@@ -876,6 +1069,54 @@ export type EnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
  */
 export type ListEnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "SESSION_DEVICE_TYPE[]">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_TYPE'
+ */
+export type EnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_TYPE">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_TYPE[]'
+ */
+export type ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_TYPE[]">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_STATUS'
+ */
+export type EnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_STATUS">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_STATUS[]'
+ */
+export type ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_STATUS[]">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_ROLE'
+ */
+export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_ROLE">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_ROLE[]'
+ */
+export type ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_ROLE[]">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_STATUS'
+ */
+export type EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_STATUS">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_STATUS[]'
+ */
+export type ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_STATUS[]">;
 
 /**
  * Reference to a field of type 'Boolean'
@@ -1034,6 +1275,8 @@ export type PrismaClientOptions = (
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit;
   session?: Prisma.SessionOmit;
+  workspaceAccount?: Prisma.WorkspaceAccountOmit;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOmit;
   auditLog?: Prisma.AuditLogOmit;
 };
 

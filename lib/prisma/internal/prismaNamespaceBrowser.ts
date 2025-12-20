@@ -56,6 +56,8 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
   User: "User",
   Session: "Session",
+  WorkspaceAccount: "WorkspaceAccount",
+  SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
   AuditLog: "AuditLog",
 } as const;
 
@@ -111,6 +113,40 @@ export const SessionScalarFieldEnum = {
 
 export type SessionScalarFieldEnum =
   (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum];
+
+export const WorkspaceAccountScalarFieldEnum = {
+  id: "id",
+  ownerId: "ownerId",
+  name: "name",
+  legalName: "legalName",
+  description: "description",
+  logo: "logo",
+  metadata: "metadata",
+  type: "type",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  subscriptionStatsAt: "subscriptionStatsAt",
+  subscriptionEndsAt: "subscriptionEndsAt",
+} as const;
+
+export type WorkspaceAccountScalarFieldEnum =
+  (typeof WorkspaceAccountScalarFieldEnum)[keyof typeof WorkspaceAccountScalarFieldEnum];
+
+export const SharedWorkspaceAccountAccessScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  userId: "userId",
+  assignerId: "assignerId",
+  metadata: "metadata",
+  role: "role",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type SharedWorkspaceAccountAccessScalarFieldEnum =
+  (typeof SharedWorkspaceAccountAccessScalarFieldEnum)[keyof typeof SharedWorkspaceAccountAccessScalarFieldEnum];
 
 export const AuditLogScalarFieldEnum = {
   id: "id",

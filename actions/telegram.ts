@@ -39,7 +39,7 @@ export async function sendFormattedAuditLog(
     const action = escapeMarkdownV2(auditLog.action);
     const entity = escapeMarkdownV2(auditLog.entity);
     const description = escapeMarkdownV2(auditLog.description || "N/A");
-    const entityId = escapeMarkdownV2(auditLog.entityId);
+    const entityId = escapeMarkdownV2(auditLog.entityId || "N/A");
     const time = escapeMarkdownV2(auditLog.createdAt.toLocaleString());
 
     // --- User Details ---

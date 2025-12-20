@@ -1,8 +1,6 @@
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getCurrentSession } from "@/actions/session";
 
 const images = Array.from({ length: 39 }, (_, i) => `/posters/${i + 1}.jpg`);
 
@@ -22,9 +20,6 @@ export default async function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getCurrentSession();
-  if (session?.data?.user) redirect("/");
-
   return (
     <div className="grid h-screen w-screen grid-cols-1 overflow-hidden lg:grid-cols-[60%_40%]">
       {/* Left panel with auth banner */}

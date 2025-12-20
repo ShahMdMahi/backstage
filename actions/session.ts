@@ -103,17 +103,16 @@ export async function getCurrentSession(): Promise<{
   try {
     const cookieManager = await cookies();
     const sessionToken = cookieManager.get("session_token")?.value;
+    const deviceInfo = await getDeviceInfo();
 
     if (!sessionToken) {
       return {
         success: false,
         message: "No session token found",
         data: null,
-        errors: null,
+        errors: new Error("No session token in cookies"),
       };
     }
-
-    const deviceInfo = await getDeviceInfo();
 
     const session = await prisma.session.findUnique({
       where: {
@@ -129,26 +128,16 @@ export async function getCurrentSession(): Promise<{
         success: false,
         message: "Invalid session token",
         data: null,
-        errors: null,
+        errors: new Error("Session not found"),
       };
     }
 
     if (session.expiresAt < new Date()) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
-          data: {
-            revokedAt: new Date(),
-          },
-        });
-      });
       return {
         success: false,
         message: "Session has expired",
         data: null,
-        errors: null,
+        errors: new Error("Session expired"),
       };
     }
 
@@ -157,31 +146,29 @@ export async function getCurrentSession(): Promise<{
         success: false,
         message: "Session has been revoked",
         data: null,
-        errors: null,
+        errors: new Error("Session revoked"),
       };
     }
 
     if (session.userAgent !== deviceInfo.userAgent) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
+      try {
+        const updatedSession = await prisma.session.update({
+          where: { id: session.id },
           data: {
             revokedAt: new Date(),
+            metadata: {
+              revokedReason: "User agent mismatch",
+            },
           },
         });
-      });
-
-      try {
         await logAuditEvent({
           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
           entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: session.id,
-          description: `Session revoked due to user agent mismatch for user ID ${session.userId}`,
+          entityId: updatedSession.id,
+          description: `Session revoked due to user agent mismatch for user ID ${updatedSession.userId}`,
           metadata: {
             originalDeviceInfo: (
-              session.metadata as {
+              updatedSession.metadata as {
                 deviceInfo: string & Record<string, unknown>;
               }
             )?.deviceInfo,
@@ -192,41 +179,110 @@ export async function getCurrentSession(): Promise<{
           },
         });
       } catch (error) {
-        console.error(
-          "Failed to log audit event for session revocation:",
-          error
-        );
+        console.error("Error revoking session:", error);
       }
-
       return {
         success: false,
-        message: "User agent mismatch",
+        message: "Session revoked due to user agent mismatch",
         data: null,
-        errors: null,
+        errors: new Error("User agent mismatch"),
       };
     }
-
     if (session.deviceFingerprint !== deviceInfo.deviceFingerprint) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
+      try {
+        const updatedSession = await prisma.session.update({
+          where: { id: session.id },
           data: {
             revokedAt: new Date(),
+            metadata: {
+              revokedReason: "Device fingerprint mismatch",
+            },
           },
         });
-      });
-
-      try {
         await logAuditEvent({
           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
           entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: session.id,
-          description: `Session revoked due to device fingerprint mismatch for user ID ${session.userId}`,
+          entityId: updatedSession.id,
+          description: `Session revoked due to device fingerprint mismatch for user ID ${updatedSession.userId}`,
           metadata: {
             originalDeviceInfo: (
-              session.metadata as {
+              updatedSession.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: {
+            connect: { id: updatedSession.userId },
+          },
+        });
+      } catch (error) {
+        console.error("Error revoking session:", error);
+      }
+      return {
+        success: false,
+        message: "Session revoked due to device fingerprint mismatch",
+        data: null,
+        errors: new Error("Device fingerprint mismatch"),
+      };
+    }
+    if (!session.user.verifiedAt) {
+      try {
+        const updatedSession = await prisma.session.update({
+          where: { id: session.id },
+          data: {
+            revokedAt: new Date(),
+            metadata: {
+              revokedReason: "User not verified",
+            },
+          },
+        });
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: updatedSession.id,
+          description: `Session revoked due to unverified user for user ID ${updatedSession.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              updatedSession.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: {
+            connect: { id: updatedSession.userId },
+          },
+        });
+      } catch (error) {
+        console.error("Error logging audit event for unverified user:", error);
+      }
+      return {
+        success: false,
+        message: "Session revoked due to unverified user",
+        data: null,
+        errors: new Error("User not verified"),
+      };
+    }
+    if (!session.user.approvedAt) {
+      try {
+        const updatedSession = await prisma.session.update({
+          where: { id: session.id },
+          data: {
+            revokedAt: new Date(),
+            metadata: {
+              revokedReason: "User not approved",
+            },
+          },
+        });
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: updatedSession.id,
+          description: `Session revoked due to unapproved user for user ID ${updatedSession.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              updatedSession.metadata as {
                 deviceInfo: string & Record<string, unknown>;
               }
             )?.deviceInfo,
@@ -237,212 +293,53 @@ export async function getCurrentSession(): Promise<{
           },
         });
       } catch (error) {
-        console.error(
-          "Failed to log audit event for session revocation:",
-          error
-        );
-      }
-
-      return {
-        success: false,
-        message: "Device fingerprint mismatch",
-        data: null,
-        errors: null,
-      };
-    }
-
-    if (!session.user) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
-          data: {
-            revokedAt: new Date(),
-          },
-        });
-      });
-
-      try {
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: session.id,
-          description: `Session revoked due to missing user for user ID ${session.userId}`,
-          metadata: {
-            deviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: session.userId },
-          },
-        });
-      } catch (error) {
-        console.error(
-          "Failed to log audit event for session revocation:",
-          error
-        );
+        console.error("Error logging audit event for unapproved user:", error);
       }
       return {
         success: false,
-        message: "User associated with session not found",
+        message: "Session revoked due to unapproved user",
         data: null,
-        errors: null,
+        errors: new Error("User not approved"),
       };
     }
-
-    if (!session.user.verifiedAt) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
-          data: {
-            revokedAt: new Date(),
-          },
-        });
-      });
-
-      try {
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: session.id,
-          description: `Session revoked due to unverified email for user ID ${session.userId}`,
-          metadata: {
-            deviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: session.userId },
-          },
-        });
-      } catch (error) {
-        console.error(
-          "Failed to log audit event for session revocation:",
-          error
-        );
-      }
-      return {
-        success: false,
-        message: "User email is not verified",
-        data: null,
-        errors: null,
-      };
-    }
-
-    if (!session.user.approvedAt) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
-          data: {
-            revokedAt: new Date(),
-          },
-        });
-      });
-
-      try {
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: session.id,
-          description: `Session revoked due to unapproved user for user ID ${session.userId}`,
-          metadata: {
-            deviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: session.userId },
-          },
-        });
-      } catch (error) {
-        console.error(
-          "Failed to log audit event for session revocation:",
-          error
-        );
-      }
-      return {
-        success: false,
-        message: "User is not approved",
-        data: null,
-        errors: null,
-      };
-    }
-
     if (session.user.suspendedAt) {
-      await prisma.$transaction(async (tx) => {
-        await tx.session.update({
-          where: {
-            token: sessionToken,
-          },
+      try {
+        const updatedSession = await prisma.session.update({
+          where: { id: session.id },
           data: {
             revokedAt: new Date(),
+            metadata: {
+              revokedReason: "User suspended",
+            },
           },
         });
-      });
-
-      try {
         await logAuditEvent({
           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
           entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: session.id,
-          description: `Session revoked due to suspended user for user ID ${session.userId}`,
+          entityId: updatedSession.id,
+          description: `Session revoked due to suspended user for user ID ${updatedSession.userId}`,
           metadata: {
-            deviceInfo: JSON.stringify(deviceInfo),
+            originalDeviceInfo: (
+              updatedSession.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
           },
           user: {
-            connect: { id: session.userId },
+            connect: { id: updatedSession.userId },
           },
         });
       } catch (error) {
-        console.error(
-          "Failed to log audit event for session revocation:",
-          error
-        );
+        console.error("Error logging audit event for suspended user:", error);
       }
       return {
         success: false,
-        message: "User is suspended",
+        message: "Session revoked due to suspended user",
         data: null,
-        errors: null,
+        errors: new Error("User suspended"),
       };
     }
-
-    // Optionally extend session expiration and update accessedAt
-
-    // await prisma.$transaction(async (tx) => {
-    //   await tx.session.update({
-    //     where: {
-    //       token: sessionToken,
-    //     },
-    //     data: {
-    //       expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // Extend by 1 day
-    //       accessedAt: new Date(),
-    //     },
-    //   });
-    // });
-
-    // cookieManager.delete("session_token");
-    // cookieManager.set("session_token", sessionToken, {
-    //   httpOnly: true,
-    //   secure: process.env.NODE_ENV === "production",
-    //   sameSite: "strict",
-    //   maxAge: 24 * 60 * 60, // 1 day
-    // });
-
-    // try {
-    //   await logAuditEvent({
-    //     action: AUDIT_LOG_ACTION.SESSION_ACCESSED,
-    //     entity: AUDIT_LOG_ENTITY.SESSION,
-    //     entityId: session.id,
-    //     description: `Session accessed for user ID ${session.userId}`,
-    //     metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-    //     user: {
-    //       connect: { id: session.userId },
-    //     },
-    //   });
-    // } catch (error) {
-    //   console.error("Failed to log audit event for session access:", error);
-    // }
 
     return {
       success: true,
@@ -476,7 +373,7 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
         success: false,
         message: "No session token found",
         data: null,
-        errors: null,
+        errors: new Error("No session token in cookies"),
       };
     }
 
@@ -499,7 +396,7 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
         success: false,
         message: "Session not found",
         data: null,
-        errors: null,
+        errors: new Error("Session not found"),
       };
     }
 
@@ -539,6 +436,213 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
     return {
       success: false,
       message: "Failed to revoke current session",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function getAllSessionsForUser(userId: string): Promise<{
+  success: boolean;
+  message: string;
+  data: Session[] | null;
+  errors: unknown | null;
+}> {
+  try {
+    const sessions = await prisma.session.findMany({
+      where: {
+        userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    if (sessions.length === 0) {
+      return {
+        success: false,
+        message: "No sessions found for user",
+        data: null,
+        errors: new Error("No sessions found"),
+      };
+    }
+
+    return {
+      success: true,
+      message: "Sessions retrieved successfully",
+      data: sessions,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Failed to retrieve sessions for user:", error);
+    return {
+      success: false,
+      message: "Failed to retrieve sessions for user",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function revokeAllSessionsForUser(
+  userId: string,
+  deviceInfo: DeviceInfo
+): Promise<{
+  success: boolean;
+  message: string;
+  data: null;
+  errors: unknown | null;
+}> {
+  try {
+    const sessions = await prisma.$transaction(async (tx) => {
+      return await tx.session.updateMany({
+        where: {
+          userId,
+          revokedAt: null,
+        },
+        data: {
+          revokedAt: new Date(),
+        },
+      });
+    });
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+        entity: AUDIT_LOG_ENTITY.SESSION,
+        entityId: null,
+        description: `All sessions revoked for user ID ${userId}`,
+        metadata: {
+          deviceInfo: JSON.stringify(deviceInfo),
+          totalRevoked: sessions.count,
+        },
+        user: {
+          connect: { id: userId },
+        },
+      });
+    } catch (error) {
+      console.error(
+        "Failed to log audit event for revoking all sessions:",
+        error
+      );
+    }
+
+    return {
+      success: true,
+      message: "All sessions revoked successfully",
+      data: null,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Failed to revoke all sessions for user:", error);
+    return {
+      success: false,
+      message: "Failed to revoke all sessions for user",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function getSessionById(sessionId: string): Promise<{
+  success: boolean;
+  message: string;
+  data: Session | null;
+  errors: unknown | null;
+}> {
+  try {
+    const session = await prisma.session.findUnique({
+      where: {
+        id: sessionId,
+      },
+    });
+
+    if (!session) {
+      return {
+        success: false,
+        message: "Session not found",
+        data: null,
+        errors: new Error("Session not found"),
+      };
+    }
+
+    return {
+      success: true,
+      message: "Session retrieved successfully",
+      data: session,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Failed to retrieve session by ID:", error);
+    return {
+      success: false,
+      message: "Failed to retrieve session by ID",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function revokeSessionById(
+  sessionId: string,
+  userId: string,
+  deviceInfo: DeviceInfo
+): Promise<{
+  success: boolean;
+  message: string;
+  data: null;
+  errors: unknown | null;
+}> {
+  try {
+    const session = await prisma.$transaction(async (tx) => {
+      return await tx.session.update({
+        where: {
+          id: sessionId,
+        },
+        data: {
+          revokedAt: new Date(),
+        },
+      });
+    });
+
+    if (!session) {
+      return {
+        success: false,
+        message: "Session not found",
+        data: null,
+        errors: new Error("Session not found"),
+      };
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+        entity: AUDIT_LOG_ENTITY.SESSION,
+        entityId: session.id,
+        description: `Session ID ${sessionId} revoked by user ID ${userId}`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: {
+          connect: { id: userId },
+        },
+      });
+    } catch (error) {
+      console.error(
+        "Failed to log audit event for session revocation by ID:",
+        error
+      );
+    }
+
+    return {
+      success: true,
+      message: "Session revoked successfully",
+      data: null,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Failed to revoke session by ID:", error);
+    return {
+      success: false,
+      message: "Failed to revoke session by ID",
       data: null,
       errors: error,
     };

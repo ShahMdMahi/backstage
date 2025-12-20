@@ -94,7 +94,15 @@ export async function register(data: RegisterData): Promise<{
         success: false,
         message: "User registration failed",
         data: null,
-        errors: null,
+        errors: z.treeifyError(
+          new z.ZodError([
+            {
+              code: z.ZodIssueCode.custom,
+              message: "User registration failed",
+              path: ["email"],
+            },
+          ])
+        ),
       };
     }
 
@@ -818,7 +826,7 @@ export async function logout(): Promise<{
         success: false,
         message: "Failed to revoke session",
         data: null,
-        errors: null,
+        errors: new Error("Failed to revoke session"),
       };
     }
 

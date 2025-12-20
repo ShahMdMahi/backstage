@@ -305,6 +305,146 @@ export type EnumSESSION_DEVICE_TYPEWithAggregatesFilter<$PrismaModel = never> =
     _max?: Prisma.NestedEnumSESSION_DEVICE_TYPEFilter<$PrismaModel>;
   };
 
+export type EnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+};
+
+export type EnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+};
+
+export type EnumWORKSPACE_ACCOUNT_TYPEWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel>;
+};
+
+export type EnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
+};
+
+export type EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS;
+};
+
+export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel>;
+};
+
+export type EnumWORKSPACE_ACCOUNT_ACCESS_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
+};
+
 export type BoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>;
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean;
@@ -642,6 +782,150 @@ export type NestedEnumSESSION_DEVICE_TYPEWithAggregatesFilter<
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumSESSION_DEVICE_TYPEFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumSESSION_DEVICE_TYPEFilter<$PrismaModel>;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_TYPEWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_TYPE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel>;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel>;
+};
+
+export type NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
 };
 
 export type NestedBoolFilter<$PrismaModel = never> = {

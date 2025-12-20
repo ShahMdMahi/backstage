@@ -55,6 +55,17 @@ export type User = Prisma.UserModel;
  */
 export type Session = Prisma.SessionModel;
 /**
+ * Model WorkspaceAccount
+ *
+ */
+export type WorkspaceAccount = Prisma.WorkspaceAccountModel;
+/**
+ * Model SharedWorkspaceAccountAccess
+ *
+ */
+export type SharedWorkspaceAccountAccess =
+  Prisma.SharedWorkspaceAccountAccessModel;
+/**
  * Model AuditLog
  *
  */
