@@ -73,11 +73,20 @@ enum AUDIT_LOG_ACTION {
   WORKSPACE_ACCOUNT_CREATED
   WORKSPACE_ACCOUNT_UPDATED
   WORKSPACE_ACCOUNT_DELETED
+
+  // Shared Workspace Account Access Actions
+  SHARED_WORKSPACE_ACCOUNT_ACCESS_CREATED
+  SHARED_WORKSPACE_ACCOUNT_ACCESS_UPDATED
+  SHARED_WORKSPACE_ACCOUNT_ACCESS_SUSPENDED
+  SHARED_WORKSPACE_ACCOUNT_ACCESS_REACTIVATED
+  SHARED_WORKSPACE_ACCOUNT_ACCESS_DELETED
 }
 
 enum AUDIT_LOG_ENTITY {
   USER
   SESSION
+  WORKSPACE_ACCOUNT
+  SHARED_WORKSPACE_ACCOUNT_ACCESS
 }
 
 model User {
@@ -141,12 +150,11 @@ model Session {
   accessedAt DateTime?
 
   // Indexes & Constraints
-  @@index([token]) // Ensures fast lookups by token (e.g., during authentication).
-  @@index([userId]) // Speeds up queries filtering by user (e.g., get all sessions for a user).
-  @@index([expiresAt]) // Optimizes expiration checks (e.g., find expired sessions for cleanup).
-  @@index([revokedAt]) // Improves queries for revoked sessions (e.g., filter active ones).
-  @@index([accessedAt]) // Enhances recent access queries (e.g., sort by last accessed).
-  @@index([userId, expiresAt]) // Composite index for combined user and expiration filters (e.g., active sessions per user).
+  @@index([token])
+  @@index([userId])
+  @@index([expiresAt])
+  @@index([revokedAt])
+  @@index([accessedAt])
 }
 
 model WorkspaceAccount {

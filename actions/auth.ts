@@ -835,7 +835,7 @@ export async function logout(): Promise<{
         action: AUDIT_LOG_ACTION.USER_LOGGED_OUT,
         entity: AUDIT_LOG_ENTITY.SESSION,
         entityId: session.data?.userId ?? "",
-        description: `User ${session.data?.userEmail ?? ""} logged out.`,
+        description: `User ${session.data?.user.email ?? ""} logged out.`,
         metadata: { deviceInfo: JSON.stringify(deviceInfo) },
         user: {
           connect: { id: session.data?.userId ?? "" },
