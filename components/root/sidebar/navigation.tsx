@@ -1,26 +1,27 @@
 "use client";
+
 import React from "react";
 import {
   ChevronRight,
   House,
+  ShieldUser,
+  FolderOpen,
   ListMusic,
-  Users,
-  BadgeDollarSign,
-  BanknoteArrowDown,
-  Wallet,
-  BanknoteArrowUp,
-  ChartLine,
-  Earth,
   Music,
   SquarePlay,
   BellRing,
-  User as UserIcon,
+  Users,
+  UserStar,
+  UserRound,
   BookUser,
   Disc,
-  ClipboardList,
-  ChartNoAxesCombined,
-  Shield,
-  ShieldUser,
+  Wallet,
+  BanknoteArrowDown,
+  Activity,
+  ChartArea,
+  SquareMousePointer,
+  BanknoteArrowUp,
+  Earth,
 } from "lucide-react";
 
 import {
@@ -59,9 +60,7 @@ export function Navigation({
                 title: "Home",
                 url: "/",
                 icon: House,
-                isActive:
-                  !pathname.startsWith("/system-admin") &&
-                  !pathname.startsWith("/admin"),
+                isActive: !pathname.startsWith("/system-admin"),
                 isOpen: false,
                 items: [],
               },
@@ -73,44 +72,17 @@ export function Navigation({
                 isOpen: false,
                 items: [],
               },
+            ]
+          : [
               {
-                title: "Admin",
-                url: "/admin",
-                icon: Shield,
-                isActive: pathname.startsWith("/admin"),
+                title: "Home",
+                url: "/",
+                icon: House,
+                isActive: pathname === "/",
                 isOpen: false,
                 items: [],
               },
-            ]
-          : session?.user?.role === ROLE.DEVELOPER
-            ? [
-                {
-                  title: "Home",
-                  url: "/",
-                  icon: House,
-                  isActive: pathname === "/",
-                  isOpen: false,
-                  items: [],
-                },
-                {
-                  title: "Admin",
-                  url: "/admin",
-                  icon: Shield,
-                  isActive: pathname.startsWith("/admin"),
-                  isOpen: false,
-                  items: [],
-                },
-              ]
-            : [
-                {
-                  title: "Home",
-                  url: "/",
-                  icon: House,
-                  isActive: pathname === "/",
-                  isOpen: false,
-                  items: [],
-                },
-              ],
+            ],
     },
     {
       title: "Catalog",
@@ -118,15 +90,21 @@ export function Navigation({
         {
           title: "Assets",
           url: "/catalog/assets",
-          icon: ListMusic,
+          icon: FolderOpen,
           isActive: pathname.startsWith("/catalog/assets"),
           isOpen: pathname.startsWith("/catalog/assets"),
           items: [
             {
               title: "Releases",
               url: "/catalog/assets/releases",
-              icon: Music,
+              icon: ListMusic,
               isActive: pathname === "/catalog/assets/releases",
+            },
+            {
+              title: "Tracks",
+              url: "/catalog/assets/tracks",
+              icon: Music,
+              isActive: pathname === "/catalog/assets/tracks",
             },
             {
               title: "Videos",
@@ -152,8 +130,27 @@ export function Navigation({
             {
               title: "Artists",
               url: "/catalog/contributors/artists",
-              icon: UserIcon,
+              icon: UserStar,
               isActive: pathname === "/catalog/contributors/artists",
+            },
+            {
+              title: "Performers",
+              url: "/catalog/contributors/performers",
+              icon: UserRound,
+              isActive: pathname === "/catalog/contributors/performers",
+            },
+            {
+              title: "Producers & Engineers",
+              url: "/catalog/contributors/producers-and-engineers",
+              icon: UserRound,
+              isActive:
+                pathname === "/catalog/contributors/producers-and-engineers",
+            },
+            {
+              title: "Writers",
+              url: "/catalog/contributors/writers",
+              icon: UserRound,
+              isActive: pathname === "/catalog/contributors/writers",
             },
             {
               title: "Publishers",
@@ -175,31 +172,20 @@ export function Navigation({
       title: "Royalties",
       items: [
         {
-          title: "Finance",
-          url: "/royalties/finance",
-          icon: BadgeDollarSign,
-          isActive: pathname.startsWith("/royalties/finance"),
-          isOpen: pathname.startsWith("/royalties/finance"),
-          items: [
-            {
-              title: "Transactions",
-              url: "/royalties/finance/transactions",
-              icon: ClipboardList,
-              isActive: pathname === "/royalties/finance/transactions",
-            },
-            {
-              title: "Payout Account",
-              url: "/royalties/finance/payout-account",
-              icon: Wallet,
-              isActive: pathname === "/royalties/finance/payout-account",
-            },
-            {
-              title: "Withdraw",
-              url: "/royalties/finance/withdraw",
-              icon: BanknoteArrowDown,
-              isActive: pathname === "/royalties/finance/withdraw",
-            },
-          ],
+          title: "Transactions",
+          url: "/royalties/transactions",
+          icon: Wallet,
+          isActive: pathname.startsWith("/royalties/transactions"),
+          isOpen: pathname.startsWith("/royalties/transactions"),
+          items: [],
+        },
+        {
+          title: "Withdraw",
+          url: "/royalties/withdraw",
+          icon: BanknoteArrowDown,
+          isActive: pathname.startsWith("/royalties/withdraw"),
+          isOpen: pathname.startsWith("/royalties/withdraw"),
+          items: [],
         },
       ],
     },
@@ -208,16 +194,22 @@ export function Navigation({
       items: [
         {
           title: "Analytics",
-          url: "/analytics/consumption",
-          icon: ChartNoAxesCombined,
-          isActive: pathname.startsWith("/analytics/consumption"),
-          isOpen: pathname.startsWith("/analytics/consumption"),
+          url: "/reports/analytics",
+          icon: Activity,
+          isActive: pathname.startsWith("/reports/analytics"),
+          isOpen: pathname.startsWith("/reports/analytics"),
           items: [
             {
               title: "Consumption",
               url: "/reports/analytics/consumption",
-              icon: ChartLine,
+              icon: ChartArea,
               isActive: pathname === "/reports/analytics/consumption",
+            },
+            {
+              title: "Engagement",
+              url: "/reports/analytics/engagement",
+              icon: SquareMousePointer,
+              isActive: pathname === "/reports/analytics/engagement",
             },
             {
               title: "Revenue",
@@ -230,7 +222,6 @@ export function Navigation({
               url: "/reports/analytics/geo",
               icon: Earth,
               isActive: pathname === "/reports/analytics/geo",
-              items: [],
             },
           ],
         },

@@ -26,17 +26,17 @@ export default function NotFound() {
             <p>
               Need help?{" "}
               <Link
-                href="/auth/login"
+                href="/faq"
                 className="text-primary font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                Sign In
+                FAQ
               </Link>{" "}
               or{" "}
               <Link
-                href="/auth/register"
+                href="/contact"
                 className="text-primary font-medium hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
-                Sign Up
+                Contact
               </Link>
             </p>
           </div>
