@@ -82,7 +82,7 @@ export function Navigation({
                 items: [],
               },
             ]
-          : session?.user?.role === ROLE.SYSTEM_MANAGER
+          : session?.user?.role === ROLE.DEVELOPER
             ? [
                 {
                   title: "Home",
