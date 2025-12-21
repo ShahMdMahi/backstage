@@ -73,6 +73,58 @@ enum AUDIT_LOG_ACTION {
   WORKSPACE_ACCOUNT_CREATED
   WORKSPACE_ACCOUNT_UPDATED
   WORKSPACE_ACCOUNT_DELETED
+  WORKSPACE_ACCOUNT_SUSPENDED
+  WORKSPACE_ACCOUNT_REACTIVATED
+
+  // Release Actions
+  RELEASE_CREATED
+  RELEASE_UPDATED
+  RELEASE_DELETED
+
+  // Track Actions
+  TRACK_CREATED
+  TRACK_UPDATED
+  TRACK_DELETED
+
+  // Video Actions
+  VIDEO_CREATED
+  VIDEO_UPDATED
+  VIDEO_DELETED
+
+  // Ringtone Actions
+  RINGTONE_CREATED
+  RINGTONE_UPDATED
+  RINGTONE_DELETED
+
+  // Artist Actions
+  ARTIST_CREATED
+  ARTIST_UPDATED
+  ARTIST_DELETED
+
+  // Performer Actions
+  PERFORMER_CREATED
+  PERFORMER_UPDATED
+  PERFORMER_DELETED
+
+  // Producer and Engineer Actions
+  PRODUCER_AND_ENGINEER_CREATED
+  PRODUCER_AND_ENGINEER_UPDATED
+  PRODUCER_AND_ENGINEER_DELETED
+
+  // Writer Actions
+  WRITER_CREATED
+  WRITER_UPDATED
+  WRITER_DELETED
+
+  // Publisher Actions
+  PUBLISHER_CREATED
+  PUBLISHER_UPDATED
+  PUBLISHER_DELETED
+
+  // Label Actions
+  LABEL_CREATED
+  LABEL_UPDATED
+  LABEL_DELETED
 
   // Shared Workspace Account Access Actions
   SHARED_WORKSPACE_ACCOUNT_ACCESS_CREATED
@@ -80,6 +132,16 @@ enum AUDIT_LOG_ACTION {
   SHARED_WORKSPACE_ACCOUNT_ACCESS_SUSPENDED
   SHARED_WORKSPACE_ACCOUNT_ACCESS_REACTIVATED
   SHARED_WORKSPACE_ACCOUNT_ACCESS_DELETED
+
+  // Transaction Actions
+  TRANSACTION_CREATED
+  TRANSACTION_UPDATED
+  TRANSACTION_DELETED
+
+  // Withdrawal Actions
+  WITHDRAWAL_CREATED
+  WITHDRAWAL_UPDATED
+  WITHDRAWAL_DELETED
 }
 
 enum AUDIT_LOG_ENTITY {
@@ -176,14 +238,254 @@ model WorkspaceAccount {
   status WORKSPACE_ACCOUNT_STATUS @default(ACTIVE)
 
   // Relations
-  owner          User                           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  sharedAccesses SharedWorkspaceAccountAccess[]
+  owner                 User                           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  sharedAccesses        SharedWorkspaceAccountAccess[]
+  releases              Release[]
+  tracks                Track[]
+  videos                Video[]
+  ringtones             Ringtone[]
+  artists               Artist[]
+  performers            Performer[]
+  producersAndEngineers ProducerAndEngineer[]
+  writers               Writer[]
+  publishers            Publisher[]
+  labels                Label[]
 
   // Timestamps
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
   subscriptionStatsAt DateTime
   subscriptionEndsAt  DateTime
+
+  // Indexes & Constraints
+}
+
+model Release {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Track {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Video {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Ringtone {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Artist {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Performer {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model ProducerAndEngineer {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Writer {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Publisher {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Label {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Indexes & Constraints
 }
@@ -205,9 +507,59 @@ model SharedWorkspaceAccountAccess {
   status WORKSPACE_ACCOUNT_ACCESS_STATUS @default(ACTIVE)
 
   // Relations
-  workspaceAccount WorkspaceAccount @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  user             User             @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
-  assigner         User             @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
+  workspaceAccount      WorkspaceAccount      @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  releases              Release[]
+  tracks                Track[]
+  videos                Video[]
+  ringtones             Ringtone[]
+  artists               Artist[]
+  performers            Performer[]
+  producersAndEngineers ProducerAndEngineer[]
+  writers               Writer[]
+  publishers            Publisher[]
+  labels                Label[]
+  user                  User                  @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
+  assigner              User                  @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Transaction {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model Withdrawal {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
 
   // Timestamps
   createdAt DateTime @default(now())

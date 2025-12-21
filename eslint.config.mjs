@@ -8,7 +8,7 @@ import pluginQuery from "@tanstack/eslint-plugin-query";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  ...pluginQuery.configs['flat/recommended'],
+  ...pluginQuery.configs["flat/recommended"],
   prettierConfig,
   {
     plugins: {
