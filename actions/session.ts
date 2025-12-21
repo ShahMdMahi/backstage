@@ -409,10 +409,7 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
         entityId: session.id,
         description: `Current session revoked for user ID ${session.userId}`,
         metadata: {
-          originalDeviceInfo: (
-            session.metadata as { deviceInfo: string & Record<string, unknown> }
-          )?.deviceInfo,
-          currentDeviceInfo: JSON.stringify(deviceInfo),
+          deviceInfo: JSON.stringify(deviceInfo),
         },
         user: {
           connect: { id: session.userId },

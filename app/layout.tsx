@@ -6,8 +6,9 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: "RoyalMotionIT Records",
-  description: "Record label dashboard for managing music portfolio",
+  title: "RoyalMotionIT Backstage",
+  description:
+    "Professional dashboard for managing RoyalMotionIT's record label operations.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 

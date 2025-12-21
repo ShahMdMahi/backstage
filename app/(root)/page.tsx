@@ -1,3 +1,3 @@
-export default async function Home() {
-  return <h1>Welcome to the Home Page</h1>;
+export default function Home() {
+  return <div>Welcome to RoyalMotionIT Backstage Dashboard</div>;
 }

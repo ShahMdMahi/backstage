@@ -834,8 +834,8 @@ export async function logout(): Promise<{
       await logAuditEvent({
         action: AUDIT_LOG_ACTION.USER_LOGGED_OUT,
         entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.data?.id ?? "",
-        description: `Session revoked for user ID ${session.data?.userId ?? ""} on logout.`,
+        entityId: session.data?.userId ?? "",
+        description: `User ${session.data?.userEmail ?? ""} logged out.`,
         metadata: { deviceInfo: JSON.stringify(deviceInfo) },
         user: {
           connect: { id: session.data?.userId ?? "" },
