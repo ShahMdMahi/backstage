@@ -263,6 +263,16 @@ export type WorkspaceAccountWhereInput = {
     | string;
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  releases?: Prisma.ReleaseListRelationFilter;
+  tracks?: Prisma.TrackListRelationFilter;
+  videos?: Prisma.VideoListRelationFilter;
+  ringtones?: Prisma.RingtoneListRelationFilter;
+  artists?: Prisma.ArtistListRelationFilter;
+  performers?: Prisma.PerformerListRelationFilter;
+  producersAndEngineers?: Prisma.ProducerAndEngineerListRelationFilter;
+  writers?: Prisma.WriterListRelationFilter;
+  publishers?: Prisma.PublisherListRelationFilter;
+  labels?: Prisma.LabelListRelationFilter;
 };
 
 export type WorkspaceAccountOrderByWithRelationInput = {
@@ -281,6 +291,16 @@ export type WorkspaceAccountOrderByWithRelationInput = {
   subscriptionEndsAt?: Prisma.SortOrder;
   owner?: Prisma.UserOrderByWithRelationInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  releases?: Prisma.ReleaseOrderByRelationAggregateInput;
+  tracks?: Prisma.TrackOrderByRelationAggregateInput;
+  videos?: Prisma.VideoOrderByRelationAggregateInput;
+  ringtones?: Prisma.RingtoneOrderByRelationAggregateInput;
+  artists?: Prisma.ArtistOrderByRelationAggregateInput;
+  performers?: Prisma.PerformerOrderByRelationAggregateInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerOrderByRelationAggregateInput;
+  writers?: Prisma.WriterOrderByRelationAggregateInput;
+  publishers?: Prisma.PublisherOrderByRelationAggregateInput;
+  labels?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
 export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
@@ -317,6 +337,16 @@ export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
       | string;
     owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     sharedAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    releases?: Prisma.ReleaseListRelationFilter;
+    tracks?: Prisma.TrackListRelationFilter;
+    videos?: Prisma.VideoListRelationFilter;
+    ringtones?: Prisma.RingtoneListRelationFilter;
+    artists?: Prisma.ArtistListRelationFilter;
+    performers?: Prisma.PerformerListRelationFilter;
+    producersAndEngineers?: Prisma.ProducerAndEngineerListRelationFilter;
+    writers?: Prisma.WriterListRelationFilter;
+    publishers?: Prisma.PublisherListRelationFilter;
+    labels?: Prisma.LabelListRelationFilter;
   },
   "id" | "ownerId"
 >;
@@ -394,6 +424,16 @@ export type WorkspaceAccountCreateInput = {
   subscriptionEndsAt: Date | string;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateInput = {
@@ -411,6 +451,16 @@ export type WorkspaceAccountUncheckedCreateInput = {
   subscriptionStatsAt: Date | string;
   subscriptionEndsAt: Date | string;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUpdateInput = {
@@ -438,6 +488,16 @@ export type WorkspaceAccountUpdateInput = {
     | string;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateInput = {
@@ -465,6 +525,16 @@ export type WorkspaceAccountUncheckedUpdateInput = {
     | Date
     | string;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateManyInput = {
@@ -654,6 +724,267 @@ export type EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput = {
   set?: $Enums.WORKSPACE_ACCOUNT_STATUS;
 };
 
+export type WorkspaceAccountCreateNestedOneWithoutReleasesInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutReleasesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutReleasesInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutReleasesInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutReleasesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutReleasesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutReleasesInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutReleasesInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutReleasesInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutReleasesInput,
+      Prisma.WorkspaceAccountUpdateWithoutReleasesInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutReleasesInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutTracksInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTracksInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTracksInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutTracksInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutTracksNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTracksInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTracksInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutTracksInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutTracksInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutTracksInput,
+      Prisma.WorkspaceAccountUpdateWithoutTracksInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutTracksInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutVideosInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutVideosInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutVideosInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutVideosInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutVideosNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutVideosInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutVideosInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutVideosInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutVideosInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutVideosInput,
+      Prisma.WorkspaceAccountUpdateWithoutVideosInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutVideosInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutRingtonesInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutRingtonesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutRingtonesInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutRingtonesInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutRingtonesNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutRingtonesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutRingtonesInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutRingtonesInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutRingtonesInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutRingtonesInput,
+      Prisma.WorkspaceAccountUpdateWithoutRingtonesInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutRingtonesInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutArtistsInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutArtistsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutArtistsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutArtistsInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutArtistsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutArtistsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutArtistsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutArtistsInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutArtistsInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutArtistsInput,
+      Prisma.WorkspaceAccountUpdateWithoutArtistsInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutArtistsInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutPerformersInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPerformersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPerformersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutPerformersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutPerformersNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPerformersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPerformersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutPerformersInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutPerformersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutPerformersInput,
+      Prisma.WorkspaceAccountUpdateWithoutPerformersInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutPerformersInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutProducersAndEngineersInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutProducersAndEngineersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutProducersAndEngineersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutProducersAndEngineersNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.WorkspaceAccountCreateWithoutProducersAndEngineersInput,
+      Prisma.WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput
+    >;
+    connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutProducersAndEngineersInput;
+    upsert?: Prisma.WorkspaceAccountUpsertWithoutProducersAndEngineersInput;
+    connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutProducersAndEngineersInput,
+        Prisma.WorkspaceAccountUpdateWithoutProducersAndEngineersInput
+      >,
+      Prisma.WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput
+    >;
+  };
+
+export type WorkspaceAccountCreateNestedOneWithoutWritersInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWritersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWritersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutWritersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutWritersNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWritersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWritersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutWritersInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutWritersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutWritersInput,
+      Prisma.WorkspaceAccountUpdateWithoutWritersInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutWritersInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutPublishersInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPublishersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPublishersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutPublishersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutPublishersNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPublishersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPublishersInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutPublishersInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutPublishersInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutPublishersInput,
+      Prisma.WorkspaceAccountUpdateWithoutPublishersInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutPublishersInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutLabelsInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutLabelsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutLabelsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutLabelsInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutLabelsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutLabelsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutLabelsInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutLabelsInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutLabelsInput,
+      Prisma.WorkspaceAccountUpdateWithoutLabelsInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutLabelsInput
+  >;
+};
+
 export type WorkspaceAccountCreateNestedOneWithoutSharedAccessesInput = {
   create?: Prisma.XOR<
     Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
@@ -695,6 +1026,16 @@ export type WorkspaceAccountCreateWithoutOwnerInput = {
   subscriptionStatsAt: Date | string;
   subscriptionEndsAt: Date | string;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
@@ -711,6 +1052,16 @@ export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
   subscriptionStatsAt: Date | string;
   subscriptionEndsAt: Date | string;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutOwnerInput = {
@@ -765,6 +1116,16 @@ export type WorkspaceAccountUpdateWithoutOwnerInput = {
     | Date
     | string;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
@@ -791,6 +1152,1537 @@ export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
     | Date
     | string;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutReleasesInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutReleasesInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutReleasesInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutReleasesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutReleasesInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutReleasesInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutReleasesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutReleasesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutReleasesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutReleasesInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutReleasesInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutReleasesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutReleasesInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutReleasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutReleasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutTracksInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutTracksInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutTracksInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTracksInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTracksInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutTracksInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutTracksInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutTracksInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTracksInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTracksInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutTracksInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutTracksInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutTracksInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutTracksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutTracksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutVideosInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutVideosInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutVideosInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutVideosInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutVideosInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutVideosInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutVideosInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutVideosInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutVideosInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutVideosInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutVideosInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutVideosInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutVideosInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutVideosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutVideosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutRingtonesInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutRingtonesInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutRingtonesInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutRingtonesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutRingtonesInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutRingtonesInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutRingtonesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutRingtonesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutRingtonesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutRingtonesInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutRingtonesInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutRingtonesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutRingtonesInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutRingtonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutRingtonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutArtistsInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutArtistsInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutArtistsInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutArtistsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutArtistsInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutArtistsInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutArtistsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutArtistsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutArtistsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutArtistsInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutArtistsInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutArtistsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutArtistsInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutArtistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutArtistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutPerformersInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutPerformersInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutPerformersInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPerformersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPerformersInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutPerformersInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutPerformersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutPerformersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPerformersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPerformersInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutPerformersInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutPerformersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutPerformersInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutPerformersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutPerformersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutProducersAndEngineersInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutProducersAndEngineersInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutProducersAndEngineersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutProducersAndEngineersInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutProducersAndEngineersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutProducersAndEngineersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutProducersAndEngineersInput =
+  {
+    where?: Prisma.WorkspaceAccountWhereInput;
+    data: Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateWithoutProducersAndEngineersInput,
+      Prisma.WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput
+    >;
+  };
+
+export type WorkspaceAccountUpdateWithoutProducersAndEngineersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutWritersInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutWritersInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutWritersInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWritersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWritersInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutWritersInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutWritersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutWritersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWritersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWritersInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutWritersInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutWritersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutWritersInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutWritersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutWritersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutPublishersInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutPublishersInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutPublishersInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPublishersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPublishersInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutPublishersInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutPublishersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutPublishersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutPublishersInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutPublishersInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutPublishersInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutPublishersInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutPublishersInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutPublishersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutPublishersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutLabelsInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutLabelsInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutLabelsInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutLabelsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutLabelsInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutLabelsInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutLabelsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutLabelsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutLabelsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutLabelsInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutLabelsInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutLabelsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutLabelsInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutLabelsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
@@ -807,6 +2699,16 @@ export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
   subscriptionStatsAt: Date | string;
   subscriptionEndsAt: Date | string;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
@@ -823,6 +2725,16 @@ export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
   updatedAt?: Date | string;
   subscriptionStatsAt: Date | string;
   subscriptionEndsAt: Date | string;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput = {
@@ -877,6 +2789,16 @@ export type WorkspaceAccountUpdateWithoutSharedAccessesInput = {
     | Date
     | string;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
@@ -903,6 +2825,16 @@ export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
     | Prisma.DateTimeFieldUpdateOperationsInput
     | Date
     | string;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 /**
@@ -911,6 +2843,16 @@ export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
 
 export type WorkspaceAccountCountOutputType = {
   sharedAccesses: number;
+  releases: number;
+  tracks: number;
+  videos: number;
+  ringtones: number;
+  artists: number;
+  performers: number;
+  producersAndEngineers: number;
+  writers: number;
+  publishers: number;
+  labels: number;
 };
 
 export type WorkspaceAccountCountOutputTypeSelect<
@@ -920,6 +2862,18 @@ export type WorkspaceAccountCountOutputTypeSelect<
   sharedAccesses?:
     | boolean
     | WorkspaceAccountCountOutputTypeCountSharedAccessesArgs;
+  releases?: boolean | WorkspaceAccountCountOutputTypeCountReleasesArgs;
+  tracks?: boolean | WorkspaceAccountCountOutputTypeCountTracksArgs;
+  videos?: boolean | WorkspaceAccountCountOutputTypeCountVideosArgs;
+  ringtones?: boolean | WorkspaceAccountCountOutputTypeCountRingtonesArgs;
+  artists?: boolean | WorkspaceAccountCountOutputTypeCountArtistsArgs;
+  performers?: boolean | WorkspaceAccountCountOutputTypeCountPerformersArgs;
+  producersAndEngineers?:
+    | boolean
+    | WorkspaceAccountCountOutputTypeCountProducersAndEngineersArgs;
+  writers?: boolean | WorkspaceAccountCountOutputTypeCountWritersArgs;
+  publishers?: boolean | WorkspaceAccountCountOutputTypeCountPublishersArgs;
+  labels?: boolean | WorkspaceAccountCountOutputTypeCountLabelsArgs;
 };
 
 /**
@@ -945,6 +2899,106 @@ export type WorkspaceAccountCountOutputTypeCountSharedAccessesArgs<
   where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountReleasesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ReleaseWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountTracksArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.TrackWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountVideosArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.VideoWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountRingtonesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.RingtoneWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountArtistsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ArtistWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountPerformersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PerformerWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountProducersAndEngineersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ProducerAndEngineerWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountWritersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.WriterWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountPublishersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PublisherWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountLabelsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LabelWhereInput;
+};
+
 export type WorkspaceAccountSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -967,6 +3021,18 @@ export type WorkspaceAccountSelect<
     sharedAccesses?:
       | boolean
       | Prisma.WorkspaceAccount$sharedAccessesArgs<ExtArgs>;
+    releases?: boolean | Prisma.WorkspaceAccount$releasesArgs<ExtArgs>;
+    tracks?: boolean | Prisma.WorkspaceAccount$tracksArgs<ExtArgs>;
+    videos?: boolean | Prisma.WorkspaceAccount$videosArgs<ExtArgs>;
+    ringtones?: boolean | Prisma.WorkspaceAccount$ringtonesArgs<ExtArgs>;
+    artists?: boolean | Prisma.WorkspaceAccount$artistsArgs<ExtArgs>;
+    performers?: boolean | Prisma.WorkspaceAccount$performersArgs<ExtArgs>;
+    producersAndEngineers?:
+      | boolean
+      | Prisma.WorkspaceAccount$producersAndEngineersArgs<ExtArgs>;
+    writers?: boolean | Prisma.WorkspaceAccount$writersArgs<ExtArgs>;
+    publishers?: boolean | Prisma.WorkspaceAccount$publishersArgs<ExtArgs>;
+    labels?: boolean | Prisma.WorkspaceAccount$labelsArgs<ExtArgs>;
     _count?:
       | boolean
       | Prisma.WorkspaceAccountCountOutputTypeDefaultArgs<ExtArgs>;
@@ -1063,6 +3129,18 @@ export type WorkspaceAccountInclude<
   sharedAccesses?:
     | boolean
     | Prisma.WorkspaceAccount$sharedAccessesArgs<ExtArgs>;
+  releases?: boolean | Prisma.WorkspaceAccount$releasesArgs<ExtArgs>;
+  tracks?: boolean | Prisma.WorkspaceAccount$tracksArgs<ExtArgs>;
+  videos?: boolean | Prisma.WorkspaceAccount$videosArgs<ExtArgs>;
+  ringtones?: boolean | Prisma.WorkspaceAccount$ringtonesArgs<ExtArgs>;
+  artists?: boolean | Prisma.WorkspaceAccount$artistsArgs<ExtArgs>;
+  performers?: boolean | Prisma.WorkspaceAccount$performersArgs<ExtArgs>;
+  producersAndEngineers?:
+    | boolean
+    | Prisma.WorkspaceAccount$producersAndEngineersArgs<ExtArgs>;
+  writers?: boolean | Prisma.WorkspaceAccount$writersArgs<ExtArgs>;
+  publishers?: boolean | Prisma.WorkspaceAccount$publishersArgs<ExtArgs>;
+  labels?: boolean | Prisma.WorkspaceAccount$labelsArgs<ExtArgs>;
   _count?: boolean | Prisma.WorkspaceAccountCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type WorkspaceAccountIncludeCreateManyAndReturn<
@@ -1086,6 +3164,16 @@ export type $WorkspaceAccountPayload<
   objects: {
     owner: Prisma.$UserPayload<ExtArgs>;
     sharedAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    releases: Prisma.$ReleasePayload<ExtArgs>[];
+    tracks: Prisma.$TrackPayload<ExtArgs>[];
+    videos: Prisma.$VideoPayload<ExtArgs>[];
+    ringtones: Prisma.$RingtonePayload<ExtArgs>[];
+    artists: Prisma.$ArtistPayload<ExtArgs>[];
+    performers: Prisma.$PerformerPayload<ExtArgs>[];
+    producersAndEngineers: Prisma.$ProducerAndEngineerPayload<ExtArgs>[];
+    writers: Prisma.$WriterPayload<ExtArgs>[];
+    publishers: Prisma.$PublisherPayload<ExtArgs>[];
+    labels: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1695,6 +3783,121 @@ export interface Prisma__WorkspaceAccountClient<
       >
     | Null
   >;
+  releases<T extends Prisma.WorkspaceAccount$releasesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$releasesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ReleasePayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  tracks<T extends Prisma.WorkspaceAccount$tracksArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$tracksArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$TrackPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  videos<T extends Prisma.WorkspaceAccount$videosArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$videosArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$VideoPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ringtones<T extends Prisma.WorkspaceAccount$ringtonesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$ringtonesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$RingtonePayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  artists<T extends Prisma.WorkspaceAccount$artistsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$artistsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ArtistPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  performers<T extends Prisma.WorkspaceAccount$performersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$performersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PerformerPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  producersAndEngineers<
+    T extends Prisma.WorkspaceAccount$producersAndEngineersArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.WorkspaceAccount$producersAndEngineersArgs<ExtArgs>
+    >
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ProducerAndEngineerPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  writers<T extends Prisma.WorkspaceAccount$writersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$writersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$WriterPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  publishers<T extends Prisma.WorkspaceAccount$publishersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$publishersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PublisherPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  labels<T extends Prisma.WorkspaceAccount$labelsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$labelsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LabelPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2252,6 +4455,302 @@ export type WorkspaceAccount$sharedAccessesArgs<
   distinct?:
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.releases
+ */
+export type WorkspaceAccount$releasesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Release
+   */
+  select?: Prisma.ReleaseSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Release
+   */
+  omit?: Prisma.ReleaseOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReleaseInclude<ExtArgs> | null;
+  where?: Prisma.ReleaseWhereInput;
+  orderBy?:
+    | Prisma.ReleaseOrderByWithRelationInput
+    | Prisma.ReleaseOrderByWithRelationInput[];
+  cursor?: Prisma.ReleaseWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.ReleaseScalarFieldEnum | Prisma.ReleaseScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.tracks
+ */
+export type WorkspaceAccount$tracksArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Track
+   */
+  select?: Prisma.TrackSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Track
+   */
+  omit?: Prisma.TrackOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackInclude<ExtArgs> | null;
+  where?: Prisma.TrackWhereInput;
+  orderBy?:
+    | Prisma.TrackOrderByWithRelationInput
+    | Prisma.TrackOrderByWithRelationInput[];
+  cursor?: Prisma.TrackWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.TrackScalarFieldEnum | Prisma.TrackScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.videos
+ */
+export type WorkspaceAccount$videosArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Video
+   */
+  select?: Prisma.VideoSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Video
+   */
+  omit?: Prisma.VideoOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VideoInclude<ExtArgs> | null;
+  where?: Prisma.VideoWhereInput;
+  orderBy?:
+    | Prisma.VideoOrderByWithRelationInput
+    | Prisma.VideoOrderByWithRelationInput[];
+  cursor?: Prisma.VideoWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.VideoScalarFieldEnum | Prisma.VideoScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.ringtones
+ */
+export type WorkspaceAccount$ringtonesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Ringtone
+   */
+  select?: Prisma.RingtoneSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Ringtone
+   */
+  omit?: Prisma.RingtoneOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RingtoneInclude<ExtArgs> | null;
+  where?: Prisma.RingtoneWhereInput;
+  orderBy?:
+    | Prisma.RingtoneOrderByWithRelationInput
+    | Prisma.RingtoneOrderByWithRelationInput[];
+  cursor?: Prisma.RingtoneWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.RingtoneScalarFieldEnum | Prisma.RingtoneScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.artists
+ */
+export type WorkspaceAccount$artistsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Artist
+   */
+  select?: Prisma.ArtistSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Artist
+   */
+  omit?: Prisma.ArtistOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ArtistInclude<ExtArgs> | null;
+  where?: Prisma.ArtistWhereInput;
+  orderBy?:
+    | Prisma.ArtistOrderByWithRelationInput
+    | Prisma.ArtistOrderByWithRelationInput[];
+  cursor?: Prisma.ArtistWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.ArtistScalarFieldEnum | Prisma.ArtistScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.performers
+ */
+export type WorkspaceAccount$performersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Performer
+   */
+  select?: Prisma.PerformerSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Performer
+   */
+  omit?: Prisma.PerformerOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PerformerInclude<ExtArgs> | null;
+  where?: Prisma.PerformerWhereInput;
+  orderBy?:
+    | Prisma.PerformerOrderByWithRelationInput
+    | Prisma.PerformerOrderByWithRelationInput[];
+  cursor?: Prisma.PerformerWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PerformerScalarFieldEnum
+    | Prisma.PerformerScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.producersAndEngineers
+ */
+export type WorkspaceAccount$producersAndEngineersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ProducerAndEngineer
+   */
+  select?: Prisma.ProducerAndEngineerSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ProducerAndEngineer
+   */
+  omit?: Prisma.ProducerAndEngineerOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProducerAndEngineerInclude<ExtArgs> | null;
+  where?: Prisma.ProducerAndEngineerWhereInput;
+  orderBy?:
+    | Prisma.ProducerAndEngineerOrderByWithRelationInput
+    | Prisma.ProducerAndEngineerOrderByWithRelationInput[];
+  cursor?: Prisma.ProducerAndEngineerWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ProducerAndEngineerScalarFieldEnum
+    | Prisma.ProducerAndEngineerScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.writers
+ */
+export type WorkspaceAccount$writersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Writer
+   */
+  select?: Prisma.WriterSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Writer
+   */
+  omit?: Prisma.WriterOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WriterInclude<ExtArgs> | null;
+  where?: Prisma.WriterWhereInput;
+  orderBy?:
+    | Prisma.WriterOrderByWithRelationInput
+    | Prisma.WriterOrderByWithRelationInput[];
+  cursor?: Prisma.WriterWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.WriterScalarFieldEnum | Prisma.WriterScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.publishers
+ */
+export type WorkspaceAccount$publishersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Publisher
+   */
+  select?: Prisma.PublisherSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Publisher
+   */
+  omit?: Prisma.PublisherOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PublisherInclude<ExtArgs> | null;
+  where?: Prisma.PublisherWhereInput;
+  orderBy?:
+    | Prisma.PublisherOrderByWithRelationInput
+    | Prisma.PublisherOrderByWithRelationInput[];
+  cursor?: Prisma.PublisherWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PublisherScalarFieldEnum
+    | Prisma.PublisherScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.labels
+ */
+export type WorkspaceAccount$labelsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Label
+   */
+  select?: Prisma.LabelSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Label
+   */
+  omit?: Prisma.LabelOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabelInclude<ExtArgs> | null;
+  where?: Prisma.LabelWhereInput;
+  orderBy?:
+    | Prisma.LabelOrderByWithRelationInput
+    | Prisma.LabelOrderByWithRelationInput[];
+  cursor?: Prisma.LabelWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.LabelScalarFieldEnum | Prisma.LabelScalarFieldEnum[];
 };
 
 /**

@@ -60,11 +60,71 @@ export type Session = Prisma.SessionModel;
  */
 export type WorkspaceAccount = Prisma.WorkspaceAccountModel;
 /**
+ * Model Release
+ *
+ */
+export type Release = Prisma.ReleaseModel;
+/**
+ * Model Track
+ *
+ */
+export type Track = Prisma.TrackModel;
+/**
+ * Model Video
+ *
+ */
+export type Video = Prisma.VideoModel;
+/**
+ * Model Ringtone
+ *
+ */
+export type Ringtone = Prisma.RingtoneModel;
+/**
+ * Model Artist
+ *
+ */
+export type Artist = Prisma.ArtistModel;
+/**
+ * Model Performer
+ *
+ */
+export type Performer = Prisma.PerformerModel;
+/**
+ * Model ProducerAndEngineer
+ *
+ */
+export type ProducerAndEngineer = Prisma.ProducerAndEngineerModel;
+/**
+ * Model Writer
+ *
+ */
+export type Writer = Prisma.WriterModel;
+/**
+ * Model Publisher
+ *
+ */
+export type Publisher = Prisma.PublisherModel;
+/**
+ * Model Label
+ *
+ */
+export type Label = Prisma.LabelModel;
+/**
  * Model SharedWorkspaceAccountAccess
  *
  */
 export type SharedWorkspaceAccountAccess =
   Prisma.SharedWorkspaceAccountAccessModel;
+/**
+ * Model Transaction
+ *
+ */
+export type Transaction = Prisma.TransactionModel;
+/**
+ * Model Withdrawal
+ *
+ */
+export type Withdrawal = Prisma.WithdrawalModel;
 /**
  * Model AuditLog
  *

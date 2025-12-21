@@ -57,7 +57,19 @@ export const ModelName = {
   User: "User",
   Session: "Session",
   WorkspaceAccount: "WorkspaceAccount",
+  Release: "Release",
+  Track: "Track",
+  Video: "Video",
+  Ringtone: "Ringtone",
+  Artist: "Artist",
+  Performer: "Performer",
+  ProducerAndEngineer: "ProducerAndEngineer",
+  Writer: "Writer",
+  Publisher: "Publisher",
+  Label: "Label",
   SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
+  Transaction: "Transaction",
+  Withdrawal: "Withdrawal",
   AuditLog: "AuditLog",
 } as const;
 
@@ -133,6 +145,116 @@ export const WorkspaceAccountScalarFieldEnum = {
 export type WorkspaceAccountScalarFieldEnum =
   (typeof WorkspaceAccountScalarFieldEnum)[keyof typeof WorkspaceAccountScalarFieldEnum];
 
+export const ReleaseScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ReleaseScalarFieldEnum =
+  (typeof ReleaseScalarFieldEnum)[keyof typeof ReleaseScalarFieldEnum];
+
+export const TrackScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type TrackScalarFieldEnum =
+  (typeof TrackScalarFieldEnum)[keyof typeof TrackScalarFieldEnum];
+
+export const VideoScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type VideoScalarFieldEnum =
+  (typeof VideoScalarFieldEnum)[keyof typeof VideoScalarFieldEnum];
+
+export const RingtoneScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type RingtoneScalarFieldEnum =
+  (typeof RingtoneScalarFieldEnum)[keyof typeof RingtoneScalarFieldEnum];
+
+export const ArtistScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ArtistScalarFieldEnum =
+  (typeof ArtistScalarFieldEnum)[keyof typeof ArtistScalarFieldEnum];
+
+export const PerformerScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type PerformerScalarFieldEnum =
+  (typeof PerformerScalarFieldEnum)[keyof typeof PerformerScalarFieldEnum];
+
+export const ProducerAndEngineerScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ProducerAndEngineerScalarFieldEnum =
+  (typeof ProducerAndEngineerScalarFieldEnum)[keyof typeof ProducerAndEngineerScalarFieldEnum];
+
+export const WriterScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type WriterScalarFieldEnum =
+  (typeof WriterScalarFieldEnum)[keyof typeof WriterScalarFieldEnum];
+
+export const PublisherScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type PublisherScalarFieldEnum =
+  (typeof PublisherScalarFieldEnum)[keyof typeof PublisherScalarFieldEnum];
+
+export const LabelScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type LabelScalarFieldEnum =
+  (typeof LabelScalarFieldEnum)[keyof typeof LabelScalarFieldEnum];
+
 export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
@@ -147,6 +269,26 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
 
 export type SharedWorkspaceAccountAccessScalarFieldEnum =
   (typeof SharedWorkspaceAccountAccessScalarFieldEnum)[keyof typeof SharedWorkspaceAccountAccessScalarFieldEnum];
+
+export const TransactionScalarFieldEnum = {
+  id: "id",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type TransactionScalarFieldEnum =
+  (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum];
+
+export const WithdrawalScalarFieldEnum = {
+  id: "id",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type WithdrawalScalarFieldEnum =
+  (typeof WithdrawalScalarFieldEnum)[keyof typeof WithdrawalScalarFieldEnum];
 
 export const AuditLogScalarFieldEnum = {
   id: "id",
