@@ -11,7 +11,9 @@ self.addEventListener("install", (event) => {
         "/manifest.webmanifest",
         "/favicon.ico",
         "/icons/*",
-        // Add other critical assets here
+        "_next/static/*",
+        "_next/image/*",
+        "/sw.js",
       ]);
     })
   );
