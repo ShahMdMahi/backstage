@@ -329,7 +329,7 @@ export async function updateUserPasswordById(
 
     try {
       await logAuditEvent({
-        action: AUDIT_LOG_ACTION.USER_UPDATED,
+        action: AUDIT_LOG_ACTION.USER_PASSWORD_CHANGED,
         entity: AUDIT_LOG_ENTITY.USER,
         entityId: updatedUser.id,
         description: `User ${updatedUser.email} password updated by ${session.data?.user?.email}.`,
