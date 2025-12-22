@@ -149,6 +149,7 @@ export const ReleaseScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -160,6 +161,7 @@ export const TrackScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -171,6 +173,7 @@ export const VideoScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -182,6 +185,7 @@ export const RingtoneScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -193,6 +197,7 @@ export const ArtistScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -204,6 +209,7 @@ export const PerformerScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -215,6 +221,7 @@ export const ProducerAndEngineerScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -226,6 +233,7 @@ export const WriterScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -237,6 +245,7 @@ export const PublisherScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -248,6 +257,7 @@ export const LabelScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -272,7 +282,9 @@ export type SharedWorkspaceAccountAccessScalarFieldEnum =
 
 export const TransactionScalarFieldEnum = {
   id: "id",
+  workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -282,7 +294,9 @@ export type TransactionScalarFieldEnum =
 
 export const WithdrawalScalarFieldEnum = {
   id: "id",
+  workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;

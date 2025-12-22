@@ -233,15 +233,15 @@ export async function proxy(request: NextRequest) {
           Date.now() + 1000 * 60 * 60 * 24 // 1 day
         ),
       });
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_ACCESSED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: dbSession.id,
-        description: `Session accessed for user ID ${dbSession.userId}`,
-        user: {
-          connect: { id: dbSession.userId },
-        },
-      });
+      // await logAuditEvent({
+      //   action: AUDIT_LOG_ACTION.SESSION_ACCESSED,
+      //   entity: AUDIT_LOG_ENTITY.SESSION,
+      //   entityId: dbSession.id,
+      //   description: `Session accessed for user ID ${dbSession.userId}`,
+      //   user: {
+      //     connect: { id: dbSession.userId },
+      //   },
+      // });
     } catch (error) {
       console.error("Error updating session access info:", error);
     }

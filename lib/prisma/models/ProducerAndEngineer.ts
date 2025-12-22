@@ -27,6 +27,7 @@ export type AggregateProducerAndEngineer = {
 export type ProducerAndEngineerMinAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.PRODUCER_AND_ENGINEER_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -34,6 +35,7 @@ export type ProducerAndEngineerMinAggregateOutputType = {
 export type ProducerAndEngineerMaxAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.PRODUCER_AND_ENGINEER_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -42,6 +44,7 @@ export type ProducerAndEngineerCountAggregateOutputType = {
   id: number;
   workspaceAccountId: number;
   metadata: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -50,6 +53,7 @@ export type ProducerAndEngineerCountAggregateOutputType = {
 export type ProducerAndEngineerMinAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -57,6 +61,7 @@ export type ProducerAndEngineerMinAggregateInputType = {
 export type ProducerAndEngineerMaxAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -65,6 +70,7 @@ export type ProducerAndEngineerCountAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
   metadata?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -159,6 +165,7 @@ export type ProducerAndEngineerGroupByOutputType = {
   id: string;
   workspaceAccountId: string;
   metadata: runtime.JsonValue | null;
+  status: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: ProducerAndEngineerCountAggregateOutputType | null;
@@ -192,6 +199,9 @@ export type ProducerAndEngineerWhereInput = {
   id?: Prisma.StringFilter<"ProducerAndEngineer"> | string;
   workspaceAccountId?: Prisma.StringFilter<"ProducerAndEngineer"> | string;
   metadata?: Prisma.JsonNullableFilter<"ProducerAndEngineer">;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFilter<"ProducerAndEngineer">
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
   workspaceAccount?: Prisma.XOR<
@@ -199,16 +209,19 @@ export type ProducerAndEngineerWhereInput = {
     Prisma.WorkspaceAccountWhereInput
   >;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  label?: Prisma.LabelListRelationFilter;
 };
 
 export type ProducerAndEngineerOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
 export type ProducerAndEngineerWhereUniqueInput = Prisma.AtLeast<
@@ -223,6 +236,9 @@ export type ProducerAndEngineerWhereUniqueInput = Prisma.AtLeast<
       | Prisma.ProducerAndEngineerWhereInput[];
     workspaceAccountId?: Prisma.StringFilter<"ProducerAndEngineer"> | string;
     metadata?: Prisma.JsonNullableFilter<"ProducerAndEngineer">;
+    status?:
+      | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFilter<"ProducerAndEngineer">
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
     workspaceAccount?: Prisma.XOR<
@@ -230,6 +246,7 @@ export type ProducerAndEngineerWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountWhereInput
     >;
     sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    label?: Prisma.LabelListRelationFilter;
   },
   "id"
 >;
@@ -238,6 +255,7 @@ export type ProducerAndEngineerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.ProducerAndEngineerCountOrderByAggregateInput;
@@ -258,6 +276,9 @@ export type ProducerAndEngineerScalarWhereWithAggregatesInput = {
     | Prisma.StringWithAggregatesFilter<"ProducerAndEngineer">
     | string;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"ProducerAndEngineer">;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSWithAggregatesFilter<"ProducerAndEngineer">
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<"ProducerAndEngineer">
     | Date
@@ -271,43 +292,56 @@ export type ProducerAndEngineerScalarWhereWithAggregatesInput = {
 export type ProducerAndEngineerCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutProducersAndEngineersInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutProducersAndEngineersInput;
+  label?: Prisma.LabelCreateNestedManyWithoutProducersAndEngineersInput;
 };
 
 export type ProducerAndEngineerUncheckedCreateInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutProducersAndEngineersInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutProducersAndEngineersInput;
 };
 
 export type ProducerAndEngineerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutProducersAndEngineersNestedInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutProducersAndEngineersNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutProducersAndEngineersNestedInput;
 };
 
 export type ProducerAndEngineerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEngineersNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutProducersAndEngineersNestedInput;
 };
 
 export type ProducerAndEngineerCreateManyInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -315,6 +349,9 @@ export type ProducerAndEngineerCreateManyInput = {
 export type ProducerAndEngineerUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -323,6 +360,9 @@ export type ProducerAndEngineerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -341,6 +381,7 @@ export type ProducerAndEngineerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -348,6 +389,7 @@ export type ProducerAndEngineerCountOrderByAggregateInput = {
 export type ProducerAndEngineerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -355,6 +397,7 @@ export type ProducerAndEngineerMaxOrderByAggregateInput = {
 export type ProducerAndEngineerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -471,6 +514,116 @@ export type ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedI
       | Prisma.ProducerAndEngineerScalarWhereInput[];
   };
 
+export type EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput = {
+  set?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
+};
+
+export type ProducerAndEngineerCreateNestedManyWithoutLabelInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ProducerAndEngineerCreateWithoutLabelInput,
+        Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ProducerAndEngineerCreateWithoutLabelInput[]
+    | Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput[];
+  connect?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+};
+
+export type ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ProducerAndEngineerCreateWithoutLabelInput,
+        Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ProducerAndEngineerCreateWithoutLabelInput[]
+    | Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput[];
+  connect?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+};
+
+export type ProducerAndEngineerUpdateManyWithoutLabelNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ProducerAndEngineerCreateWithoutLabelInput,
+        Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ProducerAndEngineerCreateWithoutLabelInput[]
+    | Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput[];
+  upsert?:
+    | Prisma.ProducerAndEngineerUpsertWithWhereUniqueWithoutLabelInput
+    | Prisma.ProducerAndEngineerUpsertWithWhereUniqueWithoutLabelInput[];
+  set?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  delete?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  connect?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  update?:
+    | Prisma.ProducerAndEngineerUpdateWithWhereUniqueWithoutLabelInput
+    | Prisma.ProducerAndEngineerUpdateWithWhereUniqueWithoutLabelInput[];
+  updateMany?:
+    | Prisma.ProducerAndEngineerUpdateManyWithWhereWithoutLabelInput
+    | Prisma.ProducerAndEngineerUpdateManyWithWhereWithoutLabelInput[];
+  deleteMany?:
+    | Prisma.ProducerAndEngineerScalarWhereInput
+    | Prisma.ProducerAndEngineerScalarWhereInput[];
+};
+
+export type ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ProducerAndEngineerCreateWithoutLabelInput,
+        Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ProducerAndEngineerCreateWithoutLabelInput[]
+    | Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput
+    | Prisma.ProducerAndEngineerCreateOrConnectWithoutLabelInput[];
+  upsert?:
+    | Prisma.ProducerAndEngineerUpsertWithWhereUniqueWithoutLabelInput
+    | Prisma.ProducerAndEngineerUpsertWithWhereUniqueWithoutLabelInput[];
+  set?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  delete?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  connect?:
+    | Prisma.ProducerAndEngineerWhereUniqueInput
+    | Prisma.ProducerAndEngineerWhereUniqueInput[];
+  update?:
+    | Prisma.ProducerAndEngineerUpdateWithWhereUniqueWithoutLabelInput
+    | Prisma.ProducerAndEngineerUpdateWithWhereUniqueWithoutLabelInput[];
+  updateMany?:
+    | Prisma.ProducerAndEngineerUpdateManyWithWhereWithoutLabelInput
+    | Prisma.ProducerAndEngineerUpdateManyWithWhereWithoutLabelInput[];
+  deleteMany?:
+    | Prisma.ProducerAndEngineerScalarWhereInput
+    | Prisma.ProducerAndEngineerScalarWhereInput[];
+};
+
 export type ProducerAndEngineerCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
   {
     create?:
@@ -584,17 +737,21 @@ export type ProducerAndEngineerUncheckedUpdateManyWithoutSharedWorkspaceAccountA
 export type ProducerAndEngineerCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutProducersAndEngineersInput;
+  label?: Prisma.LabelCreateNestedManyWithoutProducersAndEngineersInput;
 };
 
 export type ProducerAndEngineerUncheckedCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutProducersAndEngineersInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutProducersAndEngineersInput;
 };
 
 export type ProducerAndEngineerCreateOrConnectWithoutWorkspaceAccountInput = {
@@ -654,17 +811,78 @@ export type ProducerAndEngineerScalarWhereInput = {
   id?: Prisma.StringFilter<"ProducerAndEngineer"> | string;
   workspaceAccountId?: Prisma.StringFilter<"ProducerAndEngineer"> | string;
   metadata?: Prisma.JsonNullableFilter<"ProducerAndEngineer">;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFilter<"ProducerAndEngineer">
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
+};
+
+export type ProducerAndEngineerCreateWithoutLabelInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutProducersAndEngineersInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutProducersAndEngineersInput;
+};
+
+export type ProducerAndEngineerUncheckedCreateWithoutLabelInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutProducersAndEngineersInput;
+};
+
+export type ProducerAndEngineerCreateOrConnectWithoutLabelInput = {
+  where: Prisma.ProducerAndEngineerWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ProducerAndEngineerCreateWithoutLabelInput,
+    Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput
+  >;
+};
+
+export type ProducerAndEngineerUpsertWithWhereUniqueWithoutLabelInput = {
+  where: Prisma.ProducerAndEngineerWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ProducerAndEngineerUpdateWithoutLabelInput,
+    Prisma.ProducerAndEngineerUncheckedUpdateWithoutLabelInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ProducerAndEngineerCreateWithoutLabelInput,
+    Prisma.ProducerAndEngineerUncheckedCreateWithoutLabelInput
+  >;
+};
+
+export type ProducerAndEngineerUpdateWithWhereUniqueWithoutLabelInput = {
+  where: Prisma.ProducerAndEngineerWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ProducerAndEngineerUpdateWithoutLabelInput,
+    Prisma.ProducerAndEngineerUncheckedUpdateWithoutLabelInput
+  >;
+};
+
+export type ProducerAndEngineerUpdateManyWithWhereWithoutLabelInput = {
+  where: Prisma.ProducerAndEngineerScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ProducerAndEngineerUpdateManyMutationInput,
+    Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelInput
+  >;
 };
 
 export type ProducerAndEngineerCreateWithoutSharedWorkspaceAccountAccessInput =
   {
     id?: string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Date | string;
     updatedAt?: Date | string;
     workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutProducersAndEngineersInput;
+    label?: Prisma.LabelCreateNestedManyWithoutProducersAndEngineersInput;
   };
 
 export type ProducerAndEngineerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput =
@@ -672,8 +890,10 @@ export type ProducerAndEngineerUncheckedCreateWithoutSharedWorkspaceAccountAcces
     id?: string;
     workspaceAccountId: string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Date | string;
     updatedAt?: Date | string;
+    label?: Prisma.LabelUncheckedCreateNestedManyWithoutProducersAndEngineersInput;
   };
 
 export type ProducerAndEngineerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput =
@@ -719,6 +939,7 @@ export type ProducerAndEngineerUpdateManyWithWhereWithoutSharedWorkspaceAccountA
 export type ProducerAndEngineerCreateManyWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -726,34 +947,84 @@ export type ProducerAndEngineerCreateManyWorkspaceAccountInput = {
 export type ProducerAndEngineerUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutProducersAndEngineersNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutProducersAndEngineersNestedInput;
 };
 
 export type ProducerAndEngineerUncheckedUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEngineersNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutProducersAndEngineersNestedInput;
 };
 
 export type ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   };
+
+export type ProducerAndEngineerUpdateWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutProducersAndEngineersNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutProducersAndEngineersNestedInput;
+};
+
+export type ProducerAndEngineerUncheckedUpdateWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEngineersNestedInput;
+};
+
+export type ProducerAndEngineerUncheckedUpdateManyWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
 
 export type ProducerAndEngineerUpdateWithoutSharedWorkspaceAccountAccessInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutProducersAndEngineersNestedInput;
+    label?: Prisma.LabelUpdateManyWithoutProducersAndEngineersNestedInput;
   };
 
 export type ProducerAndEngineerUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput =
@@ -761,8 +1032,12 @@ export type ProducerAndEngineerUncheckedUpdateWithoutSharedWorkspaceAccountAcces
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    label?: Prisma.LabelUncheckedUpdateManyWithoutProducersAndEngineersNestedInput;
   };
 
 export type ProducerAndEngineerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
@@ -770,6 +1045,9 @@ export type ProducerAndEngineerUncheckedUpdateManyWithoutSharedWorkspaceAccountA
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldUpdateOperationsInput
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -780,6 +1058,7 @@ export type ProducerAndEngineerUncheckedUpdateManyWithoutSharedWorkspaceAccountA
 
 export type ProducerAndEngineerCountOutputType = {
   sharedWorkspaceAccountAccess: number;
+  label: number;
 };
 
 export type ProducerAndEngineerCountOutputTypeSelect<
@@ -789,6 +1068,7 @@ export type ProducerAndEngineerCountOutputTypeSelect<
   sharedWorkspaceAccountAccess?:
     | boolean
     | ProducerAndEngineerCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+  label?: boolean | ProducerAndEngineerCountOutputTypeCountLabelArgs;
 };
 
 /**
@@ -814,6 +1094,16 @@ export type ProducerAndEngineerCountOutputTypeCountSharedWorkspaceAccountAccessA
   where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
+/**
+ * ProducerAndEngineerCountOutputType without action
+ */
+export type ProducerAndEngineerCountOutputTypeCountLabelArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LabelWhereInput;
+};
+
 export type ProducerAndEngineerSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -822,12 +1112,14 @@ export type ProducerAndEngineerSelect<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
     sharedWorkspaceAccountAccess?:
       | boolean
       | Prisma.ProducerAndEngineer$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    label?: boolean | Prisma.ProducerAndEngineer$labelArgs<ExtArgs>;
     _count?:
       | boolean
       | Prisma.ProducerAndEngineerCountOutputTypeDefaultArgs<ExtArgs>;
@@ -843,6 +1135,7 @@ export type ProducerAndEngineerSelectCreateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -858,6 +1151,7 @@ export type ProducerAndEngineerSelectUpdateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -869,6 +1163,7 @@ export type ProducerAndEngineerSelectScalar = {
   id?: boolean;
   workspaceAccountId?: boolean;
   metadata?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -877,7 +1172,12 @@ export type ProducerAndEngineerOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "workspaceAccountId" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "workspaceAccountId"
+  | "metadata"
+  | "status"
+  | "createdAt"
+  | "updatedAt",
   ExtArgs["result"]["producerAndEngineer"]
 >;
 export type ProducerAndEngineerInclude<
@@ -888,6 +1188,7 @@ export type ProducerAndEngineerInclude<
   sharedWorkspaceAccountAccess?:
     | boolean
     | Prisma.ProducerAndEngineer$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+  label?: boolean | Prisma.ProducerAndEngineer$labelArgs<ExtArgs>;
   _count?:
     | boolean
     | Prisma.ProducerAndEngineerCountOutputTypeDefaultArgs<ExtArgs>;
@@ -913,12 +1214,14 @@ export type $ProducerAndEngineerPayload<
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
     sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
       workspaceAccountId: string;
       metadata: runtime.JsonValue | null;
+      status: $Enums.PRODUCER_AND_ENGINEER_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1524,6 +1827,17 @@ export interface Prisma__ProducerAndEngineerClient<
       >
     | Null
   >;
+  label<T extends Prisma.ProducerAndEngineer$labelArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.ProducerAndEngineer$labelArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LabelPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1569,6 +1883,10 @@ export interface ProducerAndEngineerFieldRefs {
   readonly id: Prisma.FieldRef<"ProducerAndEngineer", "String">;
   readonly workspaceAccountId: Prisma.FieldRef<"ProducerAndEngineer", "String">;
   readonly metadata: Prisma.FieldRef<"ProducerAndEngineer", "Json">;
+  readonly status: Prisma.FieldRef<
+    "ProducerAndEngineer",
+    "PRODUCER_AND_ENGINEER_STATUS"
+  >;
   readonly createdAt: Prisma.FieldRef<"ProducerAndEngineer", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"ProducerAndEngineer", "DateTime">;
 }
@@ -2070,6 +2388,35 @@ export type ProducerAndEngineer$sharedWorkspaceAccountAccessArgs<
   distinct?:
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * ProducerAndEngineer.label
+ */
+export type ProducerAndEngineer$labelArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Label
+   */
+  select?: Prisma.LabelSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Label
+   */
+  omit?: Prisma.LabelOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabelInclude<ExtArgs> | null;
+  where?: Prisma.LabelWhereInput;
+  orderBy?:
+    | Prisma.LabelOrderByWithRelationInput
+    | Prisma.LabelOrderByWithRelationInput[];
+  cursor?: Prisma.LabelWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.LabelScalarFieldEnum | Prisma.LabelScalarFieldEnum[];
 };
 
 /**

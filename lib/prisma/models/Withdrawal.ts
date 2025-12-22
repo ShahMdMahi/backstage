@@ -26,19 +26,25 @@ export type AggregateWithdrawal = {
 
 export type WithdrawalMinAggregateOutputType = {
   id: string | null;
+  workspaceAccountId: string | null;
+  status: $Enums.WITHDRAWAL_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
 
 export type WithdrawalMaxAggregateOutputType = {
   id: string | null;
+  workspaceAccountId: string | null;
+  status: $Enums.WITHDRAWAL_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
 
 export type WithdrawalCountAggregateOutputType = {
   id: number;
+  workspaceAccountId: number;
   metadata: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -46,19 +52,25 @@ export type WithdrawalCountAggregateOutputType = {
 
 export type WithdrawalMinAggregateInputType = {
   id?: true;
+  workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
 
 export type WithdrawalMaxAggregateInputType = {
   id?: true;
+  workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
 
 export type WithdrawalCountAggregateInputType = {
   id?: true;
+  workspaceAccountId?: true;
   metadata?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -145,7 +157,9 @@ export type WithdrawalGroupByArgs<
 
 export type WithdrawalGroupByOutputType = {
   id: string;
+  workspaceAccountId: string | null;
   metadata: runtime.JsonValue | null;
+  status: $Enums.WITHDRAWAL_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: WithdrawalCountAggregateOutputType | null;
@@ -171,16 +185,30 @@ export type WithdrawalWhereInput = {
   OR?: Prisma.WithdrawalWhereInput[];
   NOT?: Prisma.WithdrawalWhereInput | Prisma.WithdrawalWhereInput[];
   id?: Prisma.StringFilter<"Withdrawal"> | string;
+  workspaceAccountId?:
+    | Prisma.StringNullableFilter<"Withdrawal">
+    | string
+    | null;
   metadata?: Prisma.JsonNullableFilter<"Withdrawal">;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFilter<"Withdrawal">
+    | $Enums.WITHDRAWAL_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Withdrawal"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Withdrawal"> | Date | string;
+  workspaceAccount?: Prisma.XOR<
+    Prisma.WorkspaceAccountNullableScalarRelationFilter,
+    Prisma.WorkspaceAccountWhereInput
+  > | null;
 };
 
 export type WithdrawalOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
 };
 
 export type WithdrawalWhereUniqueInput = Prisma.AtLeast<
@@ -189,16 +217,29 @@ export type WithdrawalWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.WithdrawalWhereInput | Prisma.WithdrawalWhereInput[];
     OR?: Prisma.WithdrawalWhereInput[];
     NOT?: Prisma.WithdrawalWhereInput | Prisma.WithdrawalWhereInput[];
+    workspaceAccountId?:
+      | Prisma.StringNullableFilter<"Withdrawal">
+      | string
+      | null;
     metadata?: Prisma.JsonNullableFilter<"Withdrawal">;
+    status?:
+      | Prisma.EnumWITHDRAWAL_STATUSFilter<"Withdrawal">
+      | $Enums.WITHDRAWAL_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Withdrawal"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Withdrawal"> | Date | string;
+    workspaceAccount?: Prisma.XOR<
+      Prisma.WorkspaceAccountNullableScalarRelationFilter,
+      Prisma.WorkspaceAccountWhereInput
+    > | null;
   },
   "id"
 >;
 
 export type WithdrawalOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.WithdrawalCountOrderByAggregateInput;
@@ -215,7 +256,14 @@ export type WithdrawalScalarWhereWithAggregatesInput = {
     | Prisma.WithdrawalScalarWhereWithAggregatesInput
     | Prisma.WithdrawalScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<"Withdrawal"> | string;
+  workspaceAccountId?:
+    | Prisma.StringNullableWithAggregatesFilter<"Withdrawal">
+    | string
+    | null;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Withdrawal">;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSWithAggregatesFilter<"Withdrawal">
+    | $Enums.WITHDRAWAL_STATUS;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Withdrawal"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Withdrawal"> | Date | string;
 };
@@ -223,13 +271,17 @@ export type WithdrawalScalarWhereWithAggregatesInput = {
 export type WithdrawalCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WITHDRAWAL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutWithdrawalsInput;
 };
 
 export type WithdrawalUncheckedCreateInput = {
   id?: string;
+  workspaceAccountId?: string | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WITHDRAWAL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -237,20 +289,33 @@ export type WithdrawalUncheckedCreateInput = {
 export type WithdrawalUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutWithdrawalsNestedInput;
 };
 
 export type WithdrawalUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type WithdrawalCreateManyInput = {
   id?: string;
+  workspaceAccountId?: string | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WITHDRAWAL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -258,34 +323,284 @@ export type WithdrawalCreateManyInput = {
 export type WithdrawalUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type WithdrawalUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type WithdrawalListRelationFilter = {
+  every?: Prisma.WithdrawalWhereInput;
+  some?: Prisma.WithdrawalWhereInput;
+  none?: Prisma.WithdrawalWhereInput;
+};
+
+export type WithdrawalOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
 export type WithdrawalCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type WithdrawalMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type WithdrawalMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type WithdrawalCreateNestedManyWithoutWorkspaceAccountInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.WithdrawalCreateWithoutWorkspaceAccountInput,
+        Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.WithdrawalCreateWithoutWorkspaceAccountInput[]
+    | Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.WithdrawalCreateManyWorkspaceAccountInputEnvelope;
+  connect?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+};
+
+export type WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.WithdrawalCreateWithoutWorkspaceAccountInput,
+        Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.WithdrawalCreateWithoutWorkspaceAccountInput[]
+    | Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.WithdrawalCreateManyWorkspaceAccountInputEnvelope;
+  connect?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+};
+
+export type WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.WithdrawalCreateWithoutWorkspaceAccountInput,
+        Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.WithdrawalCreateWithoutWorkspaceAccountInput[]
+    | Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput[];
+  upsert?:
+    | Prisma.WithdrawalUpsertWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalUpsertWithWhereUniqueWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.WithdrawalCreateManyWorkspaceAccountInputEnvelope;
+  set?: Prisma.WithdrawalWhereUniqueInput | Prisma.WithdrawalWhereUniqueInput[];
+  disconnect?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+  delete?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+  connect?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+  update?:
+    | Prisma.WithdrawalUpdateWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalUpdateWithWhereUniqueWithoutWorkspaceAccountInput[];
+  updateMany?:
+    | Prisma.WithdrawalUpdateManyWithWhereWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalUpdateManyWithWhereWithoutWorkspaceAccountInput[];
+  deleteMany?:
+    | Prisma.WithdrawalScalarWhereInput
+    | Prisma.WithdrawalScalarWhereInput[];
+};
+
+export type WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.WithdrawalCreateWithoutWorkspaceAccountInput,
+        Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.WithdrawalCreateWithoutWorkspaceAccountInput[]
+    | Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalCreateOrConnectWithoutWorkspaceAccountInput[];
+  upsert?:
+    | Prisma.WithdrawalUpsertWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalUpsertWithWhereUniqueWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.WithdrawalCreateManyWorkspaceAccountInputEnvelope;
+  set?: Prisma.WithdrawalWhereUniqueInput | Prisma.WithdrawalWhereUniqueInput[];
+  disconnect?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+  delete?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+  connect?:
+    | Prisma.WithdrawalWhereUniqueInput
+    | Prisma.WithdrawalWhereUniqueInput[];
+  update?:
+    | Prisma.WithdrawalUpdateWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalUpdateWithWhereUniqueWithoutWorkspaceAccountInput[];
+  updateMany?:
+    | Prisma.WithdrawalUpdateManyWithWhereWithoutWorkspaceAccountInput
+    | Prisma.WithdrawalUpdateManyWithWhereWithoutWorkspaceAccountInput[];
+  deleteMany?:
+    | Prisma.WithdrawalScalarWhereInput
+    | Prisma.WithdrawalScalarWhereInput[];
+};
+
+export type EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput = {
+  set?: $Enums.WITHDRAWAL_STATUS;
+};
+
+export type WithdrawalCreateWithoutWorkspaceAccountInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type WithdrawalUncheckedCreateWithoutWorkspaceAccountInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type WithdrawalCreateOrConnectWithoutWorkspaceAccountInput = {
+  where: Prisma.WithdrawalWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WithdrawalCreateWithoutWorkspaceAccountInput,
+    Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput
+  >;
+};
+
+export type WithdrawalCreateManyWorkspaceAccountInputEnvelope = {
+  data:
+    | Prisma.WithdrawalCreateManyWorkspaceAccountInput
+    | Prisma.WithdrawalCreateManyWorkspaceAccountInput[];
+  skipDuplicates?: boolean;
+};
+
+export type WithdrawalUpsertWithWhereUniqueWithoutWorkspaceAccountInput = {
+  where: Prisma.WithdrawalWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.WithdrawalUpdateWithoutWorkspaceAccountInput,
+    Prisma.WithdrawalUncheckedUpdateWithoutWorkspaceAccountInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WithdrawalCreateWithoutWorkspaceAccountInput,
+    Prisma.WithdrawalUncheckedCreateWithoutWorkspaceAccountInput
+  >;
+};
+
+export type WithdrawalUpdateWithWhereUniqueWithoutWorkspaceAccountInput = {
+  where: Prisma.WithdrawalWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.WithdrawalUpdateWithoutWorkspaceAccountInput,
+    Prisma.WithdrawalUncheckedUpdateWithoutWorkspaceAccountInput
+  >;
+};
+
+export type WithdrawalUpdateManyWithWhereWithoutWorkspaceAccountInput = {
+  where: Prisma.WithdrawalScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.WithdrawalUpdateManyMutationInput,
+    Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountInput
+  >;
+};
+
+export type WithdrawalScalarWhereInput = {
+  AND?: Prisma.WithdrawalScalarWhereInput | Prisma.WithdrawalScalarWhereInput[];
+  OR?: Prisma.WithdrawalScalarWhereInput[];
+  NOT?: Prisma.WithdrawalScalarWhereInput | Prisma.WithdrawalScalarWhereInput[];
+  id?: Prisma.StringFilter<"Withdrawal"> | string;
+  workspaceAccountId?:
+    | Prisma.StringNullableFilter<"Withdrawal">
+    | string
+    | null;
+  metadata?: Prisma.JsonNullableFilter<"Withdrawal">;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFilter<"Withdrawal">
+    | $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Prisma.DateTimeFilter<"Withdrawal"> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<"Withdrawal"> | Date | string;
+};
+
+export type WithdrawalCreateManyWorkspaceAccountInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type WithdrawalUpdateWithoutWorkspaceAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type WithdrawalUncheckedUpdateWithoutWorkspaceAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWITHDRAWAL_STATUSFieldUpdateOperationsInput
+    | $Enums.WITHDRAWAL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type WithdrawalSelect<
@@ -294,9 +609,14 @@ export type WithdrawalSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    workspaceAccount?:
+      | boolean
+      | Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>;
   },
   ExtArgs["result"]["withdrawal"]
 >;
@@ -307,9 +627,14 @@ export type WithdrawalSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    workspaceAccount?:
+      | boolean
+      | Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>;
   },
   ExtArgs["result"]["withdrawal"]
 >;
@@ -320,16 +645,23 @@ export type WithdrawalSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    workspaceAccount?:
+      | boolean
+      | Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>;
   },
   ExtArgs["result"]["withdrawal"]
 >;
 
 export type WithdrawalSelectScalar = {
   id?: boolean;
+  workspaceAccountId?: boolean;
   metadata?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -338,20 +670,47 @@ export type WithdrawalOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "workspaceAccountId"
+  | "metadata"
+  | "status"
+  | "createdAt"
+  | "updatedAt",
   ExtArgs["result"]["withdrawal"]
 >;
+export type WithdrawalInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  workspaceAccount?: boolean | Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>;
+};
+export type WithdrawalIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  workspaceAccount?: boolean | Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>;
+};
+export type WithdrawalIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  workspaceAccount?: boolean | Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>;
+};
 
 export type $WithdrawalPayload<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
   name: "Withdrawal";
-  objects: {};
+  objects: {
+    workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs> | null;
+  };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
+      workspaceAccountId: string | null;
       metadata: runtime.JsonValue | null;
+      status: $Enums.WITHDRAWAL_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -904,6 +1263,21 @@ export interface Prisma__WithdrawalClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise";
+  workspaceAccount<
+    T extends Prisma.Withdrawal$workspaceAccountArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.Withdrawal$workspaceAccountArgs<ExtArgs>>
+  ): Prisma.Prisma__WorkspaceAccountClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$WorkspaceAccountPayload<ExtArgs>,
+      T,
+      "findUniqueOrThrow",
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -947,7 +1321,9 @@ export interface Prisma__WithdrawalClient<
  */
 export interface WithdrawalFieldRefs {
   readonly id: Prisma.FieldRef<"Withdrawal", "String">;
+  readonly workspaceAccountId: Prisma.FieldRef<"Withdrawal", "String">;
   readonly metadata: Prisma.FieldRef<"Withdrawal", "Json">;
+  readonly status: Prisma.FieldRef<"Withdrawal", "WITHDRAWAL_STATUS">;
   readonly createdAt: Prisma.FieldRef<"Withdrawal", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Withdrawal", "DateTime">;
 }
@@ -968,6 +1344,10 @@ export type WithdrawalFindUniqueArgs<
    * Omit specific fields from the Withdrawal
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
   /**
    * Filter, which Withdrawal to fetch.
    */
@@ -990,6 +1370,10 @@ export type WithdrawalFindUniqueOrThrowArgs<
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
+  /**
    * Filter, which Withdrawal to fetch.
    */
   where: Prisma.WithdrawalWhereUniqueInput;
@@ -1010,6 +1394,10 @@ export type WithdrawalFindFirstArgs<
    * Omit specific fields from the Withdrawal
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
   /**
    * Filter, which Withdrawal to fetch.
    */
@@ -1066,6 +1454,10 @@ export type WithdrawalFindFirstOrThrowArgs<
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
+  /**
    * Filter, which Withdrawal to fetch.
    */
   where?: Prisma.WithdrawalWhereInput;
@@ -1121,6 +1513,10 @@ export type WithdrawalFindManyArgs<
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
+  /**
    * Filter, which Withdrawals to fetch.
    */
   where?: Prisma.WithdrawalWhereInput;
@@ -1171,6 +1567,10 @@ export type WithdrawalCreateArgs<
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
+  /**
    * The data needed to create a Withdrawal.
    */
   data: Prisma.XOR<
@@ -1213,6 +1613,10 @@ export type WithdrawalCreateManyAndReturnArgs<
    */
   data: Prisma.WithdrawalCreateManyInput | Prisma.WithdrawalCreateManyInput[];
   skipDuplicates?: boolean;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalIncludeCreateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1230,6 +1634,10 @@ export type WithdrawalUpdateArgs<
    * Omit specific fields from the Withdrawal
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
   /**
    * The data needed to update a Withdrawal.
    */
@@ -1297,6 +1705,10 @@ export type WithdrawalUpdateManyAndReturnArgs<
    * Limit how many Withdrawals to update.
    */
   limit?: number;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalIncludeUpdateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1314,6 +1726,10 @@ export type WithdrawalUpsertArgs<
    * Omit specific fields from the Withdrawal
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
   /**
    * The filter to search for the Withdrawal to update in case it exists.
    */
@@ -1350,6 +1766,10 @@ export type WithdrawalDeleteArgs<
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
+  /**
    * Filter which Withdrawal to delete.
    */
   where: Prisma.WithdrawalWhereUniqueInput;
@@ -1373,6 +1793,28 @@ export type WithdrawalDeleteManyArgs<
 };
 
 /**
+ * Withdrawal.workspaceAccount
+ */
+export type Withdrawal$workspaceAccountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the WorkspaceAccount
+   */
+  select?: Prisma.WorkspaceAccountSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the WorkspaceAccount
+   */
+  omit?: Prisma.WorkspaceAccountOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkspaceAccountInclude<ExtArgs> | null;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+/**
  * Withdrawal without action
  */
 export type WithdrawalDefaultArgs<
@@ -1387,4 +1829,8 @@ export type WithdrawalDefaultArgs<
    * Omit specific fields from the Withdrawal
    */
   omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
 };

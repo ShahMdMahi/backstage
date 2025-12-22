@@ -27,6 +27,7 @@ export type AggregateRingtone = {
 export type RingtoneMinAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.RINGTONE_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -34,6 +35,7 @@ export type RingtoneMinAggregateOutputType = {
 export type RingtoneMaxAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.RINGTONE_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -42,6 +44,7 @@ export type RingtoneCountAggregateOutputType = {
   id: number;
   workspaceAccountId: number;
   metadata: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -50,6 +53,7 @@ export type RingtoneCountAggregateOutputType = {
 export type RingtoneMinAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -57,6 +61,7 @@ export type RingtoneMinAggregateInputType = {
 export type RingtoneMaxAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -65,6 +70,7 @@ export type RingtoneCountAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
   metadata?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -153,6 +159,7 @@ export type RingtoneGroupByOutputType = {
   id: string;
   workspaceAccountId: string;
   metadata: runtime.JsonValue | null;
+  status: $Enums.RINGTONE_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: RingtoneCountAggregateOutputType | null;
@@ -180,6 +187,9 @@ export type RingtoneWhereInput = {
   id?: Prisma.StringFilter<"Ringtone"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Ringtone"> | string;
   metadata?: Prisma.JsonNullableFilter<"Ringtone">;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFilter<"Ringtone">
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Ringtone"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Ringtone"> | Date | string;
   workspaceAccount?: Prisma.XOR<
@@ -187,16 +197,19 @@ export type RingtoneWhereInput = {
     Prisma.WorkspaceAccountWhereInput
   >;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  label?: Prisma.LabelListRelationFilter;
 };
 
 export type RingtoneOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
 export type RingtoneWhereUniqueInput = Prisma.AtLeast<
@@ -207,6 +220,9 @@ export type RingtoneWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.RingtoneWhereInput | Prisma.RingtoneWhereInput[];
     workspaceAccountId?: Prisma.StringFilter<"Ringtone"> | string;
     metadata?: Prisma.JsonNullableFilter<"Ringtone">;
+    status?:
+      | Prisma.EnumRINGTONE_STATUSFilter<"Ringtone">
+      | $Enums.RINGTONE_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Ringtone"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Ringtone"> | Date | string;
     workspaceAccount?: Prisma.XOR<
@@ -214,6 +230,7 @@ export type RingtoneWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountWhereInput
     >;
     sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    label?: Prisma.LabelListRelationFilter;
   },
   "id"
 >;
@@ -222,6 +239,7 @@ export type RingtoneOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.RingtoneCountOrderByAggregateInput;
@@ -240,6 +258,9 @@ export type RingtoneScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Ringtone"> | string;
   workspaceAccountId?: Prisma.StringWithAggregatesFilter<"Ringtone"> | string;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Ringtone">;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSWithAggregatesFilter<"Ringtone">
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Ringtone"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Ringtone"> | Date | string;
 };
@@ -247,43 +268,56 @@ export type RingtoneScalarWhereWithAggregatesInput = {
 export type RingtoneCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutRingtonesInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutRingtonesInput;
+  label?: Prisma.LabelCreateNestedManyWithoutRingtonesInput;
 };
 
 export type RingtoneUncheckedCreateInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutRingtonesInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutRingtonesInput;
 };
 
 export type RingtoneUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutRingtonesNestedInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutRingtonesNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutRingtonesNestedInput;
 };
 
 export type RingtoneUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutRingtonesNestedInput;
 };
 
 export type RingtoneCreateManyInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -291,6 +325,9 @@ export type RingtoneCreateManyInput = {
 export type RingtoneUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -299,6 +336,9 @@ export type RingtoneUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -317,6 +357,7 @@ export type RingtoneCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -324,6 +365,7 @@ export type RingtoneCountOrderByAggregateInput = {
 export type RingtoneMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -331,6 +373,7 @@ export type RingtoneMaxOrderByAggregateInput = {
 export type RingtoneMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -424,6 +467,100 @@ export type RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput = {
   updateMany?:
     | Prisma.RingtoneUpdateManyWithWhereWithoutWorkspaceAccountInput
     | Prisma.RingtoneUpdateManyWithWhereWithoutWorkspaceAccountInput[];
+  deleteMany?:
+    | Prisma.RingtoneScalarWhereInput
+    | Prisma.RingtoneScalarWhereInput[];
+};
+
+export type EnumRINGTONE_STATUSFieldUpdateOperationsInput = {
+  set?: $Enums.RINGTONE_STATUS;
+};
+
+export type RingtoneCreateNestedManyWithoutLabelInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.RingtoneCreateWithoutLabelInput,
+        Prisma.RingtoneUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.RingtoneCreateWithoutLabelInput[]
+    | Prisma.RingtoneUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput[];
+  connect?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+};
+
+export type RingtoneUncheckedCreateNestedManyWithoutLabelInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.RingtoneCreateWithoutLabelInput,
+        Prisma.RingtoneUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.RingtoneCreateWithoutLabelInput[]
+    | Prisma.RingtoneUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput[];
+  connect?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+};
+
+export type RingtoneUpdateManyWithoutLabelNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.RingtoneCreateWithoutLabelInput,
+        Prisma.RingtoneUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.RingtoneCreateWithoutLabelInput[]
+    | Prisma.RingtoneUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput[];
+  upsert?:
+    | Prisma.RingtoneUpsertWithWhereUniqueWithoutLabelInput
+    | Prisma.RingtoneUpsertWithWhereUniqueWithoutLabelInput[];
+  set?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+  disconnect?:
+    | Prisma.RingtoneWhereUniqueInput
+    | Prisma.RingtoneWhereUniqueInput[];
+  delete?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+  connect?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+  update?:
+    | Prisma.RingtoneUpdateWithWhereUniqueWithoutLabelInput
+    | Prisma.RingtoneUpdateWithWhereUniqueWithoutLabelInput[];
+  updateMany?:
+    | Prisma.RingtoneUpdateManyWithWhereWithoutLabelInput
+    | Prisma.RingtoneUpdateManyWithWhereWithoutLabelInput[];
+  deleteMany?:
+    | Prisma.RingtoneScalarWhereInput
+    | Prisma.RingtoneScalarWhereInput[];
+};
+
+export type RingtoneUncheckedUpdateManyWithoutLabelNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.RingtoneCreateWithoutLabelInput,
+        Prisma.RingtoneUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.RingtoneCreateWithoutLabelInput[]
+    | Prisma.RingtoneUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput
+    | Prisma.RingtoneCreateOrConnectWithoutLabelInput[];
+  upsert?:
+    | Prisma.RingtoneUpsertWithWhereUniqueWithoutLabelInput
+    | Prisma.RingtoneUpsertWithWhereUniqueWithoutLabelInput[];
+  set?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+  disconnect?:
+    | Prisma.RingtoneWhereUniqueInput
+    | Prisma.RingtoneWhereUniqueInput[];
+  delete?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+  connect?: Prisma.RingtoneWhereUniqueInput | Prisma.RingtoneWhereUniqueInput[];
+  update?:
+    | Prisma.RingtoneUpdateWithWhereUniqueWithoutLabelInput
+    | Prisma.RingtoneUpdateWithWhereUniqueWithoutLabelInput[];
+  updateMany?:
+    | Prisma.RingtoneUpdateManyWithWhereWithoutLabelInput
+    | Prisma.RingtoneUpdateManyWithWhereWithoutLabelInput[];
   deleteMany?:
     | Prisma.RingtoneScalarWhereInput
     | Prisma.RingtoneScalarWhereInput[];
@@ -530,17 +667,21 @@ export type RingtoneUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNested
 export type RingtoneCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutRingtonesInput;
+  label?: Prisma.LabelCreateNestedManyWithoutRingtonesInput;
 };
 
 export type RingtoneUncheckedCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutRingtonesInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutRingtonesInput;
 };
 
 export type RingtoneCreateOrConnectWithoutWorkspaceAccountInput = {
@@ -593,24 +734,87 @@ export type RingtoneScalarWhereInput = {
   id?: Prisma.StringFilter<"Ringtone"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Ringtone"> | string;
   metadata?: Prisma.JsonNullableFilter<"Ringtone">;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFilter<"Ringtone">
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Ringtone"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Ringtone"> | Date | string;
+};
+
+export type RingtoneCreateWithoutLabelInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutRingtonesInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutRingtonesInput;
+};
+
+export type RingtoneUncheckedCreateWithoutLabelInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutRingtonesInput;
+};
+
+export type RingtoneCreateOrConnectWithoutLabelInput = {
+  where: Prisma.RingtoneWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.RingtoneCreateWithoutLabelInput,
+    Prisma.RingtoneUncheckedCreateWithoutLabelInput
+  >;
+};
+
+export type RingtoneUpsertWithWhereUniqueWithoutLabelInput = {
+  where: Prisma.RingtoneWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.RingtoneUpdateWithoutLabelInput,
+    Prisma.RingtoneUncheckedUpdateWithoutLabelInput
+  >;
+  create: Prisma.XOR<
+    Prisma.RingtoneCreateWithoutLabelInput,
+    Prisma.RingtoneUncheckedCreateWithoutLabelInput
+  >;
+};
+
+export type RingtoneUpdateWithWhereUniqueWithoutLabelInput = {
+  where: Prisma.RingtoneWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.RingtoneUpdateWithoutLabelInput,
+    Prisma.RingtoneUncheckedUpdateWithoutLabelInput
+  >;
+};
+
+export type RingtoneUpdateManyWithWhereWithoutLabelInput = {
+  where: Prisma.RingtoneScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.RingtoneUpdateManyMutationInput,
+    Prisma.RingtoneUncheckedUpdateManyWithoutLabelInput
+  >;
 };
 
 export type RingtoneCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutRingtonesInput;
+  label?: Prisma.LabelCreateNestedManyWithoutRingtonesInput;
 };
 
 export type RingtoneUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutRingtonesInput;
 };
 
 export type RingtoneCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
@@ -655,6 +859,7 @@ export type RingtoneUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput 
 export type RingtoneCreateManyWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RINGTONE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -662,22 +867,68 @@ export type RingtoneCreateManyWorkspaceAccountInput = {
 export type RingtoneUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutRingtonesNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutRingtonesNestedInput;
 };
 
 export type RingtoneUncheckedUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutRingtonesNestedInput;
 };
 
 export type RingtoneUncheckedUpdateManyWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type RingtoneUpdateWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutRingtonesNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutRingtonesNestedInput;
+};
+
+export type RingtoneUncheckedUpdateWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesNestedInput;
+};
+
+export type RingtoneUncheckedUpdateManyWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -685,17 +936,25 @@ export type RingtoneUncheckedUpdateManyWithoutWorkspaceAccountInput = {
 export type RingtoneUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutRingtonesNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutRingtonesNestedInput;
 };
 
 export type RingtoneUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+    | $Enums.RINGTONE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutRingtonesNestedInput;
 };
 
 export type RingtoneUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
@@ -703,6 +962,9 @@ export type RingtoneUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput 
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumRINGTONE_STATUSFieldUpdateOperationsInput
+      | $Enums.RINGTONE_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -713,6 +975,7 @@ export type RingtoneUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput 
 
 export type RingtoneCountOutputType = {
   sharedWorkspaceAccountAccess: number;
+  label: number;
 };
 
 export type RingtoneCountOutputTypeSelect<
@@ -722,6 +985,7 @@ export type RingtoneCountOutputTypeSelect<
   sharedWorkspaceAccountAccess?:
     | boolean
     | RingtoneCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+  label?: boolean | RingtoneCountOutputTypeCountLabelArgs;
 };
 
 /**
@@ -747,6 +1011,16 @@ export type RingtoneCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
   where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
+/**
+ * RingtoneCountOutputType without action
+ */
+export type RingtoneCountOutputTypeCountLabelArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LabelWhereInput;
+};
+
 export type RingtoneSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -755,12 +1029,14 @@ export type RingtoneSelect<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
     sharedWorkspaceAccountAccess?:
       | boolean
       | Prisma.Ringtone$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    label?: boolean | Prisma.Ringtone$labelArgs<ExtArgs>;
     _count?: boolean | Prisma.RingtoneCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["ringtone"]
@@ -774,6 +1050,7 @@ export type RingtoneSelectCreateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -789,6 +1066,7 @@ export type RingtoneSelectUpdateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -800,6 +1078,7 @@ export type RingtoneSelectScalar = {
   id?: boolean;
   workspaceAccountId?: boolean;
   metadata?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -808,7 +1087,12 @@ export type RingtoneOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "workspaceAccountId" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "workspaceAccountId"
+  | "metadata"
+  | "status"
+  | "createdAt"
+  | "updatedAt",
   ExtArgs["result"]["ringtone"]
 >;
 export type RingtoneInclude<
@@ -819,6 +1103,7 @@ export type RingtoneInclude<
   sharedWorkspaceAccountAccess?:
     | boolean
     | Prisma.Ringtone$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+  label?: boolean | Prisma.Ringtone$labelArgs<ExtArgs>;
   _count?: boolean | Prisma.RingtoneCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type RingtoneIncludeCreateManyAndReturn<
@@ -842,12 +1127,14 @@ export type $RingtonePayload<
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
     sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
       workspaceAccountId: string;
       metadata: runtime.JsonValue | null;
+      status: $Enums.RINGTONE_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1430,6 +1717,17 @@ export interface Prisma__RingtoneClient<
       >
     | Null
   >;
+  label<T extends Prisma.Ringtone$labelArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Ringtone$labelArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LabelPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1475,6 +1773,7 @@ export interface RingtoneFieldRefs {
   readonly id: Prisma.FieldRef<"Ringtone", "String">;
   readonly workspaceAccountId: Prisma.FieldRef<"Ringtone", "String">;
   readonly metadata: Prisma.FieldRef<"Ringtone", "Json">;
+  readonly status: Prisma.FieldRef<"Ringtone", "RINGTONE_STATUS">;
   readonly createdAt: Prisma.FieldRef<"Ringtone", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Ringtone", "DateTime">;
 }
@@ -1966,6 +2265,35 @@ export type Ringtone$sharedWorkspaceAccountAccessArgs<
   distinct?:
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * Ringtone.label
+ */
+export type Ringtone$labelArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Label
+   */
+  select?: Prisma.LabelSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Label
+   */
+  omit?: Prisma.LabelOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabelInclude<ExtArgs> | null;
+  where?: Prisma.LabelWhereInput;
+  orderBy?:
+    | Prisma.LabelOrderByWithRelationInput
+    | Prisma.LabelOrderByWithRelationInput[];
+  cursor?: Prisma.LabelWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.LabelScalarFieldEnum | Prisma.LabelScalarFieldEnum[];
 };
 
 /**

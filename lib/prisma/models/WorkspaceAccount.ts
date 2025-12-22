@@ -273,6 +273,8 @@ export type WorkspaceAccountWhereInput = {
   writers?: Prisma.WriterListRelationFilter;
   publishers?: Prisma.PublisherListRelationFilter;
   labels?: Prisma.LabelListRelationFilter;
+  transactions?: Prisma.TransactionListRelationFilter;
+  withdrawals?: Prisma.WithdrawalListRelationFilter;
 };
 
 export type WorkspaceAccountOrderByWithRelationInput = {
@@ -301,6 +303,8 @@ export type WorkspaceAccountOrderByWithRelationInput = {
   writers?: Prisma.WriterOrderByRelationAggregateInput;
   publishers?: Prisma.PublisherOrderByRelationAggregateInput;
   labels?: Prisma.LabelOrderByRelationAggregateInput;
+  transactions?: Prisma.TransactionOrderByRelationAggregateInput;
+  withdrawals?: Prisma.WithdrawalOrderByRelationAggregateInput;
 };
 
 export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
@@ -347,6 +351,8 @@ export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
     writers?: Prisma.WriterListRelationFilter;
     publishers?: Prisma.PublisherListRelationFilter;
     labels?: Prisma.LabelListRelationFilter;
+    transactions?: Prisma.TransactionListRelationFilter;
+    withdrawals?: Prisma.WithdrawalListRelationFilter;
   },
   "id" | "ownerId"
 >;
@@ -434,6 +440,8 @@ export type WorkspaceAccountCreateInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateInput = {
@@ -461,6 +469,8 @@ export type WorkspaceAccountUncheckedCreateInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUpdateInput = {
@@ -498,6 +508,8 @@ export type WorkspaceAccountUpdateInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateInput = {
@@ -535,6 +547,8 @@ export type WorkspaceAccountUncheckedUpdateInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateManyInput = {
@@ -1012,6 +1026,62 @@ export type WorkspaceAccountUpdateOneRequiredWithoutSharedAccessesNestedInput =
     >;
   };
 
+export type WorkspaceAccountCreateNestedOneWithoutTransactionsInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTransactionsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTransactionsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutTransactionsInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneWithoutTransactionsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTransactionsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTransactionsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutTransactionsInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutTransactionsInput;
+  disconnect?: Prisma.WorkspaceAccountWhereInput | boolean;
+  delete?: Prisma.WorkspaceAccountWhereInput | boolean;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutTransactionsInput,
+      Prisma.WorkspaceAccountUpdateWithoutTransactionsInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutTransactionsInput
+  >;
+};
+
+export type WorkspaceAccountCreateNestedOneWithoutWithdrawalsInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWithdrawalsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutWithdrawalsInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneWithoutWithdrawalsNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWithdrawalsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutWithdrawalsInput;
+  upsert?: Prisma.WorkspaceAccountUpsertWithoutWithdrawalsInput;
+  disconnect?: Prisma.WorkspaceAccountWhereInput | boolean;
+  delete?: Prisma.WorkspaceAccountWhereInput | boolean;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutWithdrawalsInput,
+      Prisma.WorkspaceAccountUpdateWithoutWithdrawalsInput
+    >,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput
+  >;
+};
+
 export type WorkspaceAccountCreateWithoutOwnerInput = {
   id?: string;
   name: string;
@@ -1036,6 +1106,8 @@ export type WorkspaceAccountCreateWithoutOwnerInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
@@ -1062,6 +1134,8 @@ export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutOwnerInput = {
@@ -1126,6 +1200,8 @@ export type WorkspaceAccountUpdateWithoutOwnerInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
@@ -1162,6 +1238,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutReleasesInput = {
@@ -1188,6 +1266,8 @@ export type WorkspaceAccountCreateWithoutReleasesInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutReleasesInput = {
@@ -1214,6 +1294,8 @@ export type WorkspaceAccountUncheckedCreateWithoutReleasesInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutReleasesInput = {
@@ -1278,6 +1360,8 @@ export type WorkspaceAccountUpdateWithoutReleasesInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutReleasesInput = {
@@ -1314,6 +1398,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutReleasesInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutTracksInput = {
@@ -1340,6 +1426,8 @@ export type WorkspaceAccountCreateWithoutTracksInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutTracksInput = {
@@ -1366,6 +1454,8 @@ export type WorkspaceAccountUncheckedCreateWithoutTracksInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutTracksInput = {
@@ -1430,6 +1520,8 @@ export type WorkspaceAccountUpdateWithoutTracksInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutTracksInput = {
@@ -1466,6 +1558,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutTracksInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutVideosInput = {
@@ -1492,6 +1586,8 @@ export type WorkspaceAccountCreateWithoutVideosInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutVideosInput = {
@@ -1518,6 +1614,8 @@ export type WorkspaceAccountUncheckedCreateWithoutVideosInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutVideosInput = {
@@ -1582,6 +1680,8 @@ export type WorkspaceAccountUpdateWithoutVideosInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutVideosInput = {
@@ -1618,6 +1718,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutVideosInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutRingtonesInput = {
@@ -1644,6 +1746,8 @@ export type WorkspaceAccountCreateWithoutRingtonesInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutRingtonesInput = {
@@ -1670,6 +1774,8 @@ export type WorkspaceAccountUncheckedCreateWithoutRingtonesInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutRingtonesInput = {
@@ -1734,6 +1840,8 @@ export type WorkspaceAccountUpdateWithoutRingtonesInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutRingtonesInput = {
@@ -1770,6 +1878,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutRingtonesInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutArtistsInput = {
@@ -1796,6 +1906,8 @@ export type WorkspaceAccountCreateWithoutArtistsInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutArtistsInput = {
@@ -1822,6 +1934,8 @@ export type WorkspaceAccountUncheckedCreateWithoutArtistsInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutArtistsInput = {
@@ -1886,6 +2000,8 @@ export type WorkspaceAccountUpdateWithoutArtistsInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutArtistsInput = {
@@ -1922,6 +2038,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutArtistsInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutPerformersInput = {
@@ -1948,6 +2066,8 @@ export type WorkspaceAccountCreateWithoutPerformersInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutPerformersInput = {
@@ -1974,6 +2094,8 @@ export type WorkspaceAccountUncheckedCreateWithoutPerformersInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutPerformersInput = {
@@ -2038,6 +2160,8 @@ export type WorkspaceAccountUpdateWithoutPerformersInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutPerformersInput = {
@@ -2074,6 +2198,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutPerformersInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutProducersAndEngineersInput = {
@@ -2100,6 +2226,8 @@ export type WorkspaceAccountCreateWithoutProducersAndEngineersInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput = {
@@ -2126,6 +2254,8 @@ export type WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutProducersAndEngineersInput = {
@@ -2191,6 +2321,8 @@ export type WorkspaceAccountUpdateWithoutProducersAndEngineersInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput = {
@@ -2227,6 +2359,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutWritersInput = {
@@ -2253,6 +2387,8 @@ export type WorkspaceAccountCreateWithoutWritersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutWritersInput = {
@@ -2279,6 +2415,8 @@ export type WorkspaceAccountUncheckedCreateWithoutWritersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutWritersInput = {
@@ -2343,6 +2481,8 @@ export type WorkspaceAccountUpdateWithoutWritersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutWritersInput = {
@@ -2379,6 +2519,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutWritersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutPublishersInput = {
@@ -2405,6 +2547,8 @@ export type WorkspaceAccountCreateWithoutPublishersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutPublishersInput = {
@@ -2431,6 +2575,8 @@ export type WorkspaceAccountUncheckedCreateWithoutPublishersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutPublishersInput = {
@@ -2495,6 +2641,8 @@ export type WorkspaceAccountUpdateWithoutPublishersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutPublishersInput = {
@@ -2531,6 +2679,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutPublishersInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutLabelsInput = {
@@ -2557,6 +2707,8 @@ export type WorkspaceAccountCreateWithoutLabelsInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutLabelsInput = {
@@ -2583,6 +2735,8 @@ export type WorkspaceAccountUncheckedCreateWithoutLabelsInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutLabelsInput = {
@@ -2647,6 +2801,8 @@ export type WorkspaceAccountUpdateWithoutLabelsInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
@@ -2683,6 +2839,8 @@ export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
   producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
@@ -2709,6 +2867,8 @@ export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
   writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
@@ -2735,6 +2895,8 @@ export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
   writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
 export type WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput = {
@@ -2799,6 +2961,8 @@ export type WorkspaceAccountUpdateWithoutSharedAccessesInput = {
   writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
@@ -2835,6 +2999,328 @@ export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
   writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutTransactionsInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutTransactionsInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutTransactionsInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTransactionsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTransactionsInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutTransactionsInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutTransactionsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutTransactionsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutTransactionsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutTransactionsInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutTransactionsInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutTransactionsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutTransactionsInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutWithdrawalsInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  subscriptionStatsAt: Date | string;
+  subscriptionEndsAt: Date | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutWithdrawalsInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWithdrawalsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutWithdrawalsInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutWithdrawalsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutWithdrawalsInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutWithdrawalsInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutWithdrawalsInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutWithdrawalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  status?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  subscriptionStatsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  subscriptionEndsAt?:
+    | Prisma.DateTimeFieldUpdateOperationsInput
+    | Date
+    | string;
+  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 /**
@@ -2853,6 +3339,8 @@ export type WorkspaceAccountCountOutputType = {
   writers: number;
   publishers: number;
   labels: number;
+  transactions: number;
+  withdrawals: number;
 };
 
 export type WorkspaceAccountCountOutputTypeSelect<
@@ -2874,6 +3362,8 @@ export type WorkspaceAccountCountOutputTypeSelect<
   writers?: boolean | WorkspaceAccountCountOutputTypeCountWritersArgs;
   publishers?: boolean | WorkspaceAccountCountOutputTypeCountPublishersArgs;
   labels?: boolean | WorkspaceAccountCountOutputTypeCountLabelsArgs;
+  transactions?: boolean | WorkspaceAccountCountOutputTypeCountTransactionsArgs;
+  withdrawals?: boolean | WorkspaceAccountCountOutputTypeCountWithdrawalsArgs;
 };
 
 /**
@@ -2999,6 +3489,26 @@ export type WorkspaceAccountCountOutputTypeCountLabelsArgs<
   where?: Prisma.LabelWhereInput;
 };
 
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountTransactionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.TransactionWhereInput;
+};
+
+/**
+ * WorkspaceAccountCountOutputType without action
+ */
+export type WorkspaceAccountCountOutputTypeCountWithdrawalsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.WithdrawalWhereInput;
+};
+
 export type WorkspaceAccountSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -3033,6 +3543,8 @@ export type WorkspaceAccountSelect<
     writers?: boolean | Prisma.WorkspaceAccount$writersArgs<ExtArgs>;
     publishers?: boolean | Prisma.WorkspaceAccount$publishersArgs<ExtArgs>;
     labels?: boolean | Prisma.WorkspaceAccount$labelsArgs<ExtArgs>;
+    transactions?: boolean | Prisma.WorkspaceAccount$transactionsArgs<ExtArgs>;
+    withdrawals?: boolean | Prisma.WorkspaceAccount$withdrawalsArgs<ExtArgs>;
     _count?:
       | boolean
       | Prisma.WorkspaceAccountCountOutputTypeDefaultArgs<ExtArgs>;
@@ -3141,6 +3653,8 @@ export type WorkspaceAccountInclude<
   writers?: boolean | Prisma.WorkspaceAccount$writersArgs<ExtArgs>;
   publishers?: boolean | Prisma.WorkspaceAccount$publishersArgs<ExtArgs>;
   labels?: boolean | Prisma.WorkspaceAccount$labelsArgs<ExtArgs>;
+  transactions?: boolean | Prisma.WorkspaceAccount$transactionsArgs<ExtArgs>;
+  withdrawals?: boolean | Prisma.WorkspaceAccount$withdrawalsArgs<ExtArgs>;
   _count?: boolean | Prisma.WorkspaceAccountCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type WorkspaceAccountIncludeCreateManyAndReturn<
@@ -3174,6 +3688,8 @@ export type $WorkspaceAccountPayload<
     writers: Prisma.$WriterPayload<ExtArgs>[];
     publishers: Prisma.$PublisherPayload<ExtArgs>[];
     labels: Prisma.$LabelPayload<ExtArgs>[];
+    transactions: Prisma.$TransactionPayload<ExtArgs>[];
+    withdrawals: Prisma.$WithdrawalPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -3892,6 +4408,30 @@ export interface Prisma__WorkspaceAccountClient<
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$LabelPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  transactions<
+    T extends Prisma.WorkspaceAccount$transactionsArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$transactionsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$TransactionPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  withdrawals<T extends Prisma.WorkspaceAccount$withdrawalsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$withdrawalsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$WithdrawalPayload<ExtArgs>,
         T,
         "findMany",
         GlobalOmitOptions
@@ -4751,6 +5291,68 @@ export type WorkspaceAccount$labelsArgs<
   take?: number;
   skip?: number;
   distinct?: Prisma.LabelScalarFieldEnum | Prisma.LabelScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.transactions
+ */
+export type WorkspaceAccount$transactionsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Transaction
+   */
+  select?: Prisma.TransactionSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Transaction
+   */
+  omit?: Prisma.TransactionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
+  where?: Prisma.TransactionWhereInput;
+  orderBy?:
+    | Prisma.TransactionOrderByWithRelationInput
+    | Prisma.TransactionOrderByWithRelationInput[];
+  cursor?: Prisma.TransactionWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.TransactionScalarFieldEnum
+    | Prisma.TransactionScalarFieldEnum[];
+};
+
+/**
+ * WorkspaceAccount.withdrawals
+ */
+export type WorkspaceAccount$withdrawalsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Withdrawal
+   */
+  select?: Prisma.WithdrawalSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Withdrawal
+   */
+  omit?: Prisma.WithdrawalOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WithdrawalInclude<ExtArgs> | null;
+  where?: Prisma.WithdrawalWhereInput;
+  orderBy?:
+    | Prisma.WithdrawalOrderByWithRelationInput
+    | Prisma.WithdrawalOrderByWithRelationInput[];
+  cursor?: Prisma.WithdrawalWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.WithdrawalScalarFieldEnum
+    | Prisma.WithdrawalScalarFieldEnum[];
 };
 
 /**

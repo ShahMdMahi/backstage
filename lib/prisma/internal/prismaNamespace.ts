@@ -1862,6 +1862,7 @@ export const ReleaseScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1873,6 +1874,7 @@ export const TrackScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1884,6 +1886,7 @@ export const VideoScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1895,6 +1898,7 @@ export const RingtoneScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1906,6 +1910,7 @@ export const ArtistScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1917,6 +1922,7 @@ export const PerformerScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1928,6 +1934,7 @@ export const ProducerAndEngineerScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1939,6 +1946,7 @@ export const WriterScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1950,6 +1958,7 @@ export const PublisherScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1961,6 +1970,7 @@ export const LabelScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1985,7 +1995,9 @@ export type SharedWorkspaceAccountAccessScalarFieldEnum =
 
 export const TransactionScalarFieldEnum = {
   id: "id",
+  workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -1995,7 +2007,9 @@ export type TransactionScalarFieldEnum =
 
 export const WithdrawalScalarFieldEnum = {
   id: "id",
+  workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
+  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -2161,6 +2175,150 @@ export type ListEnumWORKSPACE_ACCOUNT_STATUSFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_STATUS[]">;
 
 /**
+ * Reference to a field of type 'RELEASE_STATUS'
+ */
+export type EnumRELEASE_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "RELEASE_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'RELEASE_STATUS[]'
+ */
+export type ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RELEASE_STATUS[]">;
+
+/**
+ * Reference to a field of type 'TRACK_STATUS'
+ */
+export type EnumTRACK_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "TRACK_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'TRACK_STATUS[]'
+ */
+export type ListEnumTRACK_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "TRACK_STATUS[]"
+>;
+
+/**
+ * Reference to a field of type 'VIDEO_STATUS'
+ */
+export type EnumVIDEO_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "VIDEO_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'VIDEO_STATUS[]'
+ */
+export type ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "VIDEO_STATUS[]"
+>;
+
+/**
+ * Reference to a field of type 'RINGTONE_STATUS'
+ */
+export type EnumRINGTONE_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "RINGTONE_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'RINGTONE_STATUS[]'
+ */
+export type ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RINGTONE_STATUS[]">;
+
+/**
+ * Reference to a field of type 'ARTIST_STATUS'
+ */
+export type EnumARTIST_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "ARTIST_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'ARTIST_STATUS[]'
+ */
+export type ListEnumARTIST_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ARTIST_STATUS[]">;
+
+/**
+ * Reference to a field of type 'PERFORMER_STATUS'
+ */
+export type EnumPERFORMER_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "PERFORMER_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'PERFORMER_STATUS[]'
+ */
+export type ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PERFORMER_STATUS[]">;
+
+/**
+ * Reference to a field of type 'PRODUCER_AND_ENGINEER_STATUS'
+ */
+export type EnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PRODUCER_AND_ENGINEER_STATUS">;
+
+/**
+ * Reference to a field of type 'PRODUCER_AND_ENGINEER_STATUS[]'
+ */
+export type ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PRODUCER_AND_ENGINEER_STATUS[]">;
+
+/**
+ * Reference to a field of type 'WRITER_STATUS'
+ */
+export type EnumWRITER_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "WRITER_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'WRITER_STATUS[]'
+ */
+export type ListEnumWRITER_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WRITER_STATUS[]">;
+
+/**
+ * Reference to a field of type 'PUBLISHER_STATUS'
+ */
+export type EnumPUBLISHER_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "PUBLISHER_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'PUBLISHER_STATUS[]'
+ */
+export type ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PUBLISHER_STATUS[]">;
+
+/**
+ * Reference to a field of type 'LABEL_STATUS'
+ */
+export type EnumLABEL_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "LABEL_STATUS"
+>;
+
+/**
+ * Reference to a field of type 'LABEL_STATUS[]'
+ */
+export type ListEnumLABEL_STATUSFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "LABEL_STATUS[]"
+>;
+
+/**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_ROLE'
  */
 export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel> =
@@ -2183,6 +2341,30 @@ export type EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel> =
  */
 export type ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_STATUS[]">;
+
+/**
+ * Reference to a field of type 'TRANSACTION_STATUS'
+ */
+export type EnumTRANSACTION_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRANSACTION_STATUS">;
+
+/**
+ * Reference to a field of type 'TRANSACTION_STATUS[]'
+ */
+export type ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRANSACTION_STATUS[]">;
+
+/**
+ * Reference to a field of type 'WITHDRAWAL_STATUS'
+ */
+export type EnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAWAL_STATUS">;
+
+/**
+ * Reference to a field of type 'WITHDRAWAL_STATUS[]'
+ */
+export type ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAWAL_STATUS[]">;
 
 /**
  * Reference to a field of type 'Boolean'

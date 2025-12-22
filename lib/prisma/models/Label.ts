@@ -27,6 +27,7 @@ export type AggregateLabel = {
 export type LabelMinAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.LABEL_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -34,6 +35,7 @@ export type LabelMinAggregateOutputType = {
 export type LabelMaxAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.LABEL_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -42,6 +44,7 @@ export type LabelCountAggregateOutputType = {
   id: number;
   workspaceAccountId: number;
   metadata: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -50,6 +53,7 @@ export type LabelCountAggregateOutputType = {
 export type LabelMinAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -57,6 +61,7 @@ export type LabelMinAggregateInputType = {
 export type LabelMaxAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -65,6 +70,7 @@ export type LabelCountAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
   metadata?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -153,6 +159,7 @@ export type LabelGroupByOutputType = {
   id: string;
   workspaceAccountId: string;
   metadata: runtime.JsonValue | null;
+  status: $Enums.LABEL_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: LabelCountAggregateOutputType | null;
@@ -179,6 +186,7 @@ export type LabelWhereInput = {
   id?: Prisma.StringFilter<"Label"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Label"> | string;
   metadata?: Prisma.JsonNullableFilter<"Label">;
+  status?: Prisma.EnumLABEL_STATUSFilter<"Label"> | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
   workspaceAccount?: Prisma.XOR<
@@ -186,16 +194,35 @@ export type LabelWhereInput = {
     Prisma.WorkspaceAccountWhereInput
   >;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  releases?: Prisma.ReleaseListRelationFilter;
+  tracks?: Prisma.TrackListRelationFilter;
+  videos?: Prisma.VideoListRelationFilter;
+  ringtones?: Prisma.RingtoneListRelationFilter;
+  artists?: Prisma.ArtistListRelationFilter;
+  performers?: Prisma.PerformerListRelationFilter;
+  producersAndEngineers?: Prisma.ProducerAndEngineerListRelationFilter;
+  writers?: Prisma.WriterListRelationFilter;
+  publishers?: Prisma.PublisherListRelationFilter;
 };
 
 export type LabelOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  releases?: Prisma.ReleaseOrderByRelationAggregateInput;
+  tracks?: Prisma.TrackOrderByRelationAggregateInput;
+  videos?: Prisma.VideoOrderByRelationAggregateInput;
+  ringtones?: Prisma.RingtoneOrderByRelationAggregateInput;
+  artists?: Prisma.ArtistOrderByRelationAggregateInput;
+  performers?: Prisma.PerformerOrderByRelationAggregateInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerOrderByRelationAggregateInput;
+  writers?: Prisma.WriterOrderByRelationAggregateInput;
+  publishers?: Prisma.PublisherOrderByRelationAggregateInput;
 };
 
 export type LabelWhereUniqueInput = Prisma.AtLeast<
@@ -206,6 +233,7 @@ export type LabelWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.LabelWhereInput | Prisma.LabelWhereInput[];
     workspaceAccountId?: Prisma.StringFilter<"Label"> | string;
     metadata?: Prisma.JsonNullableFilter<"Label">;
+    status?: Prisma.EnumLABEL_STATUSFilter<"Label"> | $Enums.LABEL_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
     workspaceAccount?: Prisma.XOR<
@@ -213,6 +241,15 @@ export type LabelWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountWhereInput
     >;
     sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    releases?: Prisma.ReleaseListRelationFilter;
+    tracks?: Prisma.TrackListRelationFilter;
+    videos?: Prisma.VideoListRelationFilter;
+    ringtones?: Prisma.RingtoneListRelationFilter;
+    artists?: Prisma.ArtistListRelationFilter;
+    performers?: Prisma.PerformerListRelationFilter;
+    producersAndEngineers?: Prisma.ProducerAndEngineerListRelationFilter;
+    writers?: Prisma.WriterListRelationFilter;
+    publishers?: Prisma.PublisherListRelationFilter;
   },
   "id"
 >;
@@ -221,6 +258,7 @@ export type LabelOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.LabelCountOrderByAggregateInput;
@@ -239,6 +277,9 @@ export type LabelScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Label"> | string;
   workspaceAccountId?: Prisma.StringWithAggregatesFilter<"Label"> | string;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Label">;
+  status?:
+    | Prisma.EnumLABEL_STATUSWithAggregatesFilter<"Label">
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Label"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Label"> | Date | string;
 };
@@ -246,43 +287,88 @@ export type LabelScalarWhereWithAggregatesInput = {
 export type LabelCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
 };
 
 export type LabelUncheckedCreateInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
 };
 
 export type LabelUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
 };
 
 export type LabelUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
 };
 
 export type LabelCreateManyInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -290,6 +376,9 @@ export type LabelCreateManyInput = {
 export type LabelUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -298,6 +387,9 @@ export type LabelUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -316,6 +408,7 @@ export type LabelCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -323,6 +416,7 @@ export type LabelCountOrderByAggregateInput = {
 export type LabelMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -330,6 +424,7 @@ export type LabelMaxOrderByAggregateInput = {
 export type LabelMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -420,6 +515,748 @@ export type LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput = {
   deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
 };
 
+export type LabelCreateNestedManyWithoutReleasesInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutReleasesInput,
+        Prisma.LabelUncheckedCreateWithoutReleasesInput
+      >
+    | Prisma.LabelCreateWithoutReleasesInput[]
+    | Prisma.LabelUncheckedCreateWithoutReleasesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutReleasesInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutReleasesInput,
+        Prisma.LabelUncheckedCreateWithoutReleasesInput
+      >
+    | Prisma.LabelCreateWithoutReleasesInput[]
+    | Prisma.LabelUncheckedCreateWithoutReleasesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutReleasesNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutReleasesInput,
+        Prisma.LabelUncheckedCreateWithoutReleasesInput
+      >
+    | Prisma.LabelCreateWithoutReleasesInput[]
+    | Prisma.LabelUncheckedCreateWithoutReleasesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutReleasesInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutReleasesInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutReleasesInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutReleasesInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutReleasesInput
+    | Prisma.LabelUpdateManyWithWhereWithoutReleasesInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutReleasesNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutReleasesInput,
+        Prisma.LabelUncheckedCreateWithoutReleasesInput
+      >
+    | Prisma.LabelCreateWithoutReleasesInput[]
+    | Prisma.LabelUncheckedCreateWithoutReleasesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput
+    | Prisma.LabelCreateOrConnectWithoutReleasesInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutReleasesInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutReleasesInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutReleasesInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutReleasesInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutReleasesInput
+    | Prisma.LabelUpdateManyWithWhereWithoutReleasesInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutTracksInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutTracksInput,
+        Prisma.LabelUncheckedCreateWithoutTracksInput
+      >
+    | Prisma.LabelCreateWithoutTracksInput[]
+    | Prisma.LabelUncheckedCreateWithoutTracksInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutTracksInput
+    | Prisma.LabelCreateOrConnectWithoutTracksInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutTracksInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutTracksInput,
+        Prisma.LabelUncheckedCreateWithoutTracksInput
+      >
+    | Prisma.LabelCreateWithoutTracksInput[]
+    | Prisma.LabelUncheckedCreateWithoutTracksInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutTracksInput
+    | Prisma.LabelCreateOrConnectWithoutTracksInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutTracksNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutTracksInput,
+        Prisma.LabelUncheckedCreateWithoutTracksInput
+      >
+    | Prisma.LabelCreateWithoutTracksInput[]
+    | Prisma.LabelUncheckedCreateWithoutTracksInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutTracksInput
+    | Prisma.LabelCreateOrConnectWithoutTracksInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutTracksInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutTracksInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutTracksInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutTracksInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutTracksInput
+    | Prisma.LabelUpdateManyWithWhereWithoutTracksInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutTracksNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutTracksInput,
+        Prisma.LabelUncheckedCreateWithoutTracksInput
+      >
+    | Prisma.LabelCreateWithoutTracksInput[]
+    | Prisma.LabelUncheckedCreateWithoutTracksInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutTracksInput
+    | Prisma.LabelCreateOrConnectWithoutTracksInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutTracksInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutTracksInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutTracksInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutTracksInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutTracksInput
+    | Prisma.LabelUpdateManyWithWhereWithoutTracksInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutVideosInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutVideosInput,
+        Prisma.LabelUncheckedCreateWithoutVideosInput
+      >
+    | Prisma.LabelCreateWithoutVideosInput[]
+    | Prisma.LabelUncheckedCreateWithoutVideosInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutVideosInput
+    | Prisma.LabelCreateOrConnectWithoutVideosInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutVideosInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutVideosInput,
+        Prisma.LabelUncheckedCreateWithoutVideosInput
+      >
+    | Prisma.LabelCreateWithoutVideosInput[]
+    | Prisma.LabelUncheckedCreateWithoutVideosInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutVideosInput
+    | Prisma.LabelCreateOrConnectWithoutVideosInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutVideosNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutVideosInput,
+        Prisma.LabelUncheckedCreateWithoutVideosInput
+      >
+    | Prisma.LabelCreateWithoutVideosInput[]
+    | Prisma.LabelUncheckedCreateWithoutVideosInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutVideosInput
+    | Prisma.LabelCreateOrConnectWithoutVideosInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutVideosInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutVideosInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutVideosInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutVideosInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutVideosInput
+    | Prisma.LabelUpdateManyWithWhereWithoutVideosInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutVideosNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutVideosInput,
+        Prisma.LabelUncheckedCreateWithoutVideosInput
+      >
+    | Prisma.LabelCreateWithoutVideosInput[]
+    | Prisma.LabelUncheckedCreateWithoutVideosInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutVideosInput
+    | Prisma.LabelCreateOrConnectWithoutVideosInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutVideosInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutVideosInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutVideosInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutVideosInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutVideosInput
+    | Prisma.LabelUpdateManyWithWhereWithoutVideosInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutRingtonesInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutRingtonesInput,
+        Prisma.LabelUncheckedCreateWithoutRingtonesInput
+      >
+    | Prisma.LabelCreateWithoutRingtonesInput[]
+    | Prisma.LabelUncheckedCreateWithoutRingtonesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutRingtonesInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutRingtonesInput,
+        Prisma.LabelUncheckedCreateWithoutRingtonesInput
+      >
+    | Prisma.LabelCreateWithoutRingtonesInput[]
+    | Prisma.LabelUncheckedCreateWithoutRingtonesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutRingtonesNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutRingtonesInput,
+        Prisma.LabelUncheckedCreateWithoutRingtonesInput
+      >
+    | Prisma.LabelCreateWithoutRingtonesInput[]
+    | Prisma.LabelUncheckedCreateWithoutRingtonesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutRingtonesInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutRingtonesInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutRingtonesInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutRingtonesInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutRingtonesInput
+    | Prisma.LabelUpdateManyWithWhereWithoutRingtonesInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutRingtonesNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutRingtonesInput,
+        Prisma.LabelUncheckedCreateWithoutRingtonesInput
+      >
+    | Prisma.LabelCreateWithoutRingtonesInput[]
+    | Prisma.LabelUncheckedCreateWithoutRingtonesInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput
+    | Prisma.LabelCreateOrConnectWithoutRingtonesInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutRingtonesInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutRingtonesInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutRingtonesInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutRingtonesInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutRingtonesInput
+    | Prisma.LabelUpdateManyWithWhereWithoutRingtonesInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutArtistsInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutArtistsInput,
+        Prisma.LabelUncheckedCreateWithoutArtistsInput
+      >
+    | Prisma.LabelCreateWithoutArtistsInput[]
+    | Prisma.LabelUncheckedCreateWithoutArtistsInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutArtistsInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutArtistsInput,
+        Prisma.LabelUncheckedCreateWithoutArtistsInput
+      >
+    | Prisma.LabelCreateWithoutArtistsInput[]
+    | Prisma.LabelUncheckedCreateWithoutArtistsInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutArtistsNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutArtistsInput,
+        Prisma.LabelUncheckedCreateWithoutArtistsInput
+      >
+    | Prisma.LabelCreateWithoutArtistsInput[]
+    | Prisma.LabelUncheckedCreateWithoutArtistsInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutArtistsInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutArtistsInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutArtistsInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutArtistsInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutArtistsInput
+    | Prisma.LabelUpdateManyWithWhereWithoutArtistsInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutArtistsNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutArtistsInput,
+        Prisma.LabelUncheckedCreateWithoutArtistsInput
+      >
+    | Prisma.LabelCreateWithoutArtistsInput[]
+    | Prisma.LabelUncheckedCreateWithoutArtistsInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput
+    | Prisma.LabelCreateOrConnectWithoutArtistsInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutArtistsInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutArtistsInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutArtistsInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutArtistsInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutArtistsInput
+    | Prisma.LabelUpdateManyWithWhereWithoutArtistsInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutPerformersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPerformersInput,
+        Prisma.LabelUncheckedCreateWithoutPerformersInput
+      >
+    | Prisma.LabelCreateWithoutPerformersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPerformersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutPerformersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPerformersInput,
+        Prisma.LabelUncheckedCreateWithoutPerformersInput
+      >
+    | Prisma.LabelCreateWithoutPerformersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPerformersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutPerformersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPerformersInput,
+        Prisma.LabelUncheckedCreateWithoutPerformersInput
+      >
+    | Prisma.LabelCreateWithoutPerformersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPerformersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPerformersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPerformersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPerformersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPerformersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutPerformersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutPerformersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutPerformersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPerformersInput,
+        Prisma.LabelUncheckedCreateWithoutPerformersInput
+      >
+    | Prisma.LabelCreateWithoutPerformersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPerformersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput
+    | Prisma.LabelCreateOrConnectWithoutPerformersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPerformersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPerformersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPerformersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPerformersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutPerformersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutPerformersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutProducersAndEngineersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutProducersAndEngineersInput,
+        Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput
+      >
+    | Prisma.LabelCreateWithoutProducersAndEngineersInput[]
+    | Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutProducersAndEngineersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutProducersAndEngineersInput,
+        Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput
+      >
+    | Prisma.LabelCreateWithoutProducersAndEngineersInput[]
+    | Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutProducersAndEngineersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutProducersAndEngineersInput,
+        Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput
+      >
+    | Prisma.LabelCreateWithoutProducersAndEngineersInput[]
+    | Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutProducersAndEngineersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutProducersAndEngineersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutProducersAndEngineersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutProducersAndEngineersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutProducersAndEngineersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutProducersAndEngineersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutProducersAndEngineersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutProducersAndEngineersInput,
+        Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput
+      >
+    | Prisma.LabelCreateWithoutProducersAndEngineersInput[]
+    | Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput
+    | Prisma.LabelCreateOrConnectWithoutProducersAndEngineersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutProducersAndEngineersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutProducersAndEngineersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutProducersAndEngineersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutProducersAndEngineersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutProducersAndEngineersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutProducersAndEngineersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutWritersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutWritersInput,
+        Prisma.LabelUncheckedCreateWithoutWritersInput
+      >
+    | Prisma.LabelCreateWithoutWritersInput[]
+    | Prisma.LabelUncheckedCreateWithoutWritersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutWritersInput
+    | Prisma.LabelCreateOrConnectWithoutWritersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutWritersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutWritersInput,
+        Prisma.LabelUncheckedCreateWithoutWritersInput
+      >
+    | Prisma.LabelCreateWithoutWritersInput[]
+    | Prisma.LabelUncheckedCreateWithoutWritersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutWritersInput
+    | Prisma.LabelCreateOrConnectWithoutWritersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutWritersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutWritersInput,
+        Prisma.LabelUncheckedCreateWithoutWritersInput
+      >
+    | Prisma.LabelCreateWithoutWritersInput[]
+    | Prisma.LabelUncheckedCreateWithoutWritersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutWritersInput
+    | Prisma.LabelCreateOrConnectWithoutWritersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutWritersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutWritersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutWritersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutWritersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutWritersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutWritersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutWritersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutWritersInput,
+        Prisma.LabelUncheckedCreateWithoutWritersInput
+      >
+    | Prisma.LabelCreateWithoutWritersInput[]
+    | Prisma.LabelUncheckedCreateWithoutWritersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutWritersInput
+    | Prisma.LabelCreateOrConnectWithoutWritersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutWritersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutWritersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutWritersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutWritersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutWritersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutWritersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelCreateNestedManyWithoutPublishersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPublishersInput,
+        Prisma.LabelUncheckedCreateWithoutPublishersInput
+      >
+    | Prisma.LabelCreateWithoutPublishersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPublishersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUncheckedCreateNestedManyWithoutPublishersInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPublishersInput,
+        Prisma.LabelUncheckedCreateWithoutPublishersInput
+      >
+    | Prisma.LabelCreateWithoutPublishersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPublishersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+};
+
+export type LabelUpdateManyWithoutPublishersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPublishersInput,
+        Prisma.LabelUncheckedCreateWithoutPublishersInput
+      >
+    | Prisma.LabelCreateWithoutPublishersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPublishersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPublishersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPublishersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPublishersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPublishersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutPublishersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutPublishersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type LabelUncheckedUpdateManyWithoutPublishersNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.LabelCreateWithoutPublishersInput,
+        Prisma.LabelUncheckedCreateWithoutPublishersInput
+      >
+    | Prisma.LabelCreateWithoutPublishersInput[]
+    | Prisma.LabelUncheckedCreateWithoutPublishersInput[];
+  connectOrCreate?:
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput
+    | Prisma.LabelCreateOrConnectWithoutPublishersInput[];
+  upsert?:
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPublishersInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutPublishersInput[];
+  set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
+  update?:
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPublishersInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutPublishersInput[];
+  updateMany?:
+    | Prisma.LabelUpdateManyWithWhereWithoutPublishersInput
+    | Prisma.LabelUpdateManyWithWhereWithoutPublishersInput[];
+  deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
+};
+
+export type EnumLABEL_STATUSFieldUpdateOperationsInput = {
+  set?: $Enums.LABEL_STATUS;
+};
+
 export type LabelCreateNestedManyWithoutSharedWorkspaceAccountAccessInput = {
   create?:
     | Prisma.XOR<
@@ -507,17 +1344,37 @@ export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInp
 export type LabelCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
 };
 
 export type LabelUncheckedCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
 };
 
 export type LabelCreateOrConnectWithoutWorkspaceAccountInput = {
@@ -570,24 +1427,693 @@ export type LabelScalarWhereInput = {
   id?: Prisma.StringFilter<"Label"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Label"> | string;
   metadata?: Prisma.JsonNullableFilter<"Label">;
+  status?: Prisma.EnumLABEL_STATUSFilter<"Label"> | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
+};
+
+export type LabelCreateWithoutReleasesInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutReleasesInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutReleasesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutReleasesInput,
+    Prisma.LabelUncheckedCreateWithoutReleasesInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutReleasesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutReleasesInput,
+    Prisma.LabelUncheckedUpdateWithoutReleasesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutReleasesInput,
+    Prisma.LabelUncheckedCreateWithoutReleasesInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutReleasesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutReleasesInput,
+    Prisma.LabelUncheckedUpdateWithoutReleasesInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutReleasesInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutReleasesInput
+  >;
+};
+
+export type LabelCreateWithoutTracksInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutTracksInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutTracksInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutTracksInput,
+    Prisma.LabelUncheckedCreateWithoutTracksInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutTracksInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutTracksInput,
+    Prisma.LabelUncheckedUpdateWithoutTracksInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutTracksInput,
+    Prisma.LabelUncheckedCreateWithoutTracksInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutTracksInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutTracksInput,
+    Prisma.LabelUncheckedUpdateWithoutTracksInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutTracksInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutTracksInput
+  >;
+};
+
+export type LabelCreateWithoutVideosInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutVideosInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutVideosInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutVideosInput,
+    Prisma.LabelUncheckedCreateWithoutVideosInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutVideosInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutVideosInput,
+    Prisma.LabelUncheckedUpdateWithoutVideosInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutVideosInput,
+    Prisma.LabelUncheckedCreateWithoutVideosInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutVideosInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutVideosInput,
+    Prisma.LabelUncheckedUpdateWithoutVideosInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutVideosInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutVideosInput
+  >;
+};
+
+export type LabelCreateWithoutRingtonesInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutRingtonesInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutRingtonesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutRingtonesInput,
+    Prisma.LabelUncheckedCreateWithoutRingtonesInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutRingtonesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutRingtonesInput,
+    Prisma.LabelUncheckedUpdateWithoutRingtonesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutRingtonesInput,
+    Prisma.LabelUncheckedCreateWithoutRingtonesInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutRingtonesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutRingtonesInput,
+    Prisma.LabelUncheckedUpdateWithoutRingtonesInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutRingtonesInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutRingtonesInput
+  >;
+};
+
+export type LabelCreateWithoutArtistsInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutArtistsInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutArtistsInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutArtistsInput,
+    Prisma.LabelUncheckedCreateWithoutArtistsInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutArtistsInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutArtistsInput,
+    Prisma.LabelUncheckedUpdateWithoutArtistsInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutArtistsInput,
+    Prisma.LabelUncheckedCreateWithoutArtistsInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutArtistsInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutArtistsInput,
+    Prisma.LabelUncheckedUpdateWithoutArtistsInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutArtistsInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutArtistsInput
+  >;
+};
+
+export type LabelCreateWithoutPerformersInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutPerformersInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutPerformersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutPerformersInput,
+    Prisma.LabelUncheckedCreateWithoutPerformersInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutPerformersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutPerformersInput,
+    Prisma.LabelUncheckedUpdateWithoutPerformersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutPerformersInput,
+    Prisma.LabelUncheckedCreateWithoutPerformersInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutPerformersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutPerformersInput,
+    Prisma.LabelUncheckedUpdateWithoutPerformersInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutPerformersInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutPerformersInput
+  >;
+};
+
+export type LabelCreateWithoutProducersAndEngineersInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutProducersAndEngineersInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutProducersAndEngineersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutProducersAndEngineersInput,
+    Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutProducersAndEngineersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutProducersAndEngineersInput,
+    Prisma.LabelUncheckedUpdateWithoutProducersAndEngineersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutProducersAndEngineersInput,
+    Prisma.LabelUncheckedCreateWithoutProducersAndEngineersInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutProducersAndEngineersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutProducersAndEngineersInput,
+    Prisma.LabelUncheckedUpdateWithoutProducersAndEngineersInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutProducersAndEngineersInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutProducersAndEngineersInput
+  >;
+};
+
+export type LabelCreateWithoutWritersInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutWritersInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutWritersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutWritersInput,
+    Prisma.LabelUncheckedCreateWithoutWritersInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutWritersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutWritersInput,
+    Prisma.LabelUncheckedUpdateWithoutWritersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutWritersInput,
+    Prisma.LabelUncheckedCreateWithoutWritersInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutWritersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutWritersInput,
+    Prisma.LabelUncheckedUpdateWithoutWritersInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutWritersInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutWritersInput
+  >;
+};
+
+export type LabelCreateWithoutPublishersInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutPublishersInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutPublishersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutPublishersInput,
+    Prisma.LabelUncheckedCreateWithoutPublishersInput
+  >;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutPublishersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutPublishersInput,
+    Prisma.LabelUncheckedUpdateWithoutPublishersInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutPublishersInput,
+    Prisma.LabelUncheckedCreateWithoutPublishersInput
+  >;
+};
+
+export type LabelUpdateWithWhereUniqueWithoutPublishersInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutPublishersInput,
+    Prisma.LabelUncheckedUpdateWithoutPublishersInput
+  >;
+};
+
+export type LabelUpdateManyWithWhereWithoutPublishersInput = {
+  where: Prisma.LabelScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateManyMutationInput,
+    Prisma.LabelUncheckedUpdateManyWithoutPublishersInput
+  >;
 };
 
 export type LabelCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
 };
 
 export type LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
 };
 
 export type LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
@@ -631,6 +2157,7 @@ export type LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput = {
 export type LabelCreateManyWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -638,22 +2165,508 @@ export type LabelCreateManyWorkspaceAccountInput = {
 export type LabelUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
 };
 
 export type LabelUncheckedUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
 };
 
 export type LabelUncheckedUpdateManyWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutReleasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutReleasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutReleasesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutTracksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutTracksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutTracksInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutVideosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutVideosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutVideosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutRingtonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutRingtonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutRingtonesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutArtistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutArtistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutArtistsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutPerformersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutPerformersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutPerformersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutProducersAndEngineersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutProducersAndEngineersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutProducersAndEngineersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutWritersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutWritersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutWritersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type LabelUpdateWithoutPublishersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutPublishersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateManyWithoutPublishersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -661,23 +2674,50 @@ export type LabelUncheckedUpdateManyWithoutWorkspaceAccountInput = {
 export type LabelUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
 };
 
 export type LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
 };
 
 export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -688,6 +2728,15 @@ export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput = {
 
 export type LabelCountOutputType = {
   sharedWorkspaceAccountAccess: number;
+  releases: number;
+  tracks: number;
+  videos: number;
+  ringtones: number;
+  artists: number;
+  performers: number;
+  producersAndEngineers: number;
+  writers: number;
+  publishers: number;
 };
 
 export type LabelCountOutputTypeSelect<
@@ -697,6 +2746,17 @@ export type LabelCountOutputTypeSelect<
   sharedWorkspaceAccountAccess?:
     | boolean
     | LabelCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+  releases?: boolean | LabelCountOutputTypeCountReleasesArgs;
+  tracks?: boolean | LabelCountOutputTypeCountTracksArgs;
+  videos?: boolean | LabelCountOutputTypeCountVideosArgs;
+  ringtones?: boolean | LabelCountOutputTypeCountRingtonesArgs;
+  artists?: boolean | LabelCountOutputTypeCountArtistsArgs;
+  performers?: boolean | LabelCountOutputTypeCountPerformersArgs;
+  producersAndEngineers?:
+    | boolean
+    | LabelCountOutputTypeCountProducersAndEngineersArgs;
+  writers?: boolean | LabelCountOutputTypeCountWritersArgs;
+  publishers?: boolean | LabelCountOutputTypeCountPublishersArgs;
 };
 
 /**
@@ -722,6 +2782,96 @@ export type LabelCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
   where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountReleasesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ReleaseWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountTracksArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.TrackWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountVideosArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.VideoWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountRingtonesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.RingtoneWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountArtistsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ArtistWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountPerformersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PerformerWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountProducersAndEngineersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.ProducerAndEngineerWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountWritersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.WriterWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountPublishersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.PublisherWhereInput;
+};
+
 export type LabelSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -730,12 +2880,24 @@ export type LabelSelect<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
     sharedWorkspaceAccountAccess?:
       | boolean
       | Prisma.Label$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    releases?: boolean | Prisma.Label$releasesArgs<ExtArgs>;
+    tracks?: boolean | Prisma.Label$tracksArgs<ExtArgs>;
+    videos?: boolean | Prisma.Label$videosArgs<ExtArgs>;
+    ringtones?: boolean | Prisma.Label$ringtonesArgs<ExtArgs>;
+    artists?: boolean | Prisma.Label$artistsArgs<ExtArgs>;
+    performers?: boolean | Prisma.Label$performersArgs<ExtArgs>;
+    producersAndEngineers?:
+      | boolean
+      | Prisma.Label$producersAndEngineersArgs<ExtArgs>;
+    writers?: boolean | Prisma.Label$writersArgs<ExtArgs>;
+    publishers?: boolean | Prisma.Label$publishersArgs<ExtArgs>;
     _count?: boolean | Prisma.LabelCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["label"]
@@ -749,6 +2911,7 @@ export type LabelSelectCreateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -764,6 +2927,7 @@ export type LabelSelectUpdateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -775,6 +2939,7 @@ export type LabelSelectScalar = {
   id?: boolean;
   workspaceAccountId?: boolean;
   metadata?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -783,7 +2948,12 @@ export type LabelOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "workspaceAccountId" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "workspaceAccountId"
+  | "metadata"
+  | "status"
+  | "createdAt"
+  | "updatedAt",
   ExtArgs["result"]["label"]
 >;
 export type LabelInclude<
@@ -794,6 +2964,17 @@ export type LabelInclude<
   sharedWorkspaceAccountAccess?:
     | boolean
     | Prisma.Label$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+  releases?: boolean | Prisma.Label$releasesArgs<ExtArgs>;
+  tracks?: boolean | Prisma.Label$tracksArgs<ExtArgs>;
+  videos?: boolean | Prisma.Label$videosArgs<ExtArgs>;
+  ringtones?: boolean | Prisma.Label$ringtonesArgs<ExtArgs>;
+  artists?: boolean | Prisma.Label$artistsArgs<ExtArgs>;
+  performers?: boolean | Prisma.Label$performersArgs<ExtArgs>;
+  producersAndEngineers?:
+    | boolean
+    | Prisma.Label$producersAndEngineersArgs<ExtArgs>;
+  writers?: boolean | Prisma.Label$writersArgs<ExtArgs>;
+  publishers?: boolean | Prisma.Label$publishersArgs<ExtArgs>;
   _count?: boolean | Prisma.LabelCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type LabelIncludeCreateManyAndReturn<
@@ -817,12 +2998,22 @@ export type $LabelPayload<
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
     sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    releases: Prisma.$ReleasePayload<ExtArgs>[];
+    tracks: Prisma.$TrackPayload<ExtArgs>[];
+    videos: Prisma.$VideoPayload<ExtArgs>[];
+    ringtones: Prisma.$RingtonePayload<ExtArgs>[];
+    artists: Prisma.$ArtistPayload<ExtArgs>[];
+    performers: Prisma.$PerformerPayload<ExtArgs>[];
+    producersAndEngineers: Prisma.$ProducerAndEngineerPayload<ExtArgs>[];
+    writers: Prisma.$WriterPayload<ExtArgs>[];
+    publishers: Prisma.$PublisherPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
       workspaceAccountId: string;
       metadata: runtime.JsonValue | null;
+      status: $Enums.LABEL_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1405,6 +3596,107 @@ export interface Prisma__LabelClient<
       >
     | Null
   >;
+  releases<T extends Prisma.Label$releasesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$releasesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ReleasePayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  tracks<T extends Prisma.Label$tracksArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$tracksArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$TrackPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  videos<T extends Prisma.Label$videosArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$videosArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$VideoPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  ringtones<T extends Prisma.Label$ringtonesArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$ringtonesArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$RingtonePayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  artists<T extends Prisma.Label$artistsArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$artistsArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ArtistPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  performers<T extends Prisma.Label$performersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$performersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PerformerPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  producersAndEngineers<
+    T extends Prisma.Label$producersAndEngineersArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.Label$producersAndEngineersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$ProducerAndEngineerPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  writers<T extends Prisma.Label$writersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$writersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$WriterPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  publishers<T extends Prisma.Label$publishersArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$publishersArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$PublisherPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1450,6 +3742,7 @@ export interface LabelFieldRefs {
   readonly id: Prisma.FieldRef<"Label", "String">;
   readonly workspaceAccountId: Prisma.FieldRef<"Label", "String">;
   readonly metadata: Prisma.FieldRef<"Label", "Json">;
+  readonly status: Prisma.FieldRef<"Label", "LABEL_STATUS">;
   readonly createdAt: Prisma.FieldRef<"Label", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Label", "DateTime">;
 }
@@ -1929,6 +4222,273 @@ export type Label$sharedWorkspaceAccountAccessArgs<
   distinct?:
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * Label.releases
+ */
+export type Label$releasesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Release
+   */
+  select?: Prisma.ReleaseSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Release
+   */
+  omit?: Prisma.ReleaseOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReleaseInclude<ExtArgs> | null;
+  where?: Prisma.ReleaseWhereInput;
+  orderBy?:
+    | Prisma.ReleaseOrderByWithRelationInput
+    | Prisma.ReleaseOrderByWithRelationInput[];
+  cursor?: Prisma.ReleaseWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.ReleaseScalarFieldEnum | Prisma.ReleaseScalarFieldEnum[];
+};
+
+/**
+ * Label.tracks
+ */
+export type Label$tracksArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Track
+   */
+  select?: Prisma.TrackSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Track
+   */
+  omit?: Prisma.TrackOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TrackInclude<ExtArgs> | null;
+  where?: Prisma.TrackWhereInput;
+  orderBy?:
+    | Prisma.TrackOrderByWithRelationInput
+    | Prisma.TrackOrderByWithRelationInput[];
+  cursor?: Prisma.TrackWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.TrackScalarFieldEnum | Prisma.TrackScalarFieldEnum[];
+};
+
+/**
+ * Label.videos
+ */
+export type Label$videosArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Video
+   */
+  select?: Prisma.VideoSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Video
+   */
+  omit?: Prisma.VideoOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VideoInclude<ExtArgs> | null;
+  where?: Prisma.VideoWhereInput;
+  orderBy?:
+    | Prisma.VideoOrderByWithRelationInput
+    | Prisma.VideoOrderByWithRelationInput[];
+  cursor?: Prisma.VideoWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.VideoScalarFieldEnum | Prisma.VideoScalarFieldEnum[];
+};
+
+/**
+ * Label.ringtones
+ */
+export type Label$ringtonesArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Ringtone
+   */
+  select?: Prisma.RingtoneSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Ringtone
+   */
+  omit?: Prisma.RingtoneOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RingtoneInclude<ExtArgs> | null;
+  where?: Prisma.RingtoneWhereInput;
+  orderBy?:
+    | Prisma.RingtoneOrderByWithRelationInput
+    | Prisma.RingtoneOrderByWithRelationInput[];
+  cursor?: Prisma.RingtoneWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.RingtoneScalarFieldEnum | Prisma.RingtoneScalarFieldEnum[];
+};
+
+/**
+ * Label.artists
+ */
+export type Label$artistsArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Artist
+   */
+  select?: Prisma.ArtistSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Artist
+   */
+  omit?: Prisma.ArtistOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ArtistInclude<ExtArgs> | null;
+  where?: Prisma.ArtistWhereInput;
+  orderBy?:
+    | Prisma.ArtistOrderByWithRelationInput
+    | Prisma.ArtistOrderByWithRelationInput[];
+  cursor?: Prisma.ArtistWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.ArtistScalarFieldEnum | Prisma.ArtistScalarFieldEnum[];
+};
+
+/**
+ * Label.performers
+ */
+export type Label$performersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Performer
+   */
+  select?: Prisma.PerformerSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Performer
+   */
+  omit?: Prisma.PerformerOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PerformerInclude<ExtArgs> | null;
+  where?: Prisma.PerformerWhereInput;
+  orderBy?:
+    | Prisma.PerformerOrderByWithRelationInput
+    | Prisma.PerformerOrderByWithRelationInput[];
+  cursor?: Prisma.PerformerWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PerformerScalarFieldEnum
+    | Prisma.PerformerScalarFieldEnum[];
+};
+
+/**
+ * Label.producersAndEngineers
+ */
+export type Label$producersAndEngineersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the ProducerAndEngineer
+   */
+  select?: Prisma.ProducerAndEngineerSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the ProducerAndEngineer
+   */
+  omit?: Prisma.ProducerAndEngineerOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProducerAndEngineerInclude<ExtArgs> | null;
+  where?: Prisma.ProducerAndEngineerWhereInput;
+  orderBy?:
+    | Prisma.ProducerAndEngineerOrderByWithRelationInput
+    | Prisma.ProducerAndEngineerOrderByWithRelationInput[];
+  cursor?: Prisma.ProducerAndEngineerWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.ProducerAndEngineerScalarFieldEnum
+    | Prisma.ProducerAndEngineerScalarFieldEnum[];
+};
+
+/**
+ * Label.writers
+ */
+export type Label$writersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Writer
+   */
+  select?: Prisma.WriterSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Writer
+   */
+  omit?: Prisma.WriterOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WriterInclude<ExtArgs> | null;
+  where?: Prisma.WriterWhereInput;
+  orderBy?:
+    | Prisma.WriterOrderByWithRelationInput
+    | Prisma.WriterOrderByWithRelationInput[];
+  cursor?: Prisma.WriterWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.WriterScalarFieldEnum | Prisma.WriterScalarFieldEnum[];
+};
+
+/**
+ * Label.publishers
+ */
+export type Label$publishersArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Publisher
+   */
+  select?: Prisma.PublisherSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Publisher
+   */
+  omit?: Prisma.PublisherOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PublisherInclude<ExtArgs> | null;
+  where?: Prisma.PublisherWhereInput;
+  orderBy?:
+    | Prisma.PublisherOrderByWithRelationInput
+    | Prisma.PublisherOrderByWithRelationInput[];
+  cursor?: Prisma.PublisherWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.PublisherScalarFieldEnum
+    | Prisma.PublisherScalarFieldEnum[];
 };
 
 /**

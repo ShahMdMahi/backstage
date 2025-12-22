@@ -375,6 +375,332 @@ export type EnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<
   _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>;
 };
 
+export type EnumRELEASE_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RELEASE_STATUS
+    | Prisma.EnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RELEASE_STATUS[]
+    | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RELEASE_STATUS[]
+    | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRELEASE_STATUSFilter<$PrismaModel>
+    | $Enums.RELEASE_STATUS;
+};
+
+export type EnumRELEASE_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RELEASE_STATUS
+    | Prisma.EnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RELEASE_STATUS[]
+    | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RELEASE_STATUS[]
+    | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRELEASE_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.RELEASE_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRELEASE_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRELEASE_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumTRACK_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRACK_STATUS
+    | Prisma.EnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumTRACK_STATUSFilter<$PrismaModel> | $Enums.TRACK_STATUS;
+};
+
+export type EnumTRACK_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRACK_STATUS
+    | Prisma.EnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumTRACK_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.TRACK_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumTRACK_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumTRACK_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumVIDEO_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.VIDEO_STATUS
+    | Prisma.EnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumVIDEO_STATUSFilter<$PrismaModel> | $Enums.VIDEO_STATUS;
+};
+
+export type EnumVIDEO_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.VIDEO_STATUS
+    | Prisma.EnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumVIDEO_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.VIDEO_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumVIDEO_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumVIDEO_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumRINGTONE_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RINGTONE_STATUS
+    | Prisma.EnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRINGTONE_STATUSFilter<$PrismaModel>
+    | $Enums.RINGTONE_STATUS;
+};
+
+export type EnumRINGTONE_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RINGTONE_STATUS
+    | Prisma.EnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRINGTONE_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.RINGTONE_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRINGTONE_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRINGTONE_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumARTIST_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.ARTIST_STATUS
+    | Prisma.EnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.ARTIST_STATUS[]
+    | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.ARTIST_STATUS[]
+    | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumARTIST_STATUSFilter<$PrismaModel>
+    | $Enums.ARTIST_STATUS;
+};
+
+export type EnumARTIST_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.ARTIST_STATUS
+    | Prisma.EnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.ARTIST_STATUS[]
+    | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.ARTIST_STATUS[]
+    | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumARTIST_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.ARTIST_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumARTIST_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumARTIST_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumPERFORMER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PERFORMER_STATUS
+    | Prisma.EnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPERFORMER_STATUSFilter<$PrismaModel>
+    | $Enums.PERFORMER_STATUS;
+};
+
+export type EnumPERFORMER_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PERFORMER_STATUS
+    | Prisma.EnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPERFORMER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.PERFORMER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPERFORMER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPERFORMER_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel>
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+};
+
+export type EnumPRODUCER_AND_ENGINEER_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumWRITER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WRITER_STATUS
+    | Prisma.EnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WRITER_STATUS[]
+    | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WRITER_STATUS[]
+    | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWRITER_STATUSFilter<$PrismaModel>
+    | $Enums.WRITER_STATUS;
+};
+
+export type EnumWRITER_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WRITER_STATUS
+    | Prisma.EnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WRITER_STATUS[]
+    | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WRITER_STATUS[]
+    | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWRITER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WRITER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWRITER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWRITER_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumPUBLISHER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PUBLISHER_STATUS
+    | Prisma.EnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPUBLISHER_STATUSFilter<$PrismaModel>
+    | $Enums.PUBLISHER_STATUS;
+};
+
+export type EnumPUBLISHER_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PUBLISHER_STATUS
+    | Prisma.EnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPUBLISHER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.PUBLISHER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPUBLISHER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPUBLISHER_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumLABEL_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.LABEL_STATUS
+    | Prisma.EnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumLABEL_STATUSFilter<$PrismaModel> | $Enums.LABEL_STATUS;
+};
+
+export type EnumLABEL_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.LABEL_STATUS
+    | Prisma.EnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumLABEL_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.LABEL_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumLABEL_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumLABEL_STATUSFilter<$PrismaModel>;
+};
+
 export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<$PrismaModel = never> = {
   equals?:
     | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE
@@ -443,6 +769,72 @@ export type EnumWORKSPACE_ACCOUNT_ACCESS_STATUSWithAggregatesFilter<
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumTRANSACTION_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRANSACTION_STATUS
+    | Prisma.EnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumTRANSACTION_STATUSFilter<$PrismaModel>
+    | $Enums.TRANSACTION_STATUS;
+};
+
+export type EnumTRANSACTION_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRANSACTION_STATUS
+    | Prisma.EnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumTRANSACTION_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.TRANSACTION_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumTRANSACTION_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumTRANSACTION_STATUSFilter<$PrismaModel>;
+};
+
+export type EnumWITHDRAWAL_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WITHDRAWAL_STATUS
+    | Prisma.EnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel>
+    | $Enums.WITHDRAWAL_STATUS;
+};
+
+export type EnumWITHDRAWAL_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WITHDRAWAL_STATUS
+    | Prisma.EnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWITHDRAWAL_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WITHDRAWAL_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel>;
 };
 
 export type BoolFilter<$PrismaModel = never> = {
@@ -854,6 +1246,342 @@ export type NestedEnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<
   _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_STATUSFilter<$PrismaModel>;
 };
 
+export type NestedEnumRELEASE_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RELEASE_STATUS
+    | Prisma.EnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RELEASE_STATUS[]
+    | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RELEASE_STATUS[]
+    | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRELEASE_STATUSFilter<$PrismaModel>
+    | $Enums.RELEASE_STATUS;
+};
+
+export type NestedEnumRELEASE_STATUSWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.RELEASE_STATUS
+      | Prisma.EnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.RELEASE_STATUS[]
+      | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.RELEASE_STATUS[]
+      | Prisma.ListEnumRELEASE_STATUSFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumRELEASE_STATUSWithAggregatesFilter<$PrismaModel>
+      | $Enums.RELEASE_STATUS;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumRELEASE_STATUSFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumRELEASE_STATUSFilter<$PrismaModel>;
+  };
+
+export type NestedEnumTRACK_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRACK_STATUS
+    | Prisma.EnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumTRACK_STATUSFilter<$PrismaModel> | $Enums.TRACK_STATUS;
+};
+
+export type NestedEnumTRACK_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRACK_STATUS
+    | Prisma.EnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRACK_STATUS[]
+    | Prisma.ListEnumTRACK_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumTRACK_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.TRACK_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumTRACK_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumTRACK_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumVIDEO_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.VIDEO_STATUS
+    | Prisma.EnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumVIDEO_STATUSFilter<$PrismaModel> | $Enums.VIDEO_STATUS;
+};
+
+export type NestedEnumVIDEO_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.VIDEO_STATUS
+    | Prisma.EnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.VIDEO_STATUS[]
+    | Prisma.ListEnumVIDEO_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumVIDEO_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.VIDEO_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumVIDEO_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumVIDEO_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumRINGTONE_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.RINGTONE_STATUS
+    | Prisma.EnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRINGTONE_STATUSFilter<$PrismaModel>
+    | $Enums.RINGTONE_STATUS;
+};
+
+export type NestedEnumRINGTONE_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RINGTONE_STATUS
+    | Prisma.EnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.RINGTONE_STATUS[]
+    | Prisma.ListEnumRINGTONE_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumRINGTONE_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.RINGTONE_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumRINGTONE_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumRINGTONE_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumARTIST_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.ARTIST_STATUS
+    | Prisma.EnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.ARTIST_STATUS[]
+    | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.ARTIST_STATUS[]
+    | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumARTIST_STATUSFilter<$PrismaModel>
+    | $Enums.ARTIST_STATUS;
+};
+
+export type NestedEnumARTIST_STATUSWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.ARTIST_STATUS
+      | Prisma.EnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.ARTIST_STATUS[]
+      | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.ARTIST_STATUS[]
+      | Prisma.ListEnumARTIST_STATUSFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumARTIST_STATUSWithAggregatesFilter<$PrismaModel>
+      | $Enums.ARTIST_STATUS;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumARTIST_STATUSFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumARTIST_STATUSFilter<$PrismaModel>;
+  };
+
+export type NestedEnumPERFORMER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PERFORMER_STATUS
+    | Prisma.EnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPERFORMER_STATUSFilter<$PrismaModel>
+    | $Enums.PERFORMER_STATUS;
+};
+
+export type NestedEnumPERFORMER_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PERFORMER_STATUS
+    | Prisma.EnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PERFORMER_STATUS[]
+    | Prisma.ListEnumPERFORMER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPERFORMER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.PERFORMER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPERFORMER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPERFORMER_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS
+      | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+      | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+      | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel>
+      | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  };
+
+export type NestedEnumPRODUCER_AND_ENGINEER_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS
+    | Prisma.EnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.PRODUCER_AND_ENGINEER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPRODUCER_AND_ENGINEER_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumWRITER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WRITER_STATUS
+    | Prisma.EnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WRITER_STATUS[]
+    | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WRITER_STATUS[]
+    | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWRITER_STATUSFilter<$PrismaModel>
+    | $Enums.WRITER_STATUS;
+};
+
+export type NestedEnumWRITER_STATUSWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.WRITER_STATUS
+      | Prisma.EnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.WRITER_STATUS[]
+      | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.WRITER_STATUS[]
+      | Prisma.ListEnumWRITER_STATUSFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumWRITER_STATUSWithAggregatesFilter<$PrismaModel>
+      | $Enums.WRITER_STATUS;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumWRITER_STATUSFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumWRITER_STATUSFilter<$PrismaModel>;
+  };
+
+export type NestedEnumPUBLISHER_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.PUBLISHER_STATUS
+    | Prisma.EnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPUBLISHER_STATUSFilter<$PrismaModel>
+    | $Enums.PUBLISHER_STATUS;
+};
+
+export type NestedEnumPUBLISHER_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PUBLISHER_STATUS
+    | Prisma.EnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.PUBLISHER_STATUS[]
+    | Prisma.ListEnumPUBLISHER_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumPUBLISHER_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.PUBLISHER_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumPUBLISHER_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumPUBLISHER_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumLABEL_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.LABEL_STATUS
+    | Prisma.EnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedEnumLABEL_STATUSFilter<$PrismaModel> | $Enums.LABEL_STATUS;
+};
+
+export type NestedEnumLABEL_STATUSWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.LABEL_STATUS
+    | Prisma.EnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.LABEL_STATUS[]
+    | Prisma.ListEnumLABEL_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumLABEL_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.LABEL_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumLABEL_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumLABEL_STATUSFilter<$PrismaModel>;
+};
+
 export type NestedEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<
   $PrismaModel = never,
 > = {
@@ -926,6 +1654,76 @@ export type NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSWithAggregatesFilter<
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumTRANSACTION_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.TRANSACTION_STATUS
+    | Prisma.EnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumTRANSACTION_STATUSFilter<$PrismaModel>
+    | $Enums.TRANSACTION_STATUS;
+};
+
+export type NestedEnumTRANSACTION_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.TRANSACTION_STATUS
+    | Prisma.EnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.TRANSACTION_STATUS[]
+    | Prisma.ListEnumTRANSACTION_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumTRANSACTION_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.TRANSACTION_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumTRANSACTION_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumTRANSACTION_STATUSFilter<$PrismaModel>;
+};
+
+export type NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.WITHDRAWAL_STATUS
+    | Prisma.EnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel>
+    | $Enums.WITHDRAWAL_STATUS;
+};
+
+export type NestedEnumWITHDRAWAL_STATUSWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WITHDRAWAL_STATUS
+    | Prisma.EnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.WITHDRAWAL_STATUS[]
+    | Prisma.ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumWITHDRAWAL_STATUSWithAggregatesFilter<$PrismaModel>
+    | $Enums.WITHDRAWAL_STATUS;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumWITHDRAWAL_STATUSFilter<$PrismaModel>;
 };
 
 export type NestedBoolFilter<$PrismaModel = never> = {

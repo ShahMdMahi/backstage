@@ -27,6 +27,7 @@ export type AggregateRelease = {
 export type ReleaseMinAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.RELEASE_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -34,6 +35,7 @@ export type ReleaseMinAggregateOutputType = {
 export type ReleaseMaxAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
+  status: $Enums.RELEASE_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -42,6 +44,7 @@ export type ReleaseCountAggregateOutputType = {
   id: number;
   workspaceAccountId: number;
   metadata: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -50,6 +53,7 @@ export type ReleaseCountAggregateOutputType = {
 export type ReleaseMinAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -57,6 +61,7 @@ export type ReleaseMinAggregateInputType = {
 export type ReleaseMaxAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -65,6 +70,7 @@ export type ReleaseCountAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
   metadata?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -153,6 +159,7 @@ export type ReleaseGroupByOutputType = {
   id: string;
   workspaceAccountId: string;
   metadata: runtime.JsonValue | null;
+  status: $Enums.RELEASE_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: ReleaseCountAggregateOutputType | null;
@@ -180,6 +187,7 @@ export type ReleaseWhereInput = {
   id?: Prisma.StringFilter<"Release"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Release"> | string;
   metadata?: Prisma.JsonNullableFilter<"Release">;
+  status?: Prisma.EnumRELEASE_STATUSFilter<"Release"> | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Release"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Release"> | Date | string;
   workspaceAccount?: Prisma.XOR<
@@ -187,16 +195,19 @@ export type ReleaseWhereInput = {
     Prisma.WorkspaceAccountWhereInput
   >;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  label?: Prisma.LabelListRelationFilter;
 };
 
 export type ReleaseOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
 export type ReleaseWhereUniqueInput = Prisma.AtLeast<
@@ -207,6 +218,7 @@ export type ReleaseWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.ReleaseWhereInput | Prisma.ReleaseWhereInput[];
     workspaceAccountId?: Prisma.StringFilter<"Release"> | string;
     metadata?: Prisma.JsonNullableFilter<"Release">;
+    status?: Prisma.EnumRELEASE_STATUSFilter<"Release"> | $Enums.RELEASE_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Release"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Release"> | Date | string;
     workspaceAccount?: Prisma.XOR<
@@ -214,6 +226,7 @@ export type ReleaseWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountWhereInput
     >;
     sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    label?: Prisma.LabelListRelationFilter;
   },
   "id"
 >;
@@ -222,6 +235,7 @@ export type ReleaseOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.ReleaseCountOrderByAggregateInput;
@@ -240,6 +254,9 @@ export type ReleaseScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Release"> | string;
   workspaceAccountId?: Prisma.StringWithAggregatesFilter<"Release"> | string;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Release">;
+  status?:
+    | Prisma.EnumRELEASE_STATUSWithAggregatesFilter<"Release">
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Release"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Release"> | Date | string;
 };
@@ -247,43 +264,56 @@ export type ReleaseScalarWhereWithAggregatesInput = {
 export type ReleaseCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutReleasesInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutReleasesInput;
+  label?: Prisma.LabelCreateNestedManyWithoutReleasesInput;
 };
 
 export type ReleaseUncheckedCreateInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutReleasesInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutReleasesInput;
 };
 
 export type ReleaseUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutReleasesNestedInput;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutReleasesNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutReleasesNestedInput;
 };
 
 export type ReleaseUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutReleasesNestedInput;
 };
 
 export type ReleaseCreateManyInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -291,6 +321,9 @@ export type ReleaseCreateManyInput = {
 export type ReleaseUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -299,6 +332,9 @@ export type ReleaseUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -317,6 +353,7 @@ export type ReleaseCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -324,6 +361,7 @@ export type ReleaseCountOrderByAggregateInput = {
 export type ReleaseMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -331,6 +369,7 @@ export type ReleaseMaxOrderByAggregateInput = {
 export type ReleaseMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -424,6 +463,100 @@ export type ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput = {
   updateMany?:
     | Prisma.ReleaseUpdateManyWithWhereWithoutWorkspaceAccountInput
     | Prisma.ReleaseUpdateManyWithWhereWithoutWorkspaceAccountInput[];
+  deleteMany?:
+    | Prisma.ReleaseScalarWhereInput
+    | Prisma.ReleaseScalarWhereInput[];
+};
+
+export type EnumRELEASE_STATUSFieldUpdateOperationsInput = {
+  set?: $Enums.RELEASE_STATUS;
+};
+
+export type ReleaseCreateNestedManyWithoutLabelInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ReleaseCreateWithoutLabelInput,
+        Prisma.ReleaseUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ReleaseCreateWithoutLabelInput[]
+    | Prisma.ReleaseUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput[];
+  connect?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+};
+
+export type ReleaseUncheckedCreateNestedManyWithoutLabelInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ReleaseCreateWithoutLabelInput,
+        Prisma.ReleaseUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ReleaseCreateWithoutLabelInput[]
+    | Prisma.ReleaseUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput[];
+  connect?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+};
+
+export type ReleaseUpdateManyWithoutLabelNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ReleaseCreateWithoutLabelInput,
+        Prisma.ReleaseUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ReleaseCreateWithoutLabelInput[]
+    | Prisma.ReleaseUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput[];
+  upsert?:
+    | Prisma.ReleaseUpsertWithWhereUniqueWithoutLabelInput
+    | Prisma.ReleaseUpsertWithWhereUniqueWithoutLabelInput[];
+  set?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ReleaseWhereUniqueInput
+    | Prisma.ReleaseWhereUniqueInput[];
+  delete?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+  connect?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+  update?:
+    | Prisma.ReleaseUpdateWithWhereUniqueWithoutLabelInput
+    | Prisma.ReleaseUpdateWithWhereUniqueWithoutLabelInput[];
+  updateMany?:
+    | Prisma.ReleaseUpdateManyWithWhereWithoutLabelInput
+    | Prisma.ReleaseUpdateManyWithWhereWithoutLabelInput[];
+  deleteMany?:
+    | Prisma.ReleaseScalarWhereInput
+    | Prisma.ReleaseScalarWhereInput[];
+};
+
+export type ReleaseUncheckedUpdateManyWithoutLabelNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.ReleaseCreateWithoutLabelInput,
+        Prisma.ReleaseUncheckedCreateWithoutLabelInput
+      >
+    | Prisma.ReleaseCreateWithoutLabelInput[]
+    | Prisma.ReleaseUncheckedCreateWithoutLabelInput[];
+  connectOrCreate?:
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput
+    | Prisma.ReleaseCreateOrConnectWithoutLabelInput[];
+  upsert?:
+    | Prisma.ReleaseUpsertWithWhereUniqueWithoutLabelInput
+    | Prisma.ReleaseUpsertWithWhereUniqueWithoutLabelInput[];
+  set?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+  disconnect?:
+    | Prisma.ReleaseWhereUniqueInput
+    | Prisma.ReleaseWhereUniqueInput[];
+  delete?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+  connect?: Prisma.ReleaseWhereUniqueInput | Prisma.ReleaseWhereUniqueInput[];
+  update?:
+    | Prisma.ReleaseUpdateWithWhereUniqueWithoutLabelInput
+    | Prisma.ReleaseUpdateWithWhereUniqueWithoutLabelInput[];
+  updateMany?:
+    | Prisma.ReleaseUpdateManyWithWhereWithoutLabelInput
+    | Prisma.ReleaseUpdateManyWithWhereWithoutLabelInput[];
   deleteMany?:
     | Prisma.ReleaseScalarWhereInput
     | Prisma.ReleaseScalarWhereInput[];
@@ -524,17 +657,21 @@ export type ReleaseUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedI
 export type ReleaseCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutReleasesInput;
+  label?: Prisma.LabelCreateNestedManyWithoutReleasesInput;
 };
 
 export type ReleaseUncheckedCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutReleasesInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutReleasesInput;
 };
 
 export type ReleaseCreateOrConnectWithoutWorkspaceAccountInput = {
@@ -587,24 +724,85 @@ export type ReleaseScalarWhereInput = {
   id?: Prisma.StringFilter<"Release"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Release"> | string;
   metadata?: Prisma.JsonNullableFilter<"Release">;
+  status?: Prisma.EnumRELEASE_STATUSFilter<"Release"> | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Release"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Release"> | Date | string;
+};
+
+export type ReleaseCreateWithoutLabelInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutReleasesInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutReleasesInput;
+};
+
+export type ReleaseUncheckedCreateWithoutLabelInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutReleasesInput;
+};
+
+export type ReleaseCreateOrConnectWithoutLabelInput = {
+  where: Prisma.ReleaseWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.ReleaseCreateWithoutLabelInput,
+    Prisma.ReleaseUncheckedCreateWithoutLabelInput
+  >;
+};
+
+export type ReleaseUpsertWithWhereUniqueWithoutLabelInput = {
+  where: Prisma.ReleaseWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.ReleaseUpdateWithoutLabelInput,
+    Prisma.ReleaseUncheckedUpdateWithoutLabelInput
+  >;
+  create: Prisma.XOR<
+    Prisma.ReleaseCreateWithoutLabelInput,
+    Prisma.ReleaseUncheckedCreateWithoutLabelInput
+  >;
+};
+
+export type ReleaseUpdateWithWhereUniqueWithoutLabelInput = {
+  where: Prisma.ReleaseWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.ReleaseUpdateWithoutLabelInput,
+    Prisma.ReleaseUncheckedUpdateWithoutLabelInput
+  >;
+};
+
+export type ReleaseUpdateManyWithWhereWithoutLabelInput = {
+  where: Prisma.ReleaseScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.ReleaseUpdateManyMutationInput,
+    Prisma.ReleaseUncheckedUpdateManyWithoutLabelInput
+  >;
 };
 
 export type ReleaseCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutReleasesInput;
+  label?: Prisma.LabelCreateNestedManyWithoutReleasesInput;
 };
 
 export type ReleaseUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutReleasesInput;
 };
 
 export type ReleaseCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
@@ -649,6 +847,7 @@ export type ReleaseUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput =
 export type ReleaseCreateManyWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.RELEASE_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -656,22 +855,68 @@ export type ReleaseCreateManyWorkspaceAccountInput = {
 export type ReleaseUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutReleasesNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutReleasesNestedInput;
 };
 
 export type ReleaseUncheckedUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutReleasesNestedInput;
 };
 
 export type ReleaseUncheckedUpdateManyWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type ReleaseUpdateWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutReleasesNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutReleasesNestedInput;
+};
+
+export type ReleaseUncheckedUpdateWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesNestedInput;
+};
+
+export type ReleaseUncheckedUpdateManyWithoutLabelInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -679,17 +924,25 @@ export type ReleaseUncheckedUpdateManyWithoutWorkspaceAccountInput = {
 export type ReleaseUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutReleasesNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutReleasesNestedInput;
 };
 
 export type ReleaseUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+    | $Enums.RELEASE_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutReleasesNestedInput;
 };
 
 export type ReleaseUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
@@ -697,6 +950,9 @@ export type ReleaseUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumRELEASE_STATUSFieldUpdateOperationsInput
+      | $Enums.RELEASE_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -707,6 +963,7 @@ export type ReleaseUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
 
 export type ReleaseCountOutputType = {
   sharedWorkspaceAccountAccess: number;
+  label: number;
 };
 
 export type ReleaseCountOutputTypeSelect<
@@ -716,6 +973,7 @@ export type ReleaseCountOutputTypeSelect<
   sharedWorkspaceAccountAccess?:
     | boolean
     | ReleaseCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+  label?: boolean | ReleaseCountOutputTypeCountLabelArgs;
 };
 
 /**
@@ -741,6 +999,16 @@ export type ReleaseCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
   where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
+/**
+ * ReleaseCountOutputType without action
+ */
+export type ReleaseCountOutputTypeCountLabelArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.LabelWhereInput;
+};
+
 export type ReleaseSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
@@ -749,12 +1017,14 @@ export type ReleaseSelect<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
     sharedWorkspaceAccountAccess?:
       | boolean
       | Prisma.Release$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    label?: boolean | Prisma.Release$labelArgs<ExtArgs>;
     _count?: boolean | Prisma.ReleaseCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["release"]
@@ -768,6 +1038,7 @@ export type ReleaseSelectCreateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -783,6 +1054,7 @@ export type ReleaseSelectUpdateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -794,6 +1066,7 @@ export type ReleaseSelectScalar = {
   id?: boolean;
   workspaceAccountId?: boolean;
   metadata?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -802,7 +1075,12 @@ export type ReleaseOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "workspaceAccountId" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "workspaceAccountId"
+  | "metadata"
+  | "status"
+  | "createdAt"
+  | "updatedAt",
   ExtArgs["result"]["release"]
 >;
 export type ReleaseInclude<
@@ -813,6 +1091,7 @@ export type ReleaseInclude<
   sharedWorkspaceAccountAccess?:
     | boolean
     | Prisma.Release$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+  label?: boolean | Prisma.Release$labelArgs<ExtArgs>;
   _count?: boolean | Prisma.ReleaseCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type ReleaseIncludeCreateManyAndReturn<
@@ -836,12 +1115,14 @@ export type $ReleasePayload<
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
     sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
       workspaceAccountId: string;
       metadata: runtime.JsonValue | null;
+      status: $Enums.RELEASE_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1424,6 +1705,17 @@ export interface Prisma__ReleaseClient<
       >
     | Null
   >;
+  label<T extends Prisma.Release$labelArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Release$labelArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$LabelPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1469,6 +1761,7 @@ export interface ReleaseFieldRefs {
   readonly id: Prisma.FieldRef<"Release", "String">;
   readonly workspaceAccountId: Prisma.FieldRef<"Release", "String">;
   readonly metadata: Prisma.FieldRef<"Release", "Json">;
+  readonly status: Prisma.FieldRef<"Release", "RELEASE_STATUS">;
   readonly createdAt: Prisma.FieldRef<"Release", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Release", "DateTime">;
 }
@@ -1960,6 +2253,35 @@ export type Release$sharedWorkspaceAccountAccessArgs<
   distinct?:
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
     | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * Release.label
+ */
+export type Release$labelArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the Label
+   */
+  select?: Prisma.LabelSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the Label
+   */
+  omit?: Prisma.LabelOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LabelInclude<ExtArgs> | null;
+  where?: Prisma.LabelWhereInput;
+  orderBy?:
+    | Prisma.LabelOrderByWithRelationInput
+    | Prisma.LabelOrderByWithRelationInput[];
+  cursor?: Prisma.LabelWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?: Prisma.LabelScalarFieldEnum | Prisma.LabelScalarFieldEnum[];
 };
 
 /**

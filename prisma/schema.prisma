@@ -34,6 +34,7 @@ enum WORKSPACE_ACCOUNT_TYPE {
 enum WORKSPACE_ACCOUNT_STATUS {
   ACTIVE
   SUSPENDED
+  EXPIRED
   CANCELLED
 }
 
@@ -47,6 +48,124 @@ enum WORKSPACE_ACCOUNT_ACCESS_ROLE {
 enum WORKSPACE_ACCOUNT_ACCESS_STATUS {
   ACTIVE
   SUSPENDED
+}
+
+enum RELEASE_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum TRACK_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum VIDEO_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum RINGTONE_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum ARTIST_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum PERFORMER_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum PRODUCER_AND_ENGINEER_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum WRITER_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum PUBLISHER_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum LABEL_STATUS {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  PUBLISHED
+  REJECTED
+  ARCHIVED
+  PAUSED
+}
+
+enum TRANSACTION_STATUS {
+  PENDING
+  PROCESSING
+  ON_HOLD
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum WITHDRAWAL_STATUS {
+  PENDING
+  PROCESSING
+  ON_HOLD
+  COMPLETED
+  FAILED
+  CANCELLED
 }
 
 enum AUDIT_LOG_ACTION {
@@ -262,6 +381,8 @@ model WorkspaceAccount {
   writers               Writer[]
   publishers            Publisher[]
   labels                Label[]
+  transactions          Transaction[]
+  withdrawals           Withdrawal[]
 
   // Timestamps
   createdAt           DateTime @default(now())
@@ -278,17 +399,17 @@ model Release {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status RELEASE_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -303,17 +424,17 @@ model Track {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status TRACK_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -328,17 +449,17 @@ model Video {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status VIDEO_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -353,17 +474,17 @@ model Ringtone {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status RINGTONE_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -378,17 +499,17 @@ model Artist {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status ARTIST_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -403,17 +524,17 @@ model Performer {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status PERFORMER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -428,17 +549,17 @@ model ProducerAndEngineer {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status PRODUCER_AND_ENGINEER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -453,17 +574,17 @@ model Writer {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status WRITER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -478,17 +599,17 @@ model Publisher {
 
   // Foreign Keys
   workspaceAccountId String
-  labelId            String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status PUBLISHER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label?                         @relation(fields: [labelId], references: [id], onDelete: SetNull)
+  label                        Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -508,6 +629,7 @@ model Label {
   metadata Json?
 
   // Enums
+  status LABEL_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -572,13 +694,16 @@ model Transaction {
   id String @id @default(cuid())
 
   // Foreign Keys
+  workspaceAccountId String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status TRANSACTION_STATUS @default(PENDING)
 
   // Relations
+  workspaceAccount WorkspaceAccount? @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -592,13 +717,16 @@ model Withdrawal {
   id String @id @default(cuid())
 
   // Foreign Keys
+  workspaceAccountId String?
 
   // Fields
   metadata Json?
 
   // Enums
+  status WITHDRAWAL_STATUS @default(PENDING)
 
   // Relations
+  workspaceAccount WorkspaceAccount? @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
 
   // Timestamps
   createdAt DateTime @default(now())

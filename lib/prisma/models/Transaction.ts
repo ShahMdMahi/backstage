@@ -26,19 +26,25 @@ export type AggregateTransaction = {
 
 export type TransactionMinAggregateOutputType = {
   id: string | null;
+  workspaceAccountId: string | null;
+  status: $Enums.TRANSACTION_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
 
 export type TransactionMaxAggregateOutputType = {
   id: string | null;
+  workspaceAccountId: string | null;
+  status: $Enums.TRANSACTION_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
 
 export type TransactionCountAggregateOutputType = {
   id: number;
+  workspaceAccountId: number;
   metadata: number;
+  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -46,19 +52,25 @@ export type TransactionCountAggregateOutputType = {
 
 export type TransactionMinAggregateInputType = {
   id?: true;
+  workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
 
 export type TransactionMaxAggregateInputType = {
   id?: true;
+  workspaceAccountId?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
 
 export type TransactionCountAggregateInputType = {
   id?: true;
+  workspaceAccountId?: true;
   metadata?: true;
+  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -145,7 +157,9 @@ export type TransactionGroupByArgs<
 
 export type TransactionGroupByOutputType = {
   id: string;
+  workspaceAccountId: string | null;
   metadata: runtime.JsonValue | null;
+  status: $Enums.TRANSACTION_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: TransactionCountAggregateOutputType | null;
@@ -171,16 +185,30 @@ export type TransactionWhereInput = {
   OR?: Prisma.TransactionWhereInput[];
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[];
   id?: Prisma.StringFilter<"Transaction"> | string;
+  workspaceAccountId?:
+    | Prisma.StringNullableFilter<"Transaction">
+    | string
+    | null;
   metadata?: Prisma.JsonNullableFilter<"Transaction">;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFilter<"Transaction">
+    | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
+  workspaceAccount?: Prisma.XOR<
+    Prisma.WorkspaceAccountNullableScalarRelationFilter,
+    Prisma.WorkspaceAccountWhereInput
+  > | null;
 };
 
 export type TransactionOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
 };
 
 export type TransactionWhereUniqueInput = Prisma.AtLeast<
@@ -189,16 +217,29 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[];
     OR?: Prisma.TransactionWhereInput[];
     NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[];
+    workspaceAccountId?:
+      | Prisma.StringNullableFilter<"Transaction">
+      | string
+      | null;
     metadata?: Prisma.JsonNullableFilter<"Transaction">;
+    status?:
+      | Prisma.EnumTRANSACTION_STATUSFilter<"Transaction">
+      | $Enums.TRANSACTION_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
+    workspaceAccount?: Prisma.XOR<
+      Prisma.WorkspaceAccountNullableScalarRelationFilter,
+      Prisma.WorkspaceAccountWhereInput
+    > | null;
   },
   "id"
 >;
 
 export type TransactionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.TransactionCountOrderByAggregateInput;
@@ -215,7 +256,14 @@ export type TransactionScalarWhereWithAggregatesInput = {
     | Prisma.TransactionScalarWhereWithAggregatesInput
     | Prisma.TransactionScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<"Transaction"> | string;
+  workspaceAccountId?:
+    | Prisma.StringNullableWithAggregatesFilter<"Transaction">
+    | string
+    | null;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Transaction">;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSWithAggregatesFilter<"Transaction">
+    | $Enums.TRANSACTION_STATUS;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<"Transaction">
     | Date
@@ -229,13 +277,17 @@ export type TransactionScalarWhereWithAggregatesInput = {
 export type TransactionCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
 };
 
 export type TransactionUncheckedCreateInput = {
   id?: string;
+  workspaceAccountId?: string | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -243,20 +295,33 @@ export type TransactionUncheckedCreateInput = {
 export type TransactionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutTransactionsNestedInput;
 };
 
 export type TransactionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type TransactionCreateManyInput = {
   id?: string;
+  workspaceAccountId?: string | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -264,34 +329,292 @@ export type TransactionCreateManyInput = {
 export type TransactionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type TransactionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
+export type TransactionListRelationFilter = {
+  every?: Prisma.TransactionWhereInput;
+  some?: Prisma.TransactionWhereInput;
+  none?: Prisma.TransactionWhereInput;
+};
+
+export type TransactionOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder;
+};
+
 export type TransactionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type TransactionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
 
 export type TransactionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
+  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type TransactionCreateNestedManyWithoutWorkspaceAccountInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.TransactionCreateWithoutWorkspaceAccountInput,
+        Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.TransactionCreateWithoutWorkspaceAccountInput[]
+    | Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.TransactionCreateManyWorkspaceAccountInputEnvelope;
+  connect?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+};
+
+export type TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.TransactionCreateWithoutWorkspaceAccountInput,
+        Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.TransactionCreateWithoutWorkspaceAccountInput[]
+    | Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.TransactionCreateManyWorkspaceAccountInputEnvelope;
+  connect?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+};
+
+export type TransactionUpdateManyWithoutWorkspaceAccountNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.TransactionCreateWithoutWorkspaceAccountInput,
+        Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.TransactionCreateWithoutWorkspaceAccountInput[]
+    | Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput[];
+  upsert?:
+    | Prisma.TransactionUpsertWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.TransactionUpsertWithWhereUniqueWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.TransactionCreateManyWorkspaceAccountInputEnvelope;
+  set?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  delete?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  connect?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  update?:
+    | Prisma.TransactionUpdateWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.TransactionUpdateWithWhereUniqueWithoutWorkspaceAccountInput[];
+  updateMany?:
+    | Prisma.TransactionUpdateManyWithWhereWithoutWorkspaceAccountInput
+    | Prisma.TransactionUpdateManyWithWhereWithoutWorkspaceAccountInput[];
+  deleteMany?:
+    | Prisma.TransactionScalarWhereInput
+    | Prisma.TransactionScalarWhereInput[];
+};
+
+export type TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput = {
+  create?:
+    | Prisma.XOR<
+        Prisma.TransactionCreateWithoutWorkspaceAccountInput,
+        Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput
+      >
+    | Prisma.TransactionCreateWithoutWorkspaceAccountInput[]
+    | Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput[];
+  connectOrCreate?:
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput
+    | Prisma.TransactionCreateOrConnectWithoutWorkspaceAccountInput[];
+  upsert?:
+    | Prisma.TransactionUpsertWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.TransactionUpsertWithWhereUniqueWithoutWorkspaceAccountInput[];
+  createMany?: Prisma.TransactionCreateManyWorkspaceAccountInputEnvelope;
+  set?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  disconnect?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  delete?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  connect?:
+    | Prisma.TransactionWhereUniqueInput
+    | Prisma.TransactionWhereUniqueInput[];
+  update?:
+    | Prisma.TransactionUpdateWithWhereUniqueWithoutWorkspaceAccountInput
+    | Prisma.TransactionUpdateWithWhereUniqueWithoutWorkspaceAccountInput[];
+  updateMany?:
+    | Prisma.TransactionUpdateManyWithWhereWithoutWorkspaceAccountInput
+    | Prisma.TransactionUpdateManyWithWhereWithoutWorkspaceAccountInput[];
+  deleteMany?:
+    | Prisma.TransactionScalarWhereInput
+    | Prisma.TransactionScalarWhereInput[];
+};
+
+export type EnumTRANSACTION_STATUSFieldUpdateOperationsInput = {
+  set?: $Enums.TRANSACTION_STATUS;
+};
+
+export type TransactionCreateWithoutWorkspaceAccountInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type TransactionUncheckedCreateWithoutWorkspaceAccountInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type TransactionCreateOrConnectWithoutWorkspaceAccountInput = {
+  where: Prisma.TransactionWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.TransactionCreateWithoutWorkspaceAccountInput,
+    Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput
+  >;
+};
+
+export type TransactionCreateManyWorkspaceAccountInputEnvelope = {
+  data:
+    | Prisma.TransactionCreateManyWorkspaceAccountInput
+    | Prisma.TransactionCreateManyWorkspaceAccountInput[];
+  skipDuplicates?: boolean;
+};
+
+export type TransactionUpsertWithWhereUniqueWithoutWorkspaceAccountInput = {
+  where: Prisma.TransactionWhereUniqueInput;
+  update: Prisma.XOR<
+    Prisma.TransactionUpdateWithoutWorkspaceAccountInput,
+    Prisma.TransactionUncheckedUpdateWithoutWorkspaceAccountInput
+  >;
+  create: Prisma.XOR<
+    Prisma.TransactionCreateWithoutWorkspaceAccountInput,
+    Prisma.TransactionUncheckedCreateWithoutWorkspaceAccountInput
+  >;
+};
+
+export type TransactionUpdateWithWhereUniqueWithoutWorkspaceAccountInput = {
+  where: Prisma.TransactionWhereUniqueInput;
+  data: Prisma.XOR<
+    Prisma.TransactionUpdateWithoutWorkspaceAccountInput,
+    Prisma.TransactionUncheckedUpdateWithoutWorkspaceAccountInput
+  >;
+};
+
+export type TransactionUpdateManyWithWhereWithoutWorkspaceAccountInput = {
+  where: Prisma.TransactionScalarWhereInput;
+  data: Prisma.XOR<
+    Prisma.TransactionUpdateManyMutationInput,
+    Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountInput
+  >;
+};
+
+export type TransactionScalarWhereInput = {
+  AND?:
+    | Prisma.TransactionScalarWhereInput
+    | Prisma.TransactionScalarWhereInput[];
+  OR?: Prisma.TransactionScalarWhereInput[];
+  NOT?:
+    | Prisma.TransactionScalarWhereInput
+    | Prisma.TransactionScalarWhereInput[];
+  id?: Prisma.StringFilter<"Transaction"> | string;
+  workspaceAccountId?:
+    | Prisma.StringNullableFilter<"Transaction">
+    | string
+    | null;
+  metadata?: Prisma.JsonNullableFilter<"Transaction">;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFilter<"Transaction">
+    | $Enums.TRANSACTION_STATUS;
+  createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
+  updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
+};
+
+export type TransactionCreateManyWorkspaceAccountInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+};
+
+export type TransactionUpdateWithoutWorkspaceAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type TransactionUncheckedUpdateWithoutWorkspaceAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type TransactionUncheckedUpdateManyWithoutWorkspaceAccountInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type TransactionSelect<
@@ -300,9 +623,14 @@ export type TransactionSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    workspaceAccount?:
+      | boolean
+      | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
   },
   ExtArgs["result"]["transaction"]
 >;
@@ -313,9 +641,14 @@ export type TransactionSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    workspaceAccount?:
+      | boolean
+      | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
   },
   ExtArgs["result"]["transaction"]
 >;
@@ -326,16 +659,23 @@ export type TransactionSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    workspaceAccountId?: boolean;
     metadata?: boolean;
+    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    workspaceAccount?:
+      | boolean
+      | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
   },
   ExtArgs["result"]["transaction"]
 >;
 
 export type TransactionSelectScalar = {
   id?: boolean;
+  workspaceAccountId?: boolean;
   metadata?: boolean;
+  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -344,20 +684,47 @@ export type TransactionOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "workspaceAccountId"
+  | "metadata"
+  | "status"
+  | "createdAt"
+  | "updatedAt",
   ExtArgs["result"]["transaction"]
 >;
+export type TransactionInclude<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+};
+export type TransactionIncludeCreateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+};
+export type TransactionIncludeUpdateManyAndReturn<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+};
 
 export type $TransactionPayload<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
   name: "Transaction";
-  objects: {};
+  objects: {
+    workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs> | null;
+  };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
+      workspaceAccountId: string | null;
       metadata: runtime.JsonValue | null;
+      status: $Enums.TRANSACTION_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -913,6 +1280,21 @@ export interface Prisma__TransactionClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise";
+  workspaceAccount<
+    T extends Prisma.Transaction$workspaceAccountArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<T, Prisma.Transaction$workspaceAccountArgs<ExtArgs>>
+  ): Prisma.Prisma__WorkspaceAccountClient<
+    runtime.Types.Result.GetResult<
+      Prisma.$WorkspaceAccountPayload<ExtArgs>,
+      T,
+      "findUniqueOrThrow",
+      GlobalOmitOptions
+    > | null,
+    null,
+    ExtArgs,
+    GlobalOmitOptions
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -956,7 +1338,9 @@ export interface Prisma__TransactionClient<
  */
 export interface TransactionFieldRefs {
   readonly id: Prisma.FieldRef<"Transaction", "String">;
+  readonly workspaceAccountId: Prisma.FieldRef<"Transaction", "String">;
   readonly metadata: Prisma.FieldRef<"Transaction", "Json">;
+  readonly status: Prisma.FieldRef<"Transaction", "TRANSACTION_STATUS">;
   readonly createdAt: Prisma.FieldRef<"Transaction", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Transaction", "DateTime">;
 }
@@ -977,6 +1361,10 @@ export type TransactionFindUniqueArgs<
    * Omit specific fields from the Transaction
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
   /**
    * Filter, which Transaction to fetch.
    */
@@ -999,6 +1387,10 @@ export type TransactionFindUniqueOrThrowArgs<
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
+  /**
    * Filter, which Transaction to fetch.
    */
   where: Prisma.TransactionWhereUniqueInput;
@@ -1019,6 +1411,10 @@ export type TransactionFindFirstArgs<
    * Omit specific fields from the Transaction
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
   /**
    * Filter, which Transaction to fetch.
    */
@@ -1075,6 +1471,10 @@ export type TransactionFindFirstOrThrowArgs<
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
+  /**
    * Filter, which Transaction to fetch.
    */
   where?: Prisma.TransactionWhereInput;
@@ -1130,6 +1530,10 @@ export type TransactionFindManyArgs<
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
+  /**
    * Filter, which Transactions to fetch.
    */
   where?: Prisma.TransactionWhereInput;
@@ -1180,6 +1584,10 @@ export type TransactionCreateArgs<
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
+  /**
    * The data needed to create a Transaction.
    */
   data: Prisma.XOR<
@@ -1222,6 +1630,10 @@ export type TransactionCreateManyAndReturnArgs<
    */
   data: Prisma.TransactionCreateManyInput | Prisma.TransactionCreateManyInput[];
   skipDuplicates?: boolean;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionIncludeCreateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1239,6 +1651,10 @@ export type TransactionUpdateArgs<
    * Omit specific fields from the Transaction
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
   /**
    * The data needed to update a Transaction.
    */
@@ -1306,6 +1722,10 @@ export type TransactionUpdateManyAndReturnArgs<
    * Limit how many Transactions to update.
    */
   limit?: number;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionIncludeUpdateManyAndReturn<ExtArgs> | null;
 };
 
 /**
@@ -1323,6 +1743,10 @@ export type TransactionUpsertArgs<
    * Omit specific fields from the Transaction
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
   /**
    * The filter to search for the Transaction to update in case it exists.
    */
@@ -1359,6 +1783,10 @@ export type TransactionDeleteArgs<
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
+  /**
    * Filter which Transaction to delete.
    */
   where: Prisma.TransactionWhereUniqueInput;
@@ -1382,6 +1810,28 @@ export type TransactionDeleteManyArgs<
 };
 
 /**
+ * Transaction.workspaceAccount
+ */
+export type Transaction$workspaceAccountArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the WorkspaceAccount
+   */
+  select?: Prisma.WorkspaceAccountSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the WorkspaceAccount
+   */
+  omit?: Prisma.WorkspaceAccountOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkspaceAccountInclude<ExtArgs> | null;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+/**
  * Transaction without action
  */
 export type TransactionDefaultArgs<
@@ -1396,4 +1846,8 @@ export type TransactionDefaultArgs<
    * Omit specific fields from the Transaction
    */
   omit?: Prisma.TransactionOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TransactionInclude<ExtArgs> | null;
 };
