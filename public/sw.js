@@ -7,7 +7,6 @@ self.addEventListener("install", (event) => {
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
         OFFLINE_URL,
-        "/", // cache the home page
         "/manifest.json",
         "/manifest.webmanifest",
         "/favicon.ico",
