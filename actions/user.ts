@@ -260,6 +260,8 @@ export async function updateUserPasswordById(
       }
     }
 
+    const deviceInfo = await getDeviceInfo();
+
     const user = await prisma.user.findUnique({ where: { id: userId } });
     if (!user) {
       return {
@@ -324,6 +326,24 @@ export async function updateUserPasswordById(
       where: { id: userId },
       data: { password: hashedNewPassword },
     });
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.USER_UPDATED,
+        entity: AUDIT_LOG_ENTITY.USER,
+        entityId: updatedUser.id,
+        description: `User ${updatedUser.email} password updated by ${session.data?.user?.email}.`,
+        metadata: {
+          deviceInfo: JSON.stringify(deviceInfo),
+          updateBy: JSON.stringify(session.data),
+        },
+        user: {
+          connect: { id: updatedUser.id },
+        },
+      });
+    } catch (error) {
+      console.error("Failed to log audit event for registration:", error);
+    }
 
     return {
       success: true,
