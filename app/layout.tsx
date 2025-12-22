@@ -4,12 +4,19 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { ServiceWorkerRegister } from "@/components/shared/service-worker-register";
 
 export const metadata: Metadata = {
   title: "RoyalMotionIT Backstage",
   description:
-    "Professional dashboard for managing RoyalMotionIT's record label operations.",
+    "Backstage is a professional dashboard for managing RoyalMotionIT's record label operations.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  manifest: "/manifest.json",
+  other: {
+    "apple-mobile-web-app-title": "Backstage",
+  },
+  authors: [{ name: "RoyalMotionIT", url: "https://royalmotionit.com" }],
+  keywords: ["RoyalMotionIT", "Backstage", "Record Label", "Dashboard"],
 };
 
 const geist = Geist({
@@ -32,6 +39,7 @@ export default async function MainLayout({
           {children}
           <Toaster richColors position="top-center" />
         </ThemeProvider>
+        <ServiceWorkerRegister />
       </body>
     </html>
   );

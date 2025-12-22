@@ -258,7 +258,7 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Exclude API routes, static files, image optimizations, and image files (.png, .jpeg, .gif, .jpg, .webp)
-    "/((?!api|_next/static|_next/image|.*\\.(?:png|jpeg|gif|jpg|webp)$).*)",
+    // Exclude API routes, static files, image optimizations, image files (.png, .jpeg, .gif, .jpg, .webp), sw.js, manifest.json, and favicon.ico
+    "/((?!api|_next/static|_next/image|sw\.js|manifest\.webmanifest|offline|favicon\.ico|.*\\.(?:png|jpeg|gif|jpg|webp)$).*)",
   ],
 };
