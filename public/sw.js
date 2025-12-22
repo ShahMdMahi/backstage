@@ -10,9 +10,6 @@ self.addEventListener("install", (event) => {
         "/manifest.json",
         "/manifest.webmanifest",
         "/favicon.ico",
-        "/icons/*",
-        "_next/static/*",
-        "_next/image/*",
         "/sw.js",
       ]);
     })
