@@ -7,7 +7,7 @@ import { formatRelativeTime } from "@/lib/utils";
 import { MapPinIcon, GlobeIcon, CalendarIcon, ClockIcon } from "lucide-react";
 import { Session } from "@/lib/prisma/client";
 import { DeviceInfo } from "@/lib/device-info";
-import { formatDate } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 
 interface SessionCardProps {
   session: Session;
@@ -129,7 +129,11 @@ export function SessionCard({
             <CalendarIcon className="size-4 text-muted-foreground shrink-0" />
             <span className="text-muted-foreground">
               {status === "expired" ? "Expired" : "Expires"}{" "}
-              {formatDate(session.expiresAt, "dd/MM/yyyy HH:mm")}
+              {formatInTimeZone(
+                session.expiresAt,
+                "Asia/Dhaka",
+                "dd/MM/yyyy HH:mm a"
+              )}
             </span>
           </div>
         </div>
@@ -145,9 +149,23 @@ export function SessionCard({
         {/* Actions */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div className="text-xs text-muted-foreground space-y-1">
-            <p>{formatDate(session.createdAt, "dd/MM/yyyy HH:mm")}</p>
+            <p>
+              Created:{" "}
+              {formatInTimeZone(
+                session.createdAt,
+                "Asia/Dhaka",
+                "dd/MM/yyyy HH:mm a"
+              )}
+            </p>
             {session.revokedAt && (
-              <p>Revoked {formatDate(session.revokedAt, "dd/MM/yyyy HH:mm")}</p>
+              <p>
+                Revoke:{" "}
+                {formatInTimeZone(
+                  session.revokedAt,
+                  "Asia/Dhaka",
+                  "dd/MM/yyyy hh:mm a"
+                )}
+              </p>
             )}
             {revokedReason && <p>Reason: {revokedReason}</p>}
           </div>
