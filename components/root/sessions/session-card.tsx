@@ -49,11 +49,11 @@ export function SessionCard({
       case "active":
         return "default";
       case "revoked":
-        return "secondary";
+        return "outline";
       case "expired":
         return "destructive";
       default:
-        return "outline";
+        return "secondary";
     }
   };
 
@@ -132,7 +132,7 @@ export function SessionCard({
               {formatInTimeZone(
                 session.expiresAt,
                 "Asia/Dhaka",
-                "dd/MM/yyyy HH:mm a"
+                "dd/MM/yyyy hh:mm a"
               )}
             </span>
           </div>
@@ -154,7 +154,7 @@ export function SessionCard({
               {formatInTimeZone(
                 session.createdAt,
                 "Asia/Dhaka",
-                "dd/MM/yyyy HH:mm a"
+                "dd/MM/yyyy hh:mm a"
               )}
             </p>
             {session.revokedAt && (
