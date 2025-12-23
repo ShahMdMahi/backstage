@@ -3,10 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { DeviceIcon } from "./device-icon";
 import { SessionActions } from "./session-action";
-import { formatRelativeTime, formatDate } from "@/lib/utils";
+import { formatRelativeTime } from "@/lib/utils";
 import { MapPinIcon, GlobeIcon, CalendarIcon, ClockIcon } from "lucide-react";
 import { Session } from "@/lib/prisma/client";
 import { DeviceInfo } from "@/lib/device-info";
+import { formatDate } from "date-fns";
 
 interface SessionCardProps {
   session: Session;
@@ -128,7 +129,7 @@ export function SessionCard({
             <CalendarIcon className="size-4 text-muted-foreground shrink-0" />
             <span className="text-muted-foreground">
               {status === "expired" ? "Expired" : "Expires"}{" "}
-              {formatDate(session.expiresAt)}
+              {formatDate(session.expiresAt, "dd/MM/yyyy HH:mm")}
             </span>
           </div>
         </div>
@@ -144,9 +145,9 @@ export function SessionCard({
         {/* Actions */}
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <div className="text-xs text-muted-foreground space-y-1">
-            <p>Created {formatDate(session.createdAt)}</p>
+            <p>{formatDate(session.createdAt, "dd/MM/yyyy HH:mm")}</p>
             {session.revokedAt && (
-              <p>Revoked {formatDate(session.revokedAt)}</p>
+              <p>Revoked {formatDate(session.revokedAt, "dd/MM/yyyy HH:mm")}</p>
             )}
             {revokedReason && <p>Reason: {revokedReason}</p>}
           </div>
