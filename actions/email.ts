@@ -10,6 +10,7 @@ import {
 import { render } from "@react-email/render";
 import { randomBytes } from "crypto";
 import { getBaseUrl } from "@/lib/utils";
+import NewLoginDetectedEmailTemplate from "../emails/new-login-detected";
 
 export async function sendWelcomeEmail(
   email: string,
@@ -73,5 +74,33 @@ export async function sendPasswordResetEmail(email: string): Promise<void> {
     });
   } catch (error) {
     console.error("Failed to send password reset email:", error);
+  }
+}
+
+export async function sendNewLoginDetectedEmail(
+  email: string,
+  loginTime: string,
+  location: string,
+  device: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      NewLoginDetectedEmailTemplate({
+        email,
+        location,
+        loginTime,
+        device,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "New Login Detected",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send new login detected email:", error);
   }
 }

@@ -20,6 +20,7 @@ import z from "zod";
 import { logAuditEvent } from "./audit-log";
 import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
 import {
+  sendNewLoginDetectedEmail,
   sendPasswordResetEmail,
   sendVerificationEmail,
   sendWelcomeEmail,
@@ -542,6 +543,21 @@ export async function login(data: LoginData): Promise<{
           ])
         ),
       };
+    }
+
+    try {
+      const device = `${deviceInfo.deviceType} - ${deviceInfo.deviceName} - ${deviceInfo.deviceBrand} - ${deviceInfo.deviceModel}`;
+      const location = deviceInfo.location
+        ? `${deviceInfo.location.city}, ${deviceInfo.location.region}, ${deviceInfo.location.country} - ${deviceInfo.location.isp}`
+        : "Unknown";
+      await sendNewLoginDetectedEmail(
+        userExists.email,
+        new Date().toISOString(),
+        location,
+        device
+      );
+    } catch (error) {
+      console.error("Failed to send new login detected email:", error);
     }
 
     try {

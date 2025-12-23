@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "RoyalMotionIT Backstage",
     short_name: "Backstage",
     description:
-      "Backstage is a professional dashboard for managing RoyalMotionIT's record label operations.",
+      "Backstage is a professional dashboard for managing RoyalMotionIT's music distribution operations.",
     start_url: "/",
     display: "standalone",
     orientation: "natural",

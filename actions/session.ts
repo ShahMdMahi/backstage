@@ -62,6 +62,23 @@ export async function createSession(
       maxAge: 24 * 60 * 60, // 1 day
     });
 
+    const allSessions = await prisma.session.findMany({
+      where: { userId },
+    });
+
+    if (allSessions.length > 5) {
+      const sessionsToRevoke = allSessions
+        .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+        .slice(0, allSessions.length - 5);
+
+      for (const oldSession of sessionsToRevoke) {
+        await prisma.session.update({
+          where: { id: oldSession.id },
+          data: { revokedAt: new Date() },
+        });
+      }
+    }
+
     try {
       await logAuditEvent({
         action: AUDIT_LOG_ACTION.SESSION_CREATED,

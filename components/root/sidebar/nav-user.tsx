@@ -166,7 +166,7 @@ export function NavUser({
                 const result = await logout();
                 if (result.success) {
                   toast.success(result.message || "Logged out successfully");
-                  router.push("/auth/sign-in");
+                  router.push("/auth/login");
                 } else {
                   toast.error(result.message || "Failed to log out");
                 }

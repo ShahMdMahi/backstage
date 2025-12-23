@@ -9,7 +9,7 @@ import { ServiceWorkerRegister } from "@/components/shared/service-worker-regist
 export const metadata: Metadata = {
   title: "RoyalMotionIT Backstage",
   description:
-    "Backstage is a professional dashboard for managing RoyalMotionIT's record label operations.",
+    "Backstage is a professional dashboard for managing RoyalMotionIT's music distribution operations.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   manifest: "/manifest.json",
   other: {
