@@ -73,9 +73,8 @@ export async function createSession(
         .slice(0, allSessions.length - 5);
 
       for (const oldSession of sessionsToRevoke) {
-        await prisma.session.update({
+        await prisma.session.delete({
           where: { id: oldSession.id },
-          data: { revokedAt: new Date() },
         });
       }
     }
