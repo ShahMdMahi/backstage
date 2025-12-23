@@ -49,6 +49,12 @@ export async function proxy(request: NextRequest) {
             metadata: {
               revokedReason: "User agent mismatch",
             },
+            deviceInfo: (
+              dbSession.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            newDeviceInfo: JSON.stringify(deviceInfo),
           },
         });
         await logAuditEvent({
@@ -82,6 +88,12 @@ export async function proxy(request: NextRequest) {
             revokedAt: new Date(),
             metadata: {
               revokedReason: "Device fingerprint mismatch",
+              deviceInfo: (
+                dbSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -116,6 +128,7 @@ export async function proxy(request: NextRequest) {
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User not verified",
+              deviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -150,6 +163,7 @@ export async function proxy(request: NextRequest) {
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User not approved",
+              deviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -184,6 +198,7 @@ export async function proxy(request: NextRequest) {
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User suspended",
+              deviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
