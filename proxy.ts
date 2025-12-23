@@ -48,13 +48,13 @@ export async function proxy(request: NextRequest) {
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User agent mismatch",
+              deviceInfo: (
+                dbSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
-            deviceInfo: (
-              dbSession.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            newDeviceInfo: JSON.stringify(deviceInfo),
           },
         });
         await logAuditEvent({
