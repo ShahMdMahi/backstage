@@ -11,6 +11,8 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { AvatarWithDropdown } from "@/components/shared/avatar-with-dropdown";
 import { getCurrentSession } from "@/actions/session";
 
+export const dynamic = "force-dynamic";
+
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

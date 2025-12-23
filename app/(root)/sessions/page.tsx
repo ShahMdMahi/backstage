@@ -4,6 +4,8 @@ import { SessionCardSkeleton } from "@/components/root/sessions/session-card-ske
 import { ShieldIcon } from "lucide-react";
 import { getAllSessionsForUser, getCurrentSession } from "@/actions/session";
 
+export const dynamic = "force-dynamic";
+
 async function SessionsContent() {
   const currentSession = await getCurrentSession();
   const sessions = await getAllSessionsForUser(currentSession.data!.userId);

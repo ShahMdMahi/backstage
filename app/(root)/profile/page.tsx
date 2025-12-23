@@ -16,6 +16,8 @@ import { ROLE } from "@/lib/prisma/enums";
 import { getInitials } from "@/lib/utils";
 import { format } from "date-fns";
 
+export const dynamic = "force-dynamic";
+
 export default async function Profile() {
   const session = await getCurrentSession();
 
