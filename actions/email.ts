@@ -24,7 +24,7 @@ export async function sendWelcomeEmail(
     const res = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
       to: email,
-      subject: "Welcome to Our Record Label Dashboard!",
+      subject: "Welcome to Our Backstage Dashboard!",
       html: emailHtml,
     });
     console.log("Welcome email sent to", email, res);

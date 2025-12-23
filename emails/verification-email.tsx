@@ -46,7 +46,7 @@ export function VerificationEmailTemplate({
               <Text className="text-lg mb-4">Hi there,</Text>
               <Text className="mb-4">
                 We&apos;ve sent this verification email to {email}. Thank you
-                for signing up for our record label dashboard. To complete your
+                for signing up for our backstage dashboard. To complete your
                 registration, please verify your email address by clicking the
                 button below.
               </Text>
@@ -71,7 +71,7 @@ export function VerificationEmailTemplate({
               <Text className="text-sm text-gray-600 mt-4">
                 Best regards,
                 <br />
-                The Record Label Team
+                The Backstage Team
               </Text>
             </Section>
           </Container>

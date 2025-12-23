@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   description:
     "Backstage is a professional dashboard for managing RoyalMotionIT's music distribution operations.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-  manifest: "/manifest.json",
+  manifest: "/manifest.webmanifest",
   other: {
     "apple-mobile-web-app-title": "Backstage",
   },
   authors: [{ name: "RoyalMotionIT", url: "https://royalmotionit.com" }],
-  keywords: ["RoyalMotionIT", "Backstage", "Record Label", "Dashboard"],
+  keywords: ["RoyalMotionIT", "Backstage", "Music Distribution", "Dashboard"],
 };
 
 const geist = Geist({

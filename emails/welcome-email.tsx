@@ -39,15 +39,15 @@ export function WelcomeEmailTemplate({
           <Container className="mx-auto max-w-lg bg-white shadow-lg rounded-lg overflow-hidden">
             <Section className="bg-brand text-white text-center py-8">
               <Text className="text-2xl font-bold">
-                Welcome to Our Record Label Dashboard!
+                Welcome to Our Backstage Dashboard!
               </Text>
             </Section>
             <Section className="p-8">
               <Text className="text-lg mb-4">Hi {name},</Text>
               <Text className="mb-4">
                 We&apos;ve sent this welcome email to {email}. Thank you for
-                joining our record label dashboard! We&apos;re excited to have
-                you on board.
+                joining our backstage dashboard! We&apos;re excited to have you
+                on board.
               </Text>
               <Text className="mb-6">
                 Your account is now active, and you can start managing your
@@ -67,7 +67,7 @@ export function WelcomeEmailTemplate({
               <Text className="text-sm text-gray-600 mt-4">
                 Best regards,
                 <br />
-                The Record Label Team
+                The Backstage Team
               </Text>
             </Section>
           </Container>

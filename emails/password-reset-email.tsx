@@ -44,7 +44,7 @@ export function PasswordResetEmailTemplate({
               <Text className="text-lg mb-4">Hi there,</Text>
               <Text className="mb-4">
                 We&apos;ve sent this password reset email to {email}. We
-                received a request to reset your password for your record label
+                received a request to reset your password for your backstage
                 dashboard account. If you made this request, click the button
                 below to set a new password.
               </Text>
@@ -67,7 +67,7 @@ export function PasswordResetEmailTemplate({
               <Text className="text-sm text-gray-600 mt-4">
                 Best regards,
                 <br />
-                The Record Label Team
+                The Backstage Team
               </Text>
             </Section>
           </Container>

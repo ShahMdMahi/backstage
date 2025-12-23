@@ -11,7 +11,15 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { getInitials } from "@/lib/utils";
-import { Home, Moon, Sun, UserIcon, Settings, LogOut } from "lucide-react";
+import {
+  Home,
+  Moon,
+  Sun,
+  UserIcon,
+  BrickWallShield,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import * as React from "react";
@@ -127,6 +135,15 @@ export function AvatarWithDropdown({
             onKeyDown={(e) => handleKeyDown(e, () => router.push("/profile"))}
           >
             <UserIcon className="mr-2 h-4 w-4" /> Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            tabIndex={0}
+            className="flex items-center gap-2"
+            aria-label="Go to Sessions"
+            onClick={() => router.push("/sessions")}
+            onKeyDown={(e) => handleKeyDown(e, () => router.push("/sessions"))}
+          >
+            <BrickWallShield className="mr-2 h-4 w-4" /> Sessions
           </DropdownMenuItem>
           <DropdownMenuItem
             tabIndex={0}

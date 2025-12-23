@@ -55,6 +55,7 @@ export async function createSession(
 
     const cookieManager = await cookies();
 
+    cookieManager.delete("session_token");
     cookieManager.set("session_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -175,6 +176,12 @@ export async function getCurrentSession(): Promise<{
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User agent mismatch",
+              deviceInfo: (
+                session.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -213,6 +220,12 @@ export async function getCurrentSession(): Promise<{
             revokedAt: new Date(),
             metadata: {
               revokedReason: "Device fingerprint mismatch",
+              deviceInfo: (
+                session.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -251,6 +264,12 @@ export async function getCurrentSession(): Promise<{
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User not verified",
+              deviceInfo: (
+                session.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -289,6 +308,12 @@ export async function getCurrentSession(): Promise<{
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User not approved",
+              deviceInfo: (
+                session.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -327,6 +352,12 @@ export async function getCurrentSession(): Promise<{
             revokedAt: new Date(),
             metadata: {
               revokedReason: "User suspended",
+              deviceInfo: (
+                session.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              newDeviceInfo: JSON.stringify(deviceInfo),
             },
           },
         });
@@ -401,6 +432,10 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
         },
         data: {
           revokedAt: new Date(),
+          metadata: {
+            revokedReason: "Current session revoked",
+            deviceInfo: JSON.stringify(deviceInfo),
+          },
         },
         include: {
           user: true,
@@ -604,10 +639,23 @@ export async function revokeSessionById(
 ): Promise<{
   success: boolean;
   message: string;
-  data: null;
+  data: Session | null;
   errors: unknown | null;
 }> {
   try {
+    const sessionExists = await prisma.session.findUnique({
+      where: { id: sessionId },
+    });
+
+    if (!sessionExists) {
+      return {
+        success: false,
+        message: "Session not found",
+        data: null,
+        errors: new Error("Session not found"),
+      };
+    }
+
     const session = await prisma.$transaction(async (tx) => {
       return await tx.session.update({
         where: {
@@ -615,6 +663,15 @@ export async function revokeSessionById(
         },
         data: {
           revokedAt: new Date(),
+          metadata: {
+            revokedReason: `Revoked from dashboard by ${userId}`,
+            deviceInfo: (
+              sessionExists.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            revokedDeviceInfo: JSON.stringify(deviceInfo),
+          },
         },
       });
     });
@@ -649,7 +706,7 @@ export async function revokeSessionById(
     return {
       success: true,
       message: "Session revoked successfully",
-      data: null,
+      data: session,
       errors: null,
     };
   } catch (error) {

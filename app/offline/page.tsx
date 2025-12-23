@@ -1,13 +1,5 @@
 "use client";
 
-// import { Metadata } from "next";
-
-// export const metadata: Metadata = {
-//   title: "Offline - Record Label Dashboard",
-//   description:
-//     "You are currently offline. Please check your internet connection.",
-// };
-
 import { useEffect } from "react";
 
 export default function OfflinePage() {

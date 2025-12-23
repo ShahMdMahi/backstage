@@ -1,6 +1,14 @@
 "use client";
 
-import { Home, LogOut, Moon, Settings, Sun, UserIcon } from "lucide-react";
+import {
+  Home,
+  LogOut,
+  Moon,
+  Settings,
+  Sun,
+  UserIcon,
+  BrickWallShield,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -137,13 +145,24 @@ export function NavUser({
               <DropdownMenuItem
                 tabIndex={0}
                 className="flex items-center gap-2"
-                aria-label="Go to Settings"
+                aria-label="Go to Profile"
                 onClick={() => router.push("/profile")}
                 onKeyDown={(e) =>
                   handleKeyDown(e, () => router.push("/profile"))
                 }
               >
                 <UserIcon className="mr-2 h-4 w-4" /> Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                tabIndex={0}
+                className="flex items-center gap-2"
+                aria-label="Go to Sessions"
+                onClick={() => router.push("/sessions")}
+                onKeyDown={(e) =>
+                  handleKeyDown(e, () => router.push("/sessions"))
+                }
+              >
+                <BrickWallShield className="mr-2 h-4 w-4" /> Sessions
               </DropdownMenuItem>
               <DropdownMenuItem
                 tabIndex={0}

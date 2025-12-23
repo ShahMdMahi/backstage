@@ -48,7 +48,7 @@ export function NewLoginDetectedEmailTemplate({
               <Text className="text-lg mb-4">Hi there,</Text>
               <Text className="mb-4">
                 We&apos;ve sent this email to {email} because we detected a new
-                login to your record label dashboard account.
+                login to your backstage dashboard account.
               </Text>
               <Text className="mb-4">
                 <strong>Login Details:</strong>
@@ -77,7 +77,7 @@ export function NewLoginDetectedEmailTemplate({
               <Text className="text-sm text-gray-600 mt-4">
                 Best regards,
                 <br />
-                The Record Label Team
+                The Backstage Team
               </Text>
             </Section>
           </Container>
