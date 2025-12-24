@@ -422,6 +422,7 @@ export const ModelName = {
   Artist: "Artist",
   Performer: "Performer",
   ProducerAndEngineer: "ProducerAndEngineer",
+  ArtistPerformerProducerAndEngineer: "ArtistPerformerProducerAndEngineer",
   Writer: "Writer",
   Publisher: "Publisher",
   Label: "Label",
@@ -461,6 +462,7 @@ export type TypeMap<
       | "artist"
       | "performer"
       | "producerAndEngineer"
+      | "artistPerformerProducerAndEngineer"
       | "writer"
       | "publisher"
       | "label"
@@ -1231,6 +1233,82 @@ export type TypeMap<
         };
       };
     };
+    ArtistPerformerProducerAndEngineer: {
+      payload: Prisma.$ArtistPerformerProducerAndEngineerPayload<ExtArgs>;
+      fields: Prisma.ArtistPerformerProducerAndEngineerFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ArtistPerformerProducerAndEngineerFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ArtistPerformerProducerAndEngineerFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>;
+        };
+        findFirst: {
+          args: Prisma.ArtistPerformerProducerAndEngineerFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ArtistPerformerProducerAndEngineerFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>;
+        };
+        findMany: {
+          args: Prisma.ArtistPerformerProducerAndEngineerFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>[];
+        };
+        create: {
+          args: Prisma.ArtistPerformerProducerAndEngineerCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>;
+        };
+        createMany: {
+          args: Prisma.ArtistPerformerProducerAndEngineerCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ArtistPerformerProducerAndEngineerCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>[];
+        };
+        delete: {
+          args: Prisma.ArtistPerformerProducerAndEngineerDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>;
+        };
+        update: {
+          args: Prisma.ArtistPerformerProducerAndEngineerUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ArtistPerformerProducerAndEngineerDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ArtistPerformerProducerAndEngineerUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ArtistPerformerProducerAndEngineerUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>[];
+        };
+        upsert: {
+          args: Prisma.ArtistPerformerProducerAndEngineerUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ArtistPerformerProducerAndEngineerPayload>;
+        };
+        aggregate: {
+          args: Prisma.ArtistPerformerProducerAndEngineerAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateArtistPerformerProducerAndEngineer>;
+        };
+        groupBy: {
+          args: Prisma.ArtistPerformerProducerAndEngineerGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ArtistPerformerProducerAndEngineerGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ArtistPerformerProducerAndEngineerCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ArtistPerformerProducerAndEngineerCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     Writer: {
       payload: Prisma.$WriterPayload<ExtArgs>;
       fields: Prisma.WriterFieldRefs;
@@ -1804,6 +1882,7 @@ export type TransactionIsolationLevel =
 
 export const UserScalarFieldEnum = {
   id: "id",
+  ownWorkspaceAccountId: "ownWorkspaceAccountId",
   name: "name",
   email: "email",
   password: "password",
@@ -1941,6 +2020,22 @@ export const ProducerAndEngineerScalarFieldEnum = {
 
 export type ProducerAndEngineerScalarFieldEnum =
   (typeof ProducerAndEngineerScalarFieldEnum)[keyof typeof ProducerAndEngineerScalarFieldEnum];
+
+export const ArtistPerformerProducerAndEngineerScalarFieldEnum = {
+  id: "id",
+  artistId: "artistId",
+  performerId: "performerId",
+  producerAndEngineerId: "producerAndEngineerId",
+  name: "name",
+  legalName: "legalName",
+  avatar: "avatar",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ArtistPerformerProducerAndEngineerScalarFieldEnum =
+  (typeof ArtistPerformerProducerAndEngineerScalarFieldEnum)[keyof typeof ArtistPerformerProducerAndEngineerScalarFieldEnum];
 
 export const WriterScalarFieldEnum = {
   id: "id",
@@ -2531,6 +2626,7 @@ export type GlobalOmitConfig = {
   artist?: Prisma.ArtistOmit;
   performer?: Prisma.PerformerOmit;
   producerAndEngineer?: Prisma.ProducerAndEngineerOmit;
+  artistPerformerProducerAndEngineer?: Prisma.ArtistPerformerProducerAndEngineerOmit;
   writer?: Prisma.WriterOmit;
   publisher?: Prisma.PublisherOmit;
   label?: Prisma.LabelOmit;

@@ -215,10 +215,10 @@ export type PublisherOrderByWithRelationInput = {
 export type PublisherWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    workspaceAccountId?: string;
     AND?: Prisma.PublisherWhereInput | Prisma.PublisherWhereInput[];
     OR?: Prisma.PublisherWhereInput[];
     NOT?: Prisma.PublisherWhereInput | Prisma.PublisherWhereInput[];
-    workspaceAccountId?: Prisma.StringFilter<"Publisher"> | string;
     metadata?: Prisma.JsonNullableFilter<"Publisher">;
     status?:
       | Prisma.EnumPUBLISHER_STATUSFilter<"Publisher">
@@ -232,7 +232,7 @@ export type PublisherWhereUniqueInput = Prisma.AtLeast<
     sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
-  "id"
+  "id" | "workspaceAccountId"
 >;
 
 export type PublisherOrderByWithAggregationInput = {

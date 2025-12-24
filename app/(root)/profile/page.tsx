@@ -128,7 +128,7 @@ export default async function Profile() {
 
         <UpdateProfileForm user={user} />
 
-        <UpdatePasswordForm user={user} />
+        <UpdatePasswordForm />
       </div>
     </div>
   );

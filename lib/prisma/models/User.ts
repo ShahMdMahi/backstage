@@ -26,6 +26,7 @@ export type AggregateUser = {
 
 export type UserMinAggregateOutputType = {
   id: string | null;
+  ownWorkspaceAccountId: string | null;
   name: string | null;
   email: string | null;
   password: string | null;
@@ -41,6 +42,7 @@ export type UserMinAggregateOutputType = {
 
 export type UserMaxAggregateOutputType = {
   id: string | null;
+  ownWorkspaceAccountId: string | null;
   name: string | null;
   email: string | null;
   password: string | null;
@@ -56,6 +58,7 @@ export type UserMaxAggregateOutputType = {
 
 export type UserCountAggregateOutputType = {
   id: number;
+  ownWorkspaceAccountId: number;
   name: number;
   email: number;
   password: number;
@@ -72,6 +75,7 @@ export type UserCountAggregateOutputType = {
 
 export type UserMinAggregateInputType = {
   id?: true;
+  ownWorkspaceAccountId?: true;
   name?: true;
   email?: true;
   password?: true;
@@ -87,6 +91,7 @@ export type UserMinAggregateInputType = {
 
 export type UserMaxAggregateInputType = {
   id?: true;
+  ownWorkspaceAccountId?: true;
   name?: true;
   email?: true;
   password?: true;
@@ -102,6 +107,7 @@ export type UserMaxAggregateInputType = {
 
 export type UserCountAggregateInputType = {
   id?: true;
+  ownWorkspaceAccountId?: true;
   name?: true;
   email?: true;
   password?: true;
@@ -197,6 +203,7 @@ export type UserGroupByArgs<
 
 export type UserGroupByOutputType = {
   id: string;
+  ownWorkspaceAccountId: string | null;
   name: string;
   email: string;
   password: string;
@@ -230,6 +237,7 @@ export type UserWhereInput = {
   OR?: Prisma.UserWhereInput[];
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
   id?: Prisma.StringFilter<"User"> | string;
+  ownWorkspaceAccountId?: Prisma.StringNullableFilter<"User"> | string | null;
   name?: Prisma.StringFilter<"User"> | string;
   email?: Prisma.StringFilter<"User"> | string;
   password?: Prisma.StringFilter<"User"> | string;
@@ -253,6 +261,7 @@ export type UserWhereInput = {
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
+  ownWorkspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
@@ -274,6 +283,7 @@ export type UserOrderByWithRelationInput = {
 export type UserWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    ownWorkspaceAccountId?: string;
     email?: string;
     AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
     OR?: Prisma.UserWhereInput[];
@@ -297,11 +307,12 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
     assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     auditLogs?: Prisma.AuditLogListRelationFilter;
   },
-  "id" | "email"
+  "id" | "ownWorkspaceAccountId" | "email"
 >;
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
+  ownWorkspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
@@ -327,6 +338,10 @@ export type UserScalarWhereWithAggregatesInput = {
     | Prisma.UserScalarWhereWithAggregatesInput
     | Prisma.UserScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<"User"> | string;
+  ownWorkspaceAccountId?:
+    | Prisma.StringNullableWithAggregatesFilter<"User">
+    | string
+    | null;
   name?: Prisma.StringWithAggregatesFilter<"User"> | string;
   email?: Prisma.StringWithAggregatesFilter<"User"> | string;
   password?: Prisma.StringWithAggregatesFilter<"User"> | string;
@@ -354,6 +369,7 @@ export type UserScalarWhereWithAggregatesInput = {
 
 export type UserCreateInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -374,6 +390,7 @@ export type UserCreateInput = {
 
 export type UserUncheckedCreateInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -394,6 +411,10 @@ export type UserUncheckedCreateInput = {
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -426,6 +447,10 @@ export type UserUpdateInput = {
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -458,6 +483,7 @@ export type UserUncheckedUpdateInput = {
 
 export type UserCreateManyInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -473,6 +499,10 @@ export type UserCreateManyInput = {
 
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -500,6 +530,10 @@ export type UserUpdateManyMutationInput = {
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -527,6 +561,7 @@ export type UserUncheckedUpdateManyInput = {
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  ownWorkspaceAccountId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
@@ -542,6 +577,7 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  ownWorkspaceAccountId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
@@ -557,6 +593,7 @@ export type UserMaxOrderByAggregateInput = {
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
+  ownWorkspaceAccountId?: Prisma.SortOrder;
   name?: Prisma.SortOrder;
   email?: Prisma.SortOrder;
   password?: Prisma.SortOrder;
@@ -736,6 +773,7 @@ export type UserUpdateOneWithoutAuditLogsNestedInput = {
 
 export type UserCreateWithoutSessionsInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -755,6 +793,7 @@ export type UserCreateWithoutSessionsInput = {
 
 export type UserUncheckedCreateWithoutSessionsInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -802,6 +841,10 @@ export type UserUpdateToOneWithWhereWithoutSessionsInput = {
 
 export type UserUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -833,6 +876,10 @@ export type UserUpdateWithoutSessionsInput = {
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -864,6 +911,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
 
 export type UserCreateWithoutOwnWorkspaceAccountInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -883,6 +931,7 @@ export type UserCreateWithoutOwnWorkspaceAccountInput = {
 
 export type UserUncheckedCreateWithoutOwnWorkspaceAccountInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -930,6 +979,10 @@ export type UserUpdateToOneWithWhereWithoutOwnWorkspaceAccountInput = {
 
 export type UserUpdateWithoutOwnWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -961,6 +1014,10 @@ export type UserUpdateWithoutOwnWorkspaceAccountInput = {
 
 export type UserUncheckedUpdateWithoutOwnWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -992,6 +1049,7 @@ export type UserUncheckedUpdateWithoutOwnWorkspaceAccountInput = {
 
 export type UserCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -1011,6 +1069,7 @@ export type UserCreateWithoutSharedWorkspaceAccountAccessesInput = {
 
 export type UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -1038,6 +1097,7 @@ export type UserCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput = {
 
 export type UserCreateWithoutAssignedWorkspaceAccountAccessesInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -1057,6 +1117,7 @@ export type UserCreateWithoutAssignedWorkspaceAccountAccessesInput = {
 
 export type UserUncheckedCreateWithoutAssignedWorkspaceAccountAccessesInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -1105,6 +1166,10 @@ export type UserUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessesInput =
 
 export type UserUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1136,6 +1201,10 @@ export type UserUpdateWithoutSharedWorkspaceAccountAccessesInput = {
 
 export type UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1188,6 +1257,10 @@ export type UserUpdateToOneWithWhereWithoutAssignedWorkspaceAccountAccessesInput
 
 export type UserUpdateWithoutAssignedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1219,6 +1292,10 @@ export type UserUpdateWithoutAssignedWorkspaceAccountAccessesInput = {
 
 export type UserUncheckedUpdateWithoutAssignedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1250,6 +1327,7 @@ export type UserUncheckedUpdateWithoutAssignedWorkspaceAccountAccessesInput = {
 
 export type UserCreateWithoutAuditLogsInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -1269,6 +1347,7 @@ export type UserCreateWithoutAuditLogsInput = {
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
   id?: string;
+  ownWorkspaceAccountId?: string | null;
   name: string;
   email: string;
   password: string;
@@ -1316,6 +1395,10 @@ export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
 
 export type UserUpdateWithoutAuditLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1347,6 +1430,10 @@ export type UserUpdateWithoutAuditLogsInput = {
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownWorkspaceAccountId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   email?: Prisma.StringFieldUpdateOperationsInput | string;
   password?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1460,6 +1547,7 @@ export type UserSelect<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    ownWorkspaceAccountId?: boolean;
     name?: boolean;
     email?: boolean;
     password?: boolean;
@@ -1493,6 +1581,7 @@ export type UserSelectCreateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    ownWorkspaceAccountId?: boolean;
     name?: boolean;
     email?: boolean;
     password?: boolean;
@@ -1514,6 +1603,7 @@ export type UserSelectUpdateManyAndReturn<
 > = runtime.Types.Extensions.GetSelect<
   {
     id?: boolean;
+    ownWorkspaceAccountId?: boolean;
     name?: boolean;
     email?: boolean;
     password?: boolean;
@@ -1531,6 +1621,7 @@ export type UserSelectUpdateManyAndReturn<
 
 export type UserSelectScalar = {
   id?: boolean;
+  ownWorkspaceAccountId?: boolean;
   name?: boolean;
   email?: boolean;
   password?: boolean;
@@ -1549,6 +1640,7 @@ export type UserOmit<
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
   | "id"
+  | "ownWorkspaceAccountId"
   | "name"
   | "email"
   | "password"
@@ -1601,6 +1693,7 @@ export type $UserPayload<
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
+      ownWorkspaceAccountId: string | null;
       name: string;
       email: string;
       password: string;
@@ -2274,6 +2367,7 @@ export interface Prisma__UserClient<
  */
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", "String">;
+  readonly ownWorkspaceAccountId: Prisma.FieldRef<"User", "String">;
   readonly name: Prisma.FieldRef<"User", "String">;
   readonly email: Prisma.FieldRef<"User", "String">;
   readonly password: Prisma.FieldRef<"User", "String">;

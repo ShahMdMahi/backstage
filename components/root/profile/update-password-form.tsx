@@ -2,8 +2,8 @@
 
 import type React from "react";
 import {
-  updateUserPasswordSchema,
-  type UpdateUserPasswordData,
+  updateMyPasswordSchema,
+  type UpdateMyPasswordData,
 } from "@/validators/user";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,7 +13,7 @@ import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { updateUserPasswordById } from "@/actions/user";
+import { updateMyPassword } from "@/actions/user";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import {
@@ -23,7 +23,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { User } from "@/lib/prisma/client";
 
 interface TreeifyErrorStructure {
   errors: string[];
@@ -59,11 +58,7 @@ function extractServerErrors(errors: unknown): ExtractedErrors {
   return { fieldErrors };
 }
 
-interface UpdatePasswordFormProps {
-  user: User;
-}
-
-export function UpdatePasswordForm({ user }: UpdatePasswordFormProps) {
+export function UpdatePasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
@@ -77,20 +72,20 @@ export function UpdatePasswordForm({ user }: UpdatePasswordFormProps) {
     setError,
     reset,
     watch,
-  } = useForm<UpdateUserPasswordData>({
-    resolver: zodResolver(updateUserPasswordSchema),
+  } = useForm<UpdateMyPasswordData>({
+    resolver: zodResolver(updateMyPasswordSchema),
     mode: "onChange",
   });
 
   const newPassword = watch("newPassword");
   const confirmNewPassword = watch("confirmNewPassword");
 
-  const onSubmit = async (data: UpdateUserPasswordData) => {
+  const onSubmit = async (data: UpdateMyPasswordData) => {
     setIsSubmitting(true);
     setServerError(null);
 
     try {
-      const result = await updateUserPasswordById(user.id, data);
+      const result = await updateMyPassword(data);
 
       if (result.success) {
         toast.success("Password updated successfully");
@@ -99,7 +94,7 @@ export function UpdatePasswordForm({ user }: UpdatePasswordFormProps) {
         if (result.errors) {
           const extracted = extractServerErrors(result.errors);
           Object.entries(extracted.fieldErrors).forEach(([field, message]) => {
-            setError(field as keyof UpdateUserPasswordData, { message });
+            setError(field as keyof UpdateMyPasswordData, { message });
           });
         }
         setServerError(result.message);

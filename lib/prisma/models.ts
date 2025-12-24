@@ -17,6 +17,7 @@ export type * from "./models/Ringtone";
 export type * from "./models/Artist";
 export type * from "./models/Performer";
 export type * from "./models/ProducerAndEngineer";
+export type * from "./models/ArtistPerformerProducerAndEngineer";
 export type * from "./models/Writer";
 export type * from "./models/Publisher";
 export type * from "./models/Label";

@@ -1,24 +1,21 @@
 "use server";
 
 import {
-  updateUserSchema,
-  updateUserPasswordSchema,
-  UpdateUserData,
-  UpdateUserPasswordData,
+  updateMeSchema,
+  updateMyPasswordSchema,
+  UpdateMeData,
+  UpdateMyPasswordData,
 } from "@/validators/user";
 import { prisma } from "@/lib/prisma";
 import * as argon2 from "argon2";
 import z from "zod";
 import { logAuditEvent } from "./audit-log";
-import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY, ROLE } from "@/lib/prisma/enums";
+import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
 import { User } from "@/lib/prisma/client";
 import { getDeviceInfo } from "@/lib/device-info";
 import { getCurrentSession } from "./session";
 
-export async function updateUserById(
-  userId: string,
-  data: UpdateUserData
-): Promise<{
+export async function updateMe(data: UpdateMeData): Promise<{
   success: boolean;
   message: string;
   data: User | null;
@@ -36,7 +33,7 @@ export async function updateUserById(
       };
     }
 
-    const validate = await updateUserSchema.safeParseAsync(data);
+    const validate = await updateMeSchema.safeParseAsync(data);
 
     if (!validate.success) {
       return {
@@ -47,59 +44,9 @@ export async function updateUserById(
       };
     }
 
-    const isSelfUpdate = session.data?.user.id === userId;
-    const userRole = session.data?.user.role;
-    const isAdmin =
-      userRole === ROLE.DEVELOPER || userRole === ROLE.SYSTEM_ADMIN;
-
-    // Check if trying to update role
-    const isRoleUpdate = validate.data.role !== undefined;
-
-    // No one can change their own role
-    if (isSelfUpdate && isRoleUpdate) {
-      return {
-        success: false,
-        message: "Users cannot change their own role",
-        data: null,
-        errors: new Error("Users cannot change their own role"),
-      };
-    }
-
-    // For self-updates
-    if (isSelfUpdate) {
-      // USER can only update name, avatar, phone
-      if (userRole === ROLE.USER) {
-        const allowedFields = ["name", "avatar", "phone"];
-        const updatingFields = Object.keys(validate.data);
-        const hasUnauthorizedField = updatingFields.some(
-          (field) => !allowedFields.includes(field)
-        );
-        if (hasUnauthorizedField) {
-          return {
-            success: false,
-            message: "Unauthorized to update these fields",
-            data: null,
-            errors: new Error("Unauthorized to update these fields"),
-          };
-        }
-      }
-      // Admins can update their own name, avatar, phone (role already blocked)
-    } else {
-      // Non-self updates require admin
-      if (!isAdmin) {
-        return {
-          success: false,
-          message: "Unauthorized",
-          data: null,
-          errors: new Error("Unauthorized"),
-        };
-      }
-      // Role hierarchy will be checked after userExists
-    }
-
-    const deviceInfo = await getDeviceInfo();
-
-    const userExists = await prisma.user.findUnique({ where: { id: userId } });
+    const userExists = await prisma.user.findUnique({
+      where: { id: session.data!.user.id },
+    });
 
     if (!userExists) {
       return {
@@ -110,69 +57,23 @@ export async function updateUserById(
       };
     }
 
-    // Only DEVELOPER can update DEVELOPER data
-    if (
-      !isSelfUpdate &&
-      userExists.role === ROLE.DEVELOPER &&
-      userRole !== ROLE.DEVELOPER
-    ) {
-      return {
-        success: false,
-        message: "Unauthorized to update developer data",
-        data: null,
-        errors: new Error("Unauthorized to update developer data"),
-      };
-    }
+    const deviceInfo = await getDeviceInfo();
 
-    const isEmailUpdate =
-      validate.data.email && validate.data.email !== userExists.email;
-
-    // If email is updated, reset verifiedAt
-    if (isEmailUpdate) {
-      validate.data.verifiedAt = null;
-    }
-
-    // Role update hierarchy for non-self updates
-    if (!isSelfUpdate && isRoleUpdate) {
-      const targetRole = validate.data.role;
-      if (userRole === ROLE.DEVELOPER) {
-        // Can promote/demote to any role
-      } else if (userRole === ROLE.SYSTEM_ADMIN) {
-        // Can only promote USER to SYSTEM_ADMIN or demote SYSTEM_ADMIN to USER
-        const allowed =
-          (targetRole === ROLE.SYSTEM_ADMIN && userExists.role === ROLE.USER) ||
-          (targetRole === ROLE.USER && userExists.role === ROLE.SYSTEM_ADMIN);
-        if (!allowed) {
-          return {
-            success: false,
-            message: "Unauthorized to update role to this level",
-            data: null,
-            errors: new Error("Unauthorized to update role to this level"),
-          };
-        }
-      }
-    }
-
-    // For self-updates, only allow updating name, phone, avatar
-    if (isSelfUpdate) {
-      validate.data = {
+    const updatedUser = await prisma.user.update({
+      where: { id: session.data!.user.id },
+      data: {
         name: validate.data.name,
         phone: validate.data.phone,
         avatar: validate.data.avatar,
-      };
-    }
-
-    const updatedUser = await prisma.user.update({
-      where: { id: userId },
-      data: validate.data,
+      },
     });
 
     if (!updatedUser) {
       return {
         success: false,
-        message: "Failed to update user",
+        message: "User failed to update",
         data: null,
-        errors: new Error("Failed to update user"),
+        errors: new Error("User failed to update"),
       };
     }
 
@@ -213,10 +114,7 @@ export async function updateUserById(
   }
 }
 
-export async function updateUserPasswordById(
-  userId: string,
-  data: UpdateUserPasswordData
-): Promise<{
+export async function updateMyPassword(data: UpdateMyPasswordData): Promise<{
   success: boolean;
   message: string;
   data: User | null;
@@ -234,7 +132,7 @@ export async function updateUserPasswordById(
       };
     }
 
-    const validate = await updateUserPasswordSchema.safeParseAsync(data);
+    const validate = await updateMyPasswordSchema.safeParseAsync(data);
 
     if (!validate.success) {
       return {
@@ -245,87 +143,61 @@ export async function updateUserPasswordById(
       };
     }
 
-    const isSelfUpdate = session.data?.user.id === userId;
-    const userRole = session.data?.user.role;
-
-    // Non-self updates require admin
-    if (!isSelfUpdate) {
-      if (userRole !== ROLE.DEVELOPER && userRole !== ROLE.SYSTEM_ADMIN) {
-        return {
-          success: false,
-          message: "Unauthorized",
-          data: null,
-          errors: new Error("Unauthorized"),
-        };
-      }
+    if (validate.data.currentPassword === validate.data.newPassword) {
+      return {
+        success: false,
+        message: "New password must be different from current password",
+        data: null,
+        errors: new Error(
+          "New password must be different from current password"
+        ),
+      };
     }
 
-    const deviceInfo = await getDeviceInfo();
+    const userExists = await prisma.user.findUnique({
+      where: { id: session.data!.user.id },
+    });
 
-    const user = await prisma.user.findUnique({ where: { id: userId } });
-    if (!user) {
+    if (!userExists) {
       return {
         success: false,
         message: "User not found",
         data: null,
-        errors: null,
+        errors: new Error("User not found"),
       };
     }
 
-    // SYSTEM_ADMIN cannot change DEVELOPER password
-    if (
-      !isSelfUpdate &&
-      userRole === ROLE.SYSTEM_ADMIN &&
-      user.role === ROLE.DEVELOPER
-    ) {
-      return {
-        success: false,
-        message: "Unauthorized to change developer password",
-        data: null,
-        errors: new Error("Unauthorized to change developer password"),
-      };
-    }
-
-    // Check current password for self-updates or USER role
-    if (isSelfUpdate || userRole === ROLE.USER) {
-      const isCurrentPasswordValid = await argon2.verify(
-        user.password,
-        validate.data.currentPassword
-      );
-
-      if (!isCurrentPasswordValid) {
-        return {
-          success: false,
-          message: "Current password is incorrect",
-          data: null,
-          errors: null,
-        };
-      }
-    }
-
-    // Check if new password is the same as old
-    const isNewPasswordSameAsOld = await argon2.verify(
-      user.password,
-      validate.data.newPassword
+    const passwordMatch = await argon2.verify(
+      userExists.password,
+      validate.data.currentPassword
     );
 
-    if (isNewPasswordSameAsOld) {
+    if (!passwordMatch) {
       return {
         success: false,
-        message: "New password cannot be the same as the old password",
+        message: "Current password is incorrect",
         data: null,
-        errors: new Error(
-          "New password cannot be the same as the old password"
-        ),
+        errors: new Error("Current password is incorrect"),
       };
     }
 
     const hashedNewPassword = await argon2.hash(validate.data.newPassword);
 
+    const deviceInfo = await getDeviceInfo();
+
     const updatedUser = await prisma.user.update({
-      where: { id: userId },
+      where: { id: session.data!.user.id },
       data: { password: hashedNewPassword },
     });
+
+    if (!updatedUser) {
+      return {
+        success: false,
+        message: "User failed to update",
+        data: null,
+        errors: new Error("User failed to update"),
+      };
+    }
 
     try {
       await logAuditEvent({

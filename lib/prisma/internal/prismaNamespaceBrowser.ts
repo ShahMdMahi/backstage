@@ -64,6 +64,7 @@ export const ModelName = {
   Artist: "Artist",
   Performer: "Performer",
   ProducerAndEngineer: "ProducerAndEngineer",
+  ArtistPerformerProducerAndEngineer: "ArtistPerformerProducerAndEngineer",
   Writer: "Writer",
   Publisher: "Publisher",
   Label: "Label",
@@ -91,6 +92,7 @@ export type TransactionIsolationLevel =
 
 export const UserScalarFieldEnum = {
   id: "id",
+  ownWorkspaceAccountId: "ownWorkspaceAccountId",
   name: "name",
   email: "email",
   password: "password",
@@ -228,6 +230,22 @@ export const ProducerAndEngineerScalarFieldEnum = {
 
 export type ProducerAndEngineerScalarFieldEnum =
   (typeof ProducerAndEngineerScalarFieldEnum)[keyof typeof ProducerAndEngineerScalarFieldEnum];
+
+export const ArtistPerformerProducerAndEngineerScalarFieldEnum = {
+  id: "id",
+  artistId: "artistId",
+  performerId: "performerId",
+  producerAndEngineerId: "producerAndEngineerId",
+  name: "name",
+  legalName: "legalName",
+  avatar: "avatar",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ArtistPerformerProducerAndEngineerScalarFieldEnum =
+  (typeof ArtistPerformerProducerAndEngineerScalarFieldEnum)[keyof typeof ArtistPerformerProducerAndEngineerScalarFieldEnum];
 
 export const WriterScalarFieldEnum = {
   id: "id",

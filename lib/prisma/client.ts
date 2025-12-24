@@ -95,6 +95,12 @@ export type Performer = Prisma.PerformerModel;
  */
 export type ProducerAndEngineer = Prisma.ProducerAndEngineerModel;
 /**
+ * Model ArtistPerformerProducerAndEngineer
+ *
+ */
+export type ArtistPerformerProducerAndEngineer =
+  Prisma.ArtistPerformerProducerAndEngineerModel;
+/**
  * Model Writer
  *
  */

@@ -230,6 +230,11 @@ enum AUDIT_LOG_ACTION {
   PRODUCER_AND_ENGINEER_UPDATED
   PRODUCER_AND_ENGINEER_DELETED
 
+  // ArtistPerformerProducerAndEngineer Actions
+  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER_CREATED
+  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER_UPDATED
+  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER_DELETED
+
   // Writer Actions
   WRITER_CREATED
   WRITER_UPDATED
@@ -274,6 +279,7 @@ enum AUDIT_LOG_ENTITY {
   ARTIST
   PERFORMER
   PRODUCER_AND_ENGINEER
+  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER
   WRITER
   PUBLISHER
   LABEL
@@ -287,6 +293,7 @@ model User {
   id String @id @default(cuid())
 
   // Foreign Keys
+  ownWorkspaceAccountId String? @unique
 
   // Fields
   name     String
@@ -498,7 +505,7 @@ model Artist {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
+  workspaceAccountId String @unique
 
   // Fields
   metadata Json?
@@ -507,9 +514,10 @@ model Artist {
   status ARTIST_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
+  sharedWorkspaceAccountAccess        SharedWorkspaceAccountAccess[]
+  label                               Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -523,7 +531,7 @@ model Performer {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
+  workspaceAccountId String @unique
 
   // Fields
   metadata Json?
@@ -532,9 +540,10 @@ model Performer {
   status PERFORMER_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
+  sharedWorkspaceAccountAccess        SharedWorkspaceAccountAccess[]
+  label                               Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -548,7 +557,7 @@ model ProducerAndEngineer {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
+  workspaceAccountId String @unique
 
   // Fields
   metadata Json?
@@ -557,9 +566,10 @@ model ProducerAndEngineer {
   status PRODUCER_AND_ENGINEER_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
+  sharedWorkspaceAccountAccess        SharedWorkspaceAccountAccess[]
+  label                               Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -568,12 +578,40 @@ model ProducerAndEngineer {
   // Indexes & Constraints
 }
 
+model ArtistPerformerProducerAndEngineer {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  artistId              String? @unique
+  performerId           String? @unique
+  producerAndEngineerId String? @unique
+
+  // Fields
+  name      String
+  legalName String
+  avatar    String
+  metadata  Json?
+
+  // Relations
+  artist              Artist?              @relation(fields: [artistId], references: [id], onDelete: SetNull)
+  performer           Performer?           @relation(fields: [performerId], references: [id], onDelete: SetNull)
+  producerAndEngineer ProducerAndEngineer? @relation(fields: [producerAndEngineerId], references: [id], onDelete: SetNull)
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+  @@unique([artistId, performerId, producerAndEngineerId])
+}
+
 model Writer {
   // Primary Key
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
+  workspaceAccountId String @unique
 
   // Fields
   metadata Json?
@@ -598,7 +636,7 @@ model Publisher {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
+  workspaceAccountId String @unique
 
   // Fields
   metadata Json?
@@ -623,7 +661,7 @@ model Label {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
+  workspaceAccountId String @unique
 
   // Fields
   metadata Json?

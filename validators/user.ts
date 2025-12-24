@@ -1,7 +1,6 @@
-import { ROLE } from "@/lib/prisma/enums";
 import z from "zod";
 
-export const updateUserSchema = z.object({
+export const updateMeSchema = z.object({
   name: z
     .string()
     .min(2, "Name must be at least 2 characters long")
@@ -17,16 +16,10 @@ export const updateUserSchema = z.object({
     })
     .refine((val) => /^\+8801\d{9}$/.test(val), "Invalid phone number")
     .optional(),
-  email: z.email("Invalid email address").optional(),
   avatar: z.string().nullable().optional(),
-  metadata: z.record(z.string(), z.any()).nullable().optional(),
-  role: z.enum(ROLE).optional(),
-  verifiedAt: z.date().nullable().optional(),
-  approvedAt: z.date().nullable().optional(),
-  suspendedAt: z.date().nullable().optional(),
 });
 
-export const updateUserPasswordSchema = z
+export const updateMyPasswordSchema = z
   .object({
     currentPassword: z
       .string()
@@ -59,5 +52,5 @@ export const updateUserPasswordSchema = z
     path: ["confirmNewPassword"],
   });
 
-export type UpdateUserData = z.infer<typeof updateUserSchema>;
-export type UpdateUserPasswordData = z.infer<typeof updateUserPasswordSchema>;
+export type UpdateMeData = z.infer<typeof updateMeSchema>;
+export type UpdateMyPasswordData = z.infer<typeof updateMyPasswordSchema>;

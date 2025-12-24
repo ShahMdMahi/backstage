@@ -1,6 +1,6 @@
 "use client";
 
-import { updateUserSchema, type UpdateUserData } from "@/validators/user";
+import { updateMeSchema, type UpdateMeData } from "@/validators/user";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import { updateUserById } from "@/actions/user";
+import { updateMe } from "@/actions/user";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import {
@@ -73,8 +73,8 @@ export function UpdateProfileForm({ user }: UpdateProfileFormProps) {
     formState: { errors },
     setError,
     reset,
-  } = useForm<UpdateUserData>({
-    resolver: zodResolver(updateUserSchema),
+  } = useForm<UpdateMeData>({
+    resolver: zodResolver(updateMeSchema),
     defaultValues: {
       name: user.name,
       phone: user.phone,
@@ -82,12 +82,12 @@ export function UpdateProfileForm({ user }: UpdateProfileFormProps) {
     },
   });
 
-  const onSubmit = async (data: UpdateUserData) => {
+  const onSubmit = async (data: UpdateMeData) => {
     setIsSubmitting(true);
     setServerError(null);
 
     try {
-      const result = await updateUserById(user.id, data);
+      const result = await updateMe(data);
 
       if (result.success) {
         toast.success("Profile updated successfully");
@@ -96,7 +96,7 @@ export function UpdateProfileForm({ user }: UpdateProfileFormProps) {
         if (result.errors) {
           const extracted = extractServerErrors(result.errors);
           Object.entries(extracted.fieldErrors).forEach(([field, message]) => {
-            setError(field as keyof UpdateUserData, { message });
+            setError(field as keyof UpdateMeData, { message });
           });
         }
         setServerError(result.message);
