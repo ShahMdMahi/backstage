@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Spinner } from "@/components/ui/spinner";
-import { verify } from "@/actions/auth";
+import { verify } from "@/actions/auth/auth";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { FieldError } from "@/components/ui/field";

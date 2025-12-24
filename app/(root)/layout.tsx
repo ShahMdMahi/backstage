@@ -9,7 +9,7 @@ import {
 import { redirect } from "next/navigation";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { AvatarWithDropdown } from "@/components/shared/avatar-with-dropdown";
-import { getCurrentSession } from "@/actions/session";
+import { getCurrentSession } from "@/actions/shared/session";
 
 export const dynamic = "force-dynamic";
 

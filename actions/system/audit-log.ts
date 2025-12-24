@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { AuditLog } from "@/lib/prisma/client";
 import { AuditLogCreateInput } from "@/lib/prisma/models";
-import { sendFormattedAuditLog } from "./telegram";
+import { sendFormattedAuditLog } from "@/actions/system/telegram";
 
 /**
  * Logs an audit event to the database.

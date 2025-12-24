@@ -2,7 +2,10 @@ import { Suspense } from "react";
 import { SessionsList } from "@/components/root/sessions/session-list";
 import { SessionCardSkeleton } from "@/components/root/sessions/session-card-skeleton";
 import { ShieldIcon } from "lucide-react";
-import { getAllSessionsForUser, getCurrentSession } from "@/actions/session";
+import {
+  getAllSessionsForUser,
+  getCurrentSession,
+} from "@/actions/shared/session";
 
 export const dynamic = "force-dynamic";
 

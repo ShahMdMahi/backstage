@@ -30,7 +30,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import * as React from "react";
 import { Session, User } from "@/lib/prisma/browser";
-import { logout } from "@/actions/auth";
+import { logout } from "@/actions/auth/auth";
 import { toast } from "sonner";
 
 export function NavUser({

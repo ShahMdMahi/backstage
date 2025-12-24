@@ -17,17 +17,17 @@ import {
 import { prisma } from "@/lib/prisma";
 import * as argon2 from "argon2";
 import z from "zod";
-import { logAuditEvent } from "./audit-log";
+import { logAuditEvent } from "@/actions/system/audit-log";
 import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
 import {
   sendNewLoginDetectedEmail,
   sendPasswordResetEmail,
   sendVerificationEmail,
   sendWelcomeEmail,
-} from "./email";
+} from "@/actions/system/email";
 import { redis } from "@/lib/redis";
 import { getDeviceInfo } from "@/lib/device-info";
-import { createSession, revokeCurrentSession } from "./session";
+import { createSession, revokeCurrentSession } from "@/actions/shared/session";
 
 /**
  * Register a new user

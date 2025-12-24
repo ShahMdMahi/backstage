@@ -6,11 +6,11 @@ import {
   WelcomeEmailTemplate,
   VerificationEmailTemplate,
   PasswordResetEmailTemplate,
+  NewLoginDetectedEmailTemplate,
 } from "@/emails";
 import { render } from "@react-email/render";
 import { randomBytes } from "crypto";
 import { getBaseUrl } from "@/lib/utils";
-import NewLoginDetectedEmailTemplate from "../emails/new-login-detected";
 
 export async function sendWelcomeEmail(
   email: string,

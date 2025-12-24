@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { Session } from "@/lib/prisma/browser";
 import { toast } from "sonner";
-import { revokeSessionById } from "@/actions/session";
+import { revokeSessionById } from "@/actions/shared/session";
 import { getDeviceInfo } from "@/lib/device-info";
 
 interface SessionActionsProps {

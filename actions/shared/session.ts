@@ -10,7 +10,7 @@ import {
 } from "@/lib/prisma/client";
 import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
-import { logAuditEvent } from "./audit-log";
+import { logAuditEvent } from "@/actions/system/audit-log";
 
 export async function createSession(
   userId: string,

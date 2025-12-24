@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
-import { prisma } from "./lib/prisma";
-import { getDeviceInfo } from "./lib/device-info";
-import { logAuditEvent } from "./actions/audit-log";
+import { prisma } from "@/lib/prisma";
+import { getDeviceInfo } from "@/lib/device-info";
+import { logAuditEvent } from "@/actions/system/audit-log";
 import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "./lib/prisma/enums";
 
 export async function proxy(request: NextRequest) {

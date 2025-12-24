@@ -1,4 +1,4 @@
-import { getCurrentSession } from "@/actions/session";
+import { getCurrentSession } from "@/actions/shared/session";
 import { redirect } from "next/navigation";
 import {
   Card,
