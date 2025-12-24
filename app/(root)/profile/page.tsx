@@ -14,7 +14,7 @@ import { UpdateProfileForm } from "@/components/root/profile/update-profile-form
 import { UpdatePasswordForm } from "@/components/root/profile/update-password-form";
 import { ROLE } from "@/lib/prisma/enums";
 import { getInitials } from "@/lib/utils";
-import { format } from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 
 export const dynamic = "force-dynamic";
 
@@ -69,9 +69,19 @@ export default async function Profile() {
                 <label className="text-sm font-medium">Verified</label>
                 {user.verifiedAt ? (
                   <div>
-                    <p>{format(new Date(user.verifiedAt), "dd/MM/yyyy")}</p>
+                    <p>
+                      {formatInTimeZone(
+                        user.verifiedAt,
+                        "Asia/Dhaka",
+                        "dd/MM/yyyy"
+                      )}
+                    </p>
                     <p className="text-xs text-muted-foreground">
-                      {format(new Date(user.verifiedAt), "HH:mm:ss")}
+                      {formatInTimeZone(
+                        user.verifiedAt,
+                        "Asia/Dhaka",
+                        "hh:mm a"
+                      )}
                     </p>
                   </div>
                 ) : (
@@ -82,9 +92,19 @@ export default async function Profile() {
                 <label className="text-sm font-medium">Approved</label>
                 {user.approvedAt ? (
                   <div>
-                    <p>{format(new Date(user.approvedAt), "dd/MM/yyyy")}</p>
+                    <p>
+                      {formatInTimeZone(
+                        user.approvedAt,
+                        "Asia/Dhaka",
+                        "dd/MM/yyyy"
+                      )}
+                    </p>
                     <p className="text-xs text-muted-foreground">
-                      {format(new Date(user.approvedAt), "HH:mm:ss")}
+                      {formatInTimeZone(
+                        user.approvedAt,
+                        "Asia/Dhaka",
+                        "hh:mm a"
+                      )}
                     </p>
                   </div>
                 ) : (
@@ -95,9 +115,19 @@ export default async function Profile() {
                 <label className="text-sm font-medium">Suspended</label>
                 {user.suspendedAt ? (
                   <div>
-                    <p>{format(new Date(user.suspendedAt), "dd/MM/yyyy")}</p>
+                    <p>
+                      {formatInTimeZone(
+                        user.suspendedAt,
+                        "Asia/Dhaka",
+                        "dd/MM/yyyy"
+                      )}
+                    </p>
                     <p className="text-xs text-muted-foreground">
-                      {format(new Date(user.suspendedAt), "HH:mm:ss")}
+                      {formatInTimeZone(
+                        user.suspendedAt,
+                        "Asia/Dhaka",
+                        "hh:mm a"
+                      )}
                     </p>
                   </div>
                 ) : (
@@ -107,18 +137,30 @@ export default async function Profile() {
               <div>
                 <label className="text-sm font-medium">Created At</label>
                 <div>
-                  <p>{format(new Date(user.createdAt), "dd/MM/yyyy")}</p>
+                  <p>
+                    {formatInTimeZone(
+                      user.createdAt,
+                      "Asia/Dhaka",
+                      "dd/MM/yyyy"
+                    )}
+                  </p>
                   <p className="text-xs text-muted-foreground">
-                    {format(new Date(user.createdAt), "HH:mm:ss")}
+                    {formatInTimeZone(user.createdAt, "Asia/Dhaka", "hh:mm a")}
                   </p>
                 </div>
               </div>
               <div>
                 <label className="text-sm font-medium">Updated At</label>
                 <div>
-                  <p>{format(new Date(user.updatedAt), "dd/MM/yyyy")}</p>
+                  <p>
+                    {formatInTimeZone(
+                      user.updatedAt,
+                      "Asia/Dhaka",
+                      "dd/MM/yyyy"
+                    )}
+                  </p>
                   <p className="text-xs text-muted-foreground">
-                    {format(new Date(user.updatedAt), "HH:mm:ss")}
+                    {formatInTimeZone(user.updatedAt, "Asia/Dhaka", "hh:mm a")}
                   </p>
                 </div>
               </div>
