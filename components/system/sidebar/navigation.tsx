@@ -87,7 +87,7 @@ export function Navigation({
                   title: "System",
                   url: "/system",
                   icon: House,
-                  isActive: pathname.startsWith("/system"),
+                  isActive: pathname === "/system",
                   isOpen: false,
                   items: [],
                 },
@@ -108,80 +108,81 @@ export function Navigation({
       items: [
         {
           title: "Assets",
-          url: "/catalog/assets",
+          url: "/system/catalog/assets",
           icon: FolderOpen,
-          isActive: pathname.startsWith("/catalog/assets"),
-          isOpen: pathname.startsWith("/catalog/assets"),
+          isActive: pathname.startsWith("/system/catalog/assets"),
+          isOpen: pathname.startsWith("/system/catalog/assets"),
           items: [
             {
               title: "Releases",
-              url: "/catalog/assets/releases",
+              url: "/system/catalog/assets/releases",
               icon: ListMusic,
-              isActive: pathname === "/catalog/assets/releases",
+              isActive: pathname === "/system/catalog/assets/releases",
             },
             {
               title: "Tracks",
-              url: "/catalog/assets/tracks",
+              url: "/system/catalog/assets/tracks",
               icon: Music,
-              isActive: pathname === "/catalog/assets/tracks",
+              isActive: pathname === "/system/catalog/assets/tracks",
             },
             {
               title: "Videos",
-              url: "/catalog/assets/videos",
+              url: "/system/catalog/assets/videos",
               icon: SquarePlay,
-              isActive: pathname === "/catalog/assets/videos",
+              isActive: pathname === "/system/catalog/assets/videos",
             },
             {
               title: "Ringtones",
-              url: "/catalog/assets/ringtones",
+              url: "/system/catalog/assets/ringtones",
               icon: BellRing,
-              isActive: pathname === "/catalog/assets/ringtones",
+              isActive: pathname === "/system/catalog/assets/ringtones",
             },
           ],
         },
         {
           title: "Contributors",
-          url: "/catalog/contributors",
+          url: "/system/catalog/contributors",
           icon: Users,
-          isActive: pathname.startsWith("/catalog/contributors"),
-          isOpen: pathname.startsWith("/catalog/contributors"),
+          isActive: pathname.startsWith("/system/catalog/contributors"),
+          isOpen: pathname.startsWith("/system/catalog/contributors"),
           items: [
             {
               title: "Artists",
-              url: "/catalog/contributors/artists",
+              url: "/system/catalog/contributors/artists",
               icon: UserStar,
-              isActive: pathname === "/catalog/contributors/artists",
+              isActive: pathname === "/system/catalog/contributors/artists",
             },
             {
               title: "Performers",
-              url: "/catalog/contributors/performers",
+              url: "/system/catalog/contributors/performers",
               icon: UserRound,
-              isActive: pathname === "/catalog/contributors/performers",
+              isActive: pathname === "/system/catalog/contributors/performers",
             },
             {
               title: "Producers & Engineers",
-              url: "/catalog/contributors/producers-and-engineers",
+              url: "/system/catalog/contributors/producers-and-engineers",
               icon: UserRound,
               isActive:
-                pathname === "/catalog/contributors/producers-and-engineers",
+                pathname ===
+                "/system/catalog/contributors/producers-and-engineers",
             },
             {
               title: "Writers",
-              url: "/catalog/contributors/writers",
+              url: "/system/catalog/contributors/writers",
               icon: UserRound,
-              isActive: pathname === "/catalog/contributors/writers",
+              isActive: pathname === "/system/catalog/contributors/writers",
             },
             {
               title: "Publishers",
-              url: "/catalog/contributors/publishers",
+              url: "/system/catalog/contributors/publishers",
               icon: BookUser,
-              isActive: pathname === "/catalog/contributors/publishers",
+              isActive: pathname === "/system/catalog/contributors/publishers",
             },
             {
               title: "Labels",
-              url: "/catalog/contributors/labels",
+              url: "/system/catalog/contributors/labels",
               icon: Disc,
-              isActive: pathname === "/catalog/contributors/labels",
+              isActive: pathname === "/system/catalog/contributors/labels",
             },
           ],
         },
@@ -192,18 +193,18 @@ export function Navigation({
       items: [
         {
           title: "Transactions",
-          url: "/royalties/transactions",
+          url: "/system/royalties/transactions",
           icon: Wallet,
-          isActive: pathname.startsWith("/royalties/transactions"),
-          isOpen: pathname.startsWith("/royalties/transactions"),
+          isActive: pathname.startsWith("/system/royalties/transactions"),
+          isOpen: pathname.startsWith("/system/royalties/transactions"),
           items: [],
         },
         {
           title: "Withdraw",
-          url: "/royalties/withdraw",
+          url: "/system/royalties/withdraw",
           icon: BanknoteArrowDown,
-          isActive: pathname.startsWith("/royalties/withdraw"),
-          isOpen: pathname.startsWith("/royalties/withdraw"),
+          isActive: pathname.startsWith("/system/royalties/withdraw"),
+          isOpen: pathname.startsWith("/system/royalties/withdraw"),
           items: [],
         },
       ],
@@ -213,34 +214,34 @@ export function Navigation({
       items: [
         {
           title: "Analytics",
-          url: "/reports/analytics",
+          url: "/system/reports/analytics",
           icon: Activity,
-          isActive: pathname.startsWith("/reports/analytics"),
-          isOpen: pathname.startsWith("/reports/analytics"),
+          isActive: pathname.startsWith("/system/reports/analytics"),
+          isOpen: pathname.startsWith("/system/reports/analytics"),
           items: [
             {
               title: "Consumption",
-              url: "/reports/analytics/consumption",
+              url: "/system/reports/analytics/consumption",
               icon: ChartArea,
-              isActive: pathname === "/reports/analytics/consumption",
+              isActive: pathname === "/system/reports/analytics/consumption",
             },
             {
               title: "Engagement",
-              url: "/reports/analytics/engagement",
+              url: "/system/reports/analytics/engagement",
               icon: SquareMousePointer,
-              isActive: pathname === "/reports/analytics/engagement",
+              isActive: pathname === "/system/reports/analytics/engagement",
             },
             {
               title: "Revenue",
-              url: "/reports/analytics/revenue",
+              url: "/system/reports/analytics/revenue",
               icon: BanknoteArrowUp,
-              isActive: pathname === "/reports/analytics/revenue",
+              isActive: pathname === "/system/reports/analytics/revenue",
             },
             {
               title: "Geo",
-              url: "/reports/analytics/geo",
+              url: "/system/reports/analytics/geo",
               icon: Earth,
-              isActive: pathname === "/reports/analytics/geo",
+              isActive: pathname === "/system/reports/analytics/geo",
             },
           ],
         },
@@ -251,60 +252,65 @@ export function Navigation({
       items: [
         {
           title: "Rights Management",
-          url: "/services/rights-management",
+          url: "/system/services/rights-management",
           icon: Copyright,
-          isActive: pathname.startsWith("/services/rights-management"),
-          isOpen: pathname.startsWith("/services/rights-management"),
+          isActive: pathname.startsWith("/system/services/rights-management"),
+          isOpen: pathname.startsWith("/system/services/rights-management"),
           items: [
             {
               title: "YT Claim Release",
-              url: "/services/rights-management/youtube-claim-release",
+              url: "/system/services/rights-management/youtube-claim-release",
               icon: Youtube,
               isActive:
                 pathname ===
-                "/services/rights-management/youtube-claim-release",
+                "/system/services/rights-management/youtube-claim-release",
             },
             {
               title: "FB Claim Release",
-              url: "/services/rights-management/facebook-claim-release",
+              url: "/system/services/rights-management/facebook-claim-release",
               icon: Facebook,
               isActive:
                 pathname ===
-                "/services/rights-management/facebook-claim-release",
+                "/system/services/rights-management/facebook-claim-release",
             },
             {
               title: "Meta Whitelist",
-              url: "/services/rights-management/meta-whitelist",
+              url: "/system/services/rights-management/meta-whitelist",
               icon: UserRoundPlus,
               isActive:
-                pathname === "/services/rights-management/meta-whitelist",
+                pathname ===
+                "/system/services/rights-management/meta-whitelist",
             },
             {
               title: "Youtube Whitelist",
-              url: "/services/rights-management/youtube-whitelist",
+              url: "/system/services/rights-management/youtube-whitelist",
               icon: FileCheckCorner,
               isActive:
-                pathname === "/services/rights-management/youtube-whitelist",
+                pathname ===
+                "/system/services/rights-management/youtube-whitelist",
             },
             {
               title: "OAC Request",
-              url: "/services/rights-management/oac-request",
+              url: "/system/services/rights-management/oac-request",
               icon: BadgeCheck,
-              isActive: pathname === "/services/rights-management/oac-request",
+              isActive:
+                pathname === "/system/services/rights-management/oac-request",
             },
             {
               title: "Meta Profile Linkup",
-              url: "/services/rights-management/meta-profile-linkup",
+              url: "/system/services/rights-management/meta-profile-linkup",
               icon: LinkIcon,
               isActive:
-                pathname === "/services/rights-management/meta-profile-linkup",
+                pathname ===
+                "/system/services/rights-management/meta-profile-linkup",
             },
             {
               title: "YT Manual Claim",
-              url: "/services/rights-management/youtube-manual-claim",
+              url: "/system/services/rights-management/youtube-manual-claim",
               icon: GlobeLock,
               isActive:
-                pathname === "/services/rights-management/youtube-manual-claim",
+                pathname ===
+                "/system/services/rights-management/youtube-manual-claim",
             },
           ],
         },

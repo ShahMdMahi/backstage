@@ -275,7 +275,7 @@ export async function proxy(request: NextRequest) {
       dbSession.user.role !== ROLE.SYSTEM_OWNER &&
       dbSession.user.role !== ROLE.SYSTEM_ADMIN
     ) {
-      return NextResponse.redirect(new URL("/", request.url));
+      return NextResponse.redirect(new URL("/system", request.url));
     }
   }
 
