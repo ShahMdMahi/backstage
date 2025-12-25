@@ -110,8 +110,8 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {session?.user?.role ===
-            (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN) ? (
+            {session?.user?.role === ROLE.SYSTEM_OWNER ||
+            session?.user?.role === ROLE.SYSTEM_ADMIN ? (
               <DropdownMenuGroup>
                 <DropdownMenuItem
                   tabIndex={0}
@@ -120,7 +120,7 @@ export function NavUser({
                   onClick={() => router.push("/")}
                   onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
                 >
-                  <Home className="mr-2 h-4 w-4" /> System
+                  <Home className="mr-2 h-4 w-4" /> Home
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   tabIndex={0}

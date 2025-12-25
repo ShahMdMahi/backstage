@@ -86,7 +86,8 @@ export function AvatarWithDropdown({
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {session?.user?.role === (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN) ? (
+        {session?.user?.role === ROLE.SYSTEM_OWNER ||
+        session?.user?.role === ROLE.SYSTEM_ADMIN ? (
           <DropdownMenuGroup>
             <DropdownMenuItem
               tabIndex={0}

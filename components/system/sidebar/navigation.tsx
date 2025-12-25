@@ -62,7 +62,8 @@ export function Navigation({
     {
       title: "Main",
       items:
-        session?.user?.role === (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN)
+        session?.user?.role === ROLE.SYSTEM_OWNER ||
+        session?.user?.role === ROLE.SYSTEM_ADMIN
           ? [
               {
                 title: "Home",

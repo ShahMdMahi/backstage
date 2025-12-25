@@ -62,7 +62,8 @@ export function Navigation({
     {
       title: "Main",
       items:
-        session?.user?.role === (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN)
+        session?.user?.role === ROLE.SYSTEM_OWNER ||
+        session?.user?.role === ROLE.SYSTEM_ADMIN
           ? [
               {
                 title: "Home",
@@ -81,16 +82,27 @@ export function Navigation({
                 items: [],
               },
             ]
-          : [
-              {
-                title: "Home",
-                url: "/",
-                icon: House,
-                isActive: pathname === "/",
-                isOpen: false,
-                items: [],
-              },
-            ],
+          : session?.user?.role === ROLE.SYSTEM_USER
+            ? [
+                {
+                  title: "System",
+                  url: "/system",
+                  icon: ShieldUser,
+                  isActive: pathname.startsWith("/system"),
+                  isOpen: false,
+                  items: [],
+                },
+              ]
+            : [
+                {
+                  title: "Home",
+                  url: "/",
+                  icon: House,
+                  isActive: pathname === "/",
+                  isOpen: false,
+                  items: [],
+                },
+              ],
     },
     {
       title: "Catalog",
