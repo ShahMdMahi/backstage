@@ -2,12 +2,8 @@
 
 import { DeviceInfo, getDeviceInfo } from "@/lib/device-info";
 import { prisma } from "@/lib/prisma";
-import {
-  AUDIT_LOG_ACTION,
-  AUDIT_LOG_ENTITY,
-  Session,
-  User,
-} from "@/lib/prisma/client";
+import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
+import { Session, User } from "@/lib/prisma/client";
 import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
 import { logAuditEvent } from "@/actions/system/audit-log";

@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getDeviceInfo } from "@/lib/device-info";
 import { logAuditEvent } from "@/actions/system/audit-log";
-import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "./lib/prisma/enums";
+import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY, ROLE } from "@/lib/prisma/enums";
 
 export async function proxy(request: NextRequest) {
   const response = NextResponse.next();
@@ -10,6 +10,8 @@ export async function proxy(request: NextRequest) {
   const deviceInfo = await getDeviceInfo();
   const url = request.nextUrl.clone();
   const isAuthRoute = url.pathname.startsWith("/auth");
+  const isSystemRoute = url.pathname.startsWith("/system");
+  const isNormalRoute = !isAuthRoute && !isSystemRoute;
   let dbSession = null;
 
   if (!sessionToken) {
@@ -257,6 +259,24 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/auth/login", request.url));
     }
     return response;
+  }
+
+  if (isSystemRoute) {
+    if (
+      dbSession.user.role !== ROLE.SYSTEM_USER &&
+      dbSession.user.role !== ROLE.SYSTEM_OWNER &&
+      dbSession.user.role !== ROLE.SYSTEM_ADMIN
+    ) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  } else if (isNormalRoute) {
+    if (
+      dbSession.user.role !== ROLE.USER &&
+      dbSession.user.role !== ROLE.SYSTEM_OWNER &&
+      dbSession.user.role !== ROLE.SYSTEM_ADMIN
+    ) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
   }
 
   return response;

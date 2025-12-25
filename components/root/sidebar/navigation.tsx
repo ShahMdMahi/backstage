@@ -22,8 +22,15 @@ import {
   SquareMousePointer,
   BanknoteArrowUp,
   Earth,
+  Copyright,
+  Youtube,
+  Facebook,
+  UserRoundPlus,
+  FileCheckCorner,
+  BadgeCheck,
+  LinkIcon,
+  GlobeLock,
 } from "lucide-react";
-
 import {
   Collapsible,
   CollapsibleContent,
@@ -41,7 +48,8 @@ import {
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ROLE, Session, User } from "@/lib/prisma/browser";
+import { ROLE } from "@/lib/prisma/enums";
+import { Session, User } from "@/lib/prisma/browser";
 
 export function Navigation({
   session,
@@ -54,21 +62,21 @@ export function Navigation({
     {
       title: "Main",
       items:
-        session?.user?.role === ROLE.SYSTEM_ADMIN
+        session?.user?.role === (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN)
           ? [
               {
                 title: "Home",
                 url: "/",
                 icon: House,
-                isActive: !pathname.startsWith("/system-admin"),
+                isActive: !pathname.startsWith("/system"),
                 isOpen: false,
                 items: [],
               },
               {
-                title: "System Admin",
-                url: "/system-admin",
+                title: "System",
+                url: "/system",
                 icon: ShieldUser,
-                isActive: pathname.startsWith("/system-admin"),
+                isActive: pathname.startsWith("/system"),
                 isOpen: false,
                 items: [],
               },
@@ -222,6 +230,70 @@ export function Navigation({
               url: "/reports/analytics/geo",
               icon: Earth,
               isActive: pathname === "/reports/analytics/geo",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: "Services",
+      items: [
+        {
+          title: "Rights Management",
+          url: "/services/rights-management",
+          icon: Copyright,
+          isActive: pathname.startsWith("/services/rights-management"),
+          isOpen: pathname.startsWith("/services/rights-management"),
+          items: [
+            {
+              title: "YT Claim Release",
+              url: "/services/rights-management/youtube-claim-release",
+              icon: Youtube,
+              isActive:
+                pathname ===
+                "/services/rights-management/youtube-claim-release",
+            },
+            {
+              title: "FB Claim Release",
+              url: "/services/rights-management/facebook-claim-release",
+              icon: Facebook,
+              isActive:
+                pathname ===
+                "/services/rights-management/facebook-claim-release",
+            },
+            {
+              title: "Meta Whitelist",
+              url: "/services/rights-management/meta-whitelist",
+              icon: UserRoundPlus,
+              isActive:
+                pathname === "/services/rights-management/meta-whitelist",
+            },
+            {
+              title: "Youtube Whitelist",
+              url: "/services/rights-management/youtube-whitelist",
+              icon: FileCheckCorner,
+              isActive:
+                pathname === "/services/rights-management/youtube-whitelist",
+            },
+            {
+              title: "OAC Request",
+              url: "/services/rights-management/oac-request",
+              icon: BadgeCheck,
+              isActive: pathname === "/services/rights-management/oac-request",
+            },
+            {
+              title: "Meta Profile Linkup",
+              url: "/services/rights-management/meta-profile-linkup",
+              icon: LinkIcon,
+              isActive:
+                pathname === "/services/rights-management/meta-profile-linkup",
+            },
+            {
+              title: "YT Manual Claim",
+              url: "/services/rights-management/youtube-manual-claim",
+              icon: GlobeLock,
+              isActive:
+                pathname === "/services/rights-management/youtube-manual-claim",
             },
           ],
         },

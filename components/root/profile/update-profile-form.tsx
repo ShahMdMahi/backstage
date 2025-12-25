@@ -23,7 +23,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { User } from "@/lib/prisma/client";
+import { User } from "@/lib/prisma/browser";
 
 interface TreeifyErrorStructure {
   errors: string[];
