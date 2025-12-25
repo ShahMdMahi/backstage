@@ -47,9 +47,9 @@ export default async function Profile() {
                 <p className="text-muted-foreground">{user.email}</p>
                 <Badge
                   variant={
-                    user.role === ROLE.DEVELOPER
+                    user.role === ROLE.SYSTEM_ADMIN
                       ? "default"
-                      : user.role === ROLE.SYSTEM_ADMIN
+                      : user.role === ROLE.SYSTEM_USER
                         ? "secondary"
                         : "outline"
                   }
