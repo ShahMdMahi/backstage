@@ -111,7 +111,7 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             {session?.user?.role ===
-              (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN) && (
+            (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN) ? (
               <DropdownMenuGroup>
                 <DropdownMenuItem
                   tabIndex={0}
@@ -134,8 +134,7 @@ export function NavUser({
                   <ShieldUser className="mr-2 h-4 w-4" /> System
                 </DropdownMenuItem>
               </DropdownMenuGroup>
-            )}
-            {session?.user?.role === ROLE.SYSTEM_USER && (
+            ) : session?.user?.role === ROLE.SYSTEM_USER ? (
               <DropdownMenuGroup>
                 <DropdownMenuItem
                   tabIndex={0}
@@ -147,6 +146,18 @@ export function NavUser({
                   }
                 >
                   <ShieldUser className="mr-2 h-4 w-4" /> System
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            ) : (
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  tabIndex={0}
+                  className="flex items-center gap-2"
+                  aria-label="Go to Home"
+                  onClick={() => router.push("/")}
+                  onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
+                >
+                  <Home className="mr-2 h-4 w-4" /> Home
                 </DropdownMenuItem>
               </DropdownMenuGroup>
             )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SessionCard } from "./session-card";
+import { SessionCard } from "@/components/shared/sessions/session-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Session } from "@/lib/prisma/browser";
 

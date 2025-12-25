@@ -2,7 +2,7 @@
 
 import { UAParser } from "ua-parser-js";
 import { headers } from "next/headers";
-import { SESSION_DEVICE_TYPE } from "./prisma/client";
+import { SESSION_DEVICE_TYPE } from "@/lib/prisma/enums";
 import crypto from "crypto";
 
 export interface DeviceInfo {

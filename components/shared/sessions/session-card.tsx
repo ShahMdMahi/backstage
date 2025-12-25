@@ -1,8 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { DeviceIcon } from "./device-icon";
-import { SessionActions } from "./session-action";
+import { DeviceIcon } from "@/components/shared/sessions/device-icon";
+import { SessionActions } from "@/components/shared/sessions/session-action";
 import { formatRelativeTime } from "@/lib/utils";
 import { MapPinIcon, GlobeIcon, CalendarIcon, ClockIcon } from "lucide-react";
 import { Session } from "@/lib/prisma/client";

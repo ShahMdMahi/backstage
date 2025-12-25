@@ -2,6 +2,7 @@
 
 import {
   Home,
+  ShieldUser,
   LogOut,
   Moon,
   Settings,
@@ -30,6 +31,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import * as React from "react";
 import { Session, User } from "@/lib/prisma/browser";
+import { ROLE } from "@/lib/prisma/enums";
 import { logout } from "@/actions/auth/auth";
 import { toast } from "sonner";
 
@@ -108,16 +110,59 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {session?.user?.role ===
+            (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN) ? (
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  tabIndex={0}
+                  className="flex items-center gap-2"
+                  aria-label="Go to Home"
+                  onClick={() => router.push("/")}
+                  onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
+                >
+                  <Home className="mr-2 h-4 w-4" /> System
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  tabIndex={0}
+                  className="flex items-center gap-2"
+                  aria-label="Go to System"
+                  onClick={() => router.push("/system")}
+                  onKeyDown={(e) =>
+                    handleKeyDown(e, () => router.push("/system"))
+                  }
+                >
+                  <ShieldUser className="mr-2 h-4 w-4" /> System
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            ) : session?.user?.role === ROLE.SYSTEM_USER ? (
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  tabIndex={0}
+                  className="flex items-center gap-2"
+                  aria-label="Go to System"
+                  onClick={() => router.push("/system")}
+                  onKeyDown={(e) =>
+                    handleKeyDown(e, () => router.push("/system"))
+                  }
+                >
+                  <ShieldUser className="mr-2 h-4 w-4" /> System
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            ) : (
+              <DropdownMenuGroup>
+                <DropdownMenuItem
+                  tabIndex={0}
+                  className="flex items-center gap-2"
+                  aria-label="Go to Home"
+                  onClick={() => router.push("/")}
+                  onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
+                >
+                  <Home className="mr-2 h-4 w-4" /> Home
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            )}
+            <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem
-                tabIndex={0}
-                className="flex items-center gap-2"
-                aria-label="Go to Home"
-                onClick={() => router.push("/")}
-                onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
-              >
-                <Home className="mr-2 h-4 w-4" /> Home
-              </DropdownMenuItem>
               <DropdownMenuItem
                 tabIndex={0}
                 className="flex items-center gap-2"
