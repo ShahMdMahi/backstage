@@ -339,7 +339,7 @@ model Session {
   updatedAt  DateTime  @updatedAt
   expiresAt  DateTime
   revokedAt  DateTime?
-  accessedAt DateTime?
+  accessedAt DateTime
 
   // Indexes & Constraints
   @@index([token])

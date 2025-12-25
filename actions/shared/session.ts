@@ -30,6 +30,7 @@ export async function createSession(
           deviceType: deviceInfo.deviceType,
           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
           expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 1 days
+          accessedAt: new Date(Date.now()),
           user: {
             connect: { id: userId },
           },
@@ -51,7 +52,10 @@ export async function createSession(
 
     const cookieManager = await cookies();
 
-    cookieManager.delete("session_token");
+    const cookieExists = cookieManager.get("session_token");
+    if (cookieExists) {
+      cookieManager.delete("session_token");
+    }
     cookieManager.set("session_token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -65,7 +69,7 @@ export async function createSession(
 
     if (allSessions.length > 5) {
       const sessionsToRevoke = allSessions
-        .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+        .sort((a, b) => a.accessedAt.getTime() - b.accessedAt.getTime())
         .slice(0, allSessions.length - 5);
 
       for (const oldSession of sessionsToRevoke) {

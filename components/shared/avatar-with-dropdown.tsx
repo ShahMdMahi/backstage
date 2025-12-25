@@ -11,19 +11,12 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { getInitials } from "@/lib/utils";
-import {
-  Home,
-  Moon,
-  Sun,
-  UserIcon,
-  BrickWallShield,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { Home, ShieldUser, Moon, Sun, LogOut } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import * as React from "react";
 import { Session, User } from "@/lib/prisma/browser";
+import { ROLE } from "@/lib/prisma/enums";
 import { logout } from "@/actions/auth/auth";
 import { toast } from "sonner";
 
@@ -93,16 +86,54 @@ export function AvatarWithDropdown({
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
+        {session?.user?.role === (ROLE.SYSTEM_OWNER || ROLE.SYSTEM_ADMIN) ? (
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              tabIndex={0}
+              className="flex items-center gap-2"
+              aria-label="Home"
+              onClick={() => router.push("/")}
+              onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
+            >
+              <Home className="mr-2 h-4 w-4" /> Home
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              tabIndex={0}
+              className="flex items-center gap-2"
+              aria-label="System"
+              onClick={() => router.push("/system")}
+              onKeyDown={(e) => handleKeyDown(e, () => router.push("/system"))}
+            >
+              <ShieldUser className="mr-2 h-4 w-4" /> System
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        ) : session?.user?.role === ROLE.SYSTEM_USER ? (
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              tabIndex={0}
+              className="flex items-center gap-2"
+              aria-label="System"
+              onClick={() => router.push("/system")}
+              onKeyDown={(e) => handleKeyDown(e, () => router.push("/system"))}
+            >
+              <ShieldUser className="mr-2 h-4 w-4" /> System
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        ) : (
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              tabIndex={0}
+              className="flex items-center gap-2"
+              aria-label="Home"
+              onClick={() => router.push("/")}
+              onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
+            >
+              <Home className="mr-2 h-4 w-4" /> Home
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        )}
+        <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem
-            tabIndex={0}
-            className="flex items-center gap-2"
-            aria-label="Go to Home"
-            onClick={() => router.push("/")}
-            onKeyDown={(e) => handleKeyDown(e, () => router.push("/"))}
-          >
-            <Home className="mr-2 h-4 w-4" /> Home
-          </DropdownMenuItem>
           <DropdownMenuItem
             tabIndex={0}
             className="flex items-center gap-2"
@@ -124,35 +155,6 @@ export function AvatarWithDropdown({
               <Sun className="mr-2 h-4 w-4" />
             )}
             Switch Theme
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuGroup>
-          <DropdownMenuItem
-            tabIndex={0}
-            className="flex items-center gap-2"
-            aria-label="Go to Profile"
-            onClick={() => router.push("/profile")}
-            onKeyDown={(e) => handleKeyDown(e, () => router.push("/profile"))}
-          >
-            <UserIcon className="mr-2 h-4 w-4" /> Profile
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            tabIndex={0}
-            className="flex items-center gap-2"
-            aria-label="Go to Sessions"
-            onClick={() => router.push("/sessions")}
-            onKeyDown={(e) => handleKeyDown(e, () => router.push("/sessions"))}
-          >
-            <BrickWallShield className="mr-2 h-4 w-4" /> Sessions
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            tabIndex={0}
-            className="flex items-center gap-2"
-            aria-label="Go to Settings"
-            onClick={() => router.push("/settings")}
-            onKeyDown={(e) => handleKeyDown(e, () => router.push("/settings"))}
-          >
-            <Settings className="mr-2 h-4 w-4" /> Settings
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
