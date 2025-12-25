@@ -3,6 +3,7 @@
 import { telegramBot } from "@/lib/telegram";
 import { AuditLog, User } from "@/lib/prisma/client";
 import dedent from "dedent";
+import { formatInTimeZone } from "date-fns-tz";
 
 const telegramGroupId = process.env.TELEGRAM_GROUP_ID!;
 
@@ -40,7 +41,13 @@ export async function sendFormattedAuditLog(
     const entity = escapeMarkdownV2(auditLog.entity);
     const description = escapeMarkdownV2(auditLog.description || "N/A");
     const entityId = escapeMarkdownV2(auditLog.entityId || "N/A");
-    const time = escapeMarkdownV2(auditLog.createdAt.toLocaleString());
+    const time = escapeMarkdownV2(
+      formatInTimeZone(
+        auditLog.createdAt,
+        "Asia/Dhaka",
+        "dd/MM/yyyy hh:mm:ss a"
+      )
+    );
 
     // --- User Details ---
     let userDetails: string;
