@@ -27,6 +27,11 @@ export type User = Prisma.UserModel;
  */
 export type Session = Prisma.SessionModel;
 /**
+ * Model SystemAccess
+ *
+ */
+export type SystemAccess = Prisma.SystemAccessModel;
+/**
  * Model WorkspaceAccount
  *
  */
@@ -88,12 +93,6 @@ export type Publisher = Prisma.PublisherModel;
  */
 export type Label = Prisma.LabelModel;
 /**
- * Model SharedWorkspaceAccountAccess
- *
- */
-export type SharedWorkspaceAccountAccess =
-  Prisma.SharedWorkspaceAccountAccessModel;
-/**
  * Model Transaction
  *
  */
@@ -103,6 +102,17 @@ export type Transaction = Prisma.TransactionModel;
  *
  */
 export type Withdrawal = Prisma.WithdrawalModel;
+/**
+ * Model SharedWorkspaceAccountAccess
+ *
+ */
+export type SharedWorkspaceAccountAccess =
+  Prisma.SharedWorkspaceAccountAccessModel;
+/**
+ * Model RightsManagement
+ *
+ */
+export type RightsManagement = Prisma.RightsManagementModel;
 /**
  * Model AuditLog
  *

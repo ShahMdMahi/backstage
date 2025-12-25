@@ -32,11 +32,16 @@ export type WorkspaceAccountMinAggregateOutputType = {
   description: string | null;
   logo: string | null;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE | null;
-  status: $Enums.WORKSPACE_ACCOUNT_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
-  subscriptionStatsAt: Date | null;
-  subscriptionEndsAt: Date | null;
+  startedAt: Date | null;
+  endedAt: Date | null;
+  renewedAt: Date | null;
+  canceledAt: Date | null;
+  suspendedAt: Date | null;
+  agreementSignedAt: Date | null;
+  agreementExpiresAt: Date | null;
+  agreementRenewedAt: Date | null;
 };
 
 export type WorkspaceAccountMaxAggregateOutputType = {
@@ -47,11 +52,16 @@ export type WorkspaceAccountMaxAggregateOutputType = {
   description: string | null;
   logo: string | null;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE | null;
-  status: $Enums.WORKSPACE_ACCOUNT_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
-  subscriptionStatsAt: Date | null;
-  subscriptionEndsAt: Date | null;
+  startedAt: Date | null;
+  endedAt: Date | null;
+  renewedAt: Date | null;
+  canceledAt: Date | null;
+  suspendedAt: Date | null;
+  agreementSignedAt: Date | null;
+  agreementExpiresAt: Date | null;
+  agreementRenewedAt: Date | null;
 };
 
 export type WorkspaceAccountCountAggregateOutputType = {
@@ -63,11 +73,16 @@ export type WorkspaceAccountCountAggregateOutputType = {
   logo: number;
   metadata: number;
   type: number;
-  status: number;
   createdAt: number;
   updatedAt: number;
-  subscriptionStatsAt: number;
-  subscriptionEndsAt: number;
+  startedAt: number;
+  endedAt: number;
+  renewedAt: number;
+  canceledAt: number;
+  suspendedAt: number;
+  agreementSignedAt: number;
+  agreementExpiresAt: number;
+  agreementRenewedAt: number;
   _all: number;
 };
 
@@ -79,11 +94,16 @@ export type WorkspaceAccountMinAggregateInputType = {
   description?: true;
   logo?: true;
   type?: true;
-  status?: true;
   createdAt?: true;
   updatedAt?: true;
-  subscriptionStatsAt?: true;
-  subscriptionEndsAt?: true;
+  startedAt?: true;
+  endedAt?: true;
+  renewedAt?: true;
+  canceledAt?: true;
+  suspendedAt?: true;
+  agreementSignedAt?: true;
+  agreementExpiresAt?: true;
+  agreementRenewedAt?: true;
 };
 
 export type WorkspaceAccountMaxAggregateInputType = {
@@ -94,11 +114,16 @@ export type WorkspaceAccountMaxAggregateInputType = {
   description?: true;
   logo?: true;
   type?: true;
-  status?: true;
   createdAt?: true;
   updatedAt?: true;
-  subscriptionStatsAt?: true;
-  subscriptionEndsAt?: true;
+  startedAt?: true;
+  endedAt?: true;
+  renewedAt?: true;
+  canceledAt?: true;
+  suspendedAt?: true;
+  agreementSignedAt?: true;
+  agreementExpiresAt?: true;
+  agreementRenewedAt?: true;
 };
 
 export type WorkspaceAccountCountAggregateInputType = {
@@ -110,11 +135,16 @@ export type WorkspaceAccountCountAggregateInputType = {
   logo?: true;
   metadata?: true;
   type?: true;
-  status?: true;
   createdAt?: true;
   updatedAt?: true;
-  subscriptionStatsAt?: true;
-  subscriptionEndsAt?: true;
+  startedAt?: true;
+  endedAt?: true;
+  renewedAt?: true;
+  canceledAt?: true;
+  suspendedAt?: true;
+  agreementSignedAt?: true;
+  agreementExpiresAt?: true;
+  agreementRenewedAt?: true;
   _all?: true;
 };
 
@@ -210,11 +240,16 @@ export type WorkspaceAccountGroupByOutputType = {
   logo: string;
   metadata: runtime.JsonValue | null;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt: Date;
   updatedAt: Date;
-  subscriptionStatsAt: Date;
-  subscriptionEndsAt: Date;
+  startedAt: Date;
+  endedAt: Date;
+  renewedAt: Date | null;
+  canceledAt: Date | null;
+  suspendedAt: Date | null;
+  agreementSignedAt: Date | null;
+  agreementExpiresAt: Date | null;
+  agreementRenewedAt: Date | null;
   _count: WorkspaceAccountCountAggregateOutputType | null;
   _min: WorkspaceAccountMinAggregateOutputType | null;
   _max: WorkspaceAccountMaxAggregateOutputType | null;
@@ -248,19 +283,40 @@ export type WorkspaceAccountWhereInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFilter<"WorkspaceAccount">
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFilter<"WorkspaceAccount">
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFilter<"WorkspaceAccount">
+  startedAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
+  endedAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
+  renewedAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFilter<"WorkspaceAccount">
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   releases?: Prisma.ReleaseListRelationFilter;
@@ -286,11 +342,16 @@ export type WorkspaceAccountOrderByWithRelationInput = {
   logo?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   type?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  subscriptionStatsAt?: Prisma.SortOrder;
-  subscriptionEndsAt?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  endedAt?: Prisma.SortOrder;
+  renewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  canceledAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  suspendedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  agreementSignedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  agreementExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  agreementRenewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   owner?: Prisma.UserOrderByWithRelationInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   releases?: Prisma.ReleaseOrderByRelationAggregateInput;
@@ -326,19 +387,40 @@ export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
     type?:
       | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFilter<"WorkspaceAccount">
       | $Enums.WORKSPACE_ACCOUNT_TYPE;
-    status?:
-      | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFilter<"WorkspaceAccount">
-      | $Enums.WORKSPACE_ACCOUNT_STATUS;
     createdAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
-    subscriptionStatsAt?:
-      | Prisma.DateTimeFilter<"WorkspaceAccount">
+    startedAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
+    endedAt?: Prisma.DateTimeFilter<"WorkspaceAccount"> | Date | string;
+    renewedAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
       | Date
-      | string;
-    subscriptionEndsAt?:
-      | Prisma.DateTimeFilter<"WorkspaceAccount">
+      | string
+      | null;
+    canceledAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
       | Date
-      | string;
+      | string
+      | null;
+    suspendedAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+      | Date
+      | string
+      | null;
+    agreementSignedAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+      | Date
+      | string
+      | null;
+    agreementExpiresAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+      | Date
+      | string
+      | null;
+    agreementRenewedAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+      | Date
+      | string
+      | null;
     owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
     sharedAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     releases?: Prisma.ReleaseListRelationFilter;
@@ -366,11 +448,16 @@ export type WorkspaceAccountOrderByWithAggregationInput = {
   logo?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   type?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  subscriptionStatsAt?: Prisma.SortOrder;
-  subscriptionEndsAt?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  endedAt?: Prisma.SortOrder;
+  renewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  canceledAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  suspendedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  agreementSignedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  agreementExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  agreementRenewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.WorkspaceAccountCountOrderByAggregateInput;
   _max?: Prisma.WorkspaceAccountMaxOrderByAggregateInput;
   _min?: Prisma.WorkspaceAccountMinOrderByAggregateInput;
@@ -394,9 +481,6 @@ export type WorkspaceAccountScalarWhereWithAggregatesInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEWithAggregatesFilter<"WorkspaceAccount">
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSWithAggregatesFilter<"WorkspaceAccount">
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<"WorkspaceAccount">
     | Date
@@ -405,14 +489,44 @@ export type WorkspaceAccountScalarWhereWithAggregatesInput = {
     | Prisma.DateTimeWithAggregatesFilter<"WorkspaceAccount">
     | Date
     | string;
-  subscriptionStatsAt?:
+  startedAt?:
     | Prisma.DateTimeWithAggregatesFilter<"WorkspaceAccount">
     | Date
     | string;
-  subscriptionEndsAt?:
+  endedAt?:
     | Prisma.DateTimeWithAggregatesFilter<"WorkspaceAccount">
     | Date
     | string;
+  renewedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
 };
 
 export type WorkspaceAccountCreateInput = {
@@ -423,11 +537,16 @@ export type WorkspaceAccountCreateInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -453,11 +572,16 @@ export type WorkspaceAccountUncheckedCreateInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -483,19 +607,40 @@ export type WorkspaceAccountUpdateInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -523,19 +668,40 @@ export type WorkspaceAccountUncheckedUpdateInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -560,11 +726,16 @@ export type WorkspaceAccountCreateManyInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
 };
 
 export type WorkspaceAccountUpdateManyMutationInput = {
@@ -577,19 +748,40 @@ export type WorkspaceAccountUpdateManyMutationInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type WorkspaceAccountUncheckedUpdateManyInput = {
@@ -603,19 +795,40 @@ export type WorkspaceAccountUncheckedUpdateManyInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type WorkspaceAccountNullableScalarRelationFilter = {
@@ -632,11 +845,16 @@ export type WorkspaceAccountCountOrderByAggregateInput = {
   logo?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
   type?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  subscriptionStatsAt?: Prisma.SortOrder;
-  subscriptionEndsAt?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  endedAt?: Prisma.SortOrder;
+  renewedAt?: Prisma.SortOrder;
+  canceledAt?: Prisma.SortOrder;
+  suspendedAt?: Prisma.SortOrder;
+  agreementSignedAt?: Prisma.SortOrder;
+  agreementExpiresAt?: Prisma.SortOrder;
+  agreementRenewedAt?: Prisma.SortOrder;
 };
 
 export type WorkspaceAccountMaxOrderByAggregateInput = {
@@ -647,11 +865,16 @@ export type WorkspaceAccountMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   logo?: Prisma.SortOrder;
   type?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  subscriptionStatsAt?: Prisma.SortOrder;
-  subscriptionEndsAt?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  endedAt?: Prisma.SortOrder;
+  renewedAt?: Prisma.SortOrder;
+  canceledAt?: Prisma.SortOrder;
+  suspendedAt?: Prisma.SortOrder;
+  agreementSignedAt?: Prisma.SortOrder;
+  agreementExpiresAt?: Prisma.SortOrder;
+  agreementRenewedAt?: Prisma.SortOrder;
 };
 
 export type WorkspaceAccountMinOrderByAggregateInput = {
@@ -662,11 +885,16 @@ export type WorkspaceAccountMinOrderByAggregateInput = {
   description?: Prisma.SortOrder;
   logo?: Prisma.SortOrder;
   type?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-  subscriptionStatsAt?: Prisma.SortOrder;
-  subscriptionEndsAt?: Prisma.SortOrder;
+  startedAt?: Prisma.SortOrder;
+  endedAt?: Prisma.SortOrder;
+  renewedAt?: Prisma.SortOrder;
+  canceledAt?: Prisma.SortOrder;
+  suspendedAt?: Prisma.SortOrder;
+  agreementSignedAt?: Prisma.SortOrder;
+  agreementExpiresAt?: Prisma.SortOrder;
+  agreementRenewedAt?: Prisma.SortOrder;
 };
 
 export type WorkspaceAccountScalarRelationFilter = {
@@ -732,10 +960,6 @@ export type WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput = {
 
 export type EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput = {
   set?: $Enums.WORKSPACE_ACCOUNT_TYPE;
-};
-
-export type EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_STATUS;
 };
 
 export type WorkspaceAccountCreateNestedOneWithoutReleasesInput = {
@@ -999,33 +1223,6 @@ export type WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput = {
   >;
 };
 
-export type WorkspaceAccountCreateNestedOneWithoutSharedAccessesInput = {
-  create?: Prisma.XOR<
-    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
-  >;
-  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput;
-  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
-};
-
-export type WorkspaceAccountUpdateOneRequiredWithoutSharedAccessesNestedInput =
-  {
-    create?: Prisma.XOR<
-      Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-      Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
-    >;
-    connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput;
-    upsert?: Prisma.WorkspaceAccountUpsertWithoutSharedAccessesInput;
-    connect?: Prisma.WorkspaceAccountWhereUniqueInput;
-    update?: Prisma.XOR<
-      Prisma.XOR<
-        Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutSharedAccessesInput,
-        Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput
-      >,
-      Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
-    >;
-  };
-
 export type WorkspaceAccountCreateNestedOneWithoutTransactionsInput = {
   create?: Prisma.XOR<
     Prisma.WorkspaceAccountCreateWithoutTransactionsInput,
@@ -1082,6 +1279,33 @@ export type WorkspaceAccountUpdateOneWithoutWithdrawalsNestedInput = {
   >;
 };
 
+export type WorkspaceAccountCreateNestedOneWithoutSharedAccessesInput = {
+  create?: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
+  >;
+  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput;
+  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+};
+
+export type WorkspaceAccountUpdateOneRequiredWithoutSharedAccessesNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
+      Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
+    >;
+    connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput;
+    upsert?: Prisma.WorkspaceAccountUpsertWithoutSharedAccessesInput;
+    connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutSharedAccessesInput,
+        Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput
+      >,
+      Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
+    >;
+  };
+
 export type WorkspaceAccountCreateWithoutOwnerInput = {
   id?: string;
   name: string;
@@ -1090,11 +1314,16 @@ export type WorkspaceAccountCreateWithoutOwnerInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1118,11 +1347,16 @@ export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1176,19 +1410,40 @@ export type WorkspaceAccountUpdateWithoutOwnerInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1214,19 +1469,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1250,11 +1526,16 @@ export type WorkspaceAccountCreateWithoutReleasesInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1279,11 +1560,16 @@ export type WorkspaceAccountUncheckedCreateWithoutReleasesInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1336,19 +1622,40 @@ export type WorkspaceAccountUpdateWithoutReleasesInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1375,19 +1682,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutReleasesInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1410,11 +1738,16 @@ export type WorkspaceAccountCreateWithoutTracksInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1439,11 +1772,16 @@ export type WorkspaceAccountUncheckedCreateWithoutTracksInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1496,19 +1834,40 @@ export type WorkspaceAccountUpdateWithoutTracksInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1535,19 +1894,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutTracksInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1570,11 +1950,16 @@ export type WorkspaceAccountCreateWithoutVideosInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1599,11 +1984,16 @@ export type WorkspaceAccountUncheckedCreateWithoutVideosInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1656,19 +2046,40 @@ export type WorkspaceAccountUpdateWithoutVideosInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1695,19 +2106,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutVideosInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1730,11 +2162,16 @@ export type WorkspaceAccountCreateWithoutRingtonesInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1759,11 +2196,16 @@ export type WorkspaceAccountUncheckedCreateWithoutRingtonesInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1816,19 +2258,40 @@ export type WorkspaceAccountUpdateWithoutRingtonesInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1855,19 +2318,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutRingtonesInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1890,11 +2374,16 @@ export type WorkspaceAccountCreateWithoutArtistsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1919,11 +2408,16 @@ export type WorkspaceAccountUncheckedCreateWithoutArtistsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1976,19 +2470,40 @@ export type WorkspaceAccountUpdateWithoutArtistsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2015,19 +2530,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutArtistsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2050,11 +2586,16 @@ export type WorkspaceAccountCreateWithoutPerformersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2079,11 +2620,16 @@ export type WorkspaceAccountUncheckedCreateWithoutPerformersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2136,19 +2682,40 @@ export type WorkspaceAccountUpdateWithoutPerformersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2175,19 +2742,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutPerformersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2210,11 +2798,16 @@ export type WorkspaceAccountCreateWithoutProducersAndEngineersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2239,11 +2832,16 @@ export type WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2297,19 +2895,40 @@ export type WorkspaceAccountUpdateWithoutProducersAndEngineersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2336,19 +2955,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2371,11 +3011,16 @@ export type WorkspaceAccountCreateWithoutWritersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2400,11 +3045,16 @@ export type WorkspaceAccountUncheckedCreateWithoutWritersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2457,19 +3107,40 @@ export type WorkspaceAccountUpdateWithoutWritersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2496,19 +3167,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutWritersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2531,11 +3223,16 @@ export type WorkspaceAccountCreateWithoutPublishersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2560,11 +3257,16 @@ export type WorkspaceAccountUncheckedCreateWithoutPublishersInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2617,19 +3319,40 @@ export type WorkspaceAccountUpdateWithoutPublishersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2656,19 +3379,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutPublishersInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2691,11 +3435,16 @@ export type WorkspaceAccountCreateWithoutLabelsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2720,11 +3469,16 @@ export type WorkspaceAccountUncheckedCreateWithoutLabelsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2777,19 +3531,40 @@ export type WorkspaceAccountUpdateWithoutLabelsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2816,19 +3591,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2843,166 +3639,6 @@ export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
   withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
-export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
-  id?: string;
-  name: string;
-  legalName: string;
-  description: string;
-  logo: string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
-  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
-  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
-  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
-  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
-  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
-  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
-  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
-  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
-  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
-  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
-  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
-};
-
-export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
-  id?: string;
-  ownerId: string;
-  name: string;
-  legalName: string;
-  description: string;
-  logo: string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-};
-
-export type WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput = {
-  where: Prisma.WorkspaceAccountWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
-  >;
-};
-
-export type WorkspaceAccountUpsertWithoutSharedAccessesInput = {
-  update: Prisma.XOR<
-    Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
-  >;
-  create: Prisma.XOR<
-    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
-  >;
-  where?: Prisma.WorkspaceAccountWhereInput;
-};
-
-export type WorkspaceAccountUpdateToOneWithWhereWithoutSharedAccessesInput = {
-  where?: Prisma.WorkspaceAccountWhereInput;
-  data: Prisma.XOR<
-    Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
-  >;
-};
-
-export type WorkspaceAccountUpdateWithoutSharedAccessesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  name?: Prisma.StringFieldUpdateOperationsInput | string;
-  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
-  logo?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  type?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string;
-  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
-  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
-  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
-  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
-  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
-  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
-  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
-  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
-  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
-  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
-  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
-};
-
-export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  name?: Prisma.StringFieldUpdateOperationsInput | string;
-  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
-  logo?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  type?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
-    | Date
-    | string;
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-};
-
 export type WorkspaceAccountCreateWithoutTransactionsInput = {
   id?: string;
   name: string;
@@ -3011,11 +3647,16 @@ export type WorkspaceAccountCreateWithoutTransactionsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3040,11 +3681,16 @@ export type WorkspaceAccountUncheckedCreateWithoutTransactionsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3097,19 +3743,40 @@ export type WorkspaceAccountUpdateWithoutTransactionsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3136,19 +3803,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutTransactionsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3171,11 +3859,16 @@ export type WorkspaceAccountCreateWithoutWithdrawalsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3200,11 +3893,16 @@ export type WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput = {
   logo: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?: $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  subscriptionStatsAt: Date | string;
-  subscriptionEndsAt: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3257,19 +3955,40 @@ export type WorkspaceAccountUpdateWithoutWithdrawalsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3296,19 +4015,40 @@ export type WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput = {
   type?:
     | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  status?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_STATUSFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  subscriptionStatsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
-  subscriptionEndsAt?:
-    | Prisma.DateTimeFieldUpdateOperationsInput
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
-    | string;
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3321,6 +4061,218 @@ export type WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput = {
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
+  id?: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
+  owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
+  id?: string;
+  ownerId: string;
+  name: string;
+  legalName: string;
+  description: string;
+  logo: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  startedAt: Date | string;
+  endedAt: Date | string;
+  renewedAt?: Date | string | null;
+  canceledAt?: Date | string | null;
+  suspendedAt?: Date | string | null;
+  agreementSignedAt?: Date | string | null;
+  agreementExpiresAt?: Date | string | null;
+  agreementRenewedAt?: Date | string | null;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+};
+
+export type WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput = {
+  where: Prisma.WorkspaceAccountWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
+  >;
+};
+
+export type WorkspaceAccountUpsertWithoutSharedAccessesInput = {
+  update: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
+  >;
+  where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+export type WorkspaceAccountUpdateToOneWithWhereWithoutSharedAccessesInput = {
+  where?: Prisma.WorkspaceAccountWhereInput;
+  data: Prisma.XOR<
+    Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
+  >;
+};
+
+export type WorkspaceAccountUpdateWithoutSharedAccessesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
+};
+
+export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  name?: Prisma.StringFieldUpdateOperationsInput | string;
+  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+  description?: Prisma.StringFieldUpdateOperationsInput | string;
+  logo?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  type?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_TYPE;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  renewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  canceledAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementSignedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementExpiresAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  agreementRenewedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
 /**
@@ -3522,11 +4474,16 @@ export type WorkspaceAccountSelect<
     logo?: boolean;
     metadata?: boolean;
     type?: boolean;
-    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    subscriptionStatsAt?: boolean;
-    subscriptionEndsAt?: boolean;
+    startedAt?: boolean;
+    endedAt?: boolean;
+    renewedAt?: boolean;
+    canceledAt?: boolean;
+    suspendedAt?: boolean;
+    agreementSignedAt?: boolean;
+    agreementExpiresAt?: boolean;
+    agreementRenewedAt?: boolean;
     owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
     sharedAccesses?:
       | boolean
@@ -3565,11 +4522,16 @@ export type WorkspaceAccountSelectCreateManyAndReturn<
     logo?: boolean;
     metadata?: boolean;
     type?: boolean;
-    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    subscriptionStatsAt?: boolean;
-    subscriptionEndsAt?: boolean;
+    startedAt?: boolean;
+    endedAt?: boolean;
+    renewedAt?: boolean;
+    canceledAt?: boolean;
+    suspendedAt?: boolean;
+    agreementSignedAt?: boolean;
+    agreementExpiresAt?: boolean;
+    agreementRenewedAt?: boolean;
     owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["workspaceAccount"]
@@ -3588,11 +4550,16 @@ export type WorkspaceAccountSelectUpdateManyAndReturn<
     logo?: boolean;
     metadata?: boolean;
     type?: boolean;
-    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    subscriptionStatsAt?: boolean;
-    subscriptionEndsAt?: boolean;
+    startedAt?: boolean;
+    endedAt?: boolean;
+    renewedAt?: boolean;
+    canceledAt?: boolean;
+    suspendedAt?: boolean;
+    agreementSignedAt?: boolean;
+    agreementExpiresAt?: boolean;
+    agreementRenewedAt?: boolean;
     owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["workspaceAccount"]
@@ -3607,11 +4574,16 @@ export type WorkspaceAccountSelectScalar = {
   logo?: boolean;
   metadata?: boolean;
   type?: boolean;
-  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
-  subscriptionStatsAt?: boolean;
-  subscriptionEndsAt?: boolean;
+  startedAt?: boolean;
+  endedAt?: boolean;
+  renewedAt?: boolean;
+  canceledAt?: boolean;
+  suspendedAt?: boolean;
+  agreementSignedAt?: boolean;
+  agreementExpiresAt?: boolean;
+  agreementRenewedAt?: boolean;
 };
 
 export type WorkspaceAccountOmit<
@@ -3626,11 +4598,16 @@ export type WorkspaceAccountOmit<
   | "logo"
   | "metadata"
   | "type"
-  | "status"
   | "createdAt"
   | "updatedAt"
-  | "subscriptionStatsAt"
-  | "subscriptionEndsAt",
+  | "startedAt"
+  | "endedAt"
+  | "renewedAt"
+  | "canceledAt"
+  | "suspendedAt"
+  | "agreementSignedAt"
+  | "agreementExpiresAt"
+  | "agreementRenewedAt",
   ExtArgs["result"]["workspaceAccount"]
 >;
 export type WorkspaceAccountInclude<
@@ -3701,11 +4678,16 @@ export type $WorkspaceAccountPayload<
       logo: string;
       metadata: runtime.JsonValue | null;
       type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-      status: $Enums.WORKSPACE_ACCOUNT_STATUS;
       createdAt: Date;
       updatedAt: Date;
-      subscriptionStatsAt: Date;
-      subscriptionEndsAt: Date;
+      startedAt: Date;
+      endedAt: Date;
+      renewedAt: Date | null;
+      canceledAt: Date | null;
+      suspendedAt: Date | null;
+      agreementSignedAt: Date | null;
+      agreementExpiresAt: Date | null;
+      agreementRenewedAt: Date | null;
     },
     ExtArgs["result"]["workspaceAccount"]
   >;
@@ -4488,14 +5470,16 @@ export interface WorkspaceAccountFieldRefs {
   readonly logo: Prisma.FieldRef<"WorkspaceAccount", "String">;
   readonly metadata: Prisma.FieldRef<"WorkspaceAccount", "Json">;
   readonly type: Prisma.FieldRef<"WorkspaceAccount", "WORKSPACE_ACCOUNT_TYPE">;
-  readonly status: Prisma.FieldRef<
-    "WorkspaceAccount",
-    "WORKSPACE_ACCOUNT_STATUS"
-  >;
   readonly createdAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
-  readonly subscriptionStatsAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
-  readonly subscriptionEndsAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly startedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly endedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly renewedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly canceledAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly suspendedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly agreementSignedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly agreementExpiresAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly agreementRenewedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
 }
 
 // Custom InputTypes

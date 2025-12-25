@@ -547,10 +547,6 @@ export type AuditLogUncheckedUpdateManyWithoutUserNestedInput = {
     | Prisma.AuditLogScalarWhereInput[];
 };
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean;
-};
-
 export type EnumAUDIT_LOG_ACTIONFieldUpdateOperationsInput = {
   set?: $Enums.AUDIT_LOG_ACTION;
 };

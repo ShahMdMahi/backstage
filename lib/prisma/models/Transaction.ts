@@ -199,6 +199,7 @@ export type TransactionWhereInput = {
     Prisma.WorkspaceAccountNullableScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   > | null;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
 };
 
 export type TransactionOrderByWithRelationInput = {
@@ -209,6 +210,7 @@ export type TransactionOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
 };
 
 export type TransactionWhereUniqueInput = Prisma.AtLeast<
@@ -231,6 +233,7 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountNullableScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     > | null;
+    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   },
   "id"
 >;
@@ -281,6 +284,7 @@ export type TransactionCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTransactionsInput;
 };
 
 export type TransactionUncheckedCreateInput = {
@@ -290,6 +294,7 @@ export type TransactionUncheckedCreateInput = {
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTransactionsInput;
 };
 
 export type TransactionUpdateInput = {
@@ -301,6 +306,7 @@ export type TransactionUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutTransactionsNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTransactionsNestedInput;
 };
 
 export type TransactionUncheckedUpdateInput = {
@@ -315,6 +321,7 @@ export type TransactionUncheckedUpdateInput = {
     | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsNestedInput;
 };
 
 export type TransactionCreateManyInput = {
@@ -499,12 +506,123 @@ export type EnumTRANSACTION_STATUSFieldUpdateOperationsInput = {
   set?: $Enums.TRANSACTION_STATUS;
 };
 
+export type TransactionCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput,
+          Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        >
+      | Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput[]
+      | Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    connectOrCreate?:
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    connect?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+  };
+
+export type TransactionUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput,
+          Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        >
+      | Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput[]
+      | Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    connectOrCreate?:
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    connect?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+  };
+
+export type TransactionUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput,
+          Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        >
+      | Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput[]
+      | Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    connectOrCreate?:
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    upsert?:
+      | Prisma.TransactionUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    set?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    disconnect?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    delete?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    connect?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    update?:
+      | Prisma.TransactionUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    updateMany?:
+      | Prisma.TransactionUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+    deleteMany?:
+      | Prisma.TransactionScalarWhereInput
+      | Prisma.TransactionScalarWhereInput[];
+  };
+
+export type TransactionUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+  {
+    create?:
+      | Prisma.XOR<
+          Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput,
+          Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        >
+      | Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput[]
+      | Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    connectOrCreate?:
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    upsert?:
+      | Prisma.TransactionUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    set?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    disconnect?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    delete?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    connect?:
+      | Prisma.TransactionWhereUniqueInput
+      | Prisma.TransactionWhereUniqueInput[];
+    update?:
+      | Prisma.TransactionUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    updateMany?:
+      | Prisma.TransactionUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
+      | Prisma.TransactionUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+    deleteMany?:
+      | Prisma.TransactionScalarWhereInput
+      | Prisma.TransactionScalarWhereInput[];
+  };
+
 export type TransactionCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTransactionsInput;
 };
 
 export type TransactionUncheckedCreateWithoutWorkspaceAccountInput = {
@@ -513,6 +631,7 @@ export type TransactionUncheckedCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTransactionsInput;
 };
 
 export type TransactionCreateOrConnectWithoutWorkspaceAccountInput = {
@@ -579,6 +698,65 @@ export type TransactionScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
 };
 
+export type TransactionCreateWithoutSharedWorkspaceAccountAccessInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.TRANSACTION_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
+};
+
+export type TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput =
+  {
+    id?: string;
+    workspaceAccountId?: string | null;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?: $Enums.TRANSACTION_STATUS;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+  };
+
+export type TransactionCreateOrConnectWithoutSharedWorkspaceAccountAccessInput =
+  {
+    where: Prisma.TransactionWhereUniqueInput;
+    create: Prisma.XOR<
+      Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput,
+      Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    >;
+  };
+
+export type TransactionUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+  {
+    where: Prisma.TransactionWhereUniqueInput;
+    update: Prisma.XOR<
+      Prisma.TransactionUpdateWithoutSharedWorkspaceAccountAccessInput,
+      Prisma.TransactionUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+    >;
+    create: Prisma.XOR<
+      Prisma.TransactionCreateWithoutSharedWorkspaceAccountAccessInput,
+      Prisma.TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    >;
+  };
+
+export type TransactionUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+  {
+    where: Prisma.TransactionWhereUniqueInput;
+    data: Prisma.XOR<
+      Prisma.TransactionUpdateWithoutSharedWorkspaceAccountAccessInput,
+      Prisma.TransactionUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+    >;
+  };
+
+export type TransactionUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput =
+  {
+    where: Prisma.TransactionScalarWhereInput;
+    data: Prisma.XOR<
+      Prisma.TransactionUpdateManyMutationInput,
+      Prisma.TransactionUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
+    >;
+  };
+
 export type TransactionCreateManyWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -595,6 +773,7 @@ export type TransactionUpdateWithoutWorkspaceAccountInput = {
     | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTransactionsNestedInput;
 };
 
 export type TransactionUncheckedUpdateWithoutWorkspaceAccountInput = {
@@ -605,6 +784,7 @@ export type TransactionUncheckedUpdateWithoutWorkspaceAccountInput = {
     | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsNestedInput;
 };
 
 export type TransactionUncheckedUpdateManyWithoutWorkspaceAccountInput = {
@@ -615,6 +795,87 @@ export type TransactionUncheckedUpdateManyWithoutWorkspaceAccountInput = {
     | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+};
+
+export type TransactionUpdateWithoutSharedWorkspaceAccountAccessInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+    | $Enums.TRANSACTION_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutTransactionsNestedInput;
+};
+
+export type TransactionUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    workspaceAccountId?:
+      | Prisma.NullableStringFieldUpdateOperationsInput
+      | string
+      | null;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+      | $Enums.TRANSACTION_STATUS;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+export type TransactionUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    workspaceAccountId?:
+      | Prisma.NullableStringFieldUpdateOperationsInput
+      | string
+      | null;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
+      | $Enums.TRANSACTION_STATUS;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  };
+
+/**
+ * Count Type TransactionCountOutputType
+ */
+
+export type TransactionCountOutputType = {
+  sharedWorkspaceAccountAccess: number;
+};
+
+export type TransactionCountOutputTypeSelect<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  sharedWorkspaceAccountAccess?:
+    | boolean
+    | TransactionCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+};
+
+/**
+ * TransactionCountOutputType without action
+ */
+export type TransactionCountOutputTypeDefaultArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the TransactionCountOutputType
+   */
+  select?: Prisma.TransactionCountOutputTypeSelect<ExtArgs> | null;
+};
+
+/**
+ * TransactionCountOutputType without action
+ */
+export type TransactionCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
 export type TransactionSelect<
@@ -631,6 +892,10 @@ export type TransactionSelect<
     workspaceAccount?:
       | boolean
       | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+    sharedWorkspaceAccountAccess?:
+      | boolean
+      | Prisma.Transaction$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    _count?: boolean | Prisma.TransactionCountOutputTypeDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["transaction"]
 >;
@@ -697,6 +962,10 @@ export type TransactionInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+  sharedWorkspaceAccountAccess?:
+    | boolean
+    | Prisma.Transaction$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+  _count?: boolean | Prisma.TransactionCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type TransactionIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
@@ -718,6 +987,7 @@ export type $TransactionPayload<
   name: "Transaction";
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs> | null;
+    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
@@ -1295,6 +1565,22 @@ export interface Prisma__TransactionClient<
     ExtArgs,
     GlobalOmitOptions
   >;
+  sharedWorkspaceAccountAccess<
+    T extends Prisma.Transaction$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
+  >(
+    args?: Prisma.Subset<
+      T,
+      Prisma.Transaction$sharedWorkspaceAccountAccessArgs<ExtArgs>
+    >
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1829,6 +2115,37 @@ export type Transaction$workspaceAccountArgs<
    */
   include?: Prisma.WorkspaceAccountInclude<ExtArgs> | null;
   where?: Prisma.WorkspaceAccountWhereInput;
+};
+
+/**
+ * Transaction.sharedWorkspaceAccountAccess
+ */
+export type Transaction$sharedWorkspaceAccountAccessArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the SharedWorkspaceAccountAccess
+   */
+  select?: Prisma.SharedWorkspaceAccountAccessSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the SharedWorkspaceAccountAccess
+   */
+  omit?: Prisma.SharedWorkspaceAccountAccessOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SharedWorkspaceAccountAccessInclude<ExtArgs> | null;
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+  orderBy?:
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput[];
+  cursor?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
 };
 
 /**

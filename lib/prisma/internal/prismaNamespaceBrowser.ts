@@ -56,6 +56,7 @@ export const AnyNull = runtime.AnyNull;
 export const ModelName = {
   User: "User",
   Session: "Session",
+  SystemAccess: "SystemAccess",
   WorkspaceAccount: "WorkspaceAccount",
   Release: "Release",
   Track: "Track",
@@ -68,9 +69,10 @@ export const ModelName = {
   Writer: "Writer",
   Publisher: "Publisher",
   Label: "Label",
-  SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
   Transaction: "Transaction",
   Withdrawal: "Withdrawal",
+  SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
+  RightsManagement: "RightsManagement",
   AuditLog: "AuditLog",
 } as const;
 
@@ -128,6 +130,20 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum =
   (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum];
 
+export const SystemAccessScalarFieldEnum = {
+  id: "id",
+  userId: "userId",
+  assignerId: "assignerId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  suspendedAt: "suspendedAt",
+  expiresAt: "expiresAt",
+} as const;
+
+export type SystemAccessScalarFieldEnum =
+  (typeof SystemAccessScalarFieldEnum)[keyof typeof SystemAccessScalarFieldEnum];
+
 export const WorkspaceAccountScalarFieldEnum = {
   id: "id",
   ownerId: "ownerId",
@@ -137,11 +153,16 @@ export const WorkspaceAccountScalarFieldEnum = {
   logo: "logo",
   metadata: "metadata",
   type: "type",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
-  subscriptionStatsAt: "subscriptionStatsAt",
-  subscriptionEndsAt: "subscriptionEndsAt",
+  startedAt: "startedAt",
+  endedAt: "endedAt",
+  renewedAt: "renewedAt",
+  canceledAt: "canceledAt",
+  suspendedAt: "suspendedAt",
+  agreementSignedAt: "agreementSignedAt",
+  agreementExpiresAt: "agreementExpiresAt",
+  agreementRenewedAt: "agreementRenewedAt",
 } as const;
 
 export type WorkspaceAccountScalarFieldEnum =
@@ -283,21 +304,6 @@ export const LabelScalarFieldEnum = {
 export type LabelScalarFieldEnum =
   (typeof LabelScalarFieldEnum)[keyof typeof LabelScalarFieldEnum];
 
-export const SharedWorkspaceAccountAccessScalarFieldEnum = {
-  id: "id",
-  workspaceAccountId: "workspaceAccountId",
-  userId: "userId",
-  assignerId: "assignerId",
-  metadata: "metadata",
-  role: "role",
-  status: "status",
-  createdAt: "createdAt",
-  updatedAt: "updatedAt",
-} as const;
-
-export type SharedWorkspaceAccountAccessScalarFieldEnum =
-  (typeof SharedWorkspaceAccountAccessScalarFieldEnum)[keyof typeof SharedWorkspaceAccountAccessScalarFieldEnum];
-
 export const TransactionScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
@@ -321,6 +327,59 @@ export const WithdrawalScalarFieldEnum = {
 
 export type WithdrawalScalarFieldEnum =
   (typeof WithdrawalScalarFieldEnum)[keyof typeof WithdrawalScalarFieldEnum];
+
+export const SharedWorkspaceAccountAccessScalarFieldEnum = {
+  id: "id",
+  workspaceAccountId: "workspaceAccountId",
+  userId: "userId",
+  assignerId: "assignerId",
+  allRleases: "allRleases",
+  allTracks: "allTracks",
+  allVideos: "allVideos",
+  allRingtones: "allRingtones",
+  allArtists: "allArtists",
+  allPerformers: "allPerformers",
+  allProducersAndEngineers: "allProducersAndEngineers",
+  allWriters: "allWriters",
+  allPublishers: "allPublishers",
+  allLabels: "allLabels",
+  allTransactions: "allTransactions",
+  allWithdrawals: "allWithdrawals",
+  releaseAccessLevel: "releaseAccessLevel",
+  trackAccessLevel: "trackAccessLevel",
+  videoAccessLevel: "videoAccessLevel",
+  ringtoneAccessLevel: "ringtoneAccessLevel",
+  artistAccessLevel: "artistAccessLevel",
+  performerAccessLevel: "performerAccessLevel",
+  producerAndEngineerAccessLevel: "producerAndEngineerAccessLevel",
+  writerAccessLevel: "writerAccessLevel",
+  publisherAccessLevel: "publisherAccessLevel",
+  labelAccessLevel: "labelAccessLevel",
+  transactionAccessLevel: "transactionAccessLevel",
+  withdrawalAccessLevel: "withdrawalAccessLevel",
+  metadata: "metadata",
+  role: "role",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+  expiresAt: "expiresAt",
+  suspendedAt: "suspendedAt",
+} as const;
+
+export type SharedWorkspaceAccountAccessScalarFieldEnum =
+  (typeof SharedWorkspaceAccountAccessScalarFieldEnum)[keyof typeof SharedWorkspaceAccountAccessScalarFieldEnum];
+
+export const RightsManagementScalarFieldEnum = {
+  id: "id",
+  userId: "userId",
+  metadata: "metadata",
+  status: "status",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type RightsManagementScalarFieldEnum =
+  (typeof RightsManagementScalarFieldEnum)[keyof typeof RightsManagementScalarFieldEnum];
 
 export const AuditLogScalarFieldEnum = {
   id: "id",

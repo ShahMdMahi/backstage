@@ -9,6 +9,7 @@
  */
 export type * from "./models/User";
 export type * from "./models/Session";
+export type * from "./models/SystemAccess";
 export type * from "./models/WorkspaceAccount";
 export type * from "./models/Release";
 export type * from "./models/Track";
@@ -21,8 +22,9 @@ export type * from "./models/ArtistPerformerProducerAndEngineer";
 export type * from "./models/Writer";
 export type * from "./models/Publisher";
 export type * from "./models/Label";
-export type * from "./models/SharedWorkspaceAccountAccess";
 export type * from "./models/Transaction";
 export type * from "./models/Withdrawal";
+export type * from "./models/SharedWorkspaceAccountAccess";
+export type * from "./models/RightsManagement";
 export type * from "./models/AuditLog";
 export type * from "./commonInputTypes";

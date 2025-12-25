@@ -8,8 +8,9 @@ datasource db {
 }
 
 enum ROLE {
-  DEVELOPER
+  SYSTEM_OWNER
   SYSTEM_ADMIN
+  SYSTEM_USER
   USER
 }
 
@@ -29,125 +30,145 @@ enum WORKSPACE_ACCOUNT_TYPE {
   B2B
   LABEL
   ARTIST
-}
-
-enum WORKSPACE_ACCOUNT_STATUS {
-  ACTIVE
-  SUSPENDED
-  EXPIRED
-  CANCELLED
+  FREE_TRIAL
 }
 
 enum WORKSPACE_ACCOUNT_ACCESS_ROLE {
   ADMIN
-  MANAGER
-  ARTIST
-  MEMBER
+  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER
+  USER
 }
 
 enum WORKSPACE_ACCOUNT_ACCESS_STATUS {
   ACTIVE
+  EXPIRED
   SUSPENDED
+}
+
+enum WORKSPACE_ACCOUNT_ACCESS_LEVEL {
+  READ
+  WRITE
+  ADMIN
 }
 
 enum RELEASE_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum TRACK_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum VIDEO_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum RINGTONE_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum ARTIST_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum PERFORMER_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum PRODUCER_AND_ENGINEER_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum WRITER_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum PUBLISHER_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum LABEL_STATUS {
   DRAFT
-  PENDING_APPROVAL
+  PENDING
   APPROVED
+  PROCESSING
   PUBLISHED
   REJECTED
   ARCHIVED
   PAUSED
+  TAKEN_DOWN
 }
 
 enum TRANSACTION_STATUS {
@@ -157,6 +178,7 @@ enum TRANSACTION_STATUS {
   COMPLETED
   FAILED
   CANCELLED
+  REJECTED
 }
 
 enum WITHDRAWAL_STATUS {
@@ -166,6 +188,17 @@ enum WITHDRAWAL_STATUS {
   COMPLETED
   FAILED
   CANCELLED
+  REJECTED
+}
+
+enum RIGHTS_MANAGEMENT_STATUS {
+  PENDING
+  APPROVED
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  REJECTED
 }
 
 enum AUDIT_LOG_ACTION {
@@ -186,91 +219,46 @@ enum AUDIT_LOG_ACTION {
   // Session Actions
   SESSION_CREATED
   SESSION_REVOKED
-  SESSION_ACCESSED
+
+  // System Access Actions
 
   // Workspace Account Actions
-  WORKSPACE_ACCOUNT_CREATED
-  WORKSPACE_ACCOUNT_UPDATED
-  WORKSPACE_ACCOUNT_DELETED
-  WORKSPACE_ACCOUNT_SUSPENDED
-  WORKSPACE_ACCOUNT_REACTIVATED
 
   // Release Actions
-  RELEASE_CREATED
-  RELEASE_UPDATED
-  RELEASE_DELETED
 
   // Track Actions
-  TRACK_CREATED
-  TRACK_UPDATED
-  TRACK_DELETED
 
   // Video Actions
-  VIDEO_CREATED
-  VIDEO_UPDATED
-  VIDEO_DELETED
 
   // Ringtone Actions
-  RINGTONE_CREATED
-  RINGTONE_UPDATED
-  RINGTONE_DELETED
 
   // Artist Actions
-  ARTIST_CREATED
-  ARTIST_UPDATED
-  ARTIST_DELETED
 
   // Performer Actions
-  PERFORMER_CREATED
-  PERFORMER_UPDATED
-  PERFORMER_DELETED
 
   // Producer and Engineer Actions
-  PRODUCER_AND_ENGINEER_CREATED
-  PRODUCER_AND_ENGINEER_UPDATED
-  PRODUCER_AND_ENGINEER_DELETED
 
   // ArtistPerformerProducerAndEngineer Actions
-  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER_CREATED
-  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER_UPDATED
-  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER_DELETED
 
   // Writer Actions
-  WRITER_CREATED
-  WRITER_UPDATED
-  WRITER_DELETED
 
   // Publisher Actions
-  PUBLISHER_CREATED
-  PUBLISHER_UPDATED
-  PUBLISHER_DELETED
 
   // Label Actions
-  LABEL_CREATED
-  LABEL_UPDATED
-  LABEL_DELETED
-
-  // Shared Workspace Account Access Actions
-  SHARED_WORKSPACE_ACCOUNT_ACCESS_CREATED
-  SHARED_WORKSPACE_ACCOUNT_ACCESS_UPDATED
-  SHARED_WORKSPACE_ACCOUNT_ACCESS_SUSPENDED
-  SHARED_WORKSPACE_ACCOUNT_ACCESS_REACTIVATED
-  SHARED_WORKSPACE_ACCOUNT_ACCESS_DELETED
 
   // Transaction Actions
-  TRANSACTION_CREATED
-  TRANSACTION_UPDATED
-  TRANSACTION_DELETED
 
   // Withdrawal Actions
-  WITHDRAWAL_CREATED
-  WITHDRAWAL_UPDATED
-  WITHDRAWAL_DELETED
+
+  // Shared Workspace Account Access Actions
+
+  // Rights Management Actions
 }
 
 enum AUDIT_LOG_ENTITY {
   USER
   SESSION
+  SYSTEM_ACCESS
   WORKSPACE_ACCOUNT
   RELEASE
   TRACK
@@ -283,9 +271,10 @@ enum AUDIT_LOG_ENTITY {
   WRITER
   PUBLISHER
   LABEL
-  SHARED_WORKSPACE_ACCOUNT_ACCESS
   TRANSACTION
   WITHDRAWAL
+  SHARED_WORKSPACE_ACCOUNT_ACCESS
+  RIGHTS_MANAGEMENT
 }
 
 model User {
@@ -307,9 +296,12 @@ model User {
 
   // Relations
   sessions                         Session[]
+  systemAccess                     SystemAccess?                  @relation("SystemAccessUser")
+  assignedSystemAccesses           SystemAccess[]                 @relation("SystemAccessAssigner")
   ownWorkspaceAccount              WorkspaceAccount?
   sharedWorkspaceAccountAccesses   SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessUser")
   assignedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessAssigner")
+  rightsManagements                RightsManagement[]
   auditLogs                        AuditLog[]
 
   // Timestamps
@@ -357,6 +349,32 @@ model Session {
   @@index([accessedAt])
 }
 
+model SystemAccess {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  userId     String @unique
+  assignerId String @unique
+
+  // Fields
+  metadata Json?
+
+  // Enums
+
+  // Relations
+  user     User @relation(name: "SystemAccessUser", fields: [userId], references: [id], onDelete: Cascade)
+  assigner User @relation(name: "SystemAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  suspendedAt DateTime?
+  expiresAt   DateTime
+
+  // Indexes & Constraints
+}
+
 model WorkspaceAccount {
   // Primary Key
   id String @id @default(cuid())
@@ -372,8 +390,7 @@ model WorkspaceAccount {
   metadata    Json?
 
   // Enums
-  type   WORKSPACE_ACCOUNT_TYPE
-  status WORKSPACE_ACCOUNT_STATUS @default(ACTIVE)
+  type WORKSPACE_ACCOUNT_TYPE
 
   // Relations
   owner                 User                           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
@@ -392,10 +409,16 @@ model WorkspaceAccount {
   withdrawals           Withdrawal[]
 
   // Timestamps
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  subscriptionStatsAt DateTime
-  subscriptionEndsAt  DateTime
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  startedAt          DateTime
+  endedAt            DateTime
+  renewedAt          DateTime?
+  canceledAt         DateTime?
+  suspendedAt        DateTime?
+  agreementSignedAt  DateTime?
+  agreementExpiresAt DateTime?
+  agreementRenewedAt DateTime?
 
   // Indexes & Constraints
 }
@@ -689,44 +712,6 @@ model Label {
   // Indexes & Constraints
 }
 
-model SharedWorkspaceAccountAccess {
-  // Primary Key
-  id String @id @default(cuid())
-
-  // Foreign Keys
-  workspaceAccountId String
-  userId             String
-  assignerId         String
-
-  // Fields
-  metadata Json?
-
-  // Enums
-  role   WORKSPACE_ACCOUNT_ACCESS_ROLE   @default(MEMBER)
-  status WORKSPACE_ACCOUNT_ACCESS_STATUS @default(ACTIVE)
-
-  // Relations
-  workspaceAccount      WorkspaceAccount      @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  releases              Release[]
-  tracks                Track[]
-  videos                Video[]
-  ringtones             Ringtone[]
-  artists               Artist[]
-  performers            Performer[]
-  producersAndEngineers ProducerAndEngineer[]
-  writers               Writer[]
-  publishers            Publisher[]
-  labels                Label[]
-  user                  User                  @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
-  assigner              User                  @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
-
-  // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Indexes & Constraints
-}
-
 model Transaction {
   // Primary Key
   id String @id @default(cuid())
@@ -741,7 +726,8 @@ model Transaction {
   status TRANSACTION_STATUS @default(PENDING)
 
   // Relations
-  workspaceAccount WorkspaceAccount? @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  workspaceAccount             WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -764,7 +750,97 @@ model Withdrawal {
   status WITHDRAWAL_STATUS @default(PENDING)
 
   // Relations
-  workspaceAccount WorkspaceAccount? @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  workspaceAccount             WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+
+  // Timestamps
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Indexes & Constraints
+}
+
+model SharedWorkspaceAccountAccess {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  workspaceAccountId String
+  userId             String
+  assignerId         String
+
+  // Fields
+  allRleases                     Boolean                        @default(false)
+  allTracks                      Boolean                        @default(false)
+  allVideos                      Boolean                        @default(false)
+  allRingtones                   Boolean                        @default(false)
+  allArtists                     Boolean                        @default(false)
+  allPerformers                  Boolean                        @default(false)
+  allProducersAndEngineers       Boolean                        @default(false)
+  allWriters                     Boolean                        @default(false)
+  allPublishers                  Boolean                        @default(false)
+  allLabels                      Boolean                        @default(false)
+  allTransactions                Boolean                        @default(false)
+  allWithdrawals                 Boolean                        @default(false)
+  releaseAccessLevel             WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  trackAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  videoAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  ringtoneAccessLevel            WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  artistAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  performerAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  producerAndEngineerAccessLevel WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  writerAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  publisherAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  labelAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  transactionAccessLevel         WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  withdrawalAccessLevel          WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  metadata                       Json?
+
+  // Enums
+  role   WORKSPACE_ACCOUNT_ACCESS_ROLE   @default(USER)
+  status WORKSPACE_ACCOUNT_ACCESS_STATUS @default(ACTIVE)
+
+  // Relations
+  user                  User                  @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
+  assigner              User                  @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
+  workspaceAccount      WorkspaceAccount      @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  releases              Release[]
+  tracks                Track[]
+  videos                Video[]
+  ringtones             Ringtone[]
+  artists               Artist[]
+  performers            Performer[]
+  producersAndEngineers ProducerAndEngineer[]
+  writers               Writer[]
+  publishers            Publisher[]
+  labels                Label[]
+  transactions          Transaction[]
+  withdrawals           Withdrawal[]
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  expiresAt   DateTime
+  suspendedAt DateTime?
+
+  // Indexes & Constraints
+}
+
+model RightsManagement {
+  // Primary Key
+  id String @id @default(cuid())
+
+  // Foreign Keys
+  userId String
+
+  // Fields
+  metadata Json?
+
+  // Enums
+  status RIGHTS_MANAGEMENT_STATUS @default(PENDING)
+
+  // Relations
+  user User @relation(fields: [userId], references: [id])
 
   // Timestamps
   createdAt DateTime @default(now())
