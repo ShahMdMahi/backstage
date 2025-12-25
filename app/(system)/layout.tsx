@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { AvatarWithDropdown } from "@/components/shared/avatar-with-dropdown";
 import { getCurrentSession } from "@/actions/shared/session";
+import { ROLE } from "@/lib/prisma/enums";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,7 @@ export default async function SystemLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const session = await getCurrentSession();
   if (!session?.data?.user) redirect("/auth/login");
+  if (session?.data?.user.role !== ROLE.USER) redirect("/");
   return (
     <SidebarProvider>
       <SystemSidebar session={session?.data} />
