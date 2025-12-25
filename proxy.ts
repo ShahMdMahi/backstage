@@ -263,17 +263,17 @@ export async function proxy(request: NextRequest) {
 
   if (isSystemRoute) {
     if (
-      dbSession.user.role !== ROLE.SYSTEM_USER &&
       dbSession.user.role !== ROLE.SYSTEM_OWNER &&
-      dbSession.user.role !== ROLE.SYSTEM_ADMIN
+      dbSession.user.role !== ROLE.SYSTEM_ADMIN &&
+      dbSession.user.role !== ROLE.SYSTEM_USER
     ) {
       return NextResponse.redirect(new URL("/", request.url));
     }
   } else if (isNormalRoute) {
     if (
-      dbSession.user.role !== ROLE.USER &&
       dbSession.user.role !== ROLE.SYSTEM_OWNER &&
-      dbSession.user.role !== ROLE.SYSTEM_ADMIN
+      dbSession.user.role !== ROLE.SYSTEM_ADMIN &&
+      dbSession.user.role !== ROLE.USER
     ) {
       return NextResponse.redirect(new URL("/system", request.url));
     }

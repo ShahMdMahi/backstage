@@ -19,7 +19,7 @@ export default async function SystemLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const session = await getCurrentSession();
   if (!session?.data?.user) redirect("/auth/login");
-  if (session?.data?.user.role !== ROLE.USER) redirect("/");
+  if (session?.data?.user.role === ROLE.USER) redirect("/");
   return (
     <SidebarProvider>
       <SystemSidebar session={session?.data} />
