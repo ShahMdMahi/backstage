@@ -200,7 +200,8 @@ export type PerformerWhereInput = {
     Prisma.ArtistPerformerProducerAndEngineerNullableScalarRelationFilter,
     Prisma.ArtistPerformerProducerAndEngineerWhereInput
   > | null;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   label?: Prisma.LabelListRelationFilter;
 };
 
@@ -213,7 +214,8 @@ export type PerformerOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerOrderByWithRelationInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
@@ -238,7 +240,8 @@ export type PerformerWhereUniqueInput = Prisma.AtLeast<
       Prisma.ArtistPerformerProducerAndEngineerNullableScalarRelationFilter,
       Prisma.ArtistPerformerProducerAndEngineerWhereInput
     > | null;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
   "id" | "workspaceAccountId"
@@ -282,7 +285,8 @@ export type PerformerCreateInput = {
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPerformersInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerCreateNestedOneWithoutPerformerInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelCreateNestedManyWithoutPerformersInput;
 };
 
@@ -294,7 +298,8 @@ export type PerformerUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedCreateNestedOneWithoutPerformerInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutPerformersInput;
 };
 
@@ -308,7 +313,8 @@ export type PerformerUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPerformersNestedInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUpdateOneWithoutPerformerNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPerformersNestedInput;
 };
 
@@ -322,7 +328,8 @@ export type PerformerUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedUpdateOneWithoutPerformerNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutPerformersNestedInput;
 };
 
@@ -638,55 +645,83 @@ export type PerformerUncheckedUpdateManyWithoutLabelNestedInput = {
     | Prisma.PerformerScalarWhereInput[];
 };
 
-export type PerformerCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+export type PerformerCreateNestedOneWithoutAccessContentInput = {
+  create?: Prisma.XOR<
+    Prisma.PerformerCreateWithoutAccessContentInput,
+    Prisma.PerformerUncheckedCreateWithoutAccessContentInput
+  >;
+  connectOrCreate?: Prisma.PerformerCreateOrConnectWithoutAccessContentInput;
+  connect?: Prisma.PerformerWhereUniqueInput;
+};
+
+export type PerformerCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     connect?:
       | Prisma.PerformerWhereUniqueInput
       | Prisma.PerformerWhereUniqueInput[];
   };
 
-export type PerformerUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+export type PerformerUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     connect?:
       | Prisma.PerformerWhereUniqueInput
       | Prisma.PerformerWhereUniqueInput[];
   };
 
-export type PerformerUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+export type PerformerUpdateOneWithoutAccessContentNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.PerformerCreateWithoutAccessContentInput,
+    Prisma.PerformerUncheckedCreateWithoutAccessContentInput
+  >;
+  connectOrCreate?: Prisma.PerformerCreateOrConnectWithoutAccessContentInput;
+  upsert?: Prisma.PerformerUpsertWithoutAccessContentInput;
+  disconnect?: Prisma.PerformerWhereInput | boolean;
+  delete?: Prisma.PerformerWhereInput | boolean;
+  connect?: Prisma.PerformerWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.PerformerUpdateToOneWithWhereWithoutAccessContentInput,
+      Prisma.PerformerUpdateWithoutAccessContentInput
+    >,
+    Prisma.PerformerUncheckedUpdateWithoutAccessContentInput
+  >;
+};
+
+export type PerformerUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     upsert?:
-      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     set?: Prisma.PerformerWhereUniqueInput | Prisma.PerformerWhereUniqueInput[];
     disconnect?:
       | Prisma.PerformerWhereUniqueInput
@@ -698,31 +733,31 @@ export type PerformerUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
       | Prisma.PerformerWhereUniqueInput
       | Prisma.PerformerWhereUniqueInput[];
     update?:
-      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     updateMany?:
-      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
     deleteMany?:
       | Prisma.PerformerScalarWhereInput
       | Prisma.PerformerScalarWhereInput[];
   };
 
-export type PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+export type PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     upsert?:
-      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     set?: Prisma.PerformerWhereUniqueInput | Prisma.PerformerWhereUniqueInput[];
     disconnect?:
       | Prisma.PerformerWhereUniqueInput
@@ -734,11 +769,11 @@ export type PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNeste
       | Prisma.PerformerWhereUniqueInput
       | Prisma.PerformerWhereUniqueInput[];
     update?:
-      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     updateMany?:
-      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
     deleteMany?:
       | Prisma.PerformerScalarWhereInput
       | Prisma.PerformerScalarWhereInput[];
@@ -751,7 +786,8 @@ export type PerformerCreateWithoutWorkspaceAccountInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerCreateNestedOneWithoutPerformerInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelCreateNestedManyWithoutPerformersInput;
 };
 
@@ -762,7 +798,8 @@ export type PerformerUncheckedCreateWithoutWorkspaceAccountInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedCreateNestedOneWithoutPerformerInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutPerformersInput;
 };
 
@@ -830,7 +867,8 @@ export type PerformerCreateWithoutArtistPerformerProducerAndEngineersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPerformersInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelCreateNestedManyWithoutPerformersInput;
 };
 
@@ -842,7 +880,8 @@ export type PerformerUncheckedCreateWithoutArtistPerformerProducerAndEngineersIn
     status?: $Enums.PERFORMER_STATUS;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformerInput;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
     label?: Prisma.LabelUncheckedCreateNestedManyWithoutPerformersInput;
   };
 
@@ -885,7 +924,8 @@ export type PerformerUpdateWithoutArtistPerformerProducerAndEngineersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPerformersNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPerformersNestedInput;
 };
 
@@ -899,7 +939,8 @@ export type PerformerUncheckedUpdateWithoutArtistPerformerProducerAndEngineersIn
       | $Enums.PERFORMER_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformerNestedInput;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
     label?: Prisma.LabelUncheckedUpdateManyWithoutPerformersNestedInput;
   };
 
@@ -911,7 +952,8 @@ export type PerformerCreateWithoutLabelInput = {
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPerformersInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerCreateNestedOneWithoutPerformerInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
 };
 
 export type PerformerUncheckedCreateWithoutLabelInput = {
@@ -922,7 +964,8 @@ export type PerformerUncheckedCreateWithoutLabelInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedCreateNestedOneWithoutPerformerInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
 };
 
 export type PerformerCreateOrConnectWithoutLabelInput = {
@@ -961,7 +1004,7 @@ export type PerformerUpdateManyWithWhereWithoutLabelInput = {
   >;
 };
 
-export type PerformerCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type PerformerCreateWithoutAccessContentInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.PERFORMER_STATUS;
@@ -969,10 +1012,11 @@ export type PerformerCreateWithoutSharedWorkspaceAccountAccessInput = {
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPerformersInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerCreateNestedOneWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelCreateNestedManyWithoutPerformersInput;
 };
 
-export type PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type PerformerUncheckedCreateWithoutAccessContentInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -980,45 +1024,128 @@ export type PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedCreateNestedOneWithoutPerformerInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutPerformersInput;
 };
 
-export type PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
+export type PerformerCreateOrConnectWithoutAccessContentInput = {
   where: Prisma.PerformerWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput,
-    Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    Prisma.PerformerCreateWithoutAccessContentInput,
+    Prisma.PerformerUncheckedCreateWithoutAccessContentInput
   >;
 };
 
-export type PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type PerformerCreateWithoutSharedWorkspaceAccountAccessesInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.PERFORMER_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPerformersInput;
+  artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerCreateNestedOneWithoutPerformerInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPerformerInput;
+  label?: Prisma.LabelCreateNestedManyWithoutPerformersInput;
+};
+
+export type PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: string;
+    workspaceAccountId: string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?: $Enums.PERFORMER_STATUS;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedCreateNestedOneWithoutPerformerInput;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPerformerInput;
+    label?: Prisma.LabelUncheckedCreateNestedManyWithoutPerformersInput;
+  };
+
+export type PerformerCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    where: Prisma.PerformerWhereUniqueInput;
+    create: Prisma.XOR<
+      Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+    >;
+  };
+
+export type PerformerUpsertWithoutAccessContentInput = {
+  update: Prisma.XOR<
+    Prisma.PerformerUpdateWithoutAccessContentInput,
+    Prisma.PerformerUncheckedUpdateWithoutAccessContentInput
+  >;
+  create: Prisma.XOR<
+    Prisma.PerformerCreateWithoutAccessContentInput,
+    Prisma.PerformerUncheckedCreateWithoutAccessContentInput
+  >;
+  where?: Prisma.PerformerWhereInput;
+};
+
+export type PerformerUpdateToOneWithWhereWithoutAccessContentInput = {
+  where?: Prisma.PerformerWhereInput;
+  data: Prisma.XOR<
+    Prisma.PerformerUpdateWithoutAccessContentInput,
+    Prisma.PerformerUncheckedUpdateWithoutAccessContentInput
+  >;
+};
+
+export type PerformerUpdateWithoutAccessContentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPERFORMER_STATUSFieldUpdateOperationsInput
+    | $Enums.PERFORMER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPerformersNestedInput;
+  artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUpdateOneWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutPerformersNestedInput;
+};
+
+export type PerformerUncheckedUpdateWithoutAccessContentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumPERFORMER_STATUSFieldUpdateOperationsInput
+    | $Enums.PERFORMER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedUpdateOneWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutPerformersNestedInput;
+};
+
+export type PerformerUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.PerformerWhereUniqueInput;
     update: Prisma.XOR<
-      Prisma.PerformerUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.PerformerUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.PerformerUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.PerformerUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
     create: Prisma.XOR<
-      Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.PerformerCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.PerformerUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type PerformerUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.PerformerWhereUniqueInput;
     data: Prisma.XOR<
-      Prisma.PerformerUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.PerformerUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.PerformerUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.PerformerUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput =
+export type PerformerUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.PerformerScalarWhereInput;
     data: Prisma.XOR<
       Prisma.PerformerUpdateManyMutationInput,
-      Prisma.PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
+      Prisma.PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
@@ -1039,7 +1166,8 @@ export type PerformerUpdateWithoutWorkspaceAccountInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUpdateOneWithoutPerformerNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPerformersNestedInput;
 };
 
@@ -1052,7 +1180,8 @@ export type PerformerUncheckedUpdateWithoutWorkspaceAccountInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedUpdateOneWithoutPerformerNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutPerformersNestedInput;
 };
 
@@ -1076,7 +1205,8 @@ export type PerformerUpdateWithoutLabelInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPerformersNestedInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUpdateOneWithoutPerformerNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformersNestedInput;
 };
 
 export type PerformerUncheckedUpdateWithoutLabelInput = {
@@ -1089,7 +1219,8 @@ export type PerformerUncheckedUpdateWithoutLabelInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedUpdateOneWithoutPerformerNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformerNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersNestedInput;
 };
 
 export type PerformerUncheckedUpdateManyWithoutLabelInput = {
@@ -1103,7 +1234,7 @@ export type PerformerUncheckedUpdateManyWithoutLabelInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type PerformerUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type PerformerUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
@@ -1113,23 +1244,26 @@ export type PerformerUpdateWithoutSharedWorkspaceAccountAccessInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPerformersNestedInput;
   artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUpdateOneWithoutPerformerNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPerformerNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPerformersNestedInput;
 };
 
-export type PerformerUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumPERFORMER_STATUSFieldUpdateOperationsInput
-    | $Enums.PERFORMER_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedUpdateOneWithoutPerformerNestedInput;
-  label?: Prisma.LabelUncheckedUpdateManyWithoutPerformersNestedInput;
-};
+export type PerformerUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumPERFORMER_STATUSFieldUpdateOperationsInput
+      | $Enums.PERFORMER_STATUS;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    artistPerformerProducerAndEngineers?: Prisma.ArtistPerformerProducerAndEngineerUncheckedUpdateOneWithoutPerformerNestedInput;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformerNestedInput;
+    label?: Prisma.LabelUncheckedUpdateManyWithoutPerformersNestedInput;
+  };
 
-export type PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
+export type PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -1146,7 +1280,8 @@ export type PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
  */
 
 export type PerformerCountOutputType = {
-  sharedWorkspaceAccountAccess: number;
+  accessContent: number;
+  sharedWorkspaceAccountAccesses: number;
   label: number;
 };
 
@@ -1154,9 +1289,10 @@ export type PerformerCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  sharedWorkspaceAccountAccess?:
+  accessContent?: boolean | PerformerCountOutputTypeCountAccessContentArgs;
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | PerformerCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+    | PerformerCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
   label?: boolean | PerformerCountOutputTypeCountLabelArgs;
 };
 
@@ -1176,7 +1312,17 @@ export type PerformerCountOutputTypeDefaultArgs<
 /**
  * PerformerCountOutputType without action
  */
-export type PerformerCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
+export type PerformerCountOutputTypeCountAccessContentArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+};
+
+/**
+ * PerformerCountOutputType without action
+ */
+export type PerformerCountOutputTypeCountSharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -1208,9 +1354,10 @@ export type PerformerSelect<
     artistPerformerProducerAndEngineers?:
       | boolean
       | Prisma.Performer$artistPerformerProducerAndEngineersArgs<ExtArgs>;
-    sharedWorkspaceAccountAccess?:
+    accessContent?: boolean | Prisma.Performer$accessContentArgs<ExtArgs>;
+    sharedWorkspaceAccountAccesses?:
       | boolean
-      | Prisma.Performer$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+      | Prisma.Performer$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
     label?: boolean | Prisma.Performer$labelArgs<ExtArgs>;
     _count?: boolean | Prisma.PerformerCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -1278,9 +1425,10 @@ export type PerformerInclude<
   artistPerformerProducerAndEngineers?:
     | boolean
     | Prisma.Performer$artistPerformerProducerAndEngineersArgs<ExtArgs>;
-  sharedWorkspaceAccountAccess?:
+  accessContent?: boolean | Prisma.Performer$accessContentArgs<ExtArgs>;
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | Prisma.Performer$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    | Prisma.Performer$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
   label?: boolean | Prisma.Performer$labelArgs<ExtArgs>;
   _count?: boolean | Prisma.PerformerCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -1305,7 +1453,8 @@ export type $PerformerPayload<
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
     artistPerformerProducerAndEngineers: Prisma.$ArtistPerformerProducerAndEngineerPayload<ExtArgs> | null;
-    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    accessContent: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1899,12 +2048,23 @@ export interface Prisma__PerformerClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedWorkspaceAccountAccess<
-    T extends Prisma.Performer$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
+  accessContent<T extends Prisma.Performer$accessContentArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Performer$accessContentArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  sharedWorkspaceAccountAccesses<
+    T extends Prisma.Performer$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
     args?: Prisma.Subset<
       T,
-      Prisma.Performer$sharedWorkspaceAccountAccessArgs<ExtArgs>
+      Prisma.Performer$sharedWorkspaceAccountAccessesArgs<ExtArgs>
     >
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
@@ -2463,9 +2623,40 @@ export type Performer$artistPerformerProducerAndEngineersArgs<
 };
 
 /**
- * Performer.sharedWorkspaceAccountAccess
+ * Performer.accessContent
  */
-export type Performer$sharedWorkspaceAccountAccessArgs<
+export type Performer$accessContentArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the SharedWorkspaceAccountAccess
+   */
+  select?: Prisma.SharedWorkspaceAccountAccessSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the SharedWorkspaceAccountAccess
+   */
+  omit?: Prisma.SharedWorkspaceAccountAccessOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SharedWorkspaceAccountAccessInclude<ExtArgs> | null;
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+  orderBy?:
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput[];
+  cursor?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * Performer.sharedWorkspaceAccountAccesses
+ */
+export type Performer$sharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

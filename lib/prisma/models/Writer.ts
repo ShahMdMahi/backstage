@@ -194,7 +194,8 @@ export type WriterWhereInput = {
     Prisma.WorkspaceAccountScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   >;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   label?: Prisma.LabelListRelationFilter;
 };
 
@@ -206,7 +207,8 @@ export type WriterOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
@@ -225,7 +227,8 @@ export type WriterWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     >;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
   "id" | "workspaceAccountId"
@@ -268,7 +271,8 @@ export type WriterCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutWritersInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWriterInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
   label?: Prisma.LabelCreateNestedManyWithoutWritersInput;
 };
 
@@ -279,7 +283,8 @@ export type WriterUncheckedCreateInput = {
   status?: $Enums.WRITER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWriterInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutWritersInput;
 };
 
@@ -292,7 +297,8 @@ export type WriterUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutWritersNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWriterNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutWritersNestedInput;
 };
 
@@ -305,7 +311,8 @@ export type WriterUncheckedUpdateInput = {
     | $Enums.WRITER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWriterNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutWritersNestedInput;
 };
 
@@ -372,6 +379,11 @@ export type WriterMinOrderByAggregateInput = {
   status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type WriterNullableScalarRelationFilter = {
+  is?: Prisma.WriterWhereInput | null;
+  isNot?: Prisma.WriterWhereInput | null;
 };
 
 export type WriterCreateNestedManyWithoutWorkspaceAccountInput = {
@@ -546,77 +558,105 @@ export type WriterUncheckedUpdateManyWithoutLabelNestedInput = {
   deleteMany?: Prisma.WriterScalarWhereInput | Prisma.WriterScalarWhereInput[];
 };
 
-export type WriterCreateNestedManyWithoutSharedWorkspaceAccountAccessInput = {
+export type WriterCreateNestedOneWithoutAccessContentInput = {
+  create?: Prisma.XOR<
+    Prisma.WriterCreateWithoutAccessContentInput,
+    Prisma.WriterUncheckedCreateWithoutAccessContentInput
+  >;
+  connectOrCreate?: Prisma.WriterCreateOrConnectWithoutAccessContentInput;
+  connect?: Prisma.WriterWhereUniqueInput;
+};
+
+export type WriterCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput = {
   create?:
     | Prisma.XOR<
-        Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   connect?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
 };
 
-export type WriterUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+export type WriterUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     connect?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
   };
 
-export type WriterUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput = {
+export type WriterUpdateOneWithoutAccessContentNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.WriterCreateWithoutAccessContentInput,
+    Prisma.WriterUncheckedCreateWithoutAccessContentInput
+  >;
+  connectOrCreate?: Prisma.WriterCreateOrConnectWithoutAccessContentInput;
+  upsert?: Prisma.WriterUpsertWithoutAccessContentInput;
+  disconnect?: Prisma.WriterWhereInput | boolean;
+  delete?: Prisma.WriterWhereInput | boolean;
+  connect?: Prisma.WriterWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.WriterUpdateToOneWithWhereWithoutAccessContentInput,
+      Prisma.WriterUpdateWithoutAccessContentInput
+    >,
+    Prisma.WriterUncheckedUpdateWithoutAccessContentInput
+  >;
+};
+
+export type WriterUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput = {
   create?:
     | Prisma.XOR<
-        Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   upsert?:
-    | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   set?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
   disconnect?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
   delete?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
   connect?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
   update?:
-    | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   updateMany?:
-    | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
   deleteMany?: Prisma.WriterScalarWhereInput | Prisma.WriterScalarWhereInput[];
 };
 
-export type WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+export type WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     upsert?:
-      | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     set?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
     disconnect?:
       | Prisma.WriterWhereUniqueInput
@@ -624,11 +664,11 @@ export type WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedIn
     delete?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
     connect?: Prisma.WriterWhereUniqueInput | Prisma.WriterWhereUniqueInput[];
     update?:
-      | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     updateMany?:
-      | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
     deleteMany?:
       | Prisma.WriterScalarWhereInput
       | Prisma.WriterScalarWhereInput[];
@@ -640,7 +680,8 @@ export type WriterCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.WRITER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWriterInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
   label?: Prisma.LabelCreateNestedManyWithoutWritersInput;
 };
 
@@ -650,7 +691,8 @@ export type WriterUncheckedCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.WRITER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWriterInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutWritersInput;
 };
 
@@ -716,7 +758,8 @@ export type WriterCreateWithoutLabelInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutWritersInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWriterInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
 };
 
 export type WriterUncheckedCreateWithoutLabelInput = {
@@ -726,7 +769,8 @@ export type WriterUncheckedCreateWithoutLabelInput = {
   status?: $Enums.WRITER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWriterInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
 };
 
 export type WriterCreateOrConnectWithoutLabelInput = {
@@ -765,62 +809,140 @@ export type WriterUpdateManyWithWhereWithoutLabelInput = {
   >;
 };
 
-export type WriterCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type WriterCreateWithoutAccessContentInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.WRITER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutWritersInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWritersInput;
   label?: Prisma.LabelCreateNestedManyWithoutWritersInput;
 };
 
-export type WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type WriterUncheckedCreateWithoutAccessContentInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.WRITER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWritersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutWritersInput;
 };
 
-export type WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
+export type WriterCreateOrConnectWithoutAccessContentInput = {
   where: Prisma.WriterWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput,
-    Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    Prisma.WriterCreateWithoutAccessContentInput,
+    Prisma.WriterUncheckedCreateWithoutAccessContentInput
   >;
 };
 
-export type WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type WriterCreateWithoutSharedWorkspaceAccountAccessesInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WRITER_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutWritersInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWriterInput;
+  label?: Prisma.LabelCreateNestedManyWithoutWritersInput;
+};
+
+export type WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.WRITER_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWriterInput;
+  label?: Prisma.LabelUncheckedCreateNestedManyWithoutWritersInput;
+};
+
+export type WriterCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput = {
+  where: Prisma.WriterWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput,
+    Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+  >;
+};
+
+export type WriterUpsertWithoutAccessContentInput = {
+  update: Prisma.XOR<
+    Prisma.WriterUpdateWithoutAccessContentInput,
+    Prisma.WriterUncheckedUpdateWithoutAccessContentInput
+  >;
+  create: Prisma.XOR<
+    Prisma.WriterCreateWithoutAccessContentInput,
+    Prisma.WriterUncheckedCreateWithoutAccessContentInput
+  >;
+  where?: Prisma.WriterWhereInput;
+};
+
+export type WriterUpdateToOneWithWhereWithoutAccessContentInput = {
+  where?: Prisma.WriterWhereInput;
+  data: Prisma.XOR<
+    Prisma.WriterUpdateWithoutAccessContentInput,
+    Prisma.WriterUncheckedUpdateWithoutAccessContentInput
+  >;
+};
+
+export type WriterUpdateWithoutAccessContentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWRITER_STATUSFieldUpdateOperationsInput
+    | $Enums.WRITER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutWritersNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
+  label?: Prisma.LabelUpdateManyWithoutWritersNestedInput;
+};
+
+export type WriterUncheckedUpdateWithoutAccessContentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumWRITER_STATUSFieldUpdateOperationsInput
+    | $Enums.WRITER_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
+  label?: Prisma.LabelUncheckedUpdateManyWithoutWritersNestedInput;
+};
+
+export type WriterUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.WriterWhereUniqueInput;
     update: Prisma.XOR<
-      Prisma.WriterUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.WriterUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
     create: Prisma.XOR<
-      Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.WriterCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WriterUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type WriterUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.WriterWhereUniqueInput;
     data: Prisma.XOR<
-      Prisma.WriterUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.WriterUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput =
+export type WriterUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.WriterScalarWhereInput;
     data: Prisma.XOR<
       Prisma.WriterUpdateManyMutationInput,
-      Prisma.WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
+      Prisma.WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
@@ -840,7 +962,8 @@ export type WriterUpdateWithoutWorkspaceAccountInput = {
     | $Enums.WRITER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWriterNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutWritersNestedInput;
 };
 
@@ -852,7 +975,8 @@ export type WriterUncheckedUpdateWithoutWorkspaceAccountInput = {
     | $Enums.WRITER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWriterNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutWritersNestedInput;
 };
 
@@ -875,7 +999,8 @@ export type WriterUpdateWithoutLabelInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutWritersNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWriterNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWritersNestedInput;
 };
 
 export type WriterUncheckedUpdateWithoutLabelInput = {
@@ -887,7 +1012,8 @@ export type WriterUncheckedUpdateWithoutLabelInput = {
     | $Enums.WRITER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWriterNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersNestedInput;
 };
 
 export type WriterUncheckedUpdateManyWithoutLabelInput = {
@@ -901,7 +1027,7 @@ export type WriterUncheckedUpdateManyWithoutLabelInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type WriterUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type WriterUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
@@ -910,10 +1036,11 @@ export type WriterUpdateWithoutSharedWorkspaceAccountAccessInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutWritersNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWriterNestedInput;
   label?: Prisma.LabelUpdateManyWithoutWritersNestedInput;
 };
 
-export type WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -922,10 +1049,11 @@ export type WriterUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
     | $Enums.WRITER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWriterNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutWritersNestedInput;
 };
 
-export type WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
+export type WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -942,7 +1070,8 @@ export type WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput =
  */
 
 export type WriterCountOutputType = {
-  sharedWorkspaceAccountAccess: number;
+  accessContent: number;
+  sharedWorkspaceAccountAccesses: number;
   label: number;
 };
 
@@ -950,9 +1079,10 @@ export type WriterCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  sharedWorkspaceAccountAccess?:
+  accessContent?: boolean | WriterCountOutputTypeCountAccessContentArgs;
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | WriterCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+    | WriterCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
   label?: boolean | WriterCountOutputTypeCountLabelArgs;
 };
 
@@ -972,7 +1102,17 @@ export type WriterCountOutputTypeDefaultArgs<
 /**
  * WriterCountOutputType without action
  */
-export type WriterCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
+export type WriterCountOutputTypeCountAccessContentArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+};
+
+/**
+ * WriterCountOutputType without action
+ */
+export type WriterCountOutputTypeCountSharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -1001,9 +1141,10 @@ export type WriterSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-    sharedWorkspaceAccountAccess?:
+    accessContent?: boolean | Prisma.Writer$accessContentArgs<ExtArgs>;
+    sharedWorkspaceAccountAccesses?:
       | boolean
-      | Prisma.Writer$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+      | Prisma.Writer$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
     label?: boolean | Prisma.Writer$labelArgs<ExtArgs>;
     _count?: boolean | Prisma.WriterCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -1068,9 +1209,10 @@ export type WriterInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-  sharedWorkspaceAccountAccess?:
+  accessContent?: boolean | Prisma.Writer$accessContentArgs<ExtArgs>;
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | Prisma.Writer$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    | Prisma.Writer$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
   label?: boolean | Prisma.Writer$labelArgs<ExtArgs>;
   _count?: boolean | Prisma.WriterCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -1094,7 +1236,8 @@ export type $WriterPayload<
   name: "Writer";
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
-    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    accessContent: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1669,12 +1812,23 @@ export interface Prisma__WriterClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedWorkspaceAccountAccess<
-    T extends Prisma.Writer$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
+  accessContent<T extends Prisma.Writer$accessContentArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Writer$accessContentArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  sharedWorkspaceAccountAccesses<
+    T extends Prisma.Writer$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
     args?: Prisma.Subset<
       T,
-      Prisma.Writer$sharedWorkspaceAccountAccessArgs<ExtArgs>
+      Prisma.Writer$sharedWorkspaceAccountAccessesArgs<ExtArgs>
     >
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
@@ -2199,9 +2353,40 @@ export type WriterDeleteManyArgs<
 };
 
 /**
- * Writer.sharedWorkspaceAccountAccess
+ * Writer.accessContent
  */
-export type Writer$sharedWorkspaceAccountAccessArgs<
+export type Writer$accessContentArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the SharedWorkspaceAccountAccess
+   */
+  select?: Prisma.SharedWorkspaceAccountAccessSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the SharedWorkspaceAccountAccess
+   */
+  omit?: Prisma.SharedWorkspaceAccountAccessOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SharedWorkspaceAccountAccessInclude<ExtArgs> | null;
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+  orderBy?:
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput[];
+  cursor?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * Writer.sharedWorkspaceAccountAccesses
+ */
+export type Writer$sharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

@@ -193,7 +193,8 @@ export type LabelWhereInput = {
     Prisma.WorkspaceAccountScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   >;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   releases?: Prisma.ReleaseListRelationFilter;
   tracks?: Prisma.TrackListRelationFilter;
   videos?: Prisma.VideoListRelationFilter;
@@ -213,7 +214,8 @@ export type LabelOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   releases?: Prisma.ReleaseOrderByRelationAggregateInput;
   tracks?: Prisma.TrackOrderByRelationAggregateInput;
   videos?: Prisma.VideoOrderByRelationAggregateInput;
@@ -240,7 +242,8 @@ export type LabelWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     >;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     releases?: Prisma.ReleaseListRelationFilter;
     tracks?: Prisma.TrackListRelationFilter;
     videos?: Prisma.VideoListRelationFilter;
@@ -291,7 +294,8 @@ export type LabelCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -310,7 +314,8 @@ export type LabelUncheckedCreateInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -331,7 +336,8 @@ export type LabelUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -352,7 +358,8 @@ export type LabelUncheckedUpdateInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -427,6 +434,11 @@ export type LabelMinOrderByAggregateInput = {
   status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+};
+
+export type LabelNullableScalarRelationFilter = {
+  is?: Prisma.LabelWhereInput | null;
+  isNot?: Prisma.LabelWhereInput | null;
 };
 
 export type LabelCreateNestedManyWithoutWorkspaceAccountInput = {
@@ -1257,87 +1269,115 @@ export type EnumLABEL_STATUSFieldUpdateOperationsInput = {
   set?: $Enums.LABEL_STATUS;
 };
 
-export type LabelCreateNestedManyWithoutSharedWorkspaceAccountAccessInput = {
+export type LabelCreateNestedOneWithoutAccessContentInput = {
+  create?: Prisma.XOR<
+    Prisma.LabelCreateWithoutAccessContentInput,
+    Prisma.LabelUncheckedCreateWithoutAccessContentInput
+  >;
+  connectOrCreate?: Prisma.LabelCreateOrConnectWithoutAccessContentInput;
+  connect?: Prisma.LabelWhereUniqueInput;
+};
+
+export type LabelCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput = {
   create?:
     | Prisma.XOR<
-        Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
 };
 
-export type LabelUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+export type LabelUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
   };
 
-export type LabelUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput = {
+export type LabelUpdateOneWithoutAccessContentNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.LabelCreateWithoutAccessContentInput,
+    Prisma.LabelUncheckedCreateWithoutAccessContentInput
+  >;
+  connectOrCreate?: Prisma.LabelCreateOrConnectWithoutAccessContentInput;
+  upsert?: Prisma.LabelUpsertWithoutAccessContentInput;
+  disconnect?: Prisma.LabelWhereInput | boolean;
+  delete?: Prisma.LabelWhereInput | boolean;
+  connect?: Prisma.LabelWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.LabelUpdateToOneWithWhereWithoutAccessContentInput,
+      Prisma.LabelUpdateWithoutAccessContentInput
+    >,
+    Prisma.LabelUncheckedUpdateWithoutAccessContentInput
+  >;
+};
+
+export type LabelUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput = {
   create?:
     | Prisma.XOR<
-        Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   upsert?:
-    | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
   disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
   delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
   connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
   update?:
-    | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   updateMany?:
-    | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
   deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
 };
 
-export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     upsert?:
-      | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     set?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
     disconnect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
     delete?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
     connect?: Prisma.LabelWhereUniqueInput | Prisma.LabelWhereUniqueInput[];
     update?:
-      | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     updateMany?:
-      | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
     deleteMany?: Prisma.LabelScalarWhereInput | Prisma.LabelScalarWhereInput[];
   };
 
@@ -1347,7 +1387,8 @@ export type LabelCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -1365,7 +1406,8 @@ export type LabelUncheckedCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -1439,7 +1481,8 @@ export type LabelCreateWithoutReleasesInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
   ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
@@ -1457,7 +1500,8 @@ export type LabelUncheckedCreateWithoutReleasesInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
   ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
@@ -1511,7 +1555,8 @@ export type LabelCreateWithoutTracksInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
   ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
@@ -1529,7 +1574,8 @@ export type LabelUncheckedCreateWithoutTracksInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
   ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
@@ -1583,7 +1629,8 @@ export type LabelCreateWithoutVideosInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
@@ -1601,7 +1648,8 @@ export type LabelUncheckedCreateWithoutVideosInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
@@ -1655,7 +1703,8 @@ export type LabelCreateWithoutRingtonesInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -1673,7 +1722,8 @@ export type LabelUncheckedCreateWithoutRingtonesInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -1727,7 +1777,8 @@ export type LabelCreateWithoutArtistsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -1745,7 +1796,8 @@ export type LabelUncheckedCreateWithoutArtistsInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -1799,7 +1851,8 @@ export type LabelCreateWithoutPerformersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -1817,7 +1870,8 @@ export type LabelUncheckedCreateWithoutPerformersInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -1871,7 +1925,8 @@ export type LabelCreateWithoutProducersAndEngineersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -1889,7 +1944,8 @@ export type LabelUncheckedCreateWithoutProducersAndEngineersInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -1943,7 +1999,8 @@ export type LabelCreateWithoutWritersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -1961,7 +2018,8 @@ export type LabelUncheckedCreateWithoutWritersInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -2015,7 +2073,8 @@ export type LabelCreateWithoutPublishersInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -2033,7 +2092,8 @@ export type LabelUncheckedCreateWithoutPublishersInput = {
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -2080,13 +2140,14 @@ export type LabelUpdateManyWithWhereWithoutPublishersInput = {
   >;
 };
 
-export type LabelCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type LabelCreateWithoutAccessContentInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
@@ -2098,13 +2159,14 @@ export type LabelCreateWithoutSharedWorkspaceAccountAccessInput = {
   publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
 };
 
-export type LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type LabelUncheckedCreateWithoutAccessContentInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.LABEL_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelsInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
@@ -2116,43 +2178,152 @@ export type LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
 };
 
-export type LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
+export type LabelCreateOrConnectWithoutAccessContentInput = {
   where: Prisma.LabelWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput,
-    Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    Prisma.LabelCreateWithoutAccessContentInput,
+    Prisma.LabelUncheckedCreateWithoutAccessContentInput
   >;
 };
 
-export type LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type LabelCreateWithoutSharedWorkspaceAccountAccessesInput = {
+  id?: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutLabelsInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutLabelInput;
+  releases?: Prisma.ReleaseCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
+  id?: string;
+  workspaceAccountId: string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?: $Enums.LABEL_STATUS;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutLabelInput;
+  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutLabelInput;
+  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutLabelInput;
+  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutLabelInput;
+  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutLabelInput;
+  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutLabelInput;
+  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutLabelInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutLabelInput;
+  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutLabelInput;
+  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutLabelInput;
+};
+
+export type LabelCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput = {
+  where: Prisma.LabelWhereUniqueInput;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput,
+    Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+  >;
+};
+
+export type LabelUpsertWithoutAccessContentInput = {
+  update: Prisma.XOR<
+    Prisma.LabelUpdateWithoutAccessContentInput,
+    Prisma.LabelUncheckedUpdateWithoutAccessContentInput
+  >;
+  create: Prisma.XOR<
+    Prisma.LabelCreateWithoutAccessContentInput,
+    Prisma.LabelUncheckedCreateWithoutAccessContentInput
+  >;
+  where?: Prisma.LabelWhereInput;
+};
+
+export type LabelUpdateToOneWithWhereWithoutAccessContentInput = {
+  where?: Prisma.LabelWhereInput;
+  data: Prisma.XOR<
+    Prisma.LabelUpdateWithoutAccessContentInput,
+    Prisma.LabelUncheckedUpdateWithoutAccessContentInput
+  >;
+};
+
+export type LabelUpdateWithoutAccessContentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUncheckedUpdateWithoutAccessContentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  status?:
+    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+    | $Enums.LABEL_STATUS;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutLabelNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutLabelNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutLabelNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutLabelNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
+};
+
+export type LabelUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.LabelWhereUniqueInput;
     update: Prisma.XOR<
-      Prisma.LabelUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.LabelUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
     create: Prisma.XOR<
-      Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.LabelCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.LabelUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type LabelUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.LabelWhereUniqueInput;
     data: Prisma.XOR<
-      Prisma.LabelUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.LabelUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput = {
-  where: Prisma.LabelScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.LabelUpdateManyMutationInput,
-    Prisma.LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
-  >;
-};
+export type LabelUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    where: Prisma.LabelScalarWhereInput;
+    data: Prisma.XOR<
+      Prisma.LabelUpdateManyMutationInput,
+      Prisma.LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput
+    >;
+  };
 
 export type LabelCreateManyWorkspaceAccountInput = {
   id?: string;
@@ -2170,7 +2341,8 @@ export type LabelUpdateWithoutWorkspaceAccountInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2190,7 +2362,8 @@ export type LabelUncheckedUpdateWithoutWorkspaceAccountInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2221,7 +2394,8 @@ export type LabelUpdateWithoutReleasesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
   ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
@@ -2241,7 +2415,8 @@ export type LabelUncheckedUpdateWithoutReleasesInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
   ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2272,7 +2447,8 @@ export type LabelUpdateWithoutTracksInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
   ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
@@ -2292,7 +2468,8 @@ export type LabelUncheckedUpdateWithoutTracksInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
   ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2323,7 +2500,8 @@ export type LabelUpdateWithoutVideosInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   ringtones?: Prisma.RingtoneUpdateManyWithoutLabelNestedInput;
@@ -2343,7 +2521,8 @@ export type LabelUncheckedUpdateWithoutVideosInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2374,7 +2553,8 @@ export type LabelUpdateWithoutRingtonesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2394,7 +2574,8 @@ export type LabelUncheckedUpdateWithoutRingtonesInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2425,7 +2606,8 @@ export type LabelUpdateWithoutArtistsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2445,7 +2627,8 @@ export type LabelUncheckedUpdateWithoutArtistsInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2476,7 +2659,8 @@ export type LabelUpdateWithoutPerformersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2496,7 +2680,8 @@ export type LabelUncheckedUpdateWithoutPerformersInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2527,7 +2712,8 @@ export type LabelUpdateWithoutProducersAndEngineersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2547,7 +2733,8 @@ export type LabelUncheckedUpdateWithoutProducersAndEngineersInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2578,7 +2765,8 @@ export type LabelUpdateWithoutWritersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2598,7 +2786,8 @@ export type LabelUncheckedUpdateWithoutWritersInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2629,7 +2818,8 @@ export type LabelUpdateWithoutPublishersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2649,7 +2839,8 @@ export type LabelUncheckedUpdateWithoutPublishersInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2671,7 +2862,7 @@ export type LabelUncheckedUpdateManyWithoutPublishersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type LabelUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type LabelUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
@@ -2680,6 +2871,7 @@ export type LabelUpdateWithoutSharedWorkspaceAccountAccessInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutLabelsNestedInput;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutLabelNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutLabelNestedInput;
@@ -2691,7 +2883,7 @@ export type LabelUpdateWithoutSharedWorkspaceAccountAccessInput = {
   publishers?: Prisma.PublisherUpdateManyWithoutLabelNestedInput;
 };
 
-export type LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -2700,6 +2892,7 @@ export type LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
     | $Enums.LABEL_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutLabelNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutLabelNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutLabelNestedInput;
@@ -2711,23 +2904,25 @@ export type LabelUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   publishers?: Prisma.PublisherUncheckedUpdateManyWithoutLabelNestedInput;
 };
 
-export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
-    | $Enums.LABEL_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+export type LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumLABEL_STATUSFieldUpdateOperationsInput
+      | $Enums.LABEL_STATUS;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
 /**
  * Count Type LabelCountOutputType
  */
 
 export type LabelCountOutputType = {
-  sharedWorkspaceAccountAccess: number;
+  accessContent: number;
+  sharedWorkspaceAccountAccesses: number;
   releases: number;
   tracks: number;
   videos: number;
@@ -2743,9 +2938,10 @@ export type LabelCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  sharedWorkspaceAccountAccess?:
+  accessContent?: boolean | LabelCountOutputTypeCountAccessContentArgs;
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | LabelCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+    | LabelCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
   releases?: boolean | LabelCountOutputTypeCountReleasesArgs;
   tracks?: boolean | LabelCountOutputTypeCountTracksArgs;
   videos?: boolean | LabelCountOutputTypeCountVideosArgs;
@@ -2775,7 +2971,17 @@ export type LabelCountOutputTypeDefaultArgs<
 /**
  * LabelCountOutputType without action
  */
-export type LabelCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
+export type LabelCountOutputTypeCountAccessContentArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+};
+
+/**
+ * LabelCountOutputType without action
+ */
+export type LabelCountOutputTypeCountSharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -2884,9 +3090,10 @@ export type LabelSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-    sharedWorkspaceAccountAccess?:
+    accessContent?: boolean | Prisma.Label$accessContentArgs<ExtArgs>;
+    sharedWorkspaceAccountAccesses?:
       | boolean
-      | Prisma.Label$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+      | Prisma.Label$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
     releases?: boolean | Prisma.Label$releasesArgs<ExtArgs>;
     tracks?: boolean | Prisma.Label$tracksArgs<ExtArgs>;
     videos?: boolean | Prisma.Label$videosArgs<ExtArgs>;
@@ -2961,9 +3168,10 @@ export type LabelInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-  sharedWorkspaceAccountAccess?:
+  accessContent?: boolean | Prisma.Label$accessContentArgs<ExtArgs>;
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | Prisma.Label$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    | Prisma.Label$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
   releases?: boolean | Prisma.Label$releasesArgs<ExtArgs>;
   tracks?: boolean | Prisma.Label$tracksArgs<ExtArgs>;
   videos?: boolean | Prisma.Label$videosArgs<ExtArgs>;
@@ -2997,7 +3205,8 @@ export type $LabelPayload<
   name: "Label";
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
-    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    accessContent: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     releases: Prisma.$ReleasePayload<ExtArgs>[];
     tracks: Prisma.$TrackPayload<ExtArgs>[];
     videos: Prisma.$VideoPayload<ExtArgs>[];
@@ -3580,12 +3789,23 @@ export interface Prisma__LabelClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedWorkspaceAccountAccess<
-    T extends Prisma.Label$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
+  accessContent<T extends Prisma.Label$accessContentArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.Label$accessContentArgs<ExtArgs>>
+  ): Prisma.PrismaPromise<
+    | runtime.Types.Result.GetResult<
+        Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>,
+        T,
+        "findMany",
+        GlobalOmitOptions
+      >
+    | Null
+  >;
+  sharedWorkspaceAccountAccesses<
+    T extends Prisma.Label$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
     args?: Prisma.Subset<
       T,
-      Prisma.Label$sharedWorkspaceAccountAccessArgs<ExtArgs>
+      Prisma.Label$sharedWorkspaceAccountAccessesArgs<ExtArgs>
     >
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
@@ -4194,9 +4414,40 @@ export type LabelDeleteManyArgs<
 };
 
 /**
- * Label.sharedWorkspaceAccountAccess
+ * Label.accessContent
  */
-export type Label$sharedWorkspaceAccountAccessArgs<
+export type Label$accessContentArgs<
+  ExtArgs extends runtime.Types.Extensions.InternalArgs =
+    runtime.Types.Extensions.DefaultArgs,
+> = {
+  /**
+   * Select specific fields to fetch from the SharedWorkspaceAccountAccess
+   */
+  select?: Prisma.SharedWorkspaceAccountAccessSelect<ExtArgs> | null;
+  /**
+   * Omit specific fields from the SharedWorkspaceAccountAccess
+   */
+  omit?: Prisma.SharedWorkspaceAccountAccessOmit<ExtArgs> | null;
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SharedWorkspaceAccountAccessInclude<ExtArgs> | null;
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+  orderBy?:
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput
+    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput[];
+  cursor?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
+  take?: number;
+  skip?: number;
+  distinct?:
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
+    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
+};
+
+/**
+ * Label.sharedWorkspaceAccountAccesses
+ */
+export type Label$sharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

@@ -292,6 +292,7 @@ model User {
   password String
   phone    String
   avatar   String?
+  metadata Json?   @db.JsonB
 
   // Enums
   role ROLE @default(USER)
@@ -328,7 +329,7 @@ model Session {
   userAgent         String
   ipAddress         String
   deviceFingerprint String
-  metadata          Json?
+  metadata          Json?  @db.JsonB
 
   // Enums
   deviceType SESSION_DEVICE_TYPE @default(OTHER)
@@ -388,7 +389,7 @@ model SystemAccess {
   transactionsAccessLevel          SYSTEM_ACCESS_LEVEL[] @default([])
   withdrawalsAccessLevel           SYSTEM_ACCESS_LEVEL[] @default([])
   rightsManagementAccessLevel      SYSTEM_ACCESS_LEVEL[] @default([])
-  metadata                         Json?
+  metadata                         Json?                 @db.JsonB
 
   // Enums
 
@@ -417,7 +418,7 @@ model WorkspaceAccount {
   legalName   String
   description String
   logo        String
-  metadata    Json?
+  metadata    Json?  @db.JsonB
 
   // Enums
   type WORKSPACE_ACCOUNT_TYPE
@@ -461,7 +462,7 @@ model Release {
   workspaceAccountId String
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status RELEASE_STATUS @default(DRAFT)
@@ -486,7 +487,7 @@ model Track {
   workspaceAccountId String
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status TRACK_STATUS @default(DRAFT)
@@ -511,7 +512,7 @@ model Video {
   workspaceAccountId String
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status VIDEO_STATUS @default(DRAFT)
@@ -536,7 +537,7 @@ model Ringtone {
   workspaceAccountId String
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status RINGTONE_STATUS @default(DRAFT)
@@ -561,7 +562,7 @@ model Artist {
   workspaceAccountId String @unique
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status ARTIST_STATUS @default(DRAFT)
@@ -569,7 +570,8 @@ model Artist {
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
-  sharedWorkspaceAccountAccess        SharedWorkspaceAccountAccess[]
+  accessContent                       SharedWorkspaceAccountAccess[]      @relation("SharedWorkspaceAccountAccessArtist")
+  sharedWorkspaceAccountAccesses      SharedWorkspaceAccountAccess[]
   label                               Label[]
 
   // Timestamps
@@ -587,7 +589,7 @@ model Performer {
   workspaceAccountId String @unique
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status PERFORMER_STATUS @default(DRAFT)
@@ -595,7 +597,8 @@ model Performer {
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
-  sharedWorkspaceAccountAccess        SharedWorkspaceAccountAccess[]
+  accessContent                       SharedWorkspaceAccountAccess[]      @relation("SharedWorkspaceAccountAccessPerformer")
+  sharedWorkspaceAccountAccesses      SharedWorkspaceAccountAccess[]
   label                               Label[]
 
   // Timestamps
@@ -613,7 +616,7 @@ model ProducerAndEngineer {
   workspaceAccountId String @unique
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status PRODUCER_AND_ENGINEER_STATUS @default(DRAFT)
@@ -621,7 +624,8 @@ model ProducerAndEngineer {
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
-  sharedWorkspaceAccountAccess        SharedWorkspaceAccountAccess[]
+  accessContent                       SharedWorkspaceAccountAccess[]      @relation("SharedWorkspaceAccountAccessProducerAndEngineer")
+  sharedWorkspaceAccountAccesses      SharedWorkspaceAccountAccess[]
   label                               Label[]
 
   // Timestamps
@@ -644,7 +648,7 @@ model ArtistPerformerProducerAndEngineer {
   name      String
   legalName String
   avatar    String
-  metadata  Json?
+  metadata  Json?  @db.JsonB
 
   // Relations
   artist              Artist?              @relation(fields: [artistId], references: [id], onDelete: SetNull)
@@ -667,15 +671,16 @@ model Writer {
   workspaceAccountId String @unique
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status WRITER_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  accessContent                  SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessWriter")
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  label                          Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -692,15 +697,16 @@ model Publisher {
   workspaceAccountId String @unique
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status PUBLISHER_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  accessContent                  SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessPublisher")
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  label                          Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -717,23 +723,24 @@ model Label {
   workspaceAccountId String @unique
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status LABEL_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  releases                     Release[]
-  tracks                       Track[]
-  videos                       Video[]
-  ringtones                    Ringtone[]
-  artists                      Artist[]
-  performers                   Performer[]
-  producersAndEngineers        ProducerAndEngineer[]
-  writers                      Writer[]
-  publishers                   Publisher[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  accessContent                  SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessLabel")
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  releases                       Release[]
+  tracks                         Track[]
+  videos                         Video[]
+  ringtones                      Ringtone[]
+  artists                        Artist[]
+  performers                     Performer[]
+  producersAndEngineers          ProducerAndEngineer[]
+  writers                        Writer[]
+  publishers                     Publisher[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -750,7 +757,7 @@ model Transaction {
   workspaceAccountId String?
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status TRANSACTION_STATUS @default(PENDING)
@@ -774,7 +781,7 @@ model Withdrawal {
   workspaceAccountId String?
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status WITHDRAWAL_STATUS @default(PENDING)
@@ -795,12 +802,18 @@ model SharedWorkspaceAccountAccess {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String
-  userId             String
-  assignerId         String
+  workspaceAccountId    String
+  userId                String
+  assignerId            String
+  artistId              String?
+  performerId           String?
+  producerAndEngineerId String?
+  writerId              String?
+  publisherId           String?
+  labelId               String?
 
   // Fields
-  allRleases                     Boolean                          @default(false)
+  allReleases                    Boolean                          @default(false)
   allTracks                      Boolean                          @default(false)
   allVideos                      Boolean                          @default(false)
   allRingtones                   Boolean                          @default(false)
@@ -824,7 +837,7 @@ model SharedWorkspaceAccountAccess {
   labelAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
   transactionAccessLevel         WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
   withdrawalAccessLevel          WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  metadata                       Json?
+  metadata                       Json?                            @db.JsonB
 
   // Enums
   role WORKSPACE_ACCOUNT_ACCESS_ROLE @default(USER)
@@ -833,6 +846,12 @@ model SharedWorkspaceAccountAccess {
   user                  User                  @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
   assigner              User                  @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
   workspaceAccount      WorkspaceAccount      @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  artist                Artist?               @relation(name: "SharedWorkspaceAccountAccessArtist", fields: [artistId], references: [id], onDelete: Cascade)
+  performer             Performer?            @relation(name: "SharedWorkspaceAccountAccessPerformer", fields: [performerId], references: [id], onDelete: Cascade)
+  producerAndEngineer   ProducerAndEngineer?  @relation(name: "SharedWorkspaceAccountAccessProducerAndEngineer", fields: [producerAndEngineerId], references: [id], onDelete: Cascade)
+  writer                Writer?               @relation(name: "SharedWorkspaceAccountAccessWriter", fields: [writerId], references: [id], onDelete: Cascade)
+  publisher             Publisher?            @relation(name: "SharedWorkspaceAccountAccessPublisher", fields: [publisherId], references: [id], onDelete: Cascade)
+  label                 Label?                @relation(name: "SharedWorkspaceAccountAccessLabel", fields: [labelId], references: [id], onDelete: Cascade)
   releases              Release[]
   tracks                Track[]
   videos                Video[]
@@ -863,7 +882,7 @@ model RightsManagement {
   userId String
 
   // Fields
-  metadata Json?
+  metadata Json? @db.JsonB
 
   // Enums
   status RIGHTS_MANAGEMENT_STATUS @default(PENDING)
@@ -889,7 +908,7 @@ model AuditLog {
   entityId    String?
   bySystem    Boolean @default(false)
   description String?
-  metadata    Json?
+  metadata    Json?   @db.JsonB
 
   // Enums
   action AUDIT_LOG_ACTION

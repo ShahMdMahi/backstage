@@ -2044,6 +2044,7 @@ export const UserScalarFieldEnum = {
   password: "password",
   phone: "phone",
   avatar: "avatar",
+  metadata: "metadata",
   role: "role",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -2078,6 +2079,34 @@ export const SystemAccessScalarFieldEnum = {
   id: "id",
   userId: "userId",
   assignerId: "assignerId",
+  workspaceAccountsAccess: "workspaceAccountsAccess",
+  releasesAccess: "releasesAccess",
+  tracksAccess: "tracksAccess",
+  videosAccess: "videosAccess",
+  ringtonesAccess: "ringtonesAccess",
+  artistsAccess: "artistsAccess",
+  performersAccess: "performersAccess",
+  producersAndEngineersAccess: "producersAndEngineersAccess",
+  writersAccess: "writersAccess",
+  publishersAccess: "publishersAccess",
+  labelsAccess: "labelsAccess",
+  transactionsAccess: "transactionsAccess",
+  withdrawalsAccess: "withdrawalsAccess",
+  rightsManagementAccess: "rightsManagementAccess",
+  workspaceAccountsAccessLevel: "workspaceAccountsAccessLevel",
+  releasesAccessLevel: "releasesAccessLevel",
+  tracksAccessLevel: "tracksAccessLevel",
+  videosAccessLevel: "videosAccessLevel",
+  ringtonesAccessLevel: "ringtonesAccessLevel",
+  artistsAccessLevel: "artistsAccessLevel",
+  performersAccessLevel: "performersAccessLevel",
+  producersAndEngineersAccessLevel: "producersAndEngineersAccessLevel",
+  writersAccessLevel: "writersAccessLevel",
+  publishersAccessLevel: "publishersAccessLevel",
+  labelsAccessLevel: "labelsAccessLevel",
+  transactionsAccessLevel: "transactionsAccessLevel",
+  withdrawalsAccessLevel: "withdrawalsAccessLevel",
+  rightsManagementAccessLevel: "rightsManagementAccessLevel",
   metadata: "metadata",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -2277,7 +2306,13 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   workspaceAccountId: "workspaceAccountId",
   userId: "userId",
   assignerId: "assignerId",
-  allRleases: "allRleases",
+  artistId: "artistId",
+  performerId: "performerId",
+  producerAndEngineerId: "producerAndEngineerId",
+  writerId: "writerId",
+  publisherId: "publisherId",
+  labelId: "labelId",
+  allReleases: "allReleases",
   allTracks: "allTracks",
   allVideos: "allVideos",
   allRingtones: "allRingtones",
@@ -2303,7 +2338,6 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   withdrawalAccessLevel: "withdrawalAccessLevel",
   metadata: "metadata",
   role: "role",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   expiresAt: "expiresAt",
@@ -2362,13 +2396,6 @@ export const QueryMode = {
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 
-export const NullsOrder = {
-  first: "first",
-  last: "last",
-} as const;
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
-
 export const JsonNullValueFilter = {
   DbNull: DbNull,
   JsonNull: JsonNull,
@@ -2377,6 +2404,13 @@ export const JsonNullValueFilter = {
 
 export type JsonNullValueFilter =
   (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];
+
+export const NullsOrder = {
+  first: "first",
+  last: "last",
+} as const;
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 
 /**
  * Field references
@@ -2396,6 +2430,22 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
   $PrismaModel,
   "String[]"
+>;
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Json"
+>;
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "QueryMode"
 >;
 
 /**
@@ -2431,22 +2481,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
 >;
 
 /**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "Json"
->;
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "QueryMode"
->;
-
-/**
  * Reference to a field of type 'SESSION_DEVICE_TYPE'
  */
 export type EnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
@@ -2457,6 +2491,26 @@ export type EnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
  */
 export type ListEnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "SESSION_DEVICE_TYPE[]">;
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Boolean"
+>;
+
+/**
+ * Reference to a field of type 'SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "SYSTEM_ACCESS_LEVEL">;
 
 /**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_TYPE'
@@ -2639,24 +2693,16 @@ export type ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WITHDRAWAL_STATUS[]">;
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_LEVEL[]'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "Boolean"
->;
+export type ListEnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]">;
 
 /**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_LEVEL'
  */
 export type EnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_LEVEL">;
-
-/**
- * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_LEVEL[]'
- */
-export type ListEnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]">;
 
 /**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_ROLE'
@@ -2669,18 +2715,6 @@ export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel> =
  */
 export type ListEnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_ROLE[]">;
-
-/**
- * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_STATUS'
- */
-export type EnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_STATUS">;
-
-/**
- * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_STATUS[]'
- */
-export type ListEnumWORKSPACE_ACCOUNT_ACCESS_STATUSFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_STATUS[]">;
 
 /**
  * Reference to a field of type 'RIGHTS_MANAGEMENT_STATUS'

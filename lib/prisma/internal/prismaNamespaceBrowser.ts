@@ -100,6 +100,7 @@ export const UserScalarFieldEnum = {
   password: "password",
   phone: "phone",
   avatar: "avatar",
+  metadata: "metadata",
   role: "role",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -134,6 +135,34 @@ export const SystemAccessScalarFieldEnum = {
   id: "id",
   userId: "userId",
   assignerId: "assignerId",
+  workspaceAccountsAccess: "workspaceAccountsAccess",
+  releasesAccess: "releasesAccess",
+  tracksAccess: "tracksAccess",
+  videosAccess: "videosAccess",
+  ringtonesAccess: "ringtonesAccess",
+  artistsAccess: "artistsAccess",
+  performersAccess: "performersAccess",
+  producersAndEngineersAccess: "producersAndEngineersAccess",
+  writersAccess: "writersAccess",
+  publishersAccess: "publishersAccess",
+  labelsAccess: "labelsAccess",
+  transactionsAccess: "transactionsAccess",
+  withdrawalsAccess: "withdrawalsAccess",
+  rightsManagementAccess: "rightsManagementAccess",
+  workspaceAccountsAccessLevel: "workspaceAccountsAccessLevel",
+  releasesAccessLevel: "releasesAccessLevel",
+  tracksAccessLevel: "tracksAccessLevel",
+  videosAccessLevel: "videosAccessLevel",
+  ringtonesAccessLevel: "ringtonesAccessLevel",
+  artistsAccessLevel: "artistsAccessLevel",
+  performersAccessLevel: "performersAccessLevel",
+  producersAndEngineersAccessLevel: "producersAndEngineersAccessLevel",
+  writersAccessLevel: "writersAccessLevel",
+  publishersAccessLevel: "publishersAccessLevel",
+  labelsAccessLevel: "labelsAccessLevel",
+  transactionsAccessLevel: "transactionsAccessLevel",
+  withdrawalsAccessLevel: "withdrawalsAccessLevel",
+  rightsManagementAccessLevel: "rightsManagementAccessLevel",
   metadata: "metadata",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
@@ -333,7 +362,13 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   workspaceAccountId: "workspaceAccountId",
   userId: "userId",
   assignerId: "assignerId",
-  allRleases: "allRleases",
+  artistId: "artistId",
+  performerId: "performerId",
+  producerAndEngineerId: "producerAndEngineerId",
+  writerId: "writerId",
+  publisherId: "publisherId",
+  labelId: "labelId",
+  allReleases: "allReleases",
   allTracks: "allTracks",
   allVideos: "allVideos",
   allRingtones: "allRingtones",
@@ -359,7 +394,6 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   withdrawalAccessLevel: "withdrawalAccessLevel",
   metadata: "metadata",
   role: "role",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   expiresAt: "expiresAt",
@@ -418,13 +452,6 @@ export const QueryMode = {
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 
-export const NullsOrder = {
-  first: "first",
-  last: "last",
-} as const;
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
-
 export const JsonNullValueFilter = {
   DbNull: "DbNull",
   JsonNull: "JsonNull",
@@ -433,3 +460,10 @@ export const JsonNullValueFilter = {
 
 export type JsonNullValueFilter =
   (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter];
+
+export const NullsOrder = {
+  first: "first",
+  last: "last",
+} as const;
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
