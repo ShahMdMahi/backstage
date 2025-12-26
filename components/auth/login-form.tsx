@@ -69,11 +69,18 @@ export function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [formMessage, setFormMessage] = useState<string | null>(null);
 
+  let fromUrl = searchParams.get("from");
+  fromUrl =
+    fromUrl && fromUrl.startsWith("/") && !fromUrl.includes("://")
+      ? decodeURIComponent(fromUrl)
+      : null;
   let toUrl = searchParams.get("to");
   toUrl =
     toUrl && toUrl.startsWith("/") && !toUrl.includes("://")
       ? decodeURIComponent(toUrl)
-      : null;
+      : fromUrl
+        ? fromUrl
+        : null;
 
   const {
     register,
@@ -113,7 +120,6 @@ export function LoginForm() {
         return;
       }
 
-      toast.success(result.message || "Successfully logged in!");
       if (!toUrl) {
         switch (result?.data?.role) {
           case ROLE.SYSTEM_OWNER:
@@ -130,6 +136,7 @@ export function LoginForm() {
         }
       }
       router.push(toUrl);
+      toast.success(result.message || "Successfully logged in!");
     } catch (error) {
       console.error("Login error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

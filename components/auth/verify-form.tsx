@@ -88,8 +88,8 @@ export function VerifyForm() {
           return;
         }
 
-        toast.success(result.message || "Email verified successfully!");
         router.push("/auth/login");
+        toast.success(result.message || "Email verified successfully!");
       } catch (error) {
         console.error("Verification error:", error);
         setFormMessage("An unexpected error occurred. Please try again.");

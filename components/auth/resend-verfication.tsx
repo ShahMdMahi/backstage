@@ -104,10 +104,10 @@ export function ResendVerificationForm() {
         return;
       }
 
+      router.push("/auth/login");
       toast.success(
         result.message || "Verification email resent successfully!"
       );
-      router.push("/auth/login");
     } catch (error) {
       console.error("Resend verification error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

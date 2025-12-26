@@ -122,11 +122,11 @@ export function ResetPasswordForm() {
         return;
       }
 
+      router.push("/auth/login");
       toast.success(
         result.message ||
           "Password has been reset successfully! You can now log in."
       );
-      router.push("/auth/login");
     } catch (error) {
       console.error("Reset password error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

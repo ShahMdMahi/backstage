@@ -1,10 +1,23 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { UserIcon } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="w-full max-w-none px-0 py-4 sm:px-0 sm:py-6 md:px-0 md:py-8">
+    <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
+        <div className="flex items-center gap-3">
+          <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
+            <UserIcon className="size-5 text-primary" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Profile</h1>
+            <p className="text-muted-foreground mt-1">
+              Manage your account information
+            </p>
+          </div>
+        </div>
+
         {/* Profile Information Card */}
         <Card>
           <CardHeader>

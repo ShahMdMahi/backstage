@@ -212,9 +212,9 @@ export function NavUser({
                 tabIndex={0}
                 className="flex items-center gap-2"
                 aria-label="Go to Settings"
-                onClick={() => router.push("/settings")}
+                onClick={() => router.push("/system/settings")}
                 onKeyDown={(e) =>
-                  handleKeyDown(e, () => router.push("/settings"))
+                  handleKeyDown(e, () => router.push("/system/settings"))
                 }
               >
                 <Settings className="mr-2 h-4 w-4" /> Settings
@@ -228,8 +228,8 @@ export function NavUser({
               onClick={async () => {
                 const result = await logout();
                 if (result.success) {
-                  toast.success(result.message || "Logged out successfully");
                   router.push("/auth/login");
+                  toast.success(result.message || "Logged out successfully");
                 } else {
                   toast.error(result.message || "Failed to log out");
                 }
@@ -238,8 +238,8 @@ export function NavUser({
                 handleKeyDown(e, async () => {
                   const result = await logout();
                   if (result.success) {
-                    toast.success(result.message || "Logged out successfully");
                     router.push("/auth/login");
+                    toast.success(result.message || "Logged out successfully");
                   } else {
                     toast.error(result.message || "Failed to log out");
                   }
