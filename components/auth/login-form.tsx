@@ -17,9 +17,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { login } from "@/actions/auth/auth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
+import { ROLE } from "@/lib/prisma/enums";
 
 interface TreeifyErrorStructure {
   errors: string[];
@@ -64,8 +65,15 @@ function extractServerErrors(errors: unknown): ExtractedErrors {
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [submitting, setSubmitting] = useState(false);
   const [formMessage, setFormMessage] = useState<string | null>(null);
+
+  let toUrl = searchParams.get("to");
+  toUrl =
+    toUrl && toUrl.startsWith("/") && !toUrl.includes("://")
+      ? decodeURIComponent(toUrl)
+      : null;
 
   const {
     register,
@@ -106,7 +114,22 @@ export function LoginForm() {
       }
 
       toast.success(result.message || "Successfully logged in!");
-      router.push("/");
+      if (!toUrl) {
+        switch (result?.data?.role) {
+          case ROLE.SYSTEM_OWNER:
+          case ROLE.SYSTEM_ADMIN:
+          case ROLE.SYSTEM_USER:
+            router.push("/system");
+            return;
+          case ROLE.USER:
+            router.push("/");
+            return;
+          default:
+            router.push("/");
+            return;
+        }
+      }
+      router.push(toUrl);
     } catch (error) {
       console.error("Login error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

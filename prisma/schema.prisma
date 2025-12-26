@@ -26,6 +26,13 @@ enum SESSION_DEVICE_TYPE {
   OTHER
 }
 
+enum SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
 enum WORKSPACE_ACCOUNT_TYPE {
   B2B
   LABEL
@@ -39,16 +46,11 @@ enum WORKSPACE_ACCOUNT_ACCESS_ROLE {
   USER
 }
 
-enum WORKSPACE_ACCOUNT_ACCESS_STATUS {
-  ACTIVE
-  EXPIRED
-  SUSPENDED
-}
-
 enum WORKSPACE_ACCOUNT_ACCESS_LEVEL {
   READ
   WRITE
-  ADMIN
+  UPDATE
+  DELETE
 }
 
 enum RELEASE_STATUS {
@@ -358,7 +360,35 @@ model SystemAccess {
   assignerId String @unique
 
   // Fields
-  metadata Json?
+  workspaceAccountsAccess          Boolean               @default(false)
+  releasesAccess                   Boolean               @default(false)
+  tracksAccess                     Boolean               @default(false)
+  videosAccess                     Boolean               @default(false)
+  ringtonesAccess                  Boolean               @default(false)
+  artistsAccess                    Boolean               @default(false)
+  performersAccess                 Boolean               @default(false)
+  producersAndEngineersAccess      Boolean               @default(false)
+  writersAccess                    Boolean               @default(false)
+  publishersAccess                 Boolean               @default(false)
+  labelsAccess                     Boolean               @default(false)
+  transactionsAccess               Boolean               @default(false)
+  withdrawalsAccess                Boolean               @default(false)
+  rightsManagementAccess           Boolean               @default(false)
+  workspaceAccountsAccessLevel     SYSTEM_ACCESS_LEVEL[] @default([])
+  releasesAccessLevel              SYSTEM_ACCESS_LEVEL[] @default([])
+  tracksAccessLevel                SYSTEM_ACCESS_LEVEL[] @default([])
+  videosAccessLevel                SYSTEM_ACCESS_LEVEL[] @default([])
+  ringtonesAccessLevel             SYSTEM_ACCESS_LEVEL[] @default([])
+  artistsAccessLevel               SYSTEM_ACCESS_LEVEL[] @default([])
+  performersAccessLevel            SYSTEM_ACCESS_LEVEL[] @default([])
+  producersAndEngineersAccessLevel SYSTEM_ACCESS_LEVEL[] @default([])
+  writersAccessLevel               SYSTEM_ACCESS_LEVEL[] @default([])
+  publishersAccessLevel            SYSTEM_ACCESS_LEVEL[] @default([])
+  labelsAccessLevel                SYSTEM_ACCESS_LEVEL[] @default([])
+  transactionsAccessLevel          SYSTEM_ACCESS_LEVEL[] @default([])
+  withdrawalsAccessLevel           SYSTEM_ACCESS_LEVEL[] @default([])
+  rightsManagementAccessLevel      SYSTEM_ACCESS_LEVEL[] @default([])
+  metadata                         Json?
 
   // Enums
 
@@ -770,35 +800,34 @@ model SharedWorkspaceAccountAccess {
   assignerId         String
 
   // Fields
-  allRleases                     Boolean                        @default(false)
-  allTracks                      Boolean                        @default(false)
-  allVideos                      Boolean                        @default(false)
-  allRingtones                   Boolean                        @default(false)
-  allArtists                     Boolean                        @default(false)
-  allPerformers                  Boolean                        @default(false)
-  allProducersAndEngineers       Boolean                        @default(false)
-  allWriters                     Boolean                        @default(false)
-  allPublishers                  Boolean                        @default(false)
-  allLabels                      Boolean                        @default(false)
-  allTransactions                Boolean                        @default(false)
-  allWithdrawals                 Boolean                        @default(false)
-  releaseAccessLevel             WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  trackAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  videoAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  ringtoneAccessLevel            WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  artistAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  performerAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  producerAndEngineerAccessLevel WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  writerAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  publisherAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  labelAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  transactionAccessLevel         WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
-  withdrawalAccessLevel          WORKSPACE_ACCOUNT_ACCESS_LEVEL @default(READ)
+  allRleases                     Boolean                          @default(false)
+  allTracks                      Boolean                          @default(false)
+  allVideos                      Boolean                          @default(false)
+  allRingtones                   Boolean                          @default(false)
+  allArtists                     Boolean                          @default(false)
+  allPerformers                  Boolean                          @default(false)
+  allProducersAndEngineers       Boolean                          @default(false)
+  allWriters                     Boolean                          @default(false)
+  allPublishers                  Boolean                          @default(false)
+  allLabels                      Boolean                          @default(false)
+  allTransactions                Boolean                          @default(false)
+  allWithdrawals                 Boolean                          @default(false)
+  releaseAccessLevel             WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  trackAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  videoAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  ringtoneAccessLevel            WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  artistAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  performerAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  producerAndEngineerAccessLevel WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  writerAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  publisherAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  labelAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  transactionAccessLevel         WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
+  withdrawalAccessLevel          WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
   metadata                       Json?
 
   // Enums
-  role   WORKSPACE_ACCOUNT_ACCESS_ROLE   @default(USER)
-  status WORKSPACE_ACCOUNT_ACCESS_STATUS @default(ACTIVE)
+  role WORKSPACE_ACCOUNT_ACCESS_ROLE @default(USER)
 
   // Relations
   user                  User                  @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)

@@ -28,6 +28,7 @@ import {
 import { redis } from "@/lib/redis";
 import { getDeviceInfo } from "@/lib/device-info";
 import { createSession, revokeCurrentSession } from "@/actions/shared/session";
+import { User } from "@/lib/prisma/client";
 
 /**
  * Register a new user
@@ -398,7 +399,7 @@ export async function verify(data: VerifyEmailData): Promise<{
 export async function login(data: LoginData): Promise<{
   success: boolean;
   message: string;
-  data: null;
+  data: User | null;
   errors: ReturnType<typeof z.treeifyError> | unknown | null;
 }> {
   try {
@@ -578,7 +579,7 @@ export async function login(data: LoginData): Promise<{
     return {
       success: true,
       message: "Login successful",
-      data: null,
+      data: userExists,
       errors: null,
     };
   } catch (error) {
