@@ -103,8 +103,8 @@ export function ForgotPasswordForm() {
         return;
       }
 
-      router.push("/auth/login");
       toast.success(result.message || "Password reset link sent successfully!");
+      router.push("/auth/login");
     } catch (error) {
       console.error("Forgot password error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

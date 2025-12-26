@@ -318,7 +318,7 @@ export type WorkspaceAccountWhereInput = {
     | string
     | null;
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   releases?: Prisma.ReleaseListRelationFilter;
   tracks?: Prisma.TrackListRelationFilter;
   videos?: Prisma.VideoListRelationFilter;
@@ -353,7 +353,7 @@ export type WorkspaceAccountOrderByWithRelationInput = {
   agreementExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementRenewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   owner?: Prisma.UserOrderByWithRelationInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   releases?: Prisma.ReleaseOrderByRelationAggregateInput;
   tracks?: Prisma.TrackOrderByRelationAggregateInput;
   videos?: Prisma.VideoOrderByRelationAggregateInput;
@@ -422,7 +422,7 @@ export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
       | string
       | null;
     owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>;
-    sharedAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     releases?: Prisma.ReleaseListRelationFilter;
     tracks?: Prisma.TrackListRelationFilter;
     videos?: Prisma.VideoListRelationFilter;
@@ -548,7 +548,7 @@ export type WorkspaceAccountCreateInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -582,7 +582,7 @@ export type WorkspaceAccountUncheckedCreateInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -642,7 +642,7 @@ export type WorkspaceAccountUpdateInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -702,7 +702,7 @@ export type WorkspaceAccountUncheckedUpdateInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1279,30 +1279,31 @@ export type WorkspaceAccountUpdateOneWithoutWithdrawalsNestedInput = {
   >;
 };
 
-export type WorkspaceAccountCreateNestedOneWithoutSharedAccessesInput = {
-  create?: Prisma.XOR<
-    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
-  >;
-  connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput;
-  connect?: Prisma.WorkspaceAccountWhereUniqueInput;
-};
-
-export type WorkspaceAccountUpdateOneRequiredWithoutSharedAccessesNestedInput =
+export type WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?: Prisma.XOR<
-      Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-      Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
+      Prisma.WorkspaceAccountCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WorkspaceAccountUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
-    connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput;
-    upsert?: Prisma.WorkspaceAccountUpsertWithoutSharedAccessesInput;
+    connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput;
+    connect?: Prisma.WorkspaceAccountWhereUniqueInput;
+  };
+
+export type WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput =
+  {
+    create?: Prisma.XOR<
+      Prisma.WorkspaceAccountCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WorkspaceAccountUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+    >;
+    connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput;
+    upsert?: Prisma.WorkspaceAccountUpsertWithoutSharedWorkspaceAccountAccessesInput;
     connect?: Prisma.WorkspaceAccountWhereUniqueInput;
     update?: Prisma.XOR<
       Prisma.XOR<
-        Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutSharedAccessesInput,
-        Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput
+        Prisma.WorkspaceAccountUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.WorkspaceAccountUpdateWithoutSharedWorkspaceAccountAccessesInput
       >,
-      Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
+      Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
@@ -1324,7 +1325,7 @@ export type WorkspaceAccountCreateWithoutOwnerInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1357,7 +1358,7 @@ export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1444,7 +1445,7 @@ export type WorkspaceAccountUpdateWithoutOwnerInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1503,7 +1504,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1537,7 +1538,7 @@ export type WorkspaceAccountCreateWithoutReleasesInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
   ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1570,7 +1571,7 @@ export type WorkspaceAccountUncheckedCreateWithoutReleasesInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1657,7 +1658,7 @@ export type WorkspaceAccountUpdateWithoutReleasesInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
   ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1716,7 +1717,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutReleasesInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1749,7 +1750,7 @@ export type WorkspaceAccountCreateWithoutTracksInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
   ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1782,7 +1783,7 @@ export type WorkspaceAccountUncheckedCreateWithoutTracksInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1869,7 +1870,7 @@ export type WorkspaceAccountUpdateWithoutTracksInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
   ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1928,7 +1929,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutTracksInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -1961,7 +1962,7 @@ export type WorkspaceAccountCreateWithoutVideosInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   ringtones?: Prisma.RingtoneCreateNestedManyWithoutWorkspaceAccountInput;
@@ -1994,7 +1995,7 @@ export type WorkspaceAccountUncheckedCreateWithoutVideosInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2081,7 +2082,7 @@ export type WorkspaceAccountUpdateWithoutVideosInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   ringtones?: Prisma.RingtoneUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2140,7 +2141,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutVideosInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2173,7 +2174,7 @@ export type WorkspaceAccountCreateWithoutRingtonesInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2206,7 +2207,7 @@ export type WorkspaceAccountUncheckedCreateWithoutRingtonesInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2293,7 +2294,7 @@ export type WorkspaceAccountUpdateWithoutRingtonesInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2352,7 +2353,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutRingtonesInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2385,7 +2386,7 @@ export type WorkspaceAccountCreateWithoutArtistsInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2418,7 +2419,7 @@ export type WorkspaceAccountUncheckedCreateWithoutArtistsInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2505,7 +2506,7 @@ export type WorkspaceAccountUpdateWithoutArtistsInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2564,7 +2565,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutArtistsInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2597,7 +2598,7 @@ export type WorkspaceAccountCreateWithoutPerformersInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2630,7 +2631,7 @@ export type WorkspaceAccountUncheckedCreateWithoutPerformersInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2717,7 +2718,7 @@ export type WorkspaceAccountUpdateWithoutPerformersInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2776,7 +2777,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutPerformersInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2809,7 +2810,7 @@ export type WorkspaceAccountCreateWithoutProducersAndEngineersInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2842,7 +2843,7 @@ export type WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -2930,7 +2931,7 @@ export type WorkspaceAccountUpdateWithoutProducersAndEngineersInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -2989,7 +2990,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3022,7 +3023,7 @@ export type WorkspaceAccountCreateWithoutWritersInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3055,7 +3056,7 @@ export type WorkspaceAccountUncheckedCreateWithoutWritersInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3142,7 +3143,7 @@ export type WorkspaceAccountUpdateWithoutWritersInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3201,7 +3202,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutWritersInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3234,7 +3235,7 @@ export type WorkspaceAccountCreateWithoutPublishersInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3267,7 +3268,7 @@ export type WorkspaceAccountUncheckedCreateWithoutPublishersInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3354,7 +3355,7 @@ export type WorkspaceAccountUpdateWithoutPublishersInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3413,7 +3414,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutPublishersInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3446,7 +3447,7 @@ export type WorkspaceAccountCreateWithoutLabelsInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3479,7 +3480,7 @@ export type WorkspaceAccountUncheckedCreateWithoutLabelsInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3566,7 +3567,7 @@ export type WorkspaceAccountUpdateWithoutLabelsInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3625,7 +3626,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3658,7 +3659,7 @@ export type WorkspaceAccountCreateWithoutTransactionsInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3691,7 +3692,7 @@ export type WorkspaceAccountUncheckedCreateWithoutTransactionsInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3778,7 +3779,7 @@ export type WorkspaceAccountUpdateWithoutTransactionsInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3837,7 +3838,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutTransactionsInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -3870,7 +3871,7 @@ export type WorkspaceAccountCreateWithoutWithdrawalsInput = {
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
   owner: Prisma.UserCreateNestedOneWithoutOwnWorkspaceAccountInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3903,7 +3904,7 @@ export type WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput = {
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
   videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
@@ -3990,7 +3991,7 @@ export type WorkspaceAccountUpdateWithoutWithdrawalsInput = {
     | string
     | null;
   owner?: Prisma.UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -4049,7 +4050,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput = {
     | Date
     | string
     | null;
-  sharedAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
   videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
@@ -4063,7 +4064,7 @@ export type WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput = {
   transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
-export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
+export type WorkspaceAccountCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   name: string;
   legalName: string;
@@ -4096,68 +4097,71 @@ export type WorkspaceAccountCreateWithoutSharedAccessesInput = {
   withdrawals?: Prisma.WithdrawalCreateNestedManyWithoutWorkspaceAccountInput;
 };
 
-export type WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput = {
-  id?: string;
-  ownerId: string;
-  name: string;
-  legalName: string;
-  description: string;
-  logo: string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  type: $Enums.WORKSPACE_ACCOUNT_TYPE;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  startedAt: Date | string;
-  endedAt: Date | string;
-  renewedAt?: Date | string | null;
-  canceledAt?: Date | string | null;
-  suspendedAt?: Date | string | null;
-  agreementSignedAt?: Date | string | null;
-  agreementExpiresAt?: Date | string | null;
-  agreementRenewedAt?: Date | string | null;
-  releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-  withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
-};
+export type WorkspaceAccountUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: string;
+    ownerId: string;
+    name: string;
+    legalName: string;
+    description: string;
+    logo: string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    type: $Enums.WORKSPACE_ACCOUNT_TYPE;
+    createdAt?: Date | string;
+    updatedAt?: Date | string;
+    startedAt: Date | string;
+    endedAt: Date | string;
+    renewedAt?: Date | string | null;
+    canceledAt?: Date | string | null;
+    suspendedAt?: Date | string | null;
+    agreementSignedAt?: Date | string | null;
+    agreementExpiresAt?: Date | string | null;
+    agreementRenewedAt?: Date | string | null;
+    releases?: Prisma.ReleaseUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    tracks?: Prisma.TrackUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    videos?: Prisma.VideoUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    ringtones?: Prisma.RingtoneUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    artists?: Prisma.ArtistUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    performers?: Prisma.PerformerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    writers?: Prisma.WriterUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    publishers?: Prisma.PublisherUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    labels?: Prisma.LabelUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    transactions?: Prisma.TransactionUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+    withdrawals?: Prisma.WithdrawalUncheckedCreateNestedManyWithoutWorkspaceAccountInput;
+  };
 
-export type WorkspaceAccountCreateOrConnectWithoutSharedAccessesInput = {
-  where: Prisma.WorkspaceAccountWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
-  >;
-};
+export type WorkspaceAccountCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    where: Prisma.WorkspaceAccountWhereUniqueInput;
+    create: Prisma.XOR<
+      Prisma.WorkspaceAccountCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WorkspaceAccountUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+    >;
+  };
 
-export type WorkspaceAccountUpsertWithoutSharedAccessesInput = {
+export type WorkspaceAccountUpsertWithoutSharedWorkspaceAccountAccessesInput = {
   update: Prisma.XOR<
-    Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
+    Prisma.WorkspaceAccountUpdateWithoutSharedWorkspaceAccountAccessesInput,
+    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
   >;
   create: Prisma.XOR<
-    Prisma.WorkspaceAccountCreateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedAccessesInput
+    Prisma.WorkspaceAccountCreateWithoutSharedWorkspaceAccountAccessesInput,
+    Prisma.WorkspaceAccountUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
   >;
   where?: Prisma.WorkspaceAccountWhereInput;
 };
 
-export type WorkspaceAccountUpdateToOneWithWhereWithoutSharedAccessesInput = {
-  where?: Prisma.WorkspaceAccountWhereInput;
-  data: Prisma.XOR<
-    Prisma.WorkspaceAccountUpdateWithoutSharedAccessesInput,
-    Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput
-  >;
-};
+export type WorkspaceAccountUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    where?: Prisma.WorkspaceAccountWhereInput;
+    data: Prisma.XOR<
+      Prisma.WorkspaceAccountUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.WorkspaceAccountUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
+    >;
+  };
 
-export type WorkspaceAccountUpdateWithoutSharedAccessesInput = {
+export type WorkspaceAccountUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   legalName?: Prisma.StringFieldUpdateOperationsInput | string;
@@ -4216,71 +4220,72 @@ export type WorkspaceAccountUpdateWithoutSharedAccessesInput = {
   withdrawals?: Prisma.WithdrawalUpdateManyWithoutWorkspaceAccountNestedInput;
 };
 
-export type WorkspaceAccountUncheckedUpdateWithoutSharedAccessesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  name?: Prisma.StringFieldUpdateOperationsInput | string;
-  legalName?: Prisma.StringFieldUpdateOperationsInput | string;
-  description?: Prisma.StringFieldUpdateOperationsInput | string;
-  logo?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  type?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_TYPE;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  renewedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  canceledAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  suspendedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  agreementSignedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  agreementExpiresAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  agreementRenewedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
-};
+export type WorkspaceAccountUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    ownerId?: Prisma.StringFieldUpdateOperationsInput | string;
+    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    legalName?: Prisma.StringFieldUpdateOperationsInput | string;
+    description?: Prisma.StringFieldUpdateOperationsInput | string;
+    logo?: Prisma.StringFieldUpdateOperationsInput | string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    type?:
+      | Prisma.EnumWORKSPACE_ACCOUNT_TYPEFieldUpdateOperationsInput
+      | $Enums.WORKSPACE_ACCOUNT_TYPE;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    endedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    renewedAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    canceledAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    suspendedAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    agreementSignedAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    agreementExpiresAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    agreementRenewedAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    releases?: Prisma.ReleaseUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    tracks?: Prisma.TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    videos?: Prisma.VideoUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    artists?: Prisma.ArtistUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    performers?: Prisma.PerformerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    writers?: Prisma.WriterUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    publishers?: Prisma.PublisherUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    labels?: Prisma.LabelUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    transactions?: Prisma.TransactionUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+    withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutWorkspaceAccountNestedInput;
+  };
 
 /**
  * Count Type WorkspaceAccountCountOutputType
  */
 
 export type WorkspaceAccountCountOutputType = {
-  sharedAccesses: number;
+  sharedWorkspaceAccountAccesses: number;
   releases: number;
   tracks: number;
   videos: number;
@@ -4299,9 +4304,9 @@ export type WorkspaceAccountCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  sharedAccesses?:
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | WorkspaceAccountCountOutputTypeCountSharedAccessesArgs;
+    | WorkspaceAccountCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
   releases?: boolean | WorkspaceAccountCountOutputTypeCountReleasesArgs;
   tracks?: boolean | WorkspaceAccountCountOutputTypeCountTracksArgs;
   videos?: boolean | WorkspaceAccountCountOutputTypeCountVideosArgs;
@@ -4334,7 +4339,7 @@ export type WorkspaceAccountCountOutputTypeDefaultArgs<
 /**
  * WorkspaceAccountCountOutputType without action
  */
-export type WorkspaceAccountCountOutputTypeCountSharedAccessesArgs<
+export type WorkspaceAccountCountOutputTypeCountSharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -4485,9 +4490,9 @@ export type WorkspaceAccountSelect<
     agreementExpiresAt?: boolean;
     agreementRenewedAt?: boolean;
     owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-    sharedAccesses?:
+    sharedWorkspaceAccountAccesses?:
       | boolean
-      | Prisma.WorkspaceAccount$sharedAccessesArgs<ExtArgs>;
+      | Prisma.WorkspaceAccount$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
     releases?: boolean | Prisma.WorkspaceAccount$releasesArgs<ExtArgs>;
     tracks?: boolean | Prisma.WorkspaceAccount$tracksArgs<ExtArgs>;
     videos?: boolean | Prisma.WorkspaceAccount$videosArgs<ExtArgs>;
@@ -4615,9 +4620,9 @@ export type WorkspaceAccountInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>;
-  sharedAccesses?:
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | Prisma.WorkspaceAccount$sharedAccessesArgs<ExtArgs>;
+    | Prisma.WorkspaceAccount$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
   releases?: boolean | Prisma.WorkspaceAccount$releasesArgs<ExtArgs>;
   tracks?: boolean | Prisma.WorkspaceAccount$tracksArgs<ExtArgs>;
   videos?: boolean | Prisma.WorkspaceAccount$videosArgs<ExtArgs>;
@@ -4654,7 +4659,7 @@ export type $WorkspaceAccountPayload<
   name: "WorkspaceAccount";
   objects: {
     owner: Prisma.$UserPayload<ExtArgs>;
-    sharedAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     releases: Prisma.$ReleasePayload<ExtArgs>[];
     tracks: Prisma.$TrackPayload<ExtArgs>[];
     videos: Prisma.$VideoPayload<ExtArgs>[];
@@ -5268,10 +5273,14 @@ export interface Prisma__WorkspaceAccountClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedAccesses<
-    T extends Prisma.WorkspaceAccount$sharedAccessesArgs<ExtArgs> = {},
+  sharedWorkspaceAccountAccesses<
+    T extends
+      Prisma.WorkspaceAccount$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
-    args?: Prisma.Subset<T, Prisma.WorkspaceAccount$sharedAccessesArgs<ExtArgs>>
+    args?: Prisma.Subset<
+      T,
+      Prisma.WorkspaceAccount$sharedWorkspaceAccountAccessesArgs<ExtArgs>
+    >
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
         Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>,
@@ -5951,9 +5960,9 @@ export type WorkspaceAccountDeleteManyArgs<
 };
 
 /**
- * WorkspaceAccount.sharedAccesses
+ * WorkspaceAccount.sharedWorkspaceAccountAccesses
  */
-export type WorkspaceAccount$sharedAccessesArgs<
+export type WorkspaceAccount$sharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

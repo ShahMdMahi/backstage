@@ -104,10 +104,10 @@ export function RegisterForm() {
         return;
       }
 
-      router.push("/auth/login");
       toast.success(
         result.message || "Registration successful! You can now log in."
       );
+      router.push("/auth/login");
     } catch (error) {
       console.error("Registration error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

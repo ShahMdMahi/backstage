@@ -42,7 +42,6 @@ enum WORKSPACE_ACCOUNT_TYPE {
 
 enum WORKSPACE_ACCOUNT_ACCESS_ROLE {
   ADMIN
-  ARTIST_PERFORMER_PRODUCER_AND_ENGINEER
   USER
 }
 
@@ -424,20 +423,20 @@ model WorkspaceAccount {
   type WORKSPACE_ACCOUNT_TYPE
 
   // Relations
-  owner                 User                           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  sharedAccesses        SharedWorkspaceAccountAccess[]
-  releases              Release[]
-  tracks                Track[]
-  videos                Video[]
-  ringtones             Ringtone[]
-  artists               Artist[]
-  performers            Performer[]
-  producersAndEngineers ProducerAndEngineer[]
-  writers               Writer[]
-  publishers            Publisher[]
-  labels                Label[]
-  transactions          Transaction[]
-  withdrawals           Withdrawal[]
+  owner                          User                           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  releases                       Release[]
+  tracks                         Track[]
+  videos                         Video[]
+  ringtones                      Ringtone[]
+  artists                        Artist[]
+  performers                     Performer[]
+  producersAndEngineers          ProducerAndEngineer[]
+  writers                        Writer[]
+  publishers                     Publisher[]
+  labels                         Label[]
+  transactions                   Transaction[]
+  withdrawals                    Withdrawal[]
 
   // Timestamps
   createdAt          DateTime  @default(now())
@@ -468,9 +467,9 @@ model Release {
   status RELEASE_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  label                          Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -493,9 +492,9 @@ model Track {
   status TRACK_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  label                          Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -518,9 +517,9 @@ model Video {
   status VIDEO_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  label                          Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -543,9 +542,9 @@ model Ringtone {
   status RINGTONE_STATUS @default(DRAFT)
 
   // Relations
-  workspaceAccount             WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
-  label                        Label[]
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
+  label                          Label[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -570,7 +569,6 @@ model Artist {
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
-  accessContent                       SharedWorkspaceAccountAccess[]      @relation("SharedWorkspaceAccountAccessArtist")
   sharedWorkspaceAccountAccesses      SharedWorkspaceAccountAccess[]
   label                               Label[]
 
@@ -597,7 +595,6 @@ model Performer {
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
-  accessContent                       SharedWorkspaceAccountAccess[]      @relation("SharedWorkspaceAccountAccessPerformer")
   sharedWorkspaceAccountAccesses      SharedWorkspaceAccountAccess[]
   label                               Label[]
 
@@ -624,7 +621,6 @@ model ProducerAndEngineer {
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   artistPerformerProducerAndEngineers ArtistPerformerProducerAndEngineer?
-  accessContent                       SharedWorkspaceAccountAccess[]      @relation("SharedWorkspaceAccountAccessProducerAndEngineer")
   sharedWorkspaceAccountAccesses      SharedWorkspaceAccountAccess[]
   label                               Label[]
 
@@ -678,7 +674,6 @@ model Writer {
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  accessContent                  SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessWriter")
   sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
   label                          Label[]
 
@@ -704,7 +699,6 @@ model Publisher {
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  accessContent                  SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessPublisher")
   sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
   label                          Label[]
 
@@ -730,7 +724,6 @@ model Label {
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  accessContent                  SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessLabel")
   sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
   releases                       Release[]
   tracks                         Track[]
@@ -763,8 +756,8 @@ model Transaction {
   status TRANSACTION_STATUS @default(PENDING)
 
   // Relations
-  workspaceAccount             WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+  workspaceAccount               WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -787,8 +780,8 @@ model Withdrawal {
   status WITHDRAWAL_STATUS @default(PENDING)
 
   // Relations
-  workspaceAccount             WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
-  sharedWorkspaceAccountAccess SharedWorkspaceAccountAccess[]
+  workspaceAccount               WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
 
   // Timestamps
   createdAt DateTime @default(now())
@@ -846,12 +839,6 @@ model SharedWorkspaceAccountAccess {
   user                  User                  @relation(name: "SharedWorkspaceAccountAccessUser", fields: [userId], references: [id], onDelete: Cascade)
   assigner              User                  @relation(name: "SharedWorkspaceAccountAccessAssigner", fields: [assignerId], references: [id], onDelete: Cascade)
   workspaceAccount      WorkspaceAccount      @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
-  artist                Artist?               @relation(name: "SharedWorkspaceAccountAccessArtist", fields: [artistId], references: [id], onDelete: Cascade)
-  performer             Performer?            @relation(name: "SharedWorkspaceAccountAccessPerformer", fields: [performerId], references: [id], onDelete: Cascade)
-  producerAndEngineer   ProducerAndEngineer?  @relation(name: "SharedWorkspaceAccountAccessProducerAndEngineer", fields: [producerAndEngineerId], references: [id], onDelete: Cascade)
-  writer                Writer?               @relation(name: "SharedWorkspaceAccountAccessWriter", fields: [writerId], references: [id], onDelete: Cascade)
-  publisher             Publisher?            @relation(name: "SharedWorkspaceAccountAccessPublisher", fields: [publisherId], references: [id], onDelete: Cascade)
-  label                 Label?                @relation(name: "SharedWorkspaceAccountAccessLabel", fields: [labelId], references: [id], onDelete: Cascade)
   releases              Release[]
   tracks                Track[]
   videos                Video[]

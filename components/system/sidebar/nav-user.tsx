@@ -228,8 +228,8 @@ export function NavUser({
               onClick={async () => {
                 const result = await logout();
                 if (result.success) {
-                  router.push("/auth/login");
                   toast.success(result.message || "Logged out successfully");
+                  router.push("/auth/login");
                 } else {
                   toast.error(result.message || "Failed to log out");
                 }
@@ -238,8 +238,8 @@ export function NavUser({
                 handleKeyDown(e, async () => {
                   const result = await logout();
                   if (result.success) {
-                    router.push("/auth/login");
                     toast.success(result.message || "Logged out successfully");
+                    router.push("/auth/login");
                   } else {
                     toast.error(result.message || "Failed to log out");
                   }

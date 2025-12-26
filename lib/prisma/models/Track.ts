@@ -193,7 +193,7 @@ export type TrackWhereInput = {
     Prisma.WorkspaceAccountScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   >;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   label?: Prisma.LabelListRelationFilter;
 };
 
@@ -205,7 +205,7 @@ export type TrackOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
@@ -224,7 +224,7 @@ export type TrackWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     >;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
   "id"
@@ -267,7 +267,7 @@ export type TrackCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTracksInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
   label?: Prisma.LabelCreateNestedManyWithoutTracksInput;
 };
 
@@ -278,7 +278,7 @@ export type TrackUncheckedCreateInput = {
   status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutTracksInput;
 };
 
@@ -291,7 +291,7 @@ export type TrackUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTracksNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
   label?: Prisma.LabelUpdateManyWithoutTracksNestedInput;
 };
 
@@ -304,7 +304,7 @@ export type TrackUncheckedUpdateInput = {
     | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutTracksNestedInput;
 };
 
@@ -545,87 +545,87 @@ export type TrackUncheckedUpdateManyWithoutLabelNestedInput = {
   deleteMany?: Prisma.TrackScalarWhereInput | Prisma.TrackScalarWhereInput[];
 };
 
-export type TrackCreateNestedManyWithoutSharedWorkspaceAccountAccessInput = {
+export type TrackCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput = {
   create?:
     | Prisma.XOR<
-        Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   connect?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
 };
 
-export type TrackUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+export type TrackUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     connect?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
   };
 
-export type TrackUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput = {
+export type TrackUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput = {
   create?:
     | Prisma.XOR<
-        Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   upsert?:
-    | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   set?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
   disconnect?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
   delete?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
   connect?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
   update?:
-    | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   updateMany?:
-    | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
   deleteMany?: Prisma.TrackScalarWhereInput | Prisma.TrackScalarWhereInput[];
 };
 
-export type TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+export type TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     upsert?:
-      | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     set?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
     disconnect?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
     delete?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
     connect?: Prisma.TrackWhereUniqueInput | Prisma.TrackWhereUniqueInput[];
     update?:
-      | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     updateMany?:
-      | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
     deleteMany?: Prisma.TrackScalarWhereInput | Prisma.TrackScalarWhereInput[];
   };
 
@@ -635,7 +635,7 @@ export type TrackCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
   label?: Prisma.LabelCreateNestedManyWithoutTracksInput;
 };
 
@@ -645,7 +645,7 @@ export type TrackUncheckedCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutTracksInput;
 };
 
@@ -711,7 +711,7 @@ export type TrackCreateWithoutLabelInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTracksInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
 };
 
 export type TrackUncheckedCreateWithoutLabelInput = {
@@ -721,7 +721,7 @@ export type TrackUncheckedCreateWithoutLabelInput = {
   status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
 };
 
 export type TrackCreateOrConnectWithoutLabelInput = {
@@ -760,7 +760,7 @@ export type TrackUpdateManyWithWhereWithoutLabelInput = {
   >;
 };
 
-export type TrackCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type TrackCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.TRACK_STATUS;
@@ -770,7 +770,7 @@ export type TrackCreateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelCreateNestedManyWithoutTracksInput;
 };
 
-export type TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -780,43 +780,44 @@ export type TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutTracksInput;
 };
 
-export type TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
+export type TrackCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput = {
   where: Prisma.TrackWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput,
-    Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput,
+    Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
   >;
 };
 
-export type TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type TrackUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.TrackWhereUniqueInput;
     update: Prisma.XOR<
-      Prisma.TrackUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.TrackUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
     create: Prisma.XOR<
-      Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.TrackCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type TrackUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.TrackWhereUniqueInput;
     data: Prisma.XOR<
-      Prisma.TrackUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.TrackUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput = {
-  where: Prisma.TrackScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.TrackUpdateManyMutationInput,
-    Prisma.TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
-  >;
-};
+export type TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    where: Prisma.TrackScalarWhereInput;
+    data: Prisma.XOR<
+      Prisma.TrackUpdateManyMutationInput,
+      Prisma.TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput
+    >;
+  };
 
 export type TrackCreateManyWorkspaceAccountInput = {
   id?: string;
@@ -834,7 +835,7 @@ export type TrackUpdateWithoutWorkspaceAccountInput = {
     | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
   label?: Prisma.LabelUpdateManyWithoutTracksNestedInput;
 };
 
@@ -846,7 +847,7 @@ export type TrackUncheckedUpdateWithoutWorkspaceAccountInput = {
     | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutTracksNestedInput;
 };
 
@@ -869,7 +870,7 @@ export type TrackUpdateWithoutLabelInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTracksNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
 };
 
 export type TrackUncheckedUpdateWithoutLabelInput = {
@@ -881,7 +882,7 @@ export type TrackUncheckedUpdateWithoutLabelInput = {
     | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
 };
 
 export type TrackUncheckedUpdateManyWithoutLabelInput = {
@@ -895,7 +896,7 @@ export type TrackUncheckedUpdateManyWithoutLabelInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type TrackUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type TrackUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
@@ -907,7 +908,7 @@ export type TrackUpdateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelUpdateManyWithoutTracksNestedInput;
 };
 
-export type TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -919,23 +920,24 @@ export type TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelUncheckedUpdateManyWithoutTracksNestedInput;
 };
 
-export type TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+export type TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
+      | $Enums.TRACK_STATUS;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
 /**
  * Count Type TrackCountOutputType
  */
 
 export type TrackCountOutputType = {
-  sharedWorkspaceAccountAccess: number;
+  sharedWorkspaceAccountAccesses: number;
   label: number;
 };
 
@@ -943,9 +945,9 @@ export type TrackCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  sharedWorkspaceAccountAccess?:
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | TrackCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+    | TrackCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
   label?: boolean | TrackCountOutputTypeCountLabelArgs;
 };
 
@@ -965,7 +967,7 @@ export type TrackCountOutputTypeDefaultArgs<
 /**
  * TrackCountOutputType without action
  */
-export type TrackCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
+export type TrackCountOutputTypeCountSharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -994,9 +996,9 @@ export type TrackSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-    sharedWorkspaceAccountAccess?:
+    sharedWorkspaceAccountAccesses?:
       | boolean
-      | Prisma.Track$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+      | Prisma.Track$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
     label?: boolean | Prisma.Track$labelArgs<ExtArgs>;
     _count?: boolean | Prisma.TrackCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -1061,9 +1063,9 @@ export type TrackInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-  sharedWorkspaceAccountAccess?:
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | Prisma.Track$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    | Prisma.Track$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
   label?: boolean | Prisma.Track$labelArgs<ExtArgs>;
   _count?: boolean | Prisma.TrackCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -1087,7 +1089,7 @@ export type $TrackPayload<
   name: "Track";
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
-    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1662,12 +1664,12 @@ export interface Prisma__TrackClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedWorkspaceAccountAccess<
-    T extends Prisma.Track$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
+  sharedWorkspaceAccountAccesses<
+    T extends Prisma.Track$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
     args?: Prisma.Subset<
       T,
-      Prisma.Track$sharedWorkspaceAccountAccessArgs<ExtArgs>
+      Prisma.Track$sharedWorkspaceAccountAccessesArgs<ExtArgs>
     >
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
@@ -2186,9 +2188,9 @@ export type TrackDeleteManyArgs<
 };
 
 /**
- * Track.sharedWorkspaceAccountAccess
+ * Track.sharedWorkspaceAccountAccesses
  */
-export type Track$sharedWorkspaceAccountAccessArgs<
+export type Track$sharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

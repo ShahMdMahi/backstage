@@ -120,6 +120,7 @@ export function LoginForm() {
         return;
       }
 
+      toast.success(result.message || "Successfully logged in!");
       if (!toUrl) {
         switch (result?.data?.role) {
           case ROLE.SYSTEM_OWNER:
@@ -136,7 +137,6 @@ export function LoginForm() {
         }
       }
       router.push(toUrl);
-      toast.success(result.message || "Successfully logged in!");
     } catch (error) {
       console.error("Login error:", error);
       setFormMessage("An unexpected error occurred. Please try again.");

@@ -193,7 +193,7 @@ export type VideoWhereInput = {
     Prisma.WorkspaceAccountScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   >;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   label?: Prisma.LabelListRelationFilter;
 };
 
@@ -205,7 +205,7 @@ export type VideoOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   label?: Prisma.LabelOrderByRelationAggregateInput;
 };
 
@@ -224,7 +224,7 @@ export type VideoWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     >;
-    sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
+    sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
   "id"
@@ -267,7 +267,7 @@ export type VideoCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutVideosInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutVideosInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutVideosInput;
   label?: Prisma.LabelCreateNestedManyWithoutVideosInput;
 };
 
@@ -278,7 +278,7 @@ export type VideoUncheckedCreateInput = {
   status?: $Enums.VIDEO_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutVideosInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutVideosInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutVideosInput;
 };
 
@@ -291,7 +291,7 @@ export type VideoUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutVideosNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutVideosNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutVideosNestedInput;
   label?: Prisma.LabelUpdateManyWithoutVideosNestedInput;
 };
 
@@ -304,7 +304,7 @@ export type VideoUncheckedUpdateInput = {
     | $Enums.VIDEO_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutVideosNestedInput;
 };
 
@@ -545,87 +545,87 @@ export type VideoUncheckedUpdateManyWithoutLabelNestedInput = {
   deleteMany?: Prisma.VideoScalarWhereInput | Prisma.VideoScalarWhereInput[];
 };
 
-export type VideoCreateNestedManyWithoutSharedWorkspaceAccountAccessInput = {
+export type VideoCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput = {
   create?:
     | Prisma.XOR<
-        Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   connect?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
 };
 
-export type VideoUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessInput =
+export type VideoUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     connect?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
   };
 
-export type VideoUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput = {
+export type VideoUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput = {
   create?:
     | Prisma.XOR<
-        Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput,
-        Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+        Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput,
+        Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
       >
-    | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput[]
-    | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput[]
+    | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
   connectOrCreate?:
-    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
   upsert?:
-    | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   set?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
   disconnect?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
   delete?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
   connect?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
   update?:
-    | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
   updateMany?:
-    | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-    | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+    | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+    | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
   deleteMany?: Prisma.VideoScalarWhereInput | Prisma.VideoScalarWhereInput[];
 };
 
-export type VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessNestedInput =
+export type VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
     create?:
       | Prisma.XOR<
-          Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput,
-          Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+          Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput,
+          Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
         >
-      | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput[]
-      | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput[]
+      | Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput[];
     connectOrCreate?:
-      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput[];
     upsert?:
-      | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     set?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
     disconnect?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
     delete?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
     connect?: Prisma.VideoWhereUniqueInput | Prisma.VideoWhereUniqueInput[];
     update?:
-      | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput[];
     updateMany?:
-      | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput
-      | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput[];
+      | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput
+      | Prisma.VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput[];
     deleteMany?: Prisma.VideoScalarWhereInput | Prisma.VideoScalarWhereInput[];
   };
 
@@ -635,7 +635,7 @@ export type VideoCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.VIDEO_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutVideosInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutVideosInput;
   label?: Prisma.LabelCreateNestedManyWithoutVideosInput;
 };
 
@@ -645,7 +645,7 @@ export type VideoUncheckedCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.VIDEO_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutVideosInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutVideosInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutVideosInput;
 };
 
@@ -711,7 +711,7 @@ export type VideoCreateWithoutLabelInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutVideosInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutVideosInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutVideosInput;
 };
 
 export type VideoUncheckedCreateWithoutLabelInput = {
@@ -721,7 +721,7 @@ export type VideoUncheckedCreateWithoutLabelInput = {
   status?: $Enums.VIDEO_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutVideosInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutVideosInput;
 };
 
 export type VideoCreateOrConnectWithoutLabelInput = {
@@ -760,7 +760,7 @@ export type VideoUpdateManyWithWhereWithoutLabelInput = {
   >;
 };
 
-export type VideoCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type VideoCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.VIDEO_STATUS;
@@ -770,7 +770,7 @@ export type VideoCreateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelCreateNestedManyWithoutVideosInput;
 };
 
-export type VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
+export type VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -780,43 +780,44 @@ export type VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutVideosInput;
 };
 
-export type VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
+export type VideoCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput = {
   where: Prisma.VideoWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput,
-    Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+    Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput,
+    Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
   >;
 };
 
-export type VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type VideoUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.VideoWhereUniqueInput;
     update: Prisma.XOR<
-      Prisma.VideoUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.VideoUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
     create: Prisma.XOR<
-      Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.VideoCreateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.VideoUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessInput =
+export type VideoUpdateWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
     where: Prisma.VideoWhereUniqueInput;
     data: Prisma.XOR<
-      Prisma.VideoUpdateWithoutSharedWorkspaceAccountAccessInput,
-      Prisma.VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+      Prisma.VideoUpdateWithoutSharedWorkspaceAccountAccessesInput,
+      Prisma.VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
 
-export type VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessInput = {
-  where: Prisma.VideoScalarWhereInput;
-  data: Prisma.XOR<
-    Prisma.VideoUpdateManyMutationInput,
-    Prisma.VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput
-  >;
-};
+export type VideoUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    where: Prisma.VideoScalarWhereInput;
+    data: Prisma.XOR<
+      Prisma.VideoUpdateManyMutationInput,
+      Prisma.VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput
+    >;
+  };
 
 export type VideoCreateManyWorkspaceAccountInput = {
   id?: string;
@@ -834,7 +835,7 @@ export type VideoUpdateWithoutWorkspaceAccountInput = {
     | $Enums.VIDEO_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutVideosNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutVideosNestedInput;
   label?: Prisma.LabelUpdateManyWithoutVideosNestedInput;
 };
 
@@ -846,7 +847,7 @@ export type VideoUncheckedUpdateWithoutWorkspaceAccountInput = {
     | $Enums.VIDEO_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutVideosNestedInput;
 };
 
@@ -869,7 +870,7 @@ export type VideoUpdateWithoutLabelInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutVideosNestedInput;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutVideosNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutVideosNestedInput;
 };
 
 export type VideoUncheckedUpdateWithoutLabelInput = {
@@ -881,7 +882,7 @@ export type VideoUncheckedUpdateWithoutLabelInput = {
     | $Enums.VIDEO_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosNestedInput;
+  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosNestedInput;
 };
 
 export type VideoUncheckedUpdateManyWithoutLabelInput = {
@@ -895,7 +896,7 @@ export type VideoUncheckedUpdateManyWithoutLabelInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
-export type VideoUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type VideoUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
@@ -907,7 +908,7 @@ export type VideoUpdateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelUpdateManyWithoutVideosNestedInput;
 };
 
-export type VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
+export type VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -919,23 +920,24 @@ export type VideoUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   label?: Prisma.LabelUncheckedUpdateManyWithoutVideosNestedInput;
 };
 
-export type VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumVIDEO_STATUSFieldUpdateOperationsInput
-    | $Enums.VIDEO_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-};
+export type VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
+  {
+    id?: Prisma.StringFieldUpdateOperationsInput | string;
+    workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+    metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+    status?:
+      | Prisma.EnumVIDEO_STATUSFieldUpdateOperationsInput
+      | $Enums.VIDEO_STATUS;
+    createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+    updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
 /**
  * Count Type VideoCountOutputType
  */
 
 export type VideoCountOutputType = {
-  sharedWorkspaceAccountAccess: number;
+  sharedWorkspaceAccountAccesses: number;
   label: number;
 };
 
@@ -943,9 +945,9 @@ export type VideoCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  sharedWorkspaceAccountAccess?:
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | VideoCountOutputTypeCountSharedWorkspaceAccountAccessArgs;
+    | VideoCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
   label?: boolean | VideoCountOutputTypeCountLabelArgs;
 };
 
@@ -965,7 +967,7 @@ export type VideoCountOutputTypeDefaultArgs<
 /**
  * VideoCountOutputType without action
  */
-export type VideoCountOutputTypeCountSharedWorkspaceAccountAccessArgs<
+export type VideoCountOutputTypeCountSharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
@@ -994,9 +996,9 @@ export type VideoSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-    sharedWorkspaceAccountAccess?:
+    sharedWorkspaceAccountAccesses?:
       | boolean
-      | Prisma.Video$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+      | Prisma.Video$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
     label?: boolean | Prisma.Video$labelArgs<ExtArgs>;
     _count?: boolean | Prisma.VideoCountOutputTypeDefaultArgs<ExtArgs>;
   },
@@ -1061,9 +1063,9 @@ export type VideoInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-  sharedWorkspaceAccountAccess?:
+  sharedWorkspaceAccountAccesses?:
     | boolean
-    | Prisma.Video$sharedWorkspaceAccountAccessArgs<ExtArgs>;
+    | Prisma.Video$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
   label?: boolean | Prisma.Video$labelArgs<ExtArgs>;
   _count?: boolean | Prisma.VideoCountOutputTypeDefaultArgs<ExtArgs>;
 };
@@ -1087,7 +1089,7 @@ export type $VideoPayload<
   name: "Video";
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
-    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
+    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     label: Prisma.$LabelPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
@@ -1662,12 +1664,12 @@ export interface Prisma__VideoClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedWorkspaceAccountAccess<
-    T extends Prisma.Video$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
+  sharedWorkspaceAccountAccesses<
+    T extends Prisma.Video$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
     args?: Prisma.Subset<
       T,
-      Prisma.Video$sharedWorkspaceAccountAccessArgs<ExtArgs>
+      Prisma.Video$sharedWorkspaceAccountAccessesArgs<ExtArgs>
     >
   ): Prisma.PrismaPromise<
     | runtime.Types.Result.GetResult<
@@ -2186,9 +2188,9 @@ export type VideoDeleteManyArgs<
 };
 
 /**
- * Video.sharedWorkspaceAccountAccess
+ * Video.sharedWorkspaceAccountAccesses
  */
-export type Video$sharedWorkspaceAccountAccessArgs<
+export type Video$sharedWorkspaceAccountAccessesArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

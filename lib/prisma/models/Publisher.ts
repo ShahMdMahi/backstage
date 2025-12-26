@@ -196,7 +196,6 @@ export type PublisherWhereInput = {
     Prisma.WorkspaceAccountScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   >;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   label?: Prisma.LabelListRelationFilter;
 };
@@ -209,7 +208,6 @@ export type PublisherOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   label?: Prisma.LabelOrderByRelationAggregateInput;
 };
@@ -231,7 +229,6 @@ export type PublisherWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     >;
-    accessContent?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
@@ -275,7 +272,6 @@ export type PublisherCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPublishersInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublisherInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublishersInput;
   label?: Prisma.LabelCreateNestedManyWithoutPublishersInput;
 };
@@ -287,7 +283,6 @@ export type PublisherUncheckedCreateInput = {
   status?: $Enums.PUBLISHER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublisherInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublishersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutPublishersInput;
 };
@@ -301,7 +296,6 @@ export type PublisherUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPublishersNestedInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublisherNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublishersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPublishersNestedInput;
 };
@@ -315,7 +309,6 @@ export type PublisherUncheckedUpdateInput = {
     | $Enums.PUBLISHER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublisherNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutPublishersNestedInput;
 };
@@ -383,11 +376,6 @@ export type PublisherMinOrderByAggregateInput = {
   status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
-};
-
-export type PublisherNullableScalarRelationFilter = {
-  is?: Prisma.PublisherWhereInput | null;
-  isNot?: Prisma.PublisherWhereInput | null;
 };
 
 export type PublisherCreateNestedManyWithoutWorkspaceAccountInput = {
@@ -602,15 +590,6 @@ export type PublisherUncheckedUpdateManyWithoutLabelNestedInput = {
     | Prisma.PublisherScalarWhereInput[];
 };
 
-export type PublisherCreateNestedOneWithoutAccessContentInput = {
-  create?: Prisma.XOR<
-    Prisma.PublisherCreateWithoutAccessContentInput,
-    Prisma.PublisherUncheckedCreateWithoutAccessContentInput
-  >;
-  connectOrCreate?: Prisma.PublisherCreateOrConnectWithoutAccessContentInput;
-  connect?: Prisma.PublisherWhereUniqueInput;
-};
-
 export type PublisherCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     create?:
@@ -644,25 +623,6 @@ export type PublisherUncheckedCreateNestedManyWithoutSharedWorkspaceAccountAcces
       | Prisma.PublisherWhereUniqueInput
       | Prisma.PublisherWhereUniqueInput[];
   };
-
-export type PublisherUpdateOneWithoutAccessContentNestedInput = {
-  create?: Prisma.XOR<
-    Prisma.PublisherCreateWithoutAccessContentInput,
-    Prisma.PublisherUncheckedCreateWithoutAccessContentInput
-  >;
-  connectOrCreate?: Prisma.PublisherCreateOrConnectWithoutAccessContentInput;
-  upsert?: Prisma.PublisherUpsertWithoutAccessContentInput;
-  disconnect?: Prisma.PublisherWhereInput | boolean;
-  delete?: Prisma.PublisherWhereInput | boolean;
-  connect?: Prisma.PublisherWhereUniqueInput;
-  update?: Prisma.XOR<
-    Prisma.XOR<
-      Prisma.PublisherUpdateToOneWithWhereWithoutAccessContentInput,
-      Prisma.PublisherUpdateWithoutAccessContentInput
-    >,
-    Prisma.PublisherUncheckedUpdateWithoutAccessContentInput
-  >;
-};
 
 export type PublisherUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput =
   {
@@ -742,7 +702,6 @@ export type PublisherCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.PUBLISHER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublisherInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublishersInput;
   label?: Prisma.LabelCreateNestedManyWithoutPublishersInput;
 };
@@ -753,7 +712,6 @@ export type PublisherUncheckedCreateWithoutWorkspaceAccountInput = {
   status?: $Enums.PUBLISHER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublisherInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublishersInput;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutPublishersInput;
 };
@@ -822,7 +780,6 @@ export type PublisherCreateWithoutLabelInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPublishersInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublisherInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublishersInput;
 };
 
@@ -833,7 +790,6 @@ export type PublisherUncheckedCreateWithoutLabelInput = {
   status?: $Enums.PUBLISHER_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublisherInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublishersInput;
 };
 
@@ -873,36 +829,6 @@ export type PublisherUpdateManyWithWhereWithoutLabelInput = {
   >;
 };
 
-export type PublisherCreateWithoutAccessContentInput = {
-  id?: string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.PUBLISHER_STATUS;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPublishersInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublishersInput;
-  label?: Prisma.LabelCreateNestedManyWithoutPublishersInput;
-};
-
-export type PublisherUncheckedCreateWithoutAccessContentInput = {
-  id?: string;
-  workspaceAccountId: string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.PUBLISHER_STATUS;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublishersInput;
-  label?: Prisma.LabelUncheckedCreateNestedManyWithoutPublishersInput;
-};
-
-export type PublisherCreateOrConnectWithoutAccessContentInput = {
-  where: Prisma.PublisherWhereUniqueInput;
-  create: Prisma.XOR<
-    Prisma.PublisherCreateWithoutAccessContentInput,
-    Prisma.PublisherUncheckedCreateWithoutAccessContentInput
-  >;
-};
-
 export type PublisherCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
@@ -910,7 +836,6 @@ export type PublisherCreateWithoutSharedWorkspaceAccountAccessesInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutPublishersInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutPublisherInput;
   label?: Prisma.LabelCreateNestedManyWithoutPublishersInput;
 };
 
@@ -922,7 +847,6 @@ export type PublisherUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput =
     status?: $Enums.PUBLISHER_STATUS;
     createdAt?: Date | string;
     updatedAt?: Date | string;
-    accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutPublisherInput;
     label?: Prisma.LabelUncheckedCreateNestedManyWithoutPublishersInput;
   };
 
@@ -934,52 +858,6 @@ export type PublisherCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput =
       Prisma.PublisherUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
     >;
   };
-
-export type PublisherUpsertWithoutAccessContentInput = {
-  update: Prisma.XOR<
-    Prisma.PublisherUpdateWithoutAccessContentInput,
-    Prisma.PublisherUncheckedUpdateWithoutAccessContentInput
-  >;
-  create: Prisma.XOR<
-    Prisma.PublisherCreateWithoutAccessContentInput,
-    Prisma.PublisherUncheckedCreateWithoutAccessContentInput
-  >;
-  where?: Prisma.PublisherWhereInput;
-};
-
-export type PublisherUpdateToOneWithWhereWithoutAccessContentInput = {
-  where?: Prisma.PublisherWhereInput;
-  data: Prisma.XOR<
-    Prisma.PublisherUpdateWithoutAccessContentInput,
-    Prisma.PublisherUncheckedUpdateWithoutAccessContentInput
-  >;
-};
-
-export type PublisherUpdateWithoutAccessContentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumPUBLISHER_STATUSFieldUpdateOperationsInput
-    | $Enums.PUBLISHER_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPublishersNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublishersNestedInput;
-  label?: Prisma.LabelUpdateManyWithoutPublishersNestedInput;
-};
-
-export type PublisherUncheckedUpdateWithoutAccessContentInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumPUBLISHER_STATUSFieldUpdateOperationsInput
-    | $Enums.PUBLISHER_STATUS;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersNestedInput;
-  label?: Prisma.LabelUncheckedUpdateManyWithoutPublishersNestedInput;
-};
 
 export type PublisherUpsertWithWhereUniqueWithoutSharedWorkspaceAccountAccessesInput =
   {
@@ -1028,7 +906,6 @@ export type PublisherUpdateWithoutWorkspaceAccountInput = {
     | $Enums.PUBLISHER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublisherNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublishersNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPublishersNestedInput;
 };
@@ -1041,7 +918,6 @@ export type PublisherUncheckedUpdateWithoutWorkspaceAccountInput = {
     | $Enums.PUBLISHER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublisherNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersNestedInput;
   label?: Prisma.LabelUncheckedUpdateManyWithoutPublishersNestedInput;
 };
@@ -1065,7 +941,6 @@ export type PublisherUpdateWithoutLabelInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPublishersNestedInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublisherNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublishersNestedInput;
 };
 
@@ -1078,7 +953,6 @@ export type PublisherUncheckedUpdateWithoutLabelInput = {
     | $Enums.PUBLISHER_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublisherNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersNestedInput;
 };
 
@@ -1102,7 +976,6 @@ export type PublisherUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutPublishersNestedInput;
-  accessContent?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutPublisherNestedInput;
   label?: Prisma.LabelUpdateManyWithoutPublishersNestedInput;
 };
 
@@ -1116,7 +989,6 @@ export type PublisherUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput =
       | $Enums.PUBLISHER_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    accessContent?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublisherNestedInput;
     label?: Prisma.LabelUncheckedUpdateManyWithoutPublishersNestedInput;
   };
 
@@ -1137,7 +1009,6 @@ export type PublisherUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInp
  */
 
 export type PublisherCountOutputType = {
-  accessContent: number;
   sharedWorkspaceAccountAccesses: number;
   label: number;
 };
@@ -1146,7 +1017,6 @@ export type PublisherCountOutputTypeSelect<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  accessContent?: boolean | PublisherCountOutputTypeCountAccessContentArgs;
   sharedWorkspaceAccountAccesses?:
     | boolean
     | PublisherCountOutputTypeCountSharedWorkspaceAccountAccessesArgs;
@@ -1164,16 +1034,6 @@ export type PublisherCountOutputTypeDefaultArgs<
    * Select specific fields to fetch from the PublisherCountOutputType
    */
   select?: Prisma.PublisherCountOutputTypeSelect<ExtArgs> | null;
-};
-
-/**
- * PublisherCountOutputType without action
- */
-export type PublisherCountOutputTypeCountAccessContentArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
 };
 
 /**
@@ -1208,7 +1068,6 @@ export type PublisherSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-    accessContent?: boolean | Prisma.Publisher$accessContentArgs<ExtArgs>;
     sharedWorkspaceAccountAccesses?:
       | boolean
       | Prisma.Publisher$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
@@ -1276,7 +1135,6 @@ export type PublisherInclude<
     runtime.Types.Extensions.DefaultArgs,
 > = {
   workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
-  accessContent?: boolean | Prisma.Publisher$accessContentArgs<ExtArgs>;
   sharedWorkspaceAccountAccesses?:
     | boolean
     | Prisma.Publisher$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
@@ -1303,7 +1161,6 @@ export type $PublisherPayload<
   name: "Publisher";
   objects: {
     workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
-    accessContent: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     label: Prisma.$LabelPayload<ExtArgs>[];
   };
@@ -1879,17 +1736,6 @@ export interface Prisma__PublisherClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  accessContent<T extends Prisma.Publisher$accessContentArgs<ExtArgs> = {}>(
-    args?: Prisma.Subset<T, Prisma.Publisher$accessContentArgs<ExtArgs>>
-  ): Prisma.PrismaPromise<
-    | runtime.Types.Result.GetResult<
-        Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>,
-        T,
-        "findMany",
-        GlobalOmitOptions
-      >
-    | Null
-  >;
   sharedWorkspaceAccountAccesses<
     T extends Prisma.Publisher$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
   >(
@@ -2429,37 +2275,6 @@ export type PublisherDeleteManyArgs<
    * Limit how many Publishers to delete.
    */
   limit?: number;
-};
-
-/**
- * Publisher.accessContent
- */
-export type Publisher$accessContentArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  /**
-   * Select specific fields to fetch from the SharedWorkspaceAccountAccess
-   */
-  select?: Prisma.SharedWorkspaceAccountAccessSelect<ExtArgs> | null;
-  /**
-   * Omit specific fields from the SharedWorkspaceAccountAccess
-   */
-  omit?: Prisma.SharedWorkspaceAccountAccessOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SharedWorkspaceAccountAccessInclude<ExtArgs> | null;
-  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
-  orderBy?:
-    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput
-    | Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput[];
-  cursor?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
-  take?: number;
-  skip?: number;
-  distinct?:
-    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum
-    | Prisma.SharedWorkspaceAccountAccessScalarFieldEnum[];
 };
 
 /**
