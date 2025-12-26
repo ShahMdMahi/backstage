@@ -6,7 +6,7 @@ const globalForTelegram = globalThis as unknown as {
 
 export const telegramBot =
   globalForTelegram.telegramBot ??
-  new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, { polling: true });
+  new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, { polling: false });
 
 if (process.env.NODE_ENV !== "production")
   globalForTelegram.telegramBot = telegramBot;
