@@ -5,7 +5,7 @@ import { logAuditEvent } from "@/actions/system/audit-log";
 import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY, ROLE } from "@/lib/prisma/enums";
 import {
   Session,
-  SharedWorkspaceAccountAccess,
+  // SharedWorkspaceAccountAccess,
   SystemAccess,
   User,
 } from "@/lib/prisma/client";
@@ -24,7 +24,7 @@ export async function proxy(request: NextRequest) {
   let dbSession: (Session & { user: User }) | null = null;
   let role: ROLE | null = null;
   let systemAccess: SystemAccess | null = null;
-  let sharedAccess: SharedWorkspaceAccountAccess | null = null;
+  // let sharedAccess: SharedWorkspaceAccountAccess | null = null;
 
   // Route checks
   const isAuthRoute = url.pathname.startsWith("/auth");
@@ -475,113 +475,112 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  if (role === normalUser) {
-    try {
-      sharedAccess = await prisma.sharedWorkspaceAccountAccess.findFirst({
-        where: {
-          userId: dbSession.userId,
-          revokedAt: null,
-        },
-      });
+  // if (role === normalUser) {
+  //   try {
+  //     sharedAccess = await prisma.sharedWorkspaceAccountAccess.findFirst({
+  //       where: {
+  //         userId: dbSession.userId,
+  //       },
+  //     });
 
-      if (!sharedAccess) {
-        try {
-          const session = await prisma.session.update({
-            where: { id: dbSession.id },
-            data: {
-              revokedAt: new Date(),
-              ipAddress: deviceInfo.ipAddress,
-              metadata: {
-                revokedReason: "Missing shared workspace account access",
-                deviceInfo: JSON.stringify(deviceInfo),
-              },
-            },
-          });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to missing shared workspace account access for user ID ${session.userId}`,
-            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-            user: { connect: { id: session.userId } },
-          });
-        } catch (error) {
-          console.error(
-            "Error revoking session due to missing shared access:",
-            error
-          );
-        }
-        response.cookies.delete("session_token");
-        return response;
-      }
+  //     if (!sharedAccess) {
+  //       try {
+  //         const session = await prisma.session.update({
+  //           where: { id: dbSession.id },
+  //           data: {
+  //             revokedAt: new Date(),
+  //             ipAddress: deviceInfo.ipAddress,
+  //             metadata: {
+  //               revokedReason: "Missing shared workspace account access",
+  //               deviceInfo: JSON.stringify(deviceInfo),
+  //             },
+  //           },
+  //         });
+  //         await logAuditEvent({
+  //           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+  //           entity: AUDIT_LOG_ENTITY.SESSION,
+  //           entityId: session.id,
+  //           description: `Session revoked due to missing shared workspace account access for user ID ${session.userId}`,
+  //           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+  //           user: { connect: { id: session.userId } },
+  //         });
+  //       } catch (error) {
+  //         console.error(
+  //           "Error revoking session due to missing shared access:",
+  //           error
+  //         );
+  //       }
+  //       response.cookies.delete("session_token");
+  //       return response;
+  //     }
 
-      if (sharedAccess.suspendedAt) {
-        try {
-          const session = await prisma.session.update({
-            where: { id: dbSession.id },
-            data: {
-              revokedAt: new Date(),
-              ipAddress: deviceInfo.ipAddress,
-              metadata: {
-                revokedReason: "Shared access suspended",
-                deviceInfo: JSON.stringify(deviceInfo),
-              },
-            },
-          });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to suspended shared access for user ID ${session.userId}`,
-            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-            user: { connect: { id: session.userId } },
-          });
-        } catch (error) {
-          console.error(
-            "Error revoking session for suspended shared access:",
-            error
-          );
-        }
-        response.cookies.delete("session_token");
-        return response;
-      }
+  //     if (sharedAccess.suspendedAt) {
+  //       try {
+  //         const session = await prisma.session.update({
+  //           where: { id: dbSession.id },
+  //           data: {
+  //             revokedAt: new Date(),
+  //             ipAddress: deviceInfo.ipAddress,
+  //             metadata: {
+  //               revokedReason: "Shared access suspended",
+  //               deviceInfo: JSON.stringify(deviceInfo),
+  //             },
+  //           },
+  //         });
+  //         await logAuditEvent({
+  //           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+  //           entity: AUDIT_LOG_ENTITY.SESSION,
+  //           entityId: session.id,
+  //           description: `Session revoked due to suspended shared access for user ID ${session.userId}`,
+  //           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+  //           user: { connect: { id: session.userId } },
+  //         });
+  //       } catch (error) {
+  //         console.error(
+  //           "Error revoking session for suspended shared access:",
+  //           error
+  //         );
+  //       }
+  //       response.cookies.delete("session_token");
+  //       return response;
+  //     }
 
-      if (sharedAccess.expiresAt < new Date()) {
-        try {
-          const session = await prisma.session.update({
-            where: { id: dbSession.id },
-            data: {
-              revokedAt: new Date(),
-              ipAddress: deviceInfo.ipAddress,
-              metadata: {
-                revokedReason: "Shared access expired",
-                deviceInfo: JSON.stringify(deviceInfo),
-              },
-            },
-          });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to expired shared access for user ID ${session.userId}`,
-            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-            user: { connect: { id: session.userId } },
-          });
-        } catch (error) {
-          console.error(
-            "Error revoking session for expired shared access:",
-            error
-          );
-        }
-        response.cookies.delete("session_token");
-        return response;
-      }
-    } catch (error) {
-      console.error("Error fetching shared access from database:", error);
-      response.cookies.delete("session_token");
-      return response;
-    }
-  }
+  //     if (sharedAccess.expiresAt < new Date()) {
+  //       try {
+  //         const session = await prisma.session.update({
+  //           where: { id: dbSession.id },
+  //           data: {
+  //             revokedAt: new Date(),
+  //             ipAddress: deviceInfo.ipAddress,
+  //             metadata: {
+  //               revokedReason: "Shared access expired",
+  //               deviceInfo: JSON.stringify(deviceInfo),
+  //             },
+  //           },
+  //         });
+  //         await logAuditEvent({
+  //           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+  //           entity: AUDIT_LOG_ENTITY.SESSION,
+  //           entityId: session.id,
+  //           description: `Session revoked due to expired shared access for user ID ${session.userId}`,
+  //           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+  //           user: { connect: { id: session.userId } },
+  //         });
+  //       } catch (error) {
+  //         console.error(
+  //           "Error revoking session for expired shared access:",
+  //           error
+  //         );
+  //       }
+  //       response.cookies.delete("session_token");
+  //       return response;
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching shared access from database:", error);
+  //     response.cookies.delete("session_token");
+  //     return response;
+  //   }
+  // }
 
   // ============================================================================
   // PHASE 5: Calculate All Permissions (NOW role is properly set)
