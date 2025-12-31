@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getDeviceInfo } from "@/lib/device-info";
-import { logAuditEvent } from "@/actions/system/audit-log";
+import { logAuditEvent } from "@/actions/shared/audit-log";
 import {
   AUDIT_LOG_ACTION,
   AUDIT_LOG_ENTITY,

@@ -53,7 +53,7 @@ import {
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ROLE } from "@/lib/prisma/enums";
-import { Session, User } from "@/lib/prisma/browser";
+import { Session, SystemAccess, User } from "@/lib/prisma/browser";
 
 type NavigationItem = {
   title: string;
@@ -71,8 +71,10 @@ type NavigationGroup = {
 
 export function Navigation({
   session,
+  systemAccess,
 }: {
   session: (Session & { user: User | null }) | null;
+  systemAccess: SystemAccess | null;
 }) {
   const pathname = usePathname();
 
@@ -81,35 +83,80 @@ export function Navigation({
   const admin = ROLE.SYSTEM_ADMIN;
   const user = ROLE.SYSTEM_USER;
 
+  const accessValid =
+    role === user &&
+    systemAccess &&
+    !systemAccess.suspendedAt &&
+    systemAccess.expiresAt > new Date();
+
   const haveHomeAccess = role === owner || role === admin;
   const haveSystemAccess = role === owner || role === admin || role === user;
   const haveMainAccess = haveHomeAccess || haveSystemAccess;
 
   const haveAccessesAccess = role === owner || role === admin;
-  const haveUsersAccess = role === owner || role === admin;
-  const haveWorkspacesAccess = role === owner || role === admin;
-  const haveReportingAccess = role === owner || role === admin;
+  const haveUsersAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.usersAccessLevel.length > 0);
+  const haveWorkspacesAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.workspaceAccountsAccessLevel.length > 0);
+  const haveReportingAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.reportingAccessLevel.length > 0);
   const haveAdministrationAccess =
     haveAccessesAccess ||
     haveUsersAccess ||
     haveWorkspacesAccess ||
     haveReportingAccess;
 
-  const haveReleasesAccess = role === owner || role === admin;
-  const haveTracksAccess = role === owner || role === admin;
-  const haveVideosAccess = role === owner || role === admin;
-  const haveRingtonesAccess = role === owner || role === admin;
+  const haveReleasesAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.releasesAccessLevel.length > 0);
+  const haveTracksAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.tracksAccessLevel.length > 0);
+  const haveVideosAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.videosAccessLevel.length > 0);
+  const haveRingtonesAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.ringtonesAccessLevel.length > 0);
   const haveAssetsAccess =
     haveReleasesAccess ||
     haveTracksAccess ||
     haveVideosAccess ||
     haveRingtonesAccess;
-  const haveArtistsAccess = role === owner || role === admin;
-  const havePerformersAccess = role === owner || role === admin;
-  const haveProducersAndEngineersAccess = role === owner || role === admin;
-  const haveWritersAccess = role === owner || role === admin;
-  const havePublishersAccess = role === owner || role === admin;
-  const haveLabelsAccess = role === owner || role === admin;
+  const haveArtistsAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.artistsAccessLevel.length > 0);
+  const havePerformersAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.performersAccessLevel.length > 0);
+  const haveProducersAndEngineersAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.producersAndEngineersAccessLevel.length > 0);
+  const haveWritersAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.writersAccessLevel.length > 0);
+  const havePublishersAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.publishersAccessLevel.length > 0);
+  const haveLabelsAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.labelsAccessLevel.length > 0);
   const haveContributorsAccess =
     haveArtistsAccess ||
     havePerformersAccess ||
@@ -119,14 +166,32 @@ export function Navigation({
     haveLabelsAccess;
   const haveCatalogAccess = haveAssetsAccess || haveContributorsAccess;
 
-  const haveTransactionsAccess = role === owner || role === admin;
-  const haveWithdrawalsAccess = role === owner || role === admin;
-  const haveRoyaltiesAccess = haveTransactionsAccess || haveWithdrawalsAccess;
+  const haveTransactionsAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.transactionsAccessLevel.length > 0);
+  const haveWithdrawsAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.withdrawsAccessLevel.length > 0);
+  const haveRoyaltiesAccess = haveTransactionsAccess || haveWithdrawsAccess;
 
-  const haveConsumptionAccess = role === owner || role === admin;
-  const haveEngagementAccess = role === owner || role === admin;
-  const haveRevenueAccess = role === owner || role === admin;
-  const haveGeoAccess = role === owner || role === admin;
+  const haveConsumptionAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.consumptionAccessLevel.length > 0);
+  const haveEngagementAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.engagementAccessLevel.length > 0);
+  const haveRevenueAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.revenueAccessLevel.length > 0);
+  const haveGeoAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.geoAccessLevel.length > 0);
   const haveAnalyticsAccess =
     haveConsumptionAccess ||
     haveEngagementAccess ||
@@ -134,7 +199,10 @@ export function Navigation({
     haveGeoAccess;
   const haveReportsAccess = haveAnalyticsAccess;
 
-  const haveRightsManagementAccess = role === owner || role === admin;
+  const haveRightsManagementAccess =
+    role === owner ||
+    role === admin ||
+    (accessValid && systemAccess.rightsManagementAccessLevel.length > 0);
   const haveServicesAccess = haveRightsManagementAccess;
 
   const navigation = [
@@ -292,7 +360,7 @@ export function Navigation({
           isOpen: pathname.startsWith("/system/royalties/transactions"),
           items: [],
         },
-        haveWithdrawalsAccess && {
+        haveWithdrawsAccess && {
           title: "Withdraws",
           url: "/system/royalties/withdraws",
           icon: BanknoteArrowDown,

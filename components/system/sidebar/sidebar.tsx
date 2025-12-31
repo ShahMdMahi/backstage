@@ -19,7 +19,7 @@ import {
   SidebarFooter,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { Session, User } from "@/lib/prisma/browser";
+import { Session, SystemAccess, User } from "@/lib/prisma/browser";
 
 // This is sample data.
 const data = {
@@ -61,9 +61,11 @@ const data = {
 
 export function SystemSidebar({
   session,
+  systemAccess,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
   session: (Session & { user: User | null }) | null;
+  systemAccess: SystemAccess | null;
 }) {
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -71,7 +73,7 @@ export function SystemSidebar({
         <WorkspaceSwitcher workspaces={data.teams} />
       </SidebarHeader>
       <SidebarContent className="no-scrollbar">
-        <Navigation session={session} />
+        <Navigation session={session} systemAccess={systemAccess} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser session={session} />

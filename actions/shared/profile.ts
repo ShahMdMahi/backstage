@@ -9,7 +9,7 @@ import {
 import { prisma } from "@/lib/prisma";
 import * as argon2 from "argon2";
 import z from "zod";
-import { logAuditEvent } from "../system/audit-log";
+import { logAuditEvent } from "./audit-log";
 import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
 import { User } from "@/lib/prisma/client";
 import { getDeviceInfo } from "@/lib/device-info";
