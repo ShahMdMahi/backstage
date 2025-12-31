@@ -29,12 +29,6 @@ export type SharedWorkspaceAccountAccessMinAggregateOutputType = {
   workspaceAccountId: string | null;
   userId: string | null;
   assignerId: string | null;
-  artistId: string | null;
-  performerId: string | null;
-  producerAndEngineerId: string | null;
-  writerId: string | null;
-  publisherId: string | null;
-  labelId: string | null;
   allReleases: boolean | null;
   allTracks: boolean | null;
   allVideos: boolean | null;
@@ -59,12 +53,6 @@ export type SharedWorkspaceAccountAccessMaxAggregateOutputType = {
   workspaceAccountId: string | null;
   userId: string | null;
   assignerId: string | null;
-  artistId: string | null;
-  performerId: string | null;
-  producerAndEngineerId: string | null;
-  writerId: string | null;
-  publisherId: string | null;
-  labelId: string | null;
   allReleases: boolean | null;
   allTracks: boolean | null;
   allVideos: boolean | null;
@@ -89,12 +77,6 @@ export type SharedWorkspaceAccountAccessCountAggregateOutputType = {
   workspaceAccountId: number;
   userId: number;
   assignerId: number;
-  artistId: number;
-  performerId: number;
-  producerAndEngineerId: number;
-  writerId: number;
-  publisherId: number;
-  labelId: number;
   allReleases: number;
   allTracks: number;
   allVideos: number;
@@ -107,6 +89,7 @@ export type SharedWorkspaceAccountAccessCountAggregateOutputType = {
   allLabels: number;
   allTransactions: number;
   allWithdrawals: number;
+  workspaceAccountAccessLevel: number;
   releaseAccessLevel: number;
   trackAccessLevel: number;
   videoAccessLevel: number;
@@ -133,12 +116,6 @@ export type SharedWorkspaceAccountAccessMinAggregateInputType = {
   workspaceAccountId?: true;
   userId?: true;
   assignerId?: true;
-  artistId?: true;
-  performerId?: true;
-  producerAndEngineerId?: true;
-  writerId?: true;
-  publisherId?: true;
-  labelId?: true;
   allReleases?: true;
   allTracks?: true;
   allVideos?: true;
@@ -163,12 +140,6 @@ export type SharedWorkspaceAccountAccessMaxAggregateInputType = {
   workspaceAccountId?: true;
   userId?: true;
   assignerId?: true;
-  artistId?: true;
-  performerId?: true;
-  producerAndEngineerId?: true;
-  writerId?: true;
-  publisherId?: true;
-  labelId?: true;
   allReleases?: true;
   allTracks?: true;
   allVideos?: true;
@@ -193,12 +164,6 @@ export type SharedWorkspaceAccountAccessCountAggregateInputType = {
   workspaceAccountId?: true;
   userId?: true;
   assignerId?: true;
-  artistId?: true;
-  performerId?: true;
-  producerAndEngineerId?: true;
-  writerId?: true;
-  publisherId?: true;
-  labelId?: true;
   allReleases?: true;
   allTracks?: true;
   allVideos?: true;
@@ -211,6 +176,7 @@ export type SharedWorkspaceAccountAccessCountAggregateInputType = {
   allLabels?: true;
   allTransactions?: true;
   allWithdrawals?: true;
+  workspaceAccountAccessLevel?: true;
   releaseAccessLevel?: true;
   trackAccessLevel?: true;
   videoAccessLevel?: true;
@@ -322,12 +288,6 @@ export type SharedWorkspaceAccountAccessGroupByOutputType = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId: string | null;
-  performerId: string | null;
-  producerAndEngineerId: string | null;
-  writerId: string | null;
-  publisherId: string | null;
-  labelId: string | null;
   allReleases: boolean;
   allTracks: boolean;
   allVideos: boolean;
@@ -340,18 +300,19 @@ export type SharedWorkspaceAccountAccessGroupByOutputType = {
   allLabels: boolean;
   allTransactions: boolean;
   allWithdrawals: boolean;
-  releaseAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  trackAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  videoAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  ringtoneAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  artistAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  performerAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  producerAndEngineerAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  writerAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  publisherAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  labelAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  transactionAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-  withdrawalAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  workspaceAccountAccessLevel: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  releaseAccessLevel: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
+  trackAccessLevel: $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
+  videoAccessLevel: $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
+  ringtoneAccessLevel: $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
+  artistAccessLevel: $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
+  performerAccessLevel: $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
+  producerAndEngineerAccessLevel: $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
+  writerAccessLevel: $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
+  publisherAccessLevel: $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
+  labelAccessLevel: $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
+  transactionAccessLevel: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
+  withdrawalAccessLevel: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata: runtime.JsonValue | null;
   role: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt: Date;
@@ -401,30 +362,6 @@ export type SharedWorkspaceAccountAccessWhereInput = {
     | string;
   userId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
   assignerId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
-  artistId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  performerId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  producerAndEngineerId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  writerId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  publisherId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  labelId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
   allReleases?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allTracks?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allVideos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
@@ -439,18 +376,19 @@ export type SharedWorkspaceAccountAccessWhereInput = {
   allLabels?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allTransactions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allWithdrawals?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  releaseAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  trackAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  videoAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  ringtoneAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  artistAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  performerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  producerAndEngineerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  writerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  publisherAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  labelAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  transactionAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  withdrawalAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  ringtoneAccessLevel?: Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  artistAccessLevel?: Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  performerAccessLevel?: Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  producerAndEngineerAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  writerAccessLevel?: Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
@@ -497,12 +435,6 @@ export type SharedWorkspaceAccountAccessOrderByWithRelationInput = {
   workspaceAccountId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  artistId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  performerId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  producerAndEngineerId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  writerId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  publisherId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  labelId?: Prisma.SortOrderInput | Prisma.SortOrder;
   allReleases?: Prisma.SortOrder;
   allTracks?: Prisma.SortOrder;
   allVideos?: Prisma.SortOrder;
@@ -515,6 +447,7 @@ export type SharedWorkspaceAccountAccessOrderByWithRelationInput = {
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
   allWithdrawals?: Prisma.SortOrder;
+  workspaceAccountAccessLevel?: Prisma.SortOrder;
   releaseAccessLevel?: Prisma.SortOrder;
   trackAccessLevel?: Prisma.SortOrder;
   videoAccessLevel?: Prisma.SortOrder;
@@ -565,30 +498,6 @@ export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
       | string;
     userId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
     assignerId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
-    artistId?:
-      | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-      | string
-      | null;
-    performerId?:
-      | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-      | string
-      | null;
-    writerId?:
-      | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-      | string
-      | null;
-    publisherId?:
-      | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-      | string
-      | null;
-    labelId?:
-      | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-      | string
-      | null;
     allReleases?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
     allTracks?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
     allVideos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
@@ -607,18 +516,19 @@ export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
     allWithdrawals?:
       | Prisma.BoolFilter<"SharedWorkspaceAccountAccess">
       | boolean;
-    releaseAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    trackAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    videoAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    ringtoneAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    artistAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    performerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    producerAndEngineerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    writerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    publisherAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    labelAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    transactionAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    withdrawalAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    ringtoneAccessLevel?: Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    artistAccessLevel?: Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    performerAccessLevel?: Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    producerAndEngineerAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    writerAccessLevel?: Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
     metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
@@ -670,12 +580,6 @@ export type SharedWorkspaceAccountAccessOrderByWithAggregationInput = {
   workspaceAccountId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  artistId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  performerId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  producerAndEngineerId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  writerId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  publisherId?: Prisma.SortOrderInput | Prisma.SortOrder;
-  labelId?: Prisma.SortOrderInput | Prisma.SortOrder;
   allReleases?: Prisma.SortOrder;
   allTracks?: Prisma.SortOrder;
   allVideos?: Prisma.SortOrder;
@@ -688,6 +592,7 @@ export type SharedWorkspaceAccountAccessOrderByWithAggregationInput = {
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
   allWithdrawals?: Prisma.SortOrder;
+  workspaceAccountAccessLevel?: Prisma.SortOrder;
   releaseAccessLevel?: Prisma.SortOrder;
   trackAccessLevel?: Prisma.SortOrder;
   videoAccessLevel?: Prisma.SortOrder;
@@ -731,30 +636,6 @@ export type SharedWorkspaceAccountAccessScalarWhereWithAggregatesInput = {
   assignerId?:
     | Prisma.StringWithAggregatesFilter<"SharedWorkspaceAccountAccess">
     | string;
-  artistId?:
-    | Prisma.StringNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  performerId?:
-    | Prisma.StringNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  producerAndEngineerId?:
-    | Prisma.StringNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  writerId?:
-    | Prisma.StringNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  publisherId?:
-    | Prisma.StringNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  labelId?:
-    | Prisma.StringNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
   allReleases?:
     | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
     | boolean;
@@ -791,18 +672,19 @@ export type SharedWorkspaceAccountAccessScalarWhereWithAggregatesInput = {
   allWithdrawals?:
     | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
     | boolean;
-  releaseAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  trackAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  videoAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  ringtoneAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  artistAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  performerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  producerAndEngineerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  writerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  publisherAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  labelAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  transactionAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  withdrawalAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  ringtoneAccessLevel?: Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  artistAccessLevel?: Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  performerAccessLevel?: Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  producerAndEngineerAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  writerAccessLevel?: Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEWithAggregatesFilter<"SharedWorkspaceAccountAccess">
@@ -828,12 +710,6 @@ export type SharedWorkspaceAccountAccessScalarWhereWithAggregatesInput = {
 
 export type SharedWorkspaceAccountAccessCreateInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -846,42 +722,45 @@ export type SharedWorkspaceAccountAccessCreateInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -910,12 +789,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -928,42 +801,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -986,15 +862,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateInput = {
 
 export type SharedWorkspaceAccountAccessUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -1007,42 +874,45 @@ export type SharedWorkspaceAccountAccessUpdateInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1077,15 +947,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -1098,42 +959,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1165,12 +1029,6 @@ export type SharedWorkspaceAccountAccessCreateManyInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -1183,42 +1041,45 @@ export type SharedWorkspaceAccountAccessCreateManyInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -1229,15 +1090,6 @@ export type SharedWorkspaceAccountAccessCreateManyInput = {
 
 export type SharedWorkspaceAccountAccessUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -1250,42 +1102,45 @@ export type SharedWorkspaceAccountAccessUpdateManyMutationInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1305,15 +1160,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -1326,42 +1172,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1386,23 +1235,263 @@ export type SharedWorkspaceAccountAccessOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder;
 };
 
-export type EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<
+export type EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<
   $PrismaModel = never,
 > = {
   equals?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[]
-    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   has?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   hasEvery?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[]
-    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   hasSome?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[]
-    | Prisma.ListEnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumRELEASE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumRELEASE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumRELEASE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRACK_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRACK_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRACK_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumVIDEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumVIDEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumVIDEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumRINGTONE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumRINGTONE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumRINGTONE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumARTIST_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumARTIST_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumARTIST_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPERFORMER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPERFORMER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPERFORMER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWRITER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWRITER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWRITER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPUBLISHER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPUBLISHER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumPUBLISHER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumLABEL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumLABEL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumLABEL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRANSACTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRANSACTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRANSACTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   isEmpty?: boolean;
 };
 
@@ -1411,12 +1500,6 @@ export type SharedWorkspaceAccountAccessCountOrderByAggregateInput = {
   workspaceAccountId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  artistId?: Prisma.SortOrder;
-  performerId?: Prisma.SortOrder;
-  producerAndEngineerId?: Prisma.SortOrder;
-  writerId?: Prisma.SortOrder;
-  publisherId?: Prisma.SortOrder;
-  labelId?: Prisma.SortOrder;
   allReleases?: Prisma.SortOrder;
   allTracks?: Prisma.SortOrder;
   allVideos?: Prisma.SortOrder;
@@ -1429,6 +1512,7 @@ export type SharedWorkspaceAccountAccessCountOrderByAggregateInput = {
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
   allWithdrawals?: Prisma.SortOrder;
+  workspaceAccountAccessLevel?: Prisma.SortOrder;
   releaseAccessLevel?: Prisma.SortOrder;
   trackAccessLevel?: Prisma.SortOrder;
   videoAccessLevel?: Prisma.SortOrder;
@@ -1454,12 +1538,6 @@ export type SharedWorkspaceAccountAccessMaxOrderByAggregateInput = {
   workspaceAccountId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  artistId?: Prisma.SortOrder;
-  performerId?: Prisma.SortOrder;
-  producerAndEngineerId?: Prisma.SortOrder;
-  writerId?: Prisma.SortOrder;
-  publisherId?: Prisma.SortOrder;
-  labelId?: Prisma.SortOrder;
   allReleases?: Prisma.SortOrder;
   allTracks?: Prisma.SortOrder;
   allVideos?: Prisma.SortOrder;
@@ -1484,12 +1562,6 @@ export type SharedWorkspaceAccountAccessMinOrderByAggregateInput = {
   workspaceAccountId?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  artistId?: Prisma.SortOrder;
-  performerId?: Prisma.SortOrder;
-  producerAndEngineerId?: Prisma.SortOrder;
-  writerId?: Prisma.SortOrder;
-  publisherId?: Prisma.SortOrder;
-  labelId?: Prisma.SortOrder;
   allReleases?: Prisma.SortOrder;
   allTracks?: Prisma.SortOrder;
   allVideos?: Prisma.SortOrder;
@@ -3155,138 +3227,155 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWithdrawalsNes
       | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
   };
 
+export type SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput =
+  {
+    set: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  };
+
 export type SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreatetrackAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreatevideoAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreateartistAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreateperformerAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput =
   {
-    set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    set: $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   };
 
 export type SharedWorkspaceAccountAccessCreatewriterAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreatelabelAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput = {
-  set: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
 };
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean;
+};
+
+export type SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput =
+  {
+    set?: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    push?:
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  };
+
 export type SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdateartistAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput =
   {
-    set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    set?: $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     push?:
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   };
 
 export type SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput = {
-  set?: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+  set?: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput = {
@@ -3295,12 +3384,6 @@ export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput = {
 
 export type SharedWorkspaceAccountAccessCreateWithoutUserInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -3313,42 +3396,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutUserInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3375,12 +3461,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput = {
   id?: string;
   workspaceAccountId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -3393,42 +3473,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3466,12 +3549,6 @@ export type SharedWorkspaceAccountAccessCreateManyUserInputEnvelope = {
 
 export type SharedWorkspaceAccountAccessCreateWithoutAssignerInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -3484,42 +3561,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutAssignerInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3546,12 +3626,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutAssignerInput = {
   id?: string;
   workspaceAccountId: string;
   userId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -3564,42 +3638,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutAssignerInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3679,30 +3756,6 @@ export type SharedWorkspaceAccountAccessScalarWhereInput = {
     | string;
   userId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
   assignerId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
-  artistId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  performerId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  producerAndEngineerId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  writerId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  publisherId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
-  labelId?:
-    | Prisma.StringNullableFilter<"SharedWorkspaceAccountAccess">
-    | string
-    | null;
   allReleases?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allTracks?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allVideos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
@@ -3717,18 +3770,19 @@ export type SharedWorkspaceAccountAccessScalarWhereInput = {
   allLabels?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allTransactions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allWithdrawals?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  releaseAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  trackAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  videoAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  ringtoneAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  artistAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  performerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  producerAndEngineerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  writerAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  publisherAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  labelAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  transactionAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  withdrawalAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  ringtoneAccessLevel?: Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  artistAccessLevel?: Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  performerAccessLevel?: Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  producerAndEngineerAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  writerAccessLevel?: Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
@@ -3785,12 +3839,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutAssignerInput 
 
 export type SharedWorkspaceAccountAccessCreateWithoutWorkspaceAccountInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -3803,42 +3851,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutWorkspaceAccountInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3866,12 +3917,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWorkspaceAccountIn
     id?: string;
     userId: string;
     assignerId: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -3884,42 +3929,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWorkspaceAccountIn
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -3990,12 +4038,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutWorkspaceAccou
 
 export type SharedWorkspaceAccountAccessCreateWithoutReleasesInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4008,42 +4050,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutReleasesInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4071,12 +4116,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutReleasesInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4089,42 +4128,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutReleasesInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4185,12 +4227,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutReleasesInput 
 
 export type SharedWorkspaceAccountAccessCreateWithoutTracksInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4203,42 +4239,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutTracksInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4266,12 +4305,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTracksInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4284,42 +4317,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTracksInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4380,12 +4416,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutTracksInput =
 
 export type SharedWorkspaceAccountAccessCreateWithoutVideosInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4398,42 +4428,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutVideosInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4461,12 +4494,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutVideosInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4479,42 +4506,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutVideosInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4575,12 +4605,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutVideosInput =
 
 export type SharedWorkspaceAccountAccessCreateWithoutRingtonesInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4593,42 +4617,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutRingtonesInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4656,12 +4683,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutRingtonesInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4674,42 +4695,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutRingtonesInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4770,12 +4794,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutRingtonesInput
 
 export type SharedWorkspaceAccountAccessCreateWithoutArtistsInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4788,42 +4806,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutArtistsInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4851,12 +4872,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutArtistsInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4869,42 +4884,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutArtistsInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4965,12 +4983,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutArtistsInput =
 
 export type SharedWorkspaceAccountAccessCreateWithoutPerformersInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -4983,42 +4995,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutPerformersInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5047,12 +5062,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPerformersInput =
     workspaceAccountId: string;
     userId: string;
     assignerId: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -5065,42 +5074,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPerformersInput =
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5163,12 +5175,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutPerformersInpu
 export type SharedWorkspaceAccountAccessCreateWithoutProducersAndEngineersInput =
   {
     id?: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -5181,42 +5187,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutProducersAndEngineersInput 
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5245,12 +5254,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutProducersAndEngine
     workspaceAccountId: string;
     userId: string;
     assignerId: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -5263,42 +5266,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutProducersAndEngine
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5360,12 +5366,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutProducersAndEn
 
 export type SharedWorkspaceAccountAccessCreateWithoutWritersInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -5378,42 +5378,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutWritersInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5441,12 +5444,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWritersInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -5459,42 +5456,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWritersInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5555,12 +5555,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutWritersInput =
 
 export type SharedWorkspaceAccountAccessCreateWithoutPublishersInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -5573,42 +5567,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutPublishersInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5637,12 +5634,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPublishersInput =
     workspaceAccountId: string;
     userId: string;
     assignerId: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -5655,42 +5646,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPublishersInput =
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5752,12 +5746,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutPublishersInpu
 
 export type SharedWorkspaceAccountAccessCreateWithoutLabelsInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -5770,42 +5758,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutLabelsInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5833,12 +5824,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutLabelsInput = {
   workspaceAccountId: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -5851,42 +5836,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutLabelsInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5947,12 +5935,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutLabelsInput =
 
 export type SharedWorkspaceAccountAccessCreateWithoutTransactionsInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -5965,42 +5947,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutTransactionsInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6029,12 +6014,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTransactionsInput 
     workspaceAccountId: string;
     userId: string;
     assignerId: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -6047,42 +6026,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTransactionsInput 
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -6144,12 +6126,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutTransactionsIn
 
 export type SharedWorkspaceAccountAccessCreateWithoutWithdrawalsInput = {
   id?: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -6162,42 +6138,45 @@ export type SharedWorkspaceAccountAccessCreateWithoutWithdrawalsInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6226,12 +6205,6 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWithdrawalsInput =
     workspaceAccountId: string;
     userId: string;
     assignerId: string;
-    artistId?: string | null;
-    performerId?: string | null;
-    producerAndEngineerId?: string | null;
-    writerId?: string | null;
-    publisherId?: string | null;
-    labelId?: string | null;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -6244,42 +6217,45 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWithdrawalsInput =
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -6343,12 +6319,6 @@ export type SharedWorkspaceAccountAccessCreateManyUserInput = {
   id?: string;
   workspaceAccountId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -6361,42 +6331,45 @@ export type SharedWorkspaceAccountAccessCreateManyUserInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6409,12 +6382,6 @@ export type SharedWorkspaceAccountAccessCreateManyAssignerInput = {
   id?: string;
   workspaceAccountId: string;
   userId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -6427,42 +6394,45 @@ export type SharedWorkspaceAccountAccessCreateManyAssignerInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6473,15 +6443,6 @@ export type SharedWorkspaceAccountAccessCreateManyAssignerInput = {
 
 export type SharedWorkspaceAccountAccessUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -6494,42 +6455,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutUserInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6562,15 +6526,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -6583,42 +6538,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6649,15 +6607,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -6670,42 +6619,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutUserInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6722,15 +6674,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutUserInput = {
 
 export type SharedWorkspaceAccountAccessUpdateWithoutAssignerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -6743,42 +6686,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutAssignerInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6811,15 +6757,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutAssignerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -6832,42 +6769,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutAssignerInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6899,21 +6839,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerInput 
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -6926,42 +6851,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerInput 
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6980,12 +6908,6 @@ export type SharedWorkspaceAccountAccessCreateManyWorkspaceAccountInput = {
   id?: string;
   userId: string;
   assignerId: string;
-  artistId?: string | null;
-  performerId?: string | null;
-  producerAndEngineerId?: string | null;
-  writerId?: string | null;
-  publisherId?: string | null;
-  labelId?: string | null;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -6998,42 +6920,45 @@ export type SharedWorkspaceAccountAccessCreateManyWorkspaceAccountInput = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -7044,15 +6969,6 @@ export type SharedWorkspaceAccountAccessCreateManyWorkspaceAccountInput = {
 
 export type SharedWorkspaceAccountAccessUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7065,42 +6981,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWorkspaceAccountInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7134,21 +7053,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWorkspaceAccountIn
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7161,42 +7065,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWorkspaceAccountIn
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7228,21 +7135,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccou
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7255,42 +7147,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccou
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7307,15 +7202,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccou
 
 export type SharedWorkspaceAccountAccessUpdateWithoutReleasesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7328,42 +7214,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutReleasesInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7397,15 +7286,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutReleasesInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7418,42 +7298,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutReleasesInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7485,21 +7368,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesInput 
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7512,42 +7380,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesInput 
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7564,15 +7435,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesInput 
 
 export type SharedWorkspaceAccountAccessUpdateWithoutTracksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7585,42 +7447,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTracksInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7654,15 +7519,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTracksInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7675,42 +7531,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTracksInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7742,21 +7601,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7769,42 +7613,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7821,15 +7668,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksInput =
 
 export type SharedWorkspaceAccountAccessUpdateWithoutVideosInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7842,42 +7680,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutVideosInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7911,15 +7752,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutVideosInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -7932,42 +7764,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutVideosInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7999,21 +7834,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8026,42 +7846,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8078,15 +7901,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosInput =
 
 export type SharedWorkspaceAccountAccessUpdateWithoutRingtonesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8099,42 +7913,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutRingtonesInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8168,15 +7985,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutRingtonesInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8189,42 +7997,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutRingtonesInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8256,21 +8067,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesInput
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8283,42 +8079,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesInput
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8335,15 +8134,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesInput
 
 export type SharedWorkspaceAccountAccessUpdateWithoutArtistsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8356,42 +8146,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutArtistsInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8425,15 +8218,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutArtistsInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8446,42 +8230,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutArtistsInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8513,21 +8300,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutArtistsInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8540,42 +8312,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutArtistsInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8592,15 +8367,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutArtistsInput =
 
 export type SharedWorkspaceAccountAccessUpdateWithoutPerformersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8613,42 +8379,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPerformersInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8683,21 +8452,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPerformersInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8710,42 +8464,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPerformersInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8777,21 +8534,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersInpu
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8804,42 +8546,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersInpu
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8857,21 +8602,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersInpu
 export type SharedWorkspaceAccountAccessUpdateWithoutProducersAndEngineersInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8884,42 +8614,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutProducersAndEngineersInput 
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8954,21 +8687,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutProducersAndEngine
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -8981,42 +8699,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutProducersAndEngine
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9048,21 +8769,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEn
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9075,42 +8781,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEn
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9127,15 +8836,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEn
 
 export type SharedWorkspaceAccountAccessUpdateWithoutWritersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9148,42 +8848,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWritersInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9217,15 +8920,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWritersInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9238,42 +8932,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWritersInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9305,21 +9002,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9332,42 +9014,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9384,15 +9069,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersInput =
 
 export type SharedWorkspaceAccountAccessUpdateWithoutPublishersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9405,42 +9081,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPublishersInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9475,21 +9154,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPublishersInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9502,42 +9166,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPublishersInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9569,21 +9236,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersInpu
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9596,42 +9248,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersInpu
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9648,15 +9303,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersInpu
 
 export type SharedWorkspaceAccountAccessUpdateWithoutLabelsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9669,42 +9315,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutLabelsInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9738,15 +9387,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutLabelsInput = {
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9759,42 +9399,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutLabelsInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9826,21 +9469,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9853,42 +9481,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9905,15 +9536,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsInput =
 
 export type SharedWorkspaceAccountAccessUpdateWithoutTransactionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -9926,42 +9548,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTransactionsInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9996,21 +9621,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTransactionsInput 
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -10023,42 +9633,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTransactionsInput 
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -10090,21 +9703,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsIn
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -10117,42 +9715,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsIn
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -10169,15 +9770,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsIn
 
 export type SharedWorkspaceAccountAccessUpdateWithoutWithdrawalsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  performerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  producerAndEngineerId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
-  writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  publisherId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-  labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
   allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -10190,42 +9782,45 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWithdrawalsInput = {
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  workspaceAccountAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
   ringtoneAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
   artistAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
   performerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
   producerAndEngineerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
   writerAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
   publisherAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
   withdrawalAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -10260,21 +9855,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWithdrawalsInput =
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -10287,42 +9867,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWithdrawalsInput =
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -10354,21 +9937,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWithdrawalsInp
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     userId?: Prisma.StringFieldUpdateOperationsInput | string;
     assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-    artistId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    performerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    producerAndEngineerId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    writerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    publisherId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
-    labelId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
@@ -10381,42 +9949,45 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWithdrawalsInp
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    workspaceAccountAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
+      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
     trackAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
     videoAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
     ringtoneAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
     artistAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
     performerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
     producerAndEngineerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
     writerAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
     publisherAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
     labelAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
     withdrawalAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -10628,12 +10199,6 @@ export type SharedWorkspaceAccountAccessSelect<
     workspaceAccountId?: boolean;
     userId?: boolean;
     assignerId?: boolean;
-    artistId?: boolean;
-    performerId?: boolean;
-    producerAndEngineerId?: boolean;
-    writerId?: boolean;
-    publisherId?: boolean;
-    labelId?: boolean;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -10646,6 +10211,7 @@ export type SharedWorkspaceAccountAccessSelect<
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?: boolean;
     releaseAccessLevel?: boolean;
     trackAccessLevel?: boolean;
     videoAccessLevel?: boolean;
@@ -10713,12 +10279,6 @@ export type SharedWorkspaceAccountAccessSelectCreateManyAndReturn<
     workspaceAccountId?: boolean;
     userId?: boolean;
     assignerId?: boolean;
-    artistId?: boolean;
-    performerId?: boolean;
-    producerAndEngineerId?: boolean;
-    writerId?: boolean;
-    publisherId?: boolean;
-    labelId?: boolean;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -10731,6 +10291,7 @@ export type SharedWorkspaceAccountAccessSelectCreateManyAndReturn<
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?: boolean;
     releaseAccessLevel?: boolean;
     trackAccessLevel?: boolean;
     videoAccessLevel?: boolean;
@@ -10765,12 +10326,6 @@ export type SharedWorkspaceAccountAccessSelectUpdateManyAndReturn<
     workspaceAccountId?: boolean;
     userId?: boolean;
     assignerId?: boolean;
-    artistId?: boolean;
-    performerId?: boolean;
-    producerAndEngineerId?: boolean;
-    writerId?: boolean;
-    publisherId?: boolean;
-    labelId?: boolean;
     allReleases?: boolean;
     allTracks?: boolean;
     allVideos?: boolean;
@@ -10783,6 +10338,7 @@ export type SharedWorkspaceAccountAccessSelectUpdateManyAndReturn<
     allLabels?: boolean;
     allTransactions?: boolean;
     allWithdrawals?: boolean;
+    workspaceAccountAccessLevel?: boolean;
     releaseAccessLevel?: boolean;
     trackAccessLevel?: boolean;
     videoAccessLevel?: boolean;
@@ -10813,12 +10369,6 @@ export type SharedWorkspaceAccountAccessSelectScalar = {
   workspaceAccountId?: boolean;
   userId?: boolean;
   assignerId?: boolean;
-  artistId?: boolean;
-  performerId?: boolean;
-  producerAndEngineerId?: boolean;
-  writerId?: boolean;
-  publisherId?: boolean;
-  labelId?: boolean;
   allReleases?: boolean;
   allTracks?: boolean;
   allVideos?: boolean;
@@ -10831,6 +10381,7 @@ export type SharedWorkspaceAccountAccessSelectScalar = {
   allLabels?: boolean;
   allTransactions?: boolean;
   allWithdrawals?: boolean;
+  workspaceAccountAccessLevel?: boolean;
   releaseAccessLevel?: boolean;
   trackAccessLevel?: boolean;
   videoAccessLevel?: boolean;
@@ -10859,12 +10410,6 @@ export type SharedWorkspaceAccountAccessOmit<
   | "workspaceAccountId"
   | "userId"
   | "assignerId"
-  | "artistId"
-  | "performerId"
-  | "producerAndEngineerId"
-  | "writerId"
-  | "publisherId"
-  | "labelId"
   | "allReleases"
   | "allTracks"
   | "allVideos"
@@ -10877,6 +10422,7 @@ export type SharedWorkspaceAccountAccessOmit<
   | "allLabels"
   | "allTransactions"
   | "allWithdrawals"
+  | "workspaceAccountAccessLevel"
   | "releaseAccessLevel"
   | "trackAccessLevel"
   | "videoAccessLevel"
@@ -10979,12 +10525,6 @@ export type $SharedWorkspaceAccountAccessPayload<
       workspaceAccountId: string;
       userId: string;
       assignerId: string;
-      artistId: string | null;
-      performerId: string | null;
-      producerAndEngineerId: string | null;
-      writerId: string | null;
-      publisherId: string | null;
-      labelId: string | null;
       allReleases: boolean;
       allTracks: boolean;
       allVideos: boolean;
@@ -10997,18 +10537,19 @@ export type $SharedWorkspaceAccountAccessPayload<
       allLabels: boolean;
       allTransactions: boolean;
       allWithdrawals: boolean;
-      releaseAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      trackAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      videoAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      ringtoneAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      artistAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      performerAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      producerAndEngineerAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      writerAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      publisherAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      labelAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      transactionAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
-      withdrawalAccessLevel: $Enums.WORKSPACE_ACCOUNT_ACCESS_LEVEL[];
+      workspaceAccountAccessLevel: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+      releaseAccessLevel: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
+      trackAccessLevel: $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
+      videoAccessLevel: $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
+      ringtoneAccessLevel: $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
+      artistAccessLevel: $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
+      performerAccessLevel: $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
+      producerAndEngineerAccessLevel: $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
+      writerAccessLevel: $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
+      publisherAccessLevel: $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
+      labelAccessLevel: $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
+      transactionAccessLevel: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
+      withdrawalAccessLevel: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
       metadata: runtime.JsonValue | null;
       role: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
       createdAt: Date;
@@ -11919,21 +11460,6 @@ export interface SharedWorkspaceAccountAccessFieldRefs {
     "SharedWorkspaceAccountAccess",
     "String"
   >;
-  readonly artistId: Prisma.FieldRef<"SharedWorkspaceAccountAccess", "String">;
-  readonly performerId: Prisma.FieldRef<
-    "SharedWorkspaceAccountAccess",
-    "String"
-  >;
-  readonly producerAndEngineerId: Prisma.FieldRef<
-    "SharedWorkspaceAccountAccess",
-    "String"
-  >;
-  readonly writerId: Prisma.FieldRef<"SharedWorkspaceAccountAccess", "String">;
-  readonly publisherId: Prisma.FieldRef<
-    "SharedWorkspaceAccountAccess",
-    "String"
-  >;
-  readonly labelId: Prisma.FieldRef<"SharedWorkspaceAccountAccess", "String">;
   readonly allReleases: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
     "Boolean"
@@ -11982,53 +11508,57 @@ export interface SharedWorkspaceAccountAccessFieldRefs {
     "SharedWorkspaceAccountAccess",
     "Boolean"
   >;
+  readonly workspaceAccountAccessLevel: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]"
+  >;
   readonly releaseAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "RELEASE_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly trackAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "TRACK_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly videoAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "VIDEO_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly ringtoneAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "RINGTONE_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly artistAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "ARTIST_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly performerAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "PERFORMER_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly producerAndEngineerAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly writerAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "WRITER_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly publisherAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "PUBLISHER_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly labelAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "LABEL_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly transactionAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "TRANSACTION_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly withdrawalAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]"
+    "WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly metadata: Prisma.FieldRef<"SharedWorkspaceAccountAccess", "Json">;
   readonly role: Prisma.FieldRef<

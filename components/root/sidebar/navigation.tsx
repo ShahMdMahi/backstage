@@ -30,6 +30,7 @@ import {
   BadgeCheck,
   LinkIcon,
   GlobeLock,
+  LucideIcon,
 } from "lucide-react";
 import {
   Collapsible,
@@ -51,6 +52,20 @@ import Link from "next/link";
 import { ROLE } from "@/lib/prisma/enums";
 import { Session, User } from "@/lib/prisma/browser";
 
+type NavigationItem = {
+  title: string;
+  url: string;
+  icon: LucideIcon;
+  isActive: boolean;
+  isOpen: boolean;
+  items: NavigationItem[];
+};
+
+type NavigationGroup = {
+  title?: string;
+  items: NavigationItem[];
+};
+
 export function Navigation({
   session,
 }: {
@@ -58,51 +73,36 @@ export function Navigation({
 }) {
   const pathname = usePathname();
 
+  const role = session?.user?.role || ROLE.USER;
+  const owner = ROLE.SYSTEM_OWNER;
+  const admin = ROLE.SYSTEM_ADMIN;
+  const user = ROLE.USER;
+
+  const haveHomeAccess = role === owner || role === admin || role === user;
+  const haveSystemAccess = role === owner || role === admin;
+  const haveMainAccess = haveHomeAccess || haveSystemAccess;
+
   const navigation = [
-    {
+    haveMainAccess && {
       title: "Main",
-      items:
-        session?.user?.role === ROLE.SYSTEM_OWNER ||
-        session?.user?.role === ROLE.SYSTEM_ADMIN
-          ? [
-              {
-                title: "Home",
-                url: "/",
-                icon: House,
-                isActive: !pathname.startsWith("/system"),
-                isOpen: false,
-                items: [],
-              },
-              {
-                title: "System",
-                url: "/system",
-                icon: ShieldUser,
-                isActive: pathname.startsWith("/system"),
-                isOpen: false,
-                items: [],
-              },
-            ]
-          : session?.user?.role === ROLE.SYSTEM_USER
-            ? [
-                {
-                  title: "System",
-                  url: "/system",
-                  icon: ShieldUser,
-                  isActive: pathname.startsWith("/system"),
-                  isOpen: false,
-                  items: [],
-                },
-              ]
-            : [
-                {
-                  title: "Home",
-                  url: "/",
-                  icon: House,
-                  isActive: pathname === "/",
-                  isOpen: false,
-                  items: [],
-                },
-              ],
+      items: [
+        haveHomeAccess && {
+          title: "Home",
+          url: "/",
+          icon: House,
+          isActive: !pathname.startsWith("/system"),
+          isOpen: false,
+          items: [],
+        },
+        haveSystemAccess && {
+          title: "System",
+          url: "/system",
+          icon: ShieldUser,
+          isActive: pathname.startsWith("/system"),
+          isOpen: false,
+          items: [],
+        },
+      ],
     },
     {
       title: "Catalog",
@@ -200,11 +200,11 @@ export function Navigation({
           items: [],
         },
         {
-          title: "Withdraw",
-          url: "/royalties/withdraw",
+          title: "Withdraws",
+          url: "/royalties/withdraws",
           icon: BanknoteArrowDown,
-          isActive: pathname.startsWith("/royalties/withdraw"),
-          isOpen: pathname.startsWith("/royalties/withdraw"),
+          isActive: pathname.startsWith("/royalties/withdraws"),
+          isOpen: pathname.startsWith("/royalties/withdraws"),
           items: [],
         },
       ],
@@ -313,11 +313,13 @@ export function Navigation({
     },
   ];
 
-  return navigation.map((group, index) => (
+  const filteredNavigation = navigation.filter(Boolean) as NavigationGroup[];
+
+  return filteredNavigation.map((group, index) => (
     <SidebarGroup key={index}>
       {group?.title && <SidebarGroupLabel>{group.title}</SidebarGroupLabel>}
       <SidebarMenu key={index}>
-        {group.items.map((item) => (
+        {(group.items.filter(Boolean) as NavigationItem[]).map((item) => (
           <React.Fragment key={item.title}>
             {item.items.length === 0 && (
               <SidebarMenuItem key={item.title}>
@@ -354,22 +356,24 @@ export function Navigation({
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {item.items?.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton
-                            isActive={subItem.isActive}
-                            asChild
-                          >
-                            <Link
-                              href={subItem.url}
-                              className="flex items-center gap-2"
+                      {(item.items.filter(Boolean) as NavigationItem[]).map(
+                        (subItem) => (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                              isActive={subItem.isActive}
+                              asChild
                             >
-                              {subItem.icon && <subItem.icon />}
-                              <span>{subItem.title}</span>
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
+                              <Link
+                                href={subItem.url}
+                                className="flex items-center gap-2"
+                              >
+                                {subItem.icon && <subItem.icon />}
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        )
+                      )}
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </SidebarMenuItem>

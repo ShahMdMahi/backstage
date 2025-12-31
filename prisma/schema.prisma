@@ -26,7 +26,140 @@ enum SESSION_DEVICE_TYPE {
   OTHER
 }
 
-enum SYSTEM_ACCESS_LEVEL {
+enum USER_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum REPORTING_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum RELEASE_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum TRACK_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum VIDEO_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum RINGTONE_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum ARTIST_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum PERFORMER_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum WRITER_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum PUBLISHER_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum LABEL_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum TRANSACTION_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum WITHDRAWAL_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum CONSUMPTION_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum ENGAGEMENT_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum REVENUE_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum GEO_SYSTEM_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL {
   READ
   WRITE
   UPDATE
@@ -45,7 +178,91 @@ enum WORKSPACE_ACCOUNT_ACCESS_ROLE {
   USER
 }
 
-enum WORKSPACE_ACCOUNT_ACCESS_LEVEL {
+enum WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum RELEASE_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum TRACK_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum VIDEO_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum RINGTONE_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum ARTIST_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum PERFORMER_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum WRITER_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum PUBLISHER_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum LABEL_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum TRANSACTION_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum WITHDRAWAL_WORKSPACE_ACCESS_LEVEL {
   READ
   WRITE
   UPDATE
@@ -360,35 +577,27 @@ model SystemAccess {
   assignerId String @unique
 
   // Fields
-  workspaceAccountsAccess          Boolean               @default(false)
-  releasesAccess                   Boolean               @default(false)
-  tracksAccess                     Boolean               @default(false)
-  videosAccess                     Boolean               @default(false)
-  ringtonesAccess                  Boolean               @default(false)
-  artistsAccess                    Boolean               @default(false)
-  performersAccess                 Boolean               @default(false)
-  producersAndEngineersAccess      Boolean               @default(false)
-  writersAccess                    Boolean               @default(false)
-  publishersAccess                 Boolean               @default(false)
-  labelsAccess                     Boolean               @default(false)
-  transactionsAccess               Boolean               @default(false)
-  withdrawalsAccess                Boolean               @default(false)
-  rightsManagementAccess           Boolean               @default(false)
-  workspaceAccountsAccessLevel     SYSTEM_ACCESS_LEVEL[] @default([])
-  releasesAccessLevel              SYSTEM_ACCESS_LEVEL[] @default([])
-  tracksAccessLevel                SYSTEM_ACCESS_LEVEL[] @default([])
-  videosAccessLevel                SYSTEM_ACCESS_LEVEL[] @default([])
-  ringtonesAccessLevel             SYSTEM_ACCESS_LEVEL[] @default([])
-  artistsAccessLevel               SYSTEM_ACCESS_LEVEL[] @default([])
-  performersAccessLevel            SYSTEM_ACCESS_LEVEL[] @default([])
-  producersAndEngineersAccessLevel SYSTEM_ACCESS_LEVEL[] @default([])
-  writersAccessLevel               SYSTEM_ACCESS_LEVEL[] @default([])
-  publishersAccessLevel            SYSTEM_ACCESS_LEVEL[] @default([])
-  labelsAccessLevel                SYSTEM_ACCESS_LEVEL[] @default([])
-  transactionsAccessLevel          SYSTEM_ACCESS_LEVEL[] @default([])
-  withdrawalsAccessLevel           SYSTEM_ACCESS_LEVEL[] @default([])
-  rightsManagementAccessLevel      SYSTEM_ACCESS_LEVEL[] @default([])
-  metadata                         Json?                 @db.JsonB
+  usersAccessLevel                 USER_SYSTEM_ACCESS_LEVEL[]                  @default([])
+  workspaceAccountsAccessLevel     WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]     @default([])
+  reportingAccessLevel             REPORTING_SYSTEM_ACCESS_LEVEL[]             @default([])
+  releasesAccessLevel              RELEASE_SYSTEM_ACCESS_LEVEL[]               @default([])
+  tracksAccessLevel                TRACK_SYSTEM_ACCESS_LEVEL[]                 @default([])
+  videosAccessLevel                VIDEO_SYSTEM_ACCESS_LEVEL[]                 @default([])
+  ringtonesAccessLevel             RINGTONE_SYSTEM_ACCESS_LEVEL[]              @default([])
+  artistsAccessLevel               ARTIST_SYSTEM_ACCESS_LEVEL[]                @default([])
+  performersAccessLevel            PERFORMER_SYSTEM_ACCESS_LEVEL[]             @default([])
+  producersAndEngineersAccessLevel PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[] @default([])
+  writersAccessLevel               WRITER_SYSTEM_ACCESS_LEVEL[]                @default([])
+  publishersAccessLevel            PUBLISHER_SYSTEM_ACCESS_LEVEL[]             @default([])
+  labelsAccessLevel                LABEL_SYSTEM_ACCESS_LEVEL[]                 @default([])
+  transactionsAccessLevel          TRANSACTION_SYSTEM_ACCESS_LEVEL[]           @default([])
+  withdrawsAccessLevel             WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]            @default([])
+  consumptionAccessLevel           CONSUMPTION_SYSTEM_ACCESS_LEVEL[]           @default([])
+  engagementAccessLevel            ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]            @default([])
+  revenueAccessLevel               REVENUE_SYSTEM_ACCESS_LEVEL[]               @default([])
+  geoAccessLevel                   GEO_SYSTEM_ACCESS_LEVEL[]                   @default([])
+  rightsManagementAccessLevel      RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]     @default([])
+  metadata                         Json?                                       @db.JsonB
 
   // Enums
 
@@ -795,42 +1004,37 @@ model SharedWorkspaceAccountAccess {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId    String
-  userId                String
-  assignerId            String
-  artistId              String?
-  performerId           String?
-  producerAndEngineerId String?
-  writerId              String?
-  publisherId           String?
-  labelId               String?
+  workspaceAccountId String
+  userId             String
+  assignerId         String
 
   // Fields
-  allReleases                    Boolean                          @default(false)
-  allTracks                      Boolean                          @default(false)
-  allVideos                      Boolean                          @default(false)
-  allRingtones                   Boolean                          @default(false)
-  allArtists                     Boolean                          @default(false)
-  allPerformers                  Boolean                          @default(false)
-  allProducersAndEngineers       Boolean                          @default(false)
-  allWriters                     Boolean                          @default(false)
-  allPublishers                  Boolean                          @default(false)
-  allLabels                      Boolean                          @default(false)
-  allTransactions                Boolean                          @default(false)
-  allWithdrawals                 Boolean                          @default(false)
-  releaseAccessLevel             WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  trackAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  videoAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  ringtoneAccessLevel            WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  artistAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  performerAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  producerAndEngineerAccessLevel WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  writerAccessLevel              WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  publisherAccessLevel           WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  labelAccessLevel               WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  transactionAccessLevel         WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  withdrawalAccessLevel          WORKSPACE_ACCOUNT_ACCESS_LEVEL[] @default([])
-  metadata                       Json?                            @db.JsonB
+  allReleases                    Boolean                                        @default(false)
+  allTracks                      Boolean                                        @default(false)
+  allVideos                      Boolean                                        @default(false)
+  allRingtones                   Boolean                                        @default(false)
+  allArtists                     Boolean                                        @default(false)
+  allPerformers                  Boolean                                        @default(false)
+  allProducersAndEngineers       Boolean                                        @default(false)
+  allWriters                     Boolean                                        @default(false)
+  allPublishers                  Boolean                                        @default(false)
+  allLabels                      Boolean                                        @default(false)
+  allTransactions                Boolean                                        @default(false)
+  allWithdrawals                 Boolean                                        @default(false)
+  workspaceAccountAccessLevel    WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]     @default([])
+  releaseAccessLevel             RELEASE_WORKSPACE_ACCESS_LEVEL[]               @default([])
+  trackAccessLevel               TRACK_WORKSPACE_ACCESS_LEVEL[]                 @default([])
+  videoAccessLevel               VIDEO_WORKSPACE_ACCESS_LEVEL[]                 @default([])
+  ringtoneAccessLevel            RINGTONE_WORKSPACE_ACCESS_LEVEL[]              @default([])
+  artistAccessLevel              ARTIST_WORKSPACE_ACCESS_LEVEL[]                @default([])
+  performerAccessLevel           PERFORMER_WORKSPACE_ACCESS_LEVEL[]             @default([])
+  producerAndEngineerAccessLevel PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[] @default([])
+  writerAccessLevel              WRITER_WORKSPACE_ACCESS_LEVEL[]                @default([])
+  publisherAccessLevel           PUBLISHER_WORKSPACE_ACCESS_LEVEL[]             @default([])
+  labelAccessLevel               LABEL_WORKSPACE_ACCESS_LEVEL[]                 @default([])
+  transactionAccessLevel         TRANSACTION_WORKSPACE_ACCESS_LEVEL[]           @default([])
+  withdrawalAccessLevel          WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]            @default([])
+  metadata                       Json?                                          @db.JsonB
 
   // Enums
   role WORKSPACE_ACCOUNT_ACCESS_ROLE @default(USER)

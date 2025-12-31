@@ -5,6 +5,9 @@ import {
   ChevronRight,
   House,
   ShieldUser,
+  LockKeyhole,
+  BriefcaseBusiness,
+  FileChartColumnIncreasing,
   FolderOpen,
   ListMusic,
   Music,
@@ -30,6 +33,7 @@ import {
   BadgeCheck,
   LinkIcon,
   GlobeLock,
+  LucideIcon,
 } from "lucide-react";
 import {
   Collapsible,
@@ -51,6 +55,20 @@ import Link from "next/link";
 import { ROLE } from "@/lib/prisma/enums";
 import { Session, User } from "@/lib/prisma/browser";
 
+type NavigationItem = {
+  title: string;
+  url: string;
+  icon: LucideIcon;
+  isActive: boolean;
+  isOpen: boolean;
+  items: NavigationItem[];
+};
+
+type NavigationGroup = {
+  title?: string;
+  items: NavigationItem[];
+};
+
 export function Navigation({
   session,
 }: {
@@ -58,81 +76,155 @@ export function Navigation({
 }) {
   const pathname = usePathname();
 
+  const role = session?.user?.role || ROLE.USER;
+  const owner = ROLE.SYSTEM_OWNER;
+  const admin = ROLE.SYSTEM_ADMIN;
+  const user = ROLE.SYSTEM_USER;
+
+  const haveHomeAccess = role === owner || role === admin;
+  const haveSystemAccess = role === owner || role === admin || role === user;
+  const haveMainAccess = haveHomeAccess || haveSystemAccess;
+
+  const haveAccessesAccess = role === owner || role === admin;
+  const haveUsersAccess = role === owner || role === admin;
+  const haveWorkspacesAccess = role === owner || role === admin;
+  const haveReportingAccess = role === owner || role === admin;
+  const haveAdministrationAccess =
+    haveAccessesAccess ||
+    haveUsersAccess ||
+    haveWorkspacesAccess ||
+    haveReportingAccess;
+
+  const haveReleasesAccess = role === owner || role === admin;
+  const haveTracksAccess = role === owner || role === admin;
+  const haveVideosAccess = role === owner || role === admin;
+  const haveRingtonesAccess = role === owner || role === admin;
+  const haveAssetsAccess =
+    haveReleasesAccess ||
+    haveTracksAccess ||
+    haveVideosAccess ||
+    haveRingtonesAccess;
+  const haveArtistsAccess = role === owner || role === admin;
+  const havePerformersAccess = role === owner || role === admin;
+  const haveProducersAndEngineersAccess = role === owner || role === admin;
+  const haveWritersAccess = role === owner || role === admin;
+  const havePublishersAccess = role === owner || role === admin;
+  const haveLabelsAccess = role === owner || role === admin;
+  const haveContributorsAccess =
+    haveArtistsAccess ||
+    havePerformersAccess ||
+    haveProducersAndEngineersAccess ||
+    haveWritersAccess ||
+    havePublishersAccess ||
+    haveLabelsAccess;
+  const haveCatalogAccess = haveAssetsAccess || haveContributorsAccess;
+
+  const haveTransactionsAccess = role === owner || role === admin;
+  const haveWithdrawalsAccess = role === owner || role === admin;
+  const haveRoyaltiesAccess = haveTransactionsAccess || haveWithdrawalsAccess;
+
+  const haveConsumptionAccess = role === owner || role === admin;
+  const haveEngagementAccess = role === owner || role === admin;
+  const haveRevenueAccess = role === owner || role === admin;
+  const haveGeoAccess = role === owner || role === admin;
+  const haveAnalyticsAccess =
+    haveConsumptionAccess ||
+    haveEngagementAccess ||
+    haveRevenueAccess ||
+    haveGeoAccess;
+  const haveReportsAccess = haveAnalyticsAccess;
+
+  const haveRightsManagementAccess = role === owner || role === admin;
+  const haveServicesAccess = haveRightsManagementAccess;
+
   const navigation = [
-    {
+    haveMainAccess && {
       title: "Main",
-      items:
-        session?.user?.role === ROLE.SYSTEM_OWNER ||
-        session?.user?.role === ROLE.SYSTEM_ADMIN
-          ? [
-              {
-                title: "Home",
-                url: "/",
-                icon: House,
-                isActive: !pathname.startsWith("/system"),
-                isOpen: false,
-                items: [],
-              },
-              {
-                title: "System",
-                url: "/system",
-                icon: ShieldUser,
-                isActive: pathname.startsWith("/system"),
-                isOpen: false,
-                items: [],
-              },
-            ]
-          : session?.user?.role === ROLE.SYSTEM_USER
-            ? [
-                {
-                  title: "System",
-                  url: "/system",
-                  icon: House,
-                  isActive: pathname === "/system",
-                  isOpen: false,
-                  items: [],
-                },
-              ]
-            : [
-                {
-                  title: "Home",
-                  url: "/",
-                  icon: House,
-                  isActive: pathname === "/",
-                  isOpen: false,
-                  items: [],
-                },
-              ],
+      items: [
+        haveHomeAccess && {
+          title: "Home",
+          url: "/",
+          icon: House,
+          isActive: !pathname.startsWith("/system"),
+          isOpen: false,
+          items: [],
+        },
+        haveSystemAccess && {
+          title: "System",
+          url: "/system",
+          icon: ShieldUser,
+          isActive: pathname.startsWith("/system"),
+          isOpen: false,
+          items: [],
+        },
+      ],
     },
-    {
+    haveAdministrationAccess && {
+      title: "Administration",
+      items: [
+        haveAccessesAccess && {
+          title: "Accesses",
+          url: "/system/administration/accesses",
+          icon: LockKeyhole,
+          isActive: pathname.startsWith("/system/administration/accesses"),
+          isOpen: false,
+          items: [],
+        },
+        haveUsersAccess && {
+          title: "Users",
+          url: "/system/administration/users",
+          icon: Users,
+          isActive: pathname.startsWith("/system/administration/users"),
+          isOpen: false,
+          items: [],
+        },
+        haveWorkspacesAccess && {
+          title: "Workspaces",
+          url: "/system/administration/workspaces",
+          icon: BriefcaseBusiness,
+          isActive: pathname.startsWith("/system/administration/workspaces"),
+          isOpen: false,
+          items: [],
+        },
+        haveReportingAccess && {
+          title: "Reporting",
+          url: "/system/administration/reporting",
+          icon: FileChartColumnIncreasing,
+          isActive: pathname.startsWith("/system/administration/reporting"),
+          isOpen: false,
+          items: [],
+        },
+      ],
+    },
+    haveCatalogAccess && {
       title: "Catalog",
       items: [
-        {
+        haveAssetsAccess && {
           title: "Assets",
           url: "/system/catalog/assets",
           icon: FolderOpen,
           isActive: pathname.startsWith("/system/catalog/assets"),
           isOpen: pathname.startsWith("/system/catalog/assets"),
           items: [
-            {
+            haveReleasesAccess && {
               title: "Releases",
               url: "/system/catalog/assets/releases",
               icon: ListMusic,
               isActive: pathname === "/system/catalog/assets/releases",
             },
-            {
+            haveTracksAccess && {
               title: "Tracks",
               url: "/system/catalog/assets/tracks",
               icon: Music,
               isActive: pathname === "/system/catalog/assets/tracks",
             },
-            {
+            haveVideosAccess && {
               title: "Videos",
               url: "/system/catalog/assets/videos",
               icon: SquarePlay,
               isActive: pathname === "/system/catalog/assets/videos",
             },
-            {
+            haveRingtonesAccess && {
               title: "Ringtones",
               url: "/system/catalog/assets/ringtones",
               icon: BellRing,
@@ -140,26 +232,26 @@ export function Navigation({
             },
           ],
         },
-        {
+        haveContributorsAccess && {
           title: "Contributors",
           url: "/system/catalog/contributors",
           icon: Users,
           isActive: pathname.startsWith("/system/catalog/contributors"),
           isOpen: pathname.startsWith("/system/catalog/contributors"),
           items: [
-            {
+            haveArtistsAccess && {
               title: "Artists",
               url: "/system/catalog/contributors/artists",
               icon: UserStar,
               isActive: pathname === "/system/catalog/contributors/artists",
             },
-            {
+            havePerformersAccess && {
               title: "Performers",
               url: "/system/catalog/contributors/performers",
               icon: UserRound,
               isActive: pathname === "/system/catalog/contributors/performers",
             },
-            {
+            haveProducersAndEngineersAccess && {
               title: "Producers & Engineers",
               url: "/system/catalog/contributors/producers-and-engineers",
               icon: UserRound,
@@ -167,19 +259,19 @@ export function Navigation({
                 pathname ===
                 "/system/catalog/contributors/producers-and-engineers",
             },
-            {
+            haveWritersAccess && {
               title: "Writers",
               url: "/system/catalog/contributors/writers",
               icon: UserRound,
               isActive: pathname === "/system/catalog/contributors/writers",
             },
-            {
+            havePublishersAccess && {
               title: "Publishers",
               url: "/system/catalog/contributors/publishers",
               icon: BookUser,
               isActive: pathname === "/system/catalog/contributors/publishers",
             },
-            {
+            haveLabelsAccess && {
               title: "Labels",
               url: "/system/catalog/contributors/labels",
               icon: Disc,
@@ -189,10 +281,10 @@ export function Navigation({
         },
       ],
     },
-    {
+    haveRoyaltiesAccess && {
       title: "Royalties",
       items: [
-        {
+        haveTransactionsAccess && {
           title: "Transactions",
           url: "/system/royalties/transactions",
           icon: Wallet,
@@ -200,45 +292,45 @@ export function Navigation({
           isOpen: pathname.startsWith("/system/royalties/transactions"),
           items: [],
         },
-        {
-          title: "Withdraw",
-          url: "/system/royalties/withdraw",
+        haveWithdrawalsAccess && {
+          title: "Withdraws",
+          url: "/system/royalties/withdraws",
           icon: BanknoteArrowDown,
-          isActive: pathname.startsWith("/system/royalties/withdraw"),
-          isOpen: pathname.startsWith("/system/royalties/withdraw"),
+          isActive: pathname.startsWith("/system/royalties/withdraws"),
+          isOpen: pathname.startsWith("/system/royalties/withdraws"),
           items: [],
         },
       ],
     },
-    {
+    haveReportsAccess && {
       title: "Reports",
       items: [
-        {
+        haveAnalyticsAccess && {
           title: "Analytics",
           url: "/system/reports/analytics",
           icon: Activity,
           isActive: pathname.startsWith("/system/reports/analytics"),
           isOpen: pathname.startsWith("/system/reports/analytics"),
           items: [
-            {
+            haveConsumptionAccess && {
               title: "Consumption",
               url: "/system/reports/analytics/consumption",
               icon: ChartArea,
               isActive: pathname === "/system/reports/analytics/consumption",
             },
-            {
+            haveEngagementAccess && {
               title: "Engagement",
               url: "/system/reports/analytics/engagement",
               icon: SquareMousePointer,
               isActive: pathname === "/system/reports/analytics/engagement",
             },
-            {
+            haveRevenueAccess && {
               title: "Revenue",
               url: "/system/reports/analytics/revenue",
               icon: BanknoteArrowUp,
               isActive: pathname === "/system/reports/analytics/revenue",
             },
-            {
+            haveGeoAccess && {
               title: "Geo",
               url: "/system/reports/analytics/geo",
               icon: Earth,
@@ -248,10 +340,10 @@ export function Navigation({
         },
       ],
     },
-    {
+    haveServicesAccess && {
       title: "Services",
       items: [
-        {
+        haveRightsManagementAccess && {
           title: "Rights Management",
           url: "/system/services/rights-management",
           icon: Copyright,
@@ -319,11 +411,13 @@ export function Navigation({
     },
   ];
 
-  return navigation.map((group, index) => (
+  const filteredNavigation = navigation.filter(Boolean) as NavigationGroup[];
+
+  return filteredNavigation.map((group, index) => (
     <SidebarGroup key={index}>
       {group?.title && <SidebarGroupLabel>{group.title}</SidebarGroupLabel>}
       <SidebarMenu key={index}>
-        {group.items.map((item) => (
+        {(group.items.filter(Boolean) as NavigationItem[]).map((item) => (
           <React.Fragment key={item.title}>
             {item.items.length === 0 && (
               <SidebarMenuItem key={item.title}>
@@ -360,22 +454,24 @@ export function Navigation({
                   </CollapsibleTrigger>
                   <CollapsibleContent>
                     <SidebarMenuSub>
-                      {item.items?.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton
-                            isActive={subItem.isActive}
-                            asChild
-                          >
-                            <Link
-                              href={subItem.url}
-                              className="flex items-center gap-2"
+                      {(item.items.filter(Boolean) as NavigationItem[]).map(
+                        (subItem) => (
+                          <SidebarMenuSubItem key={subItem.title}>
+                            <SidebarMenuSubButton
+                              isActive={subItem.isActive}
+                              asChild
                             >
-                              {subItem.icon && <subItem.icon />}
-                              <span>{subItem.title}</span>
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
+                              <Link
+                                href={subItem.url}
+                                className="flex items-center gap-2"
+                              >
+                                {subItem.icon && <subItem.icon />}
+                                <span>{subItem.title}</span>
+                              </Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        )
+                      )}
                     </SidebarMenuSub>
                   </CollapsibleContent>
                 </SidebarMenuItem>

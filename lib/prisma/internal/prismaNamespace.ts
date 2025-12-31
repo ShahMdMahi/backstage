@@ -2079,21 +2079,9 @@ export const SystemAccessScalarFieldEnum = {
   id: "id",
   userId: "userId",
   assignerId: "assignerId",
-  workspaceAccountsAccess: "workspaceAccountsAccess",
-  releasesAccess: "releasesAccess",
-  tracksAccess: "tracksAccess",
-  videosAccess: "videosAccess",
-  ringtonesAccess: "ringtonesAccess",
-  artistsAccess: "artistsAccess",
-  performersAccess: "performersAccess",
-  producersAndEngineersAccess: "producersAndEngineersAccess",
-  writersAccess: "writersAccess",
-  publishersAccess: "publishersAccess",
-  labelsAccess: "labelsAccess",
-  transactionsAccess: "transactionsAccess",
-  withdrawalsAccess: "withdrawalsAccess",
-  rightsManagementAccess: "rightsManagementAccess",
+  usersAccessLevel: "usersAccessLevel",
   workspaceAccountsAccessLevel: "workspaceAccountsAccessLevel",
+  reportingAccessLevel: "reportingAccessLevel",
   releasesAccessLevel: "releasesAccessLevel",
   tracksAccessLevel: "tracksAccessLevel",
   videosAccessLevel: "videosAccessLevel",
@@ -2105,7 +2093,11 @@ export const SystemAccessScalarFieldEnum = {
   publishersAccessLevel: "publishersAccessLevel",
   labelsAccessLevel: "labelsAccessLevel",
   transactionsAccessLevel: "transactionsAccessLevel",
-  withdrawalsAccessLevel: "withdrawalsAccessLevel",
+  withdrawsAccessLevel: "withdrawsAccessLevel",
+  consumptionAccessLevel: "consumptionAccessLevel",
+  engagementAccessLevel: "engagementAccessLevel",
+  revenueAccessLevel: "revenueAccessLevel",
+  geoAccessLevel: "geoAccessLevel",
   rightsManagementAccessLevel: "rightsManagementAccessLevel",
   metadata: "metadata",
   createdAt: "createdAt",
@@ -2306,12 +2298,6 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   workspaceAccountId: "workspaceAccountId",
   userId: "userId",
   assignerId: "assignerId",
-  artistId: "artistId",
-  performerId: "performerId",
-  producerAndEngineerId: "producerAndEngineerId",
-  writerId: "writerId",
-  publisherId: "publisherId",
-  labelId: "labelId",
   allReleases: "allReleases",
   allTracks: "allTracks",
   allVideos: "allVideos",
@@ -2324,6 +2310,7 @@ export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   allLabels: "allLabels",
   allTransactions: "allTransactions",
   allWithdrawals: "allWithdrawals",
+  workspaceAccountAccessLevel: "workspaceAccountAccessLevel",
   releaseAccessLevel: "releaseAccessLevel",
   trackAccessLevel: "trackAccessLevel",
   videoAccessLevel: "videoAccessLevel",
@@ -2493,24 +2480,256 @@ export type ListEnumSESSION_DEVICE_TYPEFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "SESSION_DEVICE_TYPE[]">;
 
 /**
- * Reference to a field of type 'Boolean'
+ * Reference to a field of type 'USER_SYSTEM_ACCESS_LEVEL[]'
  */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+export type ListEnumUSER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "USER_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'USER_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumUSER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "USER_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELFieldRefInput<
   $PrismaModel,
-  "Boolean"
+> = FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'REPORTING_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumREPORTING_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'REPORTING_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumREPORTING_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'RELEASE_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumRELEASE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RELEASE_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'RELEASE_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumRELEASE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RELEASE_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'TRACK_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumTRACK_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRACK_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'TRACK_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumTRACK_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRACK_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'VIDEO_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumVIDEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "VIDEO_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'VIDEO_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumVIDEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "VIDEO_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'RINGTONE_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumRINGTONE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RINGTONE_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'RINGTONE_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumRINGTONE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RINGTONE_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'ARTIST_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumARTIST_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ARTIST_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'ARTIST_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumARTIST_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ARTIST_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'PERFORMER_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumPERFORMER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PERFORMER_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'PERFORMER_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumPERFORMER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PERFORMER_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<
+  $PrismaModel,
+  "PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[]"
 >;
 
 /**
- * Reference to a field of type 'SYSTEM_ACCESS_LEVEL[]'
+ * Reference to a field of type 'PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL'
  */
-export type ListEnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "SYSTEM_ACCESS_LEVEL[]">;
+export type EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<
+  $PrismaModel,
+  "PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL"
+>;
 
 /**
- * Reference to a field of type 'SYSTEM_ACCESS_LEVEL'
+ * Reference to a field of type 'WRITER_SYSTEM_ACCESS_LEVEL[]'
  */
-export type EnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "SYSTEM_ACCESS_LEVEL">;
+export type ListEnumWRITER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WRITER_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'WRITER_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumWRITER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WRITER_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'PUBLISHER_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumPUBLISHER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PUBLISHER_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'PUBLISHER_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumPUBLISHER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PUBLISHER_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'LABEL_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumLABEL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "LABEL_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'LABEL_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumLABEL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "LABEL_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'TRANSACTION_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRANSACTION_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'TRANSACTION_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRANSACTION_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumWITHDRAWAL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'WITHDRAWAL_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAWAL_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'CONSUMPTION_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumCONSUMPTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "CONSUMPTION_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'CONSUMPTION_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumCONSUMPTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "CONSUMPTION_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumENGAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'ENGAGEMENT_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumENGAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ENGAGEMENT_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'REVENUE_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumREVENUE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REVENUE_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'REVENUE_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumREVENUE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REVENUE_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'GEO_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumGEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "GEO_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'GEO_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumGEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "GEO_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]'
+ */
+export type ListEnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL'
+ */
+export type EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL">;
 
 /**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_TYPE'
@@ -2693,16 +2912,185 @@ export type ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WITHDRAWAL_STATUS[]">;
 
 /**
- * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_LEVEL[]'
+ * Reference to a field of type 'Boolean'
  */
-export type ListEnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_LEVEL[]">;
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Boolean"
+>;
 
 /**
- * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_LEVEL'
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]'
  */
-export type EnumWORKSPACE_ACCOUNT_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_ACCESS_LEVEL">;
+export type ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<
+  $PrismaModel,
+  "WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]"
+>;
+
+/**
+ * Reference to a field of type 'WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'RELEASE_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumRELEASE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RELEASE_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'RELEASE_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumRELEASE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RELEASE_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'TRACK_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumTRACK_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRACK_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'TRACK_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumTRACK_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRACK_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'VIDEO_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumVIDEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "VIDEO_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'VIDEO_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumVIDEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "VIDEO_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'RINGTONE_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumRINGTONE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RINGTONE_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'RINGTONE_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumRINGTONE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "RINGTONE_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'ARTIST_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumARTIST_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ARTIST_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'ARTIST_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumARTIST_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "ARTIST_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'PERFORMER_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumPERFORMER_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "PERFORMER_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'PERFORMER_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumPERFORMER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PERFORMER_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<
+  $PrismaModel,
+  "PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[]"
+>;
+
+/**
+ * Reference to a field of type 'PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<
+  $PrismaModel,
+  "PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL"
+>;
+
+/**
+ * Reference to a field of type 'WRITER_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumWRITER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WRITER_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'WRITER_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumWRITER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WRITER_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'PUBLISHER_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumPUBLISHER_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "PUBLISHER_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'PUBLISHER_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumPUBLISHER_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "PUBLISHER_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'LABEL_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumLABEL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "LABEL_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'LABEL_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumLABEL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "LABEL_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'TRANSACTION_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumTRANSACTION_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "TRANSACTION_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'TRANSACTION_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumTRANSACTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "TRANSACTION_WORKSPACE_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]'
+ */
+export type ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<
+  $PrismaModel,
+> = FieldRefInputType<$PrismaModel, "WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]">;
+
+/**
+ * Reference to a field of type 'WITHDRAWAL_WORKSPACE_ACCESS_LEVEL'
+ */
+export type EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAWAL_WORKSPACE_ACCESS_LEVEL">;
 
 /**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_ACCESS_ROLE'

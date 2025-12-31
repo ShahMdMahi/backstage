@@ -28,20 +28,6 @@ export type SystemAccessMinAggregateOutputType = {
   id: string | null;
   userId: string | null;
   assignerId: string | null;
-  workspaceAccountsAccess: boolean | null;
-  releasesAccess: boolean | null;
-  tracksAccess: boolean | null;
-  videosAccess: boolean | null;
-  ringtonesAccess: boolean | null;
-  artistsAccess: boolean | null;
-  performersAccess: boolean | null;
-  producersAndEngineersAccess: boolean | null;
-  writersAccess: boolean | null;
-  publishersAccess: boolean | null;
-  labelsAccess: boolean | null;
-  transactionsAccess: boolean | null;
-  withdrawalsAccess: boolean | null;
-  rightsManagementAccess: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
   suspendedAt: Date | null;
@@ -52,20 +38,6 @@ export type SystemAccessMaxAggregateOutputType = {
   id: string | null;
   userId: string | null;
   assignerId: string | null;
-  workspaceAccountsAccess: boolean | null;
-  releasesAccess: boolean | null;
-  tracksAccess: boolean | null;
-  videosAccess: boolean | null;
-  ringtonesAccess: boolean | null;
-  artistsAccess: boolean | null;
-  performersAccess: boolean | null;
-  producersAndEngineersAccess: boolean | null;
-  writersAccess: boolean | null;
-  publishersAccess: boolean | null;
-  labelsAccess: boolean | null;
-  transactionsAccess: boolean | null;
-  withdrawalsAccess: boolean | null;
-  rightsManagementAccess: boolean | null;
   createdAt: Date | null;
   updatedAt: Date | null;
   suspendedAt: Date | null;
@@ -76,21 +48,9 @@ export type SystemAccessCountAggregateOutputType = {
   id: number;
   userId: number;
   assignerId: number;
-  workspaceAccountsAccess: number;
-  releasesAccess: number;
-  tracksAccess: number;
-  videosAccess: number;
-  ringtonesAccess: number;
-  artistsAccess: number;
-  performersAccess: number;
-  producersAndEngineersAccess: number;
-  writersAccess: number;
-  publishersAccess: number;
-  labelsAccess: number;
-  transactionsAccess: number;
-  withdrawalsAccess: number;
-  rightsManagementAccess: number;
+  usersAccessLevel: number;
   workspaceAccountsAccessLevel: number;
+  reportingAccessLevel: number;
   releasesAccessLevel: number;
   tracksAccessLevel: number;
   videosAccessLevel: number;
@@ -102,7 +62,11 @@ export type SystemAccessCountAggregateOutputType = {
   publishersAccessLevel: number;
   labelsAccessLevel: number;
   transactionsAccessLevel: number;
-  withdrawalsAccessLevel: number;
+  withdrawsAccessLevel: number;
+  consumptionAccessLevel: number;
+  engagementAccessLevel: number;
+  revenueAccessLevel: number;
+  geoAccessLevel: number;
   rightsManagementAccessLevel: number;
   metadata: number;
   createdAt: number;
@@ -116,20 +80,6 @@ export type SystemAccessMinAggregateInputType = {
   id?: true;
   userId?: true;
   assignerId?: true;
-  workspaceAccountsAccess?: true;
-  releasesAccess?: true;
-  tracksAccess?: true;
-  videosAccess?: true;
-  ringtonesAccess?: true;
-  artistsAccess?: true;
-  performersAccess?: true;
-  producersAndEngineersAccess?: true;
-  writersAccess?: true;
-  publishersAccess?: true;
-  labelsAccess?: true;
-  transactionsAccess?: true;
-  withdrawalsAccess?: true;
-  rightsManagementAccess?: true;
   createdAt?: true;
   updatedAt?: true;
   suspendedAt?: true;
@@ -140,20 +90,6 @@ export type SystemAccessMaxAggregateInputType = {
   id?: true;
   userId?: true;
   assignerId?: true;
-  workspaceAccountsAccess?: true;
-  releasesAccess?: true;
-  tracksAccess?: true;
-  videosAccess?: true;
-  ringtonesAccess?: true;
-  artistsAccess?: true;
-  performersAccess?: true;
-  producersAndEngineersAccess?: true;
-  writersAccess?: true;
-  publishersAccess?: true;
-  labelsAccess?: true;
-  transactionsAccess?: true;
-  withdrawalsAccess?: true;
-  rightsManagementAccess?: true;
   createdAt?: true;
   updatedAt?: true;
   suspendedAt?: true;
@@ -164,21 +100,9 @@ export type SystemAccessCountAggregateInputType = {
   id?: true;
   userId?: true;
   assignerId?: true;
-  workspaceAccountsAccess?: true;
-  releasesAccess?: true;
-  tracksAccess?: true;
-  videosAccess?: true;
-  ringtonesAccess?: true;
-  artistsAccess?: true;
-  performersAccess?: true;
-  producersAndEngineersAccess?: true;
-  writersAccess?: true;
-  publishersAccess?: true;
-  labelsAccess?: true;
-  transactionsAccess?: true;
-  withdrawalsAccess?: true;
-  rightsManagementAccess?: true;
+  usersAccessLevel?: true;
   workspaceAccountsAccessLevel?: true;
+  reportingAccessLevel?: true;
   releasesAccessLevel?: true;
   tracksAccessLevel?: true;
   videosAccessLevel?: true;
@@ -190,7 +114,11 @@ export type SystemAccessCountAggregateInputType = {
   publishersAccessLevel?: true;
   labelsAccessLevel?: true;
   transactionsAccessLevel?: true;
-  withdrawalsAccessLevel?: true;
+  withdrawsAccessLevel?: true;
+  consumptionAccessLevel?: true;
+  engagementAccessLevel?: true;
+  revenueAccessLevel?: true;
+  geoAccessLevel?: true;
   rightsManagementAccessLevel?: true;
   metadata?: true;
   createdAt?: true;
@@ -284,34 +212,26 @@ export type SystemAccessGroupByOutputType = {
   id: string;
   userId: string;
   assignerId: string;
-  workspaceAccountsAccess: boolean;
-  releasesAccess: boolean;
-  tracksAccess: boolean;
-  videosAccess: boolean;
-  ringtonesAccess: boolean;
-  artistsAccess: boolean;
-  performersAccess: boolean;
-  producersAndEngineersAccess: boolean;
-  writersAccess: boolean;
-  publishersAccess: boolean;
-  labelsAccess: boolean;
-  transactionsAccess: boolean;
-  withdrawalsAccess: boolean;
-  rightsManagementAccess: boolean;
-  workspaceAccountsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  releasesAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  tracksAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  videosAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  ringtonesAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  artistsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  performersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  producersAndEngineersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  writersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  publishersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  labelsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  transactionsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-  rightsManagementAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
+  usersAccessLevel: $Enums.USER_SYSTEM_ACCESS_LEVEL[];
+  workspaceAccountsAccessLevel: $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel: $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
+  releasesAccessLevel: $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
+  tracksAccessLevel: $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
+  videosAccessLevel: $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
+  ringtonesAccessLevel: $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
+  artistsAccessLevel: $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
+  performersAccessLevel: $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
+  producersAndEngineersAccessLevel: $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
+  writersAccessLevel: $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
+  publishersAccessLevel: $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
+  labelsAccessLevel: $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
+  transactionsAccessLevel: $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel: $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel: $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel: $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel: $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel: $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
+  rightsManagementAccessLevel: $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata: runtime.JsonValue | null;
   createdAt: Date;
   updatedAt: Date;
@@ -342,34 +262,26 @@ export type SystemAccessWhereInput = {
   id?: Prisma.StringFilter<"SystemAccess"> | string;
   userId?: Prisma.StringFilter<"SystemAccess"> | string;
   assignerId?: Prisma.StringFilter<"SystemAccess"> | string;
-  workspaceAccountsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  releasesAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  tracksAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  videosAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  ringtonesAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  artistsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  performersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  writersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  publishersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  labelsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  transactionsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  withdrawalsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  rightsManagementAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  workspaceAccountsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  releasesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  tracksAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  videosAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  ringtonesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  artistsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  performersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  producersAndEngineersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  writersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  publishersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  labelsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  transactionsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  withdrawalsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  rightsManagementAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  usersAccessLevel?: Prisma.EnumUSER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  workspaceAccountsAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  reportingAccessLevel?: Prisma.EnumREPORTING_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  releasesAccessLevel?: Prisma.EnumRELEASE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  tracksAccessLevel?: Prisma.EnumTRACK_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  videosAccessLevel?: Prisma.EnumVIDEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  ringtonesAccessLevel?: Prisma.EnumRINGTONE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  artistsAccessLevel?: Prisma.EnumARTIST_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  performersAccessLevel?: Prisma.EnumPERFORMER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  producersAndEngineersAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  writersAccessLevel?: Prisma.EnumWRITER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  geoAccessLevel?: Prisma.EnumGEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  rightsManagementAccessLevel?: Prisma.EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   metadata?: Prisma.JsonNullableFilter<"SystemAccess">;
   createdAt?: Prisma.DateTimeFilter<"SystemAccess"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"SystemAccess"> | Date | string;
@@ -387,21 +299,9 @@ export type SystemAccessOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  workspaceAccountsAccess?: Prisma.SortOrder;
-  releasesAccess?: Prisma.SortOrder;
-  tracksAccess?: Prisma.SortOrder;
-  videosAccess?: Prisma.SortOrder;
-  ringtonesAccess?: Prisma.SortOrder;
-  artistsAccess?: Prisma.SortOrder;
-  performersAccess?: Prisma.SortOrder;
-  producersAndEngineersAccess?: Prisma.SortOrder;
-  writersAccess?: Prisma.SortOrder;
-  publishersAccess?: Prisma.SortOrder;
-  labelsAccess?: Prisma.SortOrder;
-  transactionsAccess?: Prisma.SortOrder;
-  withdrawalsAccess?: Prisma.SortOrder;
-  rightsManagementAccess?: Prisma.SortOrder;
+  usersAccessLevel?: Prisma.SortOrder;
   workspaceAccountsAccessLevel?: Prisma.SortOrder;
+  reportingAccessLevel?: Prisma.SortOrder;
   releasesAccessLevel?: Prisma.SortOrder;
   tracksAccessLevel?: Prisma.SortOrder;
   videosAccessLevel?: Prisma.SortOrder;
@@ -413,7 +313,11 @@ export type SystemAccessOrderByWithRelationInput = {
   publishersAccessLevel?: Prisma.SortOrder;
   labelsAccessLevel?: Prisma.SortOrder;
   transactionsAccessLevel?: Prisma.SortOrder;
-  withdrawalsAccessLevel?: Prisma.SortOrder;
+  withdrawsAccessLevel?: Prisma.SortOrder;
+  consumptionAccessLevel?: Prisma.SortOrder;
+  engagementAccessLevel?: Prisma.SortOrder;
+  revenueAccessLevel?: Prisma.SortOrder;
+  geoAccessLevel?: Prisma.SortOrder;
   rightsManagementAccessLevel?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -432,34 +336,26 @@ export type SystemAccessWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.SystemAccessWhereInput | Prisma.SystemAccessWhereInput[];
     OR?: Prisma.SystemAccessWhereInput[];
     NOT?: Prisma.SystemAccessWhereInput | Prisma.SystemAccessWhereInput[];
-    workspaceAccountsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    releasesAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    tracksAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    videosAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    ringtonesAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    artistsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    performersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    producersAndEngineersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    writersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    publishersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    labelsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    transactionsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    withdrawalsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    rightsManagementAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-    workspaceAccountsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    releasesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    tracksAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    videosAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    ringtonesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    artistsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    performersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    producersAndEngineersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    writersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    publishersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    labelsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    transactionsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    withdrawalsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    rightsManagementAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    usersAccessLevel?: Prisma.EnumUSER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    workspaceAccountsAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    reportingAccessLevel?: Prisma.EnumREPORTING_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    releasesAccessLevel?: Prisma.EnumRELEASE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    tracksAccessLevel?: Prisma.EnumTRACK_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    videosAccessLevel?: Prisma.EnumVIDEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    ringtonesAccessLevel?: Prisma.EnumRINGTONE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    artistsAccessLevel?: Prisma.EnumARTIST_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    performersAccessLevel?: Prisma.EnumPERFORMER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    producersAndEngineersAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    writersAccessLevel?: Prisma.EnumWRITER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    withdrawsAccessLevel?: Prisma.EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    geoAccessLevel?: Prisma.EnumGEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    rightsManagementAccessLevel?: Prisma.EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     metadata?: Prisma.JsonNullableFilter<"SystemAccess">;
     createdAt?: Prisma.DateTimeFilter<"SystemAccess"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"SystemAccess"> | Date | string;
@@ -482,21 +378,9 @@ export type SystemAccessOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  workspaceAccountsAccess?: Prisma.SortOrder;
-  releasesAccess?: Prisma.SortOrder;
-  tracksAccess?: Prisma.SortOrder;
-  videosAccess?: Prisma.SortOrder;
-  ringtonesAccess?: Prisma.SortOrder;
-  artistsAccess?: Prisma.SortOrder;
-  performersAccess?: Prisma.SortOrder;
-  producersAndEngineersAccess?: Prisma.SortOrder;
-  writersAccess?: Prisma.SortOrder;
-  publishersAccess?: Prisma.SortOrder;
-  labelsAccess?: Prisma.SortOrder;
-  transactionsAccess?: Prisma.SortOrder;
-  withdrawalsAccess?: Prisma.SortOrder;
-  rightsManagementAccess?: Prisma.SortOrder;
+  usersAccessLevel?: Prisma.SortOrder;
   workspaceAccountsAccessLevel?: Prisma.SortOrder;
+  reportingAccessLevel?: Prisma.SortOrder;
   releasesAccessLevel?: Prisma.SortOrder;
   tracksAccessLevel?: Prisma.SortOrder;
   videosAccessLevel?: Prisma.SortOrder;
@@ -508,7 +392,11 @@ export type SystemAccessOrderByWithAggregationInput = {
   publishersAccessLevel?: Prisma.SortOrder;
   labelsAccessLevel?: Prisma.SortOrder;
   transactionsAccessLevel?: Prisma.SortOrder;
-  withdrawalsAccessLevel?: Prisma.SortOrder;
+  withdrawsAccessLevel?: Prisma.SortOrder;
+  consumptionAccessLevel?: Prisma.SortOrder;
+  engagementAccessLevel?: Prisma.SortOrder;
+  revenueAccessLevel?: Prisma.SortOrder;
+  geoAccessLevel?: Prisma.SortOrder;
   rightsManagementAccessLevel?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -531,42 +419,26 @@ export type SystemAccessScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"SystemAccess"> | string;
   userId?: Prisma.StringWithAggregatesFilter<"SystemAccess"> | string;
   assignerId?: Prisma.StringWithAggregatesFilter<"SystemAccess"> | string;
-  workspaceAccountsAccess?:
-    | Prisma.BoolWithAggregatesFilter<"SystemAccess">
-    | boolean;
-  releasesAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  tracksAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  videosAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  ringtonesAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  artistsAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  performersAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  producersAndEngineersAccess?:
-    | Prisma.BoolWithAggregatesFilter<"SystemAccess">
-    | boolean;
-  writersAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  publishersAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  labelsAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  transactionsAccess?:
-    | Prisma.BoolWithAggregatesFilter<"SystemAccess">
-    | boolean;
-  withdrawalsAccess?: Prisma.BoolWithAggregatesFilter<"SystemAccess"> | boolean;
-  rightsManagementAccess?:
-    | Prisma.BoolWithAggregatesFilter<"SystemAccess">
-    | boolean;
-  workspaceAccountsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  releasesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  tracksAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  videosAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  ringtonesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  artistsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  performersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  producersAndEngineersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  writersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  publishersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  labelsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  transactionsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  withdrawalsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  rightsManagementAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  usersAccessLevel?: Prisma.EnumUSER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  workspaceAccountsAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  reportingAccessLevel?: Prisma.EnumREPORTING_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  releasesAccessLevel?: Prisma.EnumRELEASE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  tracksAccessLevel?: Prisma.EnumTRACK_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  videosAccessLevel?: Prisma.EnumVIDEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  ringtonesAccessLevel?: Prisma.EnumRINGTONE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  artistsAccessLevel?: Prisma.EnumARTIST_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  performersAccessLevel?: Prisma.EnumPERFORMER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  producersAndEngineersAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  writersAccessLevel?: Prisma.EnumWRITER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  geoAccessLevel?: Prisma.EnumGEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  rightsManagementAccessLevel?: Prisma.EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"SystemAccess">;
   createdAt?:
     | Prisma.DateTimeWithAggregatesFilter<"SystemAccess">
@@ -589,62 +461,66 @@ export type SystemAccessScalarWhereWithAggregatesInput = {
 
 export type SystemAccessCreateInput = {
   id?: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -658,62 +534,66 @@ export type SystemAccessUncheckedCreateInput = {
   id?: string;
   userId: string;
   assignerId: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -723,62 +603,66 @@ export type SystemAccessUncheckedCreateInput = {
 
 export type SystemAccessUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -796,62 +680,66 @@ export type SystemAccessUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -867,62 +755,66 @@ export type SystemAccessCreateManyInput = {
   id?: string;
   userId: string;
   assignerId: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -932,62 +824,66 @@ export type SystemAccessCreateManyInput = {
 
 export type SystemAccessUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1003,62 +899,66 @@ export type SystemAccessUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1085,21 +985,403 @@ export type SystemAccessOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder;
 };
 
-export type EnumSYSTEM_ACCESS_LEVELNullableListFilter<$PrismaModel = never> = {
+export type EnumUSER_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
   equals?:
-    | $Enums.SYSTEM_ACCESS_LEVEL[]
-    | Prisma.ListEnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumUSER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   has?:
-    | $Enums.SYSTEM_ACCESS_LEVEL
-    | Prisma.EnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumUSER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   hasEvery?:
-    | $Enums.SYSTEM_ACCESS_LEVEL[]
-    | Prisma.ListEnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumUSER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   hasSome?:
-    | $Enums.SYSTEM_ACCESS_LEVEL[]
-    | Prisma.ListEnumSYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumUSER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumREPORTING_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumREPORTING_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumREPORTING_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumREPORTING_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumREPORTING_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumRELEASE_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRELEASE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumRELEASE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRELEASE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRELEASE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumTRACK_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRACK_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumTRACK_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRACK_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRACK_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumVIDEO_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumVIDEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumVIDEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumVIDEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumVIDEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumRINGTONE_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRINGTONE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumRINGTONE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRINGTONE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRINGTONE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumARTIST_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumARTIST_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumARTIST_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumARTIST_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumARTIST_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumPERFORMER_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPERFORMER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumPERFORMER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPERFORMER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPERFORMER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumWRITER_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWRITER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumWRITER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWRITER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWRITER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPUBLISHER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPUBLISHER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumPUBLISHER_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumLABEL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumLABEL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumLABEL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWAL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWAL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWAL_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumCONSUMPTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumCONSUMPTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumCONSUMPTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumENGAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumENGAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumENGAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumREVENUE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumREVENUE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumREVENUE_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumGEO_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumGEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumGEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumGEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumGEO_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   isEmpty?: boolean;
 };
 
@@ -1107,21 +1389,9 @@ export type SystemAccessCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  workspaceAccountsAccess?: Prisma.SortOrder;
-  releasesAccess?: Prisma.SortOrder;
-  tracksAccess?: Prisma.SortOrder;
-  videosAccess?: Prisma.SortOrder;
-  ringtonesAccess?: Prisma.SortOrder;
-  artistsAccess?: Prisma.SortOrder;
-  performersAccess?: Prisma.SortOrder;
-  producersAndEngineersAccess?: Prisma.SortOrder;
-  writersAccess?: Prisma.SortOrder;
-  publishersAccess?: Prisma.SortOrder;
-  labelsAccess?: Prisma.SortOrder;
-  transactionsAccess?: Prisma.SortOrder;
-  withdrawalsAccess?: Prisma.SortOrder;
-  rightsManagementAccess?: Prisma.SortOrder;
+  usersAccessLevel?: Prisma.SortOrder;
   workspaceAccountsAccessLevel?: Prisma.SortOrder;
+  reportingAccessLevel?: Prisma.SortOrder;
   releasesAccessLevel?: Prisma.SortOrder;
   tracksAccessLevel?: Prisma.SortOrder;
   videosAccessLevel?: Prisma.SortOrder;
@@ -1133,7 +1403,11 @@ export type SystemAccessCountOrderByAggregateInput = {
   publishersAccessLevel?: Prisma.SortOrder;
   labelsAccessLevel?: Prisma.SortOrder;
   transactionsAccessLevel?: Prisma.SortOrder;
-  withdrawalsAccessLevel?: Prisma.SortOrder;
+  withdrawsAccessLevel?: Prisma.SortOrder;
+  consumptionAccessLevel?: Prisma.SortOrder;
+  engagementAccessLevel?: Prisma.SortOrder;
+  revenueAccessLevel?: Prisma.SortOrder;
+  geoAccessLevel?: Prisma.SortOrder;
   rightsManagementAccessLevel?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -1146,20 +1420,6 @@ export type SystemAccessMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  workspaceAccountsAccess?: Prisma.SortOrder;
-  releasesAccess?: Prisma.SortOrder;
-  tracksAccess?: Prisma.SortOrder;
-  videosAccess?: Prisma.SortOrder;
-  ringtonesAccess?: Prisma.SortOrder;
-  artistsAccess?: Prisma.SortOrder;
-  performersAccess?: Prisma.SortOrder;
-  producersAndEngineersAccess?: Prisma.SortOrder;
-  writersAccess?: Prisma.SortOrder;
-  publishersAccess?: Prisma.SortOrder;
-  labelsAccess?: Prisma.SortOrder;
-  transactionsAccess?: Prisma.SortOrder;
-  withdrawalsAccess?: Prisma.SortOrder;
-  rightsManagementAccess?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrder;
@@ -1170,20 +1430,6 @@ export type SystemAccessMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   userId?: Prisma.SortOrder;
   assignerId?: Prisma.SortOrder;
-  workspaceAccountsAccess?: Prisma.SortOrder;
-  releasesAccess?: Prisma.SortOrder;
-  tracksAccess?: Prisma.SortOrder;
-  videosAccess?: Prisma.SortOrder;
-  ringtonesAccess?: Prisma.SortOrder;
-  artistsAccess?: Prisma.SortOrder;
-  performersAccess?: Prisma.SortOrder;
-  producersAndEngineersAccess?: Prisma.SortOrder;
-  writersAccess?: Prisma.SortOrder;
-  publishersAccess?: Prisma.SortOrder;
-  labelsAccess?: Prisma.SortOrder;
-  transactionsAccess?: Prisma.SortOrder;
-  withdrawalsAccess?: Prisma.SortOrder;
-  rightsManagementAccess?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrder;
@@ -1356,194 +1602,278 @@ export type SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput = {
     | Prisma.SystemAccessScalarWhereInput[];
 };
 
+export type SystemAccessCreateusersAccessLevelInput = {
+  set: $Enums.USER_SYSTEM_ACCESS_LEVEL[];
+};
+
 export type SystemAccessCreateworkspaceAccountsAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessCreatereportingAccessLevelInput = {
+  set: $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatereleasesAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatetracksAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatevideosAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreateringtonesAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreateartistsAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreateperformersAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreateproducersAndEngineersAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatewritersAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatepublishersAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatelabelsAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreatetransactionsAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
 };
 
-export type SystemAccessCreatewithdrawalsAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+export type SystemAccessCreatewithdrawsAccessLevelInput = {
+  set: $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessCreateconsumptionAccessLevelInput = {
+  set: $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessCreateengagementAccessLevelInput = {
+  set: $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessCreaterevenueAccessLevelInput = {
+  set: $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessCreategeoAccessLevelInput = {
+  set: $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreaterightsManagementAccessLevelInput = {
-  set: $Enums.SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
 };
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean;
+export type SystemAccessUpdateusersAccessLevelInput = {
+  set?: $Enums.USER_SYSTEM_ACCESS_LEVEL[];
+  push?: $Enums.USER_SYSTEM_ACCESS_LEVEL | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdateworkspaceAccountsAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessUpdatereportingAccessLevelInput = {
+  set?: $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatereleasesAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatetracksAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
+  push?: $Enums.TRACK_SYSTEM_ACCESS_LEVEL | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatevideosAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
+  push?: $Enums.VIDEO_SYSTEM_ACCESS_LEVEL | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdateringtonesAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdateartistsAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdateperformersAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdateproducersAndEngineersAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatewritersAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatepublishersAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatelabelsAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
+  push?: $Enums.LABEL_SYSTEM_ACCESS_LEVEL | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdatetransactionsAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
 };
 
-export type SystemAccessUpdatewithdrawalsAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+export type SystemAccessUpdatewithdrawsAccessLevelInput = {
+  set?: $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessUpdateconsumptionAccessLevelInput = {
+  set?: $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessUpdateengagementAccessLevelInput = {
+  set?: $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessUpdaterevenueAccessLevelInput = {
+  set?: $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+};
+
+export type SystemAccessUpdategeoAccessLevelInput = {
+  set?: $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
+  push?: $Enums.GEO_SYSTEM_ACCESS_LEVEL | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdaterightsManagementAccessLevelInput = {
-  set?: $Enums.SYSTEM_ACCESS_LEVEL[];
-  push?: $Enums.SYSTEM_ACCESS_LEVEL | $Enums.SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  push?:
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreateWithoutUserInput = {
   id?: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1555,62 +1885,66 @@ export type SystemAccessCreateWithoutUserInput = {
 export type SystemAccessUncheckedCreateWithoutUserInput = {
   id?: string;
   assignerId: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1628,62 +1962,66 @@ export type SystemAccessCreateOrConnectWithoutUserInput = {
 
 export type SystemAccessCreateWithoutAssignerInput = {
   id?: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1695,62 +2033,66 @@ export type SystemAccessCreateWithoutAssignerInput = {
 export type SystemAccessUncheckedCreateWithoutAssignerInput = {
   id?: string;
   userId: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -1795,62 +2137,66 @@ export type SystemAccessUpdateToOneWithWhereWithoutUserInput = {
 
 export type SystemAccessUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1866,62 +2212,66 @@ export type SystemAccessUpdateWithoutUserInput = {
 export type SystemAccessUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -1972,34 +2322,26 @@ export type SystemAccessScalarWhereInput = {
   id?: Prisma.StringFilter<"SystemAccess"> | string;
   userId?: Prisma.StringFilter<"SystemAccess"> | string;
   assignerId?: Prisma.StringFilter<"SystemAccess"> | string;
-  workspaceAccountsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  releasesAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  tracksAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  videosAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  ringtonesAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  artistsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  performersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  writersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  publishersAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  labelsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  transactionsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  withdrawalsAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  rightsManagementAccess?: Prisma.BoolFilter<"SystemAccess"> | boolean;
-  workspaceAccountsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  releasesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  tracksAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  videosAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  ringtonesAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  artistsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  performersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  producersAndEngineersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  writersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  publishersAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  labelsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  transactionsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  withdrawalsAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  rightsManagementAccessLevel?: Prisma.EnumSYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  usersAccessLevel?: Prisma.EnumUSER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  workspaceAccountsAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  reportingAccessLevel?: Prisma.EnumREPORTING_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  releasesAccessLevel?: Prisma.EnumRELEASE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  tracksAccessLevel?: Prisma.EnumTRACK_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  videosAccessLevel?: Prisma.EnumVIDEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  ringtonesAccessLevel?: Prisma.EnumRINGTONE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  artistsAccessLevel?: Prisma.EnumARTIST_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  performersAccessLevel?: Prisma.EnumPERFORMER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  producersAndEngineersAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  writersAccessLevel?: Prisma.EnumWRITER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAWAL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  geoAccessLevel?: Prisma.EnumGEO_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  rightsManagementAccessLevel?: Prisma.EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   metadata?: Prisma.JsonNullableFilter<"SystemAccess">;
   createdAt?: Prisma.DateTimeFilter<"SystemAccess"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"SystemAccess"> | Date | string;
@@ -2014,62 +2356,66 @@ export type SystemAccessScalarWhereInput = {
 export type SystemAccessCreateManyAssignerInput = {
   id?: string;
   userId: string;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessCreateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessCreateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessCreatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessCreatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessCreatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessCreatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessCreateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessCreateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessCreateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessCreateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessCreatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessCreatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessCreatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessCreatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessCreatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessCreategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessCreaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Date | string;
   updatedAt?: Date | string;
@@ -2079,62 +2425,66 @@ export type SystemAccessCreateManyAssignerInput = {
 
 export type SystemAccessUpdateWithoutAssignerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -2150,62 +2500,66 @@ export type SystemAccessUpdateWithoutAssignerInput = {
 export type SystemAccessUncheckedUpdateWithoutAssignerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -2220,62 +2574,66 @@ export type SystemAccessUncheckedUpdateWithoutAssignerInput = {
 export type SystemAccessUncheckedUpdateManyWithoutAssignerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   userId?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  releasesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  tracksAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  videosAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  ringtonesAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  artistsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  performersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  producersAndEngineersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  writersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  publishersAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  labelsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  transactionsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  withdrawalsAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  rightsManagementAccess?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  usersAccessLevel?:
+    | Prisma.SystemAccessUpdateusersAccessLevelInput
+    | $Enums.USER_SYSTEM_ACCESS_LEVEL[];
   workspaceAccountsAccessLevel?:
     | Prisma.SystemAccessUpdateworkspaceAccountsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+  reportingAccessLevel?:
+    | Prisma.SystemAccessUpdatereportingAccessLevelInput
+    | $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
   releasesAccessLevel?:
     | Prisma.SystemAccessUpdatereleasesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
   tracksAccessLevel?:
     | Prisma.SystemAccessUpdatetracksAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
   videosAccessLevel?:
     | Prisma.SystemAccessUpdatevideosAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
   ringtonesAccessLevel?:
     | Prisma.SystemAccessUpdateringtonesAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
   artistsAccessLevel?:
     | Prisma.SystemAccessUpdateartistsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
   performersAccessLevel?:
     | Prisma.SystemAccessUpdateperformersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
   producersAndEngineersAccessLevel?:
     | Prisma.SystemAccessUpdateproducersAndEngineersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
   writersAccessLevel?:
     | Prisma.SystemAccessUpdatewritersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
   publishersAccessLevel?:
     | Prisma.SystemAccessUpdatepublishersAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel?:
     | Prisma.SystemAccessUpdatelabelsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel?:
     | Prisma.SystemAccessUpdatetransactionsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
-  withdrawalsAccessLevel?:
-    | Prisma.SystemAccessUpdatewithdrawalsAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SystemAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SystemAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SystemAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
   rightsManagementAccessLevel?:
     | Prisma.SystemAccessUpdaterightsManagementAccessLevelInput
-    | $Enums.SYSTEM_ACCESS_LEVEL[];
+    | $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
@@ -2295,21 +2653,9 @@ export type SystemAccessSelect<
     id?: boolean;
     userId?: boolean;
     assignerId?: boolean;
-    workspaceAccountsAccess?: boolean;
-    releasesAccess?: boolean;
-    tracksAccess?: boolean;
-    videosAccess?: boolean;
-    ringtonesAccess?: boolean;
-    artistsAccess?: boolean;
-    performersAccess?: boolean;
-    producersAndEngineersAccess?: boolean;
-    writersAccess?: boolean;
-    publishersAccess?: boolean;
-    labelsAccess?: boolean;
-    transactionsAccess?: boolean;
-    withdrawalsAccess?: boolean;
-    rightsManagementAccess?: boolean;
+    usersAccessLevel?: boolean;
     workspaceAccountsAccessLevel?: boolean;
+    reportingAccessLevel?: boolean;
     releasesAccessLevel?: boolean;
     tracksAccessLevel?: boolean;
     videosAccessLevel?: boolean;
@@ -2321,7 +2667,11 @@ export type SystemAccessSelect<
     publishersAccessLevel?: boolean;
     labelsAccessLevel?: boolean;
     transactionsAccessLevel?: boolean;
-    withdrawalsAccessLevel?: boolean;
+    withdrawsAccessLevel?: boolean;
+    consumptionAccessLevel?: boolean;
+    engagementAccessLevel?: boolean;
+    revenueAccessLevel?: boolean;
+    geoAccessLevel?: boolean;
     rightsManagementAccessLevel?: boolean;
     metadata?: boolean;
     createdAt?: boolean;
@@ -2342,21 +2692,9 @@ export type SystemAccessSelectCreateManyAndReturn<
     id?: boolean;
     userId?: boolean;
     assignerId?: boolean;
-    workspaceAccountsAccess?: boolean;
-    releasesAccess?: boolean;
-    tracksAccess?: boolean;
-    videosAccess?: boolean;
-    ringtonesAccess?: boolean;
-    artistsAccess?: boolean;
-    performersAccess?: boolean;
-    producersAndEngineersAccess?: boolean;
-    writersAccess?: boolean;
-    publishersAccess?: boolean;
-    labelsAccess?: boolean;
-    transactionsAccess?: boolean;
-    withdrawalsAccess?: boolean;
-    rightsManagementAccess?: boolean;
+    usersAccessLevel?: boolean;
     workspaceAccountsAccessLevel?: boolean;
+    reportingAccessLevel?: boolean;
     releasesAccessLevel?: boolean;
     tracksAccessLevel?: boolean;
     videosAccessLevel?: boolean;
@@ -2368,7 +2706,11 @@ export type SystemAccessSelectCreateManyAndReturn<
     publishersAccessLevel?: boolean;
     labelsAccessLevel?: boolean;
     transactionsAccessLevel?: boolean;
-    withdrawalsAccessLevel?: boolean;
+    withdrawsAccessLevel?: boolean;
+    consumptionAccessLevel?: boolean;
+    engagementAccessLevel?: boolean;
+    revenueAccessLevel?: boolean;
+    geoAccessLevel?: boolean;
     rightsManagementAccessLevel?: boolean;
     metadata?: boolean;
     createdAt?: boolean;
@@ -2389,21 +2731,9 @@ export type SystemAccessSelectUpdateManyAndReturn<
     id?: boolean;
     userId?: boolean;
     assignerId?: boolean;
-    workspaceAccountsAccess?: boolean;
-    releasesAccess?: boolean;
-    tracksAccess?: boolean;
-    videosAccess?: boolean;
-    ringtonesAccess?: boolean;
-    artistsAccess?: boolean;
-    performersAccess?: boolean;
-    producersAndEngineersAccess?: boolean;
-    writersAccess?: boolean;
-    publishersAccess?: boolean;
-    labelsAccess?: boolean;
-    transactionsAccess?: boolean;
-    withdrawalsAccess?: boolean;
-    rightsManagementAccess?: boolean;
+    usersAccessLevel?: boolean;
     workspaceAccountsAccessLevel?: boolean;
+    reportingAccessLevel?: boolean;
     releasesAccessLevel?: boolean;
     tracksAccessLevel?: boolean;
     videosAccessLevel?: boolean;
@@ -2415,7 +2745,11 @@ export type SystemAccessSelectUpdateManyAndReturn<
     publishersAccessLevel?: boolean;
     labelsAccessLevel?: boolean;
     transactionsAccessLevel?: boolean;
-    withdrawalsAccessLevel?: boolean;
+    withdrawsAccessLevel?: boolean;
+    consumptionAccessLevel?: boolean;
+    engagementAccessLevel?: boolean;
+    revenueAccessLevel?: boolean;
+    geoAccessLevel?: boolean;
     rightsManagementAccessLevel?: boolean;
     metadata?: boolean;
     createdAt?: boolean;
@@ -2432,21 +2766,9 @@ export type SystemAccessSelectScalar = {
   id?: boolean;
   userId?: boolean;
   assignerId?: boolean;
-  workspaceAccountsAccess?: boolean;
-  releasesAccess?: boolean;
-  tracksAccess?: boolean;
-  videosAccess?: boolean;
-  ringtonesAccess?: boolean;
-  artistsAccess?: boolean;
-  performersAccess?: boolean;
-  producersAndEngineersAccess?: boolean;
-  writersAccess?: boolean;
-  publishersAccess?: boolean;
-  labelsAccess?: boolean;
-  transactionsAccess?: boolean;
-  withdrawalsAccess?: boolean;
-  rightsManagementAccess?: boolean;
+  usersAccessLevel?: boolean;
   workspaceAccountsAccessLevel?: boolean;
+  reportingAccessLevel?: boolean;
   releasesAccessLevel?: boolean;
   tracksAccessLevel?: boolean;
   videosAccessLevel?: boolean;
@@ -2458,7 +2780,11 @@ export type SystemAccessSelectScalar = {
   publishersAccessLevel?: boolean;
   labelsAccessLevel?: boolean;
   transactionsAccessLevel?: boolean;
-  withdrawalsAccessLevel?: boolean;
+  withdrawsAccessLevel?: boolean;
+  consumptionAccessLevel?: boolean;
+  engagementAccessLevel?: boolean;
+  revenueAccessLevel?: boolean;
+  geoAccessLevel?: boolean;
   rightsManagementAccessLevel?: boolean;
   metadata?: boolean;
   createdAt?: boolean;
@@ -2474,21 +2800,9 @@ export type SystemAccessOmit<
   | "id"
   | "userId"
   | "assignerId"
-  | "workspaceAccountsAccess"
-  | "releasesAccess"
-  | "tracksAccess"
-  | "videosAccess"
-  | "ringtonesAccess"
-  | "artistsAccess"
-  | "performersAccess"
-  | "producersAndEngineersAccess"
-  | "writersAccess"
-  | "publishersAccess"
-  | "labelsAccess"
-  | "transactionsAccess"
-  | "withdrawalsAccess"
-  | "rightsManagementAccess"
+  | "usersAccessLevel"
   | "workspaceAccountsAccessLevel"
+  | "reportingAccessLevel"
   | "releasesAccessLevel"
   | "tracksAccessLevel"
   | "videosAccessLevel"
@@ -2500,7 +2814,11 @@ export type SystemAccessOmit<
   | "publishersAccessLevel"
   | "labelsAccessLevel"
   | "transactionsAccessLevel"
-  | "withdrawalsAccessLevel"
+  | "withdrawsAccessLevel"
+  | "consumptionAccessLevel"
+  | "engagementAccessLevel"
+  | "revenueAccessLevel"
+  | "geoAccessLevel"
   | "rightsManagementAccessLevel"
   | "metadata"
   | "createdAt"
@@ -2545,34 +2863,26 @@ export type $SystemAccessPayload<
       id: string;
       userId: string;
       assignerId: string;
-      workspaceAccountsAccess: boolean;
-      releasesAccess: boolean;
-      tracksAccess: boolean;
-      videosAccess: boolean;
-      ringtonesAccess: boolean;
-      artistsAccess: boolean;
-      performersAccess: boolean;
-      producersAndEngineersAccess: boolean;
-      writersAccess: boolean;
-      publishersAccess: boolean;
-      labelsAccess: boolean;
-      transactionsAccess: boolean;
-      withdrawalsAccess: boolean;
-      rightsManagementAccess: boolean;
-      workspaceAccountsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      releasesAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      tracksAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      videosAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      ringtonesAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      artistsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      performersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      producersAndEngineersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      writersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      publishersAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      labelsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      transactionsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      withdrawalsAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
-      rightsManagementAccessLevel: $Enums.SYSTEM_ACCESS_LEVEL[];
+      usersAccessLevel: $Enums.USER_SYSTEM_ACCESS_LEVEL[];
+      workspaceAccountsAccessLevel: $Enums.WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[];
+      reportingAccessLevel: $Enums.REPORTING_SYSTEM_ACCESS_LEVEL[];
+      releasesAccessLevel: $Enums.RELEASE_SYSTEM_ACCESS_LEVEL[];
+      tracksAccessLevel: $Enums.TRACK_SYSTEM_ACCESS_LEVEL[];
+      videosAccessLevel: $Enums.VIDEO_SYSTEM_ACCESS_LEVEL[];
+      ringtonesAccessLevel: $Enums.RINGTONE_SYSTEM_ACCESS_LEVEL[];
+      artistsAccessLevel: $Enums.ARTIST_SYSTEM_ACCESS_LEVEL[];
+      performersAccessLevel: $Enums.PERFORMER_SYSTEM_ACCESS_LEVEL[];
+      producersAndEngineersAccessLevel: $Enums.PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[];
+      writersAccessLevel: $Enums.WRITER_SYSTEM_ACCESS_LEVEL[];
+      publishersAccessLevel: $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
+      labelsAccessLevel: $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
+      transactionsAccessLevel: $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
+      withdrawsAccessLevel: $Enums.WITHDRAWAL_SYSTEM_ACCESS_LEVEL[];
+      consumptionAccessLevel: $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
+      engagementAccessLevel: $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
+      revenueAccessLevel: $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
+      geoAccessLevel: $Enums.GEO_SYSTEM_ACCESS_LEVEL[];
+      rightsManagementAccessLevel: $Enums.RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[];
       metadata: runtime.JsonValue | null;
       createdAt: Date;
       updatedAt: Date;
@@ -3207,78 +3517,85 @@ export interface SystemAccessFieldRefs {
   readonly id: Prisma.FieldRef<"SystemAccess", "String">;
   readonly userId: Prisma.FieldRef<"SystemAccess", "String">;
   readonly assignerId: Prisma.FieldRef<"SystemAccess", "String">;
-  readonly workspaceAccountsAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly releasesAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly tracksAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly videosAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly ringtonesAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly artistsAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly performersAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly producersAndEngineersAccess: Prisma.FieldRef<
+  readonly usersAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "Boolean"
+    "USER_SYSTEM_ACCESS_LEVEL[]"
   >;
-  readonly writersAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly publishersAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly labelsAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly transactionsAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly withdrawalsAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
-  readonly rightsManagementAccess: Prisma.FieldRef<"SystemAccess", "Boolean">;
   readonly workspaceAccountsAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL[]"
+  >;
+  readonly reportingAccessLevel: Prisma.FieldRef<
+    "SystemAccess",
+    "REPORTING_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly releasesAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "RELEASE_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly tracksAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "TRACK_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly videosAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "VIDEO_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly ringtonesAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "RINGTONE_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly artistsAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "ARTIST_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly performersAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "PERFORMER_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly producersAndEngineersAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly writersAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "WRITER_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly publishersAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "PUBLISHER_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly labelsAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "LABEL_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly transactionsAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "TRANSACTION_SYSTEM_ACCESS_LEVEL[]"
   >;
-  readonly withdrawalsAccessLevel: Prisma.FieldRef<
+  readonly withdrawsAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]"
+  >;
+  readonly consumptionAccessLevel: Prisma.FieldRef<
+    "SystemAccess",
+    "CONSUMPTION_SYSTEM_ACCESS_LEVEL[]"
+  >;
+  readonly engagementAccessLevel: Prisma.FieldRef<
+    "SystemAccess",
+    "ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]"
+  >;
+  readonly revenueAccessLevel: Prisma.FieldRef<
+    "SystemAccess",
+    "REVENUE_SYSTEM_ACCESS_LEVEL[]"
+  >;
+  readonly geoAccessLevel: Prisma.FieldRef<
+    "SystemAccess",
+    "GEO_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly rightsManagementAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "SYSTEM_ACCESS_LEVEL[]"
+    "RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly metadata: Prisma.FieldRef<"SystemAccess", "Json">;
   readonly createdAt: Prisma.FieldRef<"SystemAccess", "DateTime">;
