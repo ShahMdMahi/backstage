@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { getCurrentSession } from "@/actions/shared/session";
+import { ROLE } from "@/lib/prisma/enums";
+import { redirect } from "next/navigation";
 
 const images = Array.from({ length: 39 }, (_, i) => `/posters/${i + 1}.jpg`);
 
@@ -20,6 +23,17 @@ export default async function AuthLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getCurrentSession();
+  if (session.data) {
+    if (
+      session.data.user.role === ROLE.SYSTEM_OWNER ||
+      session.data.user.role === ROLE.SYSTEM_ADMIN ||
+      session.data.user.role === ROLE.SYSTEM_USER
+    ) {
+      redirect("/system");
+    }
+    redirect("/");
+  }
   return (
     <div className="grid h-screen w-screen grid-cols-1 overflow-hidden lg:grid-cols-[60%_40%]">
       {/* Left panel with auth banner */}

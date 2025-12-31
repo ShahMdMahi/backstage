@@ -40,7 +40,11 @@ export type SharedWorkspaceAccountAccessMinAggregateOutputType = {
   allPublishers: boolean | null;
   allLabels: boolean | null;
   allTransactions: boolean | null;
-  allWithdrawals: boolean | null;
+  allWithdraws: boolean | null;
+  allConsumptions: boolean | null;
+  allEngagements: boolean | null;
+  allRevenues: boolean | null;
+  allGeos: boolean | null;
   role: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -64,7 +68,11 @@ export type SharedWorkspaceAccountAccessMaxAggregateOutputType = {
   allPublishers: boolean | null;
   allLabels: boolean | null;
   allTransactions: boolean | null;
-  allWithdrawals: boolean | null;
+  allWithdraws: boolean | null;
+  allConsumptions: boolean | null;
+  allEngagements: boolean | null;
+  allRevenues: boolean | null;
+  allGeos: boolean | null;
   role: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE | null;
   createdAt: Date | null;
   updatedAt: Date | null;
@@ -88,8 +96,11 @@ export type SharedWorkspaceAccountAccessCountAggregateOutputType = {
   allPublishers: number;
   allLabels: number;
   allTransactions: number;
-  allWithdrawals: number;
-  workspaceAccountAccessLevel: number;
+  allWithdraws: number;
+  allConsumptions: number;
+  allEngagements: number;
+  allRevenues: number;
+  allGeos: number;
   releaseAccessLevel: number;
   trackAccessLevel: number;
   videoAccessLevel: number;
@@ -101,7 +112,11 @@ export type SharedWorkspaceAccountAccessCountAggregateOutputType = {
   publisherAccessLevel: number;
   labelAccessLevel: number;
   transactionAccessLevel: number;
-  withdrawalAccessLevel: number;
+  withdrawsAccessLevel: number;
+  consumptionAccessLevel: number;
+  engagementAccessLevel: number;
+  revenueAccessLevel: number;
+  geoAccessLevel: number;
   metadata: number;
   role: number;
   createdAt: number;
@@ -127,7 +142,11 @@ export type SharedWorkspaceAccountAccessMinAggregateInputType = {
   allPublishers?: true;
   allLabels?: true;
   allTransactions?: true;
-  allWithdrawals?: true;
+  allWithdraws?: true;
+  allConsumptions?: true;
+  allEngagements?: true;
+  allRevenues?: true;
+  allGeos?: true;
   role?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -151,7 +170,11 @@ export type SharedWorkspaceAccountAccessMaxAggregateInputType = {
   allPublishers?: true;
   allLabels?: true;
   allTransactions?: true;
-  allWithdrawals?: true;
+  allWithdraws?: true;
+  allConsumptions?: true;
+  allEngagements?: true;
+  allRevenues?: true;
+  allGeos?: true;
   role?: true;
   createdAt?: true;
   updatedAt?: true;
@@ -175,8 +198,11 @@ export type SharedWorkspaceAccountAccessCountAggregateInputType = {
   allPublishers?: true;
   allLabels?: true;
   allTransactions?: true;
-  allWithdrawals?: true;
-  workspaceAccountAccessLevel?: true;
+  allWithdraws?: true;
+  allConsumptions?: true;
+  allEngagements?: true;
+  allRevenues?: true;
+  allGeos?: true;
   releaseAccessLevel?: true;
   trackAccessLevel?: true;
   videoAccessLevel?: true;
@@ -188,7 +214,11 @@ export type SharedWorkspaceAccountAccessCountAggregateInputType = {
   publisherAccessLevel?: true;
   labelAccessLevel?: true;
   transactionAccessLevel?: true;
-  withdrawalAccessLevel?: true;
+  withdrawsAccessLevel?: true;
+  consumptionAccessLevel?: true;
+  engagementAccessLevel?: true;
+  revenueAccessLevel?: true;
+  geoAccessLevel?: true;
   metadata?: true;
   role?: true;
   createdAt?: true;
@@ -299,8 +329,11 @@ export type SharedWorkspaceAccountAccessGroupByOutputType = {
   allPublishers: boolean;
   allLabels: boolean;
   allTransactions: boolean;
-  allWithdrawals: boolean;
-  workspaceAccountAccessLevel: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws: boolean;
+  allConsumptions: boolean;
+  allEngagements: boolean;
+  allRevenues: boolean;
+  allGeos: boolean;
   releaseAccessLevel: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
   trackAccessLevel: $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
   videoAccessLevel: $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
@@ -312,7 +345,11 @@ export type SharedWorkspaceAccountAccessGroupByOutputType = {
   publisherAccessLevel: $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
   labelAccessLevel: $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
   transactionAccessLevel: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel: $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel: $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel: $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel: $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel: $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata: runtime.JsonValue | null;
   role: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt: Date;
@@ -375,8 +412,11 @@ export type SharedWorkspaceAccountAccessWhereInput = {
   allPublishers?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allLabels?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   allTransactions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allWithdrawals?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  allWithdraws?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allConsumptions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allEngagements?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allRevenues?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allGeos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
   releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
@@ -388,7 +428,11 @@ export type SharedWorkspaceAccountAccessWhereInput = {
   publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  consumptionAccessLevel?: Prisma.EnumCONSUMPTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  engagementAccessLevel?: Prisma.EnumENGAGEMENT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  revenueAccessLevel?: Prisma.EnumREVENUE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  geoAccessLevel?: Prisma.EnumGEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
@@ -446,8 +490,11 @@ export type SharedWorkspaceAccountAccessOrderByWithRelationInput = {
   allPublishers?: Prisma.SortOrder;
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
-  allWithdrawals?: Prisma.SortOrder;
-  workspaceAccountAccessLevel?: Prisma.SortOrder;
+  allWithdraws?: Prisma.SortOrder;
+  allConsumptions?: Prisma.SortOrder;
+  allEngagements?: Prisma.SortOrder;
+  allRevenues?: Prisma.SortOrder;
+  allGeos?: Prisma.SortOrder;
   releaseAccessLevel?: Prisma.SortOrder;
   trackAccessLevel?: Prisma.SortOrder;
   videoAccessLevel?: Prisma.SortOrder;
@@ -459,7 +506,11 @@ export type SharedWorkspaceAccountAccessOrderByWithRelationInput = {
   publisherAccessLevel?: Prisma.SortOrder;
   labelAccessLevel?: Prisma.SortOrder;
   transactionAccessLevel?: Prisma.SortOrder;
-  withdrawalAccessLevel?: Prisma.SortOrder;
+  withdrawsAccessLevel?: Prisma.SortOrder;
+  consumptionAccessLevel?: Prisma.SortOrder;
+  engagementAccessLevel?: Prisma.SortOrder;
+  revenueAccessLevel?: Prisma.SortOrder;
+  geoAccessLevel?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   role?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -486,6 +537,7 @@ export type SharedWorkspaceAccountAccessOrderByWithRelationInput = {
 export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    userId?: string;
     AND?:
       | Prisma.SharedWorkspaceAccountAccessWhereInput
       | Prisma.SharedWorkspaceAccountAccessWhereInput[];
@@ -496,7 +548,6 @@ export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
     workspaceAccountId?:
       | Prisma.StringFilter<"SharedWorkspaceAccountAccess">
       | string;
-    userId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
     assignerId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
     allReleases?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
     allTracks?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
@@ -513,10 +564,15 @@ export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
     allTransactions?:
       | Prisma.BoolFilter<"SharedWorkspaceAccountAccess">
       | boolean;
-    allWithdrawals?:
+    allWithdraws?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+    allConsumptions?:
       | Prisma.BoolFilter<"SharedWorkspaceAccountAccess">
       | boolean;
-    workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    allEngagements?:
+      | Prisma.BoolFilter<"SharedWorkspaceAccountAccess">
+      | boolean;
+    allRevenues?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+    allGeos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
     releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
     trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
     videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
@@ -528,7 +584,11 @@ export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
     publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
     labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
     transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-    withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    consumptionAccessLevel?: Prisma.EnumCONSUMPTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    engagementAccessLevel?: Prisma.EnumENGAGEMENT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    revenueAccessLevel?: Prisma.EnumREVENUE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+    geoAccessLevel?: Prisma.EnumGEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
     metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
@@ -572,7 +632,7 @@ export type SharedWorkspaceAccountAccessWhereUniqueInput = Prisma.AtLeast<
     transactions?: Prisma.TransactionListRelationFilter;
     withdrawals?: Prisma.WithdrawalListRelationFilter;
   },
-  "id"
+  "id" | "userId"
 >;
 
 export type SharedWorkspaceAccountAccessOrderByWithAggregationInput = {
@@ -591,8 +651,11 @@ export type SharedWorkspaceAccountAccessOrderByWithAggregationInput = {
   allPublishers?: Prisma.SortOrder;
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
-  allWithdrawals?: Prisma.SortOrder;
-  workspaceAccountAccessLevel?: Prisma.SortOrder;
+  allWithdraws?: Prisma.SortOrder;
+  allConsumptions?: Prisma.SortOrder;
+  allEngagements?: Prisma.SortOrder;
+  allRevenues?: Prisma.SortOrder;
+  allGeos?: Prisma.SortOrder;
   releaseAccessLevel?: Prisma.SortOrder;
   trackAccessLevel?: Prisma.SortOrder;
   videoAccessLevel?: Prisma.SortOrder;
@@ -604,7 +667,11 @@ export type SharedWorkspaceAccountAccessOrderByWithAggregationInput = {
   publisherAccessLevel?: Prisma.SortOrder;
   labelAccessLevel?: Prisma.SortOrder;
   transactionAccessLevel?: Prisma.SortOrder;
-  withdrawalAccessLevel?: Prisma.SortOrder;
+  withdrawsAccessLevel?: Prisma.SortOrder;
+  consumptionAccessLevel?: Prisma.SortOrder;
+  engagementAccessLevel?: Prisma.SortOrder;
+  revenueAccessLevel?: Prisma.SortOrder;
+  geoAccessLevel?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   role?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -669,10 +736,21 @@ export type SharedWorkspaceAccountAccessScalarWhereWithAggregatesInput = {
   allTransactions?:
     | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
     | boolean;
-  allWithdrawals?:
+  allWithdraws?:
     | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
     | boolean;
-  workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  allConsumptions?:
+    | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
+    | boolean;
+  allEngagements?:
+    | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
+    | boolean;
+  allRevenues?:
+    | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
+    | boolean;
+  allGeos?:
+    | Prisma.BoolWithAggregatesFilter<"SharedWorkspaceAccountAccess">
+    | boolean;
   releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
@@ -684,7 +762,11 @@ export type SharedWorkspaceAccountAccessScalarWhereWithAggregatesInput = {
   publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  consumptionAccessLevel?: Prisma.EnumCONSUMPTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  engagementAccessLevel?: Prisma.EnumENGAGEMENT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  revenueAccessLevel?: Prisma.EnumREVENUE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  geoAccessLevel?: Prisma.EnumGEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"SharedWorkspaceAccountAccess">;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEWithAggregatesFilter<"SharedWorkspaceAccountAccess">
@@ -721,10 +803,11 @@ export type SharedWorkspaceAccountAccessCreateInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -758,9 +841,21 @@ export type SharedWorkspaceAccountAccessCreateInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -800,10 +895,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -837,9 +933,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -873,10 +981,11 @@ export type SharedWorkspaceAccountAccessUpdateInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -910,9 +1019,21 @@ export type SharedWorkspaceAccountAccessUpdateInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -958,10 +1079,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -995,9 +1117,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1040,10 +1174,11 @@ export type SharedWorkspaceAccountAccessCreateManyInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -1077,9 +1212,21 @@ export type SharedWorkspaceAccountAccessCreateManyInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -1101,10 +1248,11 @@ export type SharedWorkspaceAccountAccessUpdateManyMutationInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -1138,9 +1286,21 @@ export type SharedWorkspaceAccountAccessUpdateManyMutationInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1171,10 +1331,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -1208,9 +1369,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -1225,6 +1398,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyInput = {
     | null;
 };
 
+export type SharedWorkspaceAccountAccessNullableScalarRelationFilter = {
+  is?: Prisma.SharedWorkspaceAccountAccessWhereInput | null;
+  isNot?: Prisma.SharedWorkspaceAccountAccessWhereInput | null;
+};
+
 export type SharedWorkspaceAccountAccessListRelationFilter = {
   every?: Prisma.SharedWorkspaceAccountAccessWhereInput;
   some?: Prisma.SharedWorkspaceAccountAccessWhereInput;
@@ -1233,26 +1411,6 @@ export type SharedWorkspaceAccountAccessListRelationFilter = {
 
 export type SharedWorkspaceAccountAccessOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder;
-};
-
-export type EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<
-  $PrismaModel = never,
-> = {
-  equals?:
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]
-    | Prisma.ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
-    | null;
-  has?:
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL
-    | Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
-    | null;
-  hasEvery?:
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]
-    | Prisma.ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
-  hasSome?:
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]
-    | Prisma.ListEnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
-  isEmpty?: boolean;
 };
 
 export type EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<
@@ -1475,23 +1633,103 @@ export type EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<
   isEmpty?: boolean;
 };
 
-export type EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<
+export type EnumWITHDRAWS_WORKSPACE_ACCESS_LEVELNullableListFilter<
   $PrismaModel = never,
 > = {
   equals?:
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]
-    | Prisma.ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWS_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   has?:
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL
-    | Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumWITHDRAWS_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   hasEvery?:
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]
-    | Prisma.ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWS_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   hasSome?:
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]
-    | Prisma.ListEnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAWS_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumCONSUMPTION_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumCONSUMPTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumCONSUMPTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumCONSUMPTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumCONSUMPTION_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumENGAGEMENT_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumENGAGEMENT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumENGAGEMENT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumENGAGEMENT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumENGAGEMENT_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumREVENUE_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumREVENUE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumREVENUE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumREVENUE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumREVENUE_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  isEmpty?: boolean;
+};
+
+export type EnumGEO_WORKSPACE_ACCESS_LEVELNullableListFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumGEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  has?:
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL
+    | Prisma.EnumGEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | null;
+  hasEvery?:
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumGEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+  hasSome?:
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[]
+    | Prisma.ListEnumGEO_WORKSPACE_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   isEmpty?: boolean;
 };
 
@@ -1511,8 +1749,11 @@ export type SharedWorkspaceAccountAccessCountOrderByAggregateInput = {
   allPublishers?: Prisma.SortOrder;
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
-  allWithdrawals?: Prisma.SortOrder;
-  workspaceAccountAccessLevel?: Prisma.SortOrder;
+  allWithdraws?: Prisma.SortOrder;
+  allConsumptions?: Prisma.SortOrder;
+  allEngagements?: Prisma.SortOrder;
+  allRevenues?: Prisma.SortOrder;
+  allGeos?: Prisma.SortOrder;
   releaseAccessLevel?: Prisma.SortOrder;
   trackAccessLevel?: Prisma.SortOrder;
   videoAccessLevel?: Prisma.SortOrder;
@@ -1524,7 +1765,11 @@ export type SharedWorkspaceAccountAccessCountOrderByAggregateInput = {
   publisherAccessLevel?: Prisma.SortOrder;
   labelAccessLevel?: Prisma.SortOrder;
   transactionAccessLevel?: Prisma.SortOrder;
-  withdrawalAccessLevel?: Prisma.SortOrder;
+  withdrawsAccessLevel?: Prisma.SortOrder;
+  consumptionAccessLevel?: Prisma.SortOrder;
+  engagementAccessLevel?: Prisma.SortOrder;
+  revenueAccessLevel?: Prisma.SortOrder;
+  geoAccessLevel?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
   role?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -1549,7 +1794,11 @@ export type SharedWorkspaceAccountAccessMaxOrderByAggregateInput = {
   allPublishers?: Prisma.SortOrder;
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
-  allWithdrawals?: Prisma.SortOrder;
+  allWithdraws?: Prisma.SortOrder;
+  allConsumptions?: Prisma.SortOrder;
+  allEngagements?: Prisma.SortOrder;
+  allRevenues?: Prisma.SortOrder;
+  allGeos?: Prisma.SortOrder;
   role?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -1573,7 +1822,11 @@ export type SharedWorkspaceAccountAccessMinOrderByAggregateInput = {
   allPublishers?: Prisma.SortOrder;
   allLabels?: Prisma.SortOrder;
   allTransactions?: Prisma.SortOrder;
-  allWithdrawals?: Prisma.SortOrder;
+  allWithdraws?: Prisma.SortOrder;
+  allConsumptions?: Prisma.SortOrder;
+  allEngagements?: Prisma.SortOrder;
+  allRevenues?: Prisma.SortOrder;
+  allGeos?: Prisma.SortOrder;
   role?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
@@ -1581,21 +1834,13 @@ export type SharedWorkspaceAccountAccessMinOrderByAggregateInput = {
   suspendedAt?: Prisma.SortOrder;
 };
 
-export type SharedWorkspaceAccountAccessCreateNestedManyWithoutUserInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
-        Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
-      >
-    | Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput[]
-    | Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput[];
-  connectOrCreate?:
-    | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput
-    | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput[];
-  createMany?: Prisma.SharedWorkspaceAccountAccessCreateManyUserInputEnvelope;
-  connect?:
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
+export type SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput = {
+  create?: Prisma.XOR<
+    Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
+    Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
+  >;
+  connectOrCreate?: Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput;
+  connect?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
 };
 
 export type SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput = {
@@ -1615,22 +1860,14 @@ export type SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput = {
     | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
 };
 
-export type SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutUserInput =
+export type SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput =
   {
-    create?:
-      | Prisma.XOR<
-          Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
-          Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
-        >
-      | Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput[]
-      | Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput[];
-    connectOrCreate?:
-      | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput
-      | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput[];
-    createMany?: Prisma.SharedWorkspaceAccountAccessCreateManyUserInputEnvelope;
-    connect?:
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
+    create?: Prisma.XOR<
+      Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
+      Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
+    >;
+    connectOrCreate?: Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput;
+    connect?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
   };
 
 export type SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput =
@@ -1651,42 +1888,23 @@ export type SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssigner
       | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
   };
 
-export type SharedWorkspaceAccountAccessUpdateManyWithoutUserNestedInput = {
-  create?:
-    | Prisma.XOR<
-        Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
-        Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
-      >
-    | Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput[]
-    | Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput[];
-  connectOrCreate?:
-    | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput
-    | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput[];
-  upsert?:
-    | Prisma.SharedWorkspaceAccountAccessUpsertWithWhereUniqueWithoutUserInput
-    | Prisma.SharedWorkspaceAccountAccessUpsertWithWhereUniqueWithoutUserInput[];
-  createMany?: Prisma.SharedWorkspaceAccountAccessCreateManyUserInputEnvelope;
-  set?:
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-  disconnect?:
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-  delete?:
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-  connect?:
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-    | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-  update?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateWithWhereUniqueWithoutUserInput
-    | Prisma.SharedWorkspaceAccountAccessUpdateWithWhereUniqueWithoutUserInput[];
-  updateMany?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutUserInput
-    | Prisma.SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutUserInput[];
-  deleteMany?:
-    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput
-    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
+export type SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput = {
+  create?: Prisma.XOR<
+    Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
+    Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
+  >;
+  connectOrCreate?: Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput;
+  upsert?: Prisma.SharedWorkspaceAccountAccessUpsertWithoutUserInput;
+  disconnect?: Prisma.SharedWorkspaceAccountAccessWhereInput | boolean;
+  delete?: Prisma.SharedWorkspaceAccountAccessWhereInput | boolean;
+  connect?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
+  update?: Prisma.XOR<
+    Prisma.XOR<
+      Prisma.SharedWorkspaceAccountAccessUpdateToOneWithWhereWithoutUserInput,
+      Prisma.SharedWorkspaceAccountAccessUpdateWithoutUserInput
+    >,
+    Prisma.SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput
+  >;
 };
 
 export type SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput = {
@@ -1727,43 +1945,24 @@ export type SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput = {
     | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
 };
 
-export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutUserNestedInput =
+export type SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput =
   {
-    create?:
-      | Prisma.XOR<
-          Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
-          Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
-        >
-      | Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput[]
-      | Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput[];
-    connectOrCreate?:
-      | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput
-      | Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput[];
-    upsert?:
-      | Prisma.SharedWorkspaceAccountAccessUpsertWithWhereUniqueWithoutUserInput
-      | Prisma.SharedWorkspaceAccountAccessUpsertWithWhereUniqueWithoutUserInput[];
-    createMany?: Prisma.SharedWorkspaceAccountAccessCreateManyUserInputEnvelope;
-    set?:
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-    disconnect?:
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-    delete?:
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-    connect?:
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput
-      | Prisma.SharedWorkspaceAccountAccessWhereUniqueInput[];
-    update?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateWithWhereUniqueWithoutUserInput
-      | Prisma.SharedWorkspaceAccountAccessUpdateWithWhereUniqueWithoutUserInput[];
-    updateMany?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutUserInput
-      | Prisma.SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutUserInput[];
-    deleteMany?:
-      | Prisma.SharedWorkspaceAccountAccessScalarWhereInput
-      | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
+    create?: Prisma.XOR<
+      Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
+      Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
+    >;
+    connectOrCreate?: Prisma.SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput;
+    upsert?: Prisma.SharedWorkspaceAccountAccessUpsertWithoutUserInput;
+    disconnect?: Prisma.SharedWorkspaceAccountAccessWhereInput | boolean;
+    delete?: Prisma.SharedWorkspaceAccountAccessWhereInput | boolean;
+    connect?: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
+    update?: Prisma.XOR<
+      Prisma.XOR<
+        Prisma.SharedWorkspaceAccountAccessUpdateToOneWithWhereWithoutUserInput,
+        Prisma.SharedWorkspaceAccountAccessUpdateWithoutUserInput
+      >,
+      Prisma.SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput
+    >;
   };
 
 export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput =
@@ -3227,11 +3426,6 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWithdrawalsNes
       | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
   };
 
-export type SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput =
-  {
-    set: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-  };
-
 export type SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput = {
   set: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
 };
@@ -3277,21 +3471,29 @@ export type SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput = {
   set: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
 };
 
-export type SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput = {
-  set: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+export type SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput = {
+  set: $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput = {
+  set: $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessCreateengagementAccessLevelInput = {
+  set: $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput = {
+  set: $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessCreategeoAccessLevelInput = {
+  set: $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean;
 };
-
-export type SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput =
-  {
-    set?: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-    push?:
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-  };
 
 export type SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput = {
   set?: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3371,11 +3573,39 @@ export type SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput = {
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
 };
 
-export type SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput = {
-  set?: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+export type SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput = {
+  set?: $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
   push?:
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput = {
+  set?: $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  push?:
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput = {
+  set?: $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  push?:
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput = {
+  set?: $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  push?:
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+};
+
+export type SharedWorkspaceAccountAccessUpdategeoAccessLevelInput = {
+  set?: $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
+  push?:
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
 };
 
 export type EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput = {
@@ -3395,10 +3625,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutUserInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3432,9 +3663,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutUserInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3472,10 +3715,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3509,9 +3753,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3540,13 +3796,6 @@ export type SharedWorkspaceAccountAccessCreateOrConnectWithoutUserInput = {
   >;
 };
 
-export type SharedWorkspaceAccountAccessCreateManyUserInputEnvelope = {
-  data:
-    | Prisma.SharedWorkspaceAccountAccessCreateManyUserInput
-    | Prisma.SharedWorkspaceAccountAccessCreateManyUserInput[];
-  skipDuplicates?: boolean;
-};
-
 export type SharedWorkspaceAccountAccessCreateWithoutAssignerInput = {
   id?: string;
   allReleases?: boolean;
@@ -3560,10 +3809,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutAssignerInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3597,9 +3847,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutAssignerInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3637,10 +3899,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutAssignerInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3674,9 +3937,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutAssignerInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3712,98 +3987,212 @@ export type SharedWorkspaceAccountAccessCreateManyAssignerInputEnvelope = {
   skipDuplicates?: boolean;
 };
 
-export type SharedWorkspaceAccountAccessUpsertWithWhereUniqueWithoutUserInput =
-  {
-    where: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
-    update: Prisma.XOR<
-      Prisma.SharedWorkspaceAccountAccessUpdateWithoutUserInput,
-      Prisma.SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput
-    >;
-    create: Prisma.XOR<
-      Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
-      Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
-    >;
-  };
+export type SharedWorkspaceAccountAccessUpsertWithoutUserInput = {
+  update: Prisma.XOR<
+    Prisma.SharedWorkspaceAccountAccessUpdateWithoutUserInput,
+    Prisma.SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput
+  >;
+  create: Prisma.XOR<
+    Prisma.SharedWorkspaceAccountAccessCreateWithoutUserInput,
+    Prisma.SharedWorkspaceAccountAccessUncheckedCreateWithoutUserInput
+  >;
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
+};
 
-export type SharedWorkspaceAccountAccessUpdateWithWhereUniqueWithoutUserInput =
-  {
-    where: Prisma.SharedWorkspaceAccountAccessWhereUniqueInput;
-    data: Prisma.XOR<
-      Prisma.SharedWorkspaceAccountAccessUpdateWithoutUserInput,
-      Prisma.SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput
-    >;
-  };
-
-export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.SharedWorkspaceAccountAccessScalarWhereInput;
+export type SharedWorkspaceAccountAccessUpdateToOneWithWhereWithoutUserInput = {
+  where?: Prisma.SharedWorkspaceAccountAccessWhereInput;
   data: Prisma.XOR<
-    Prisma.SharedWorkspaceAccountAccessUpdateManyMutationInput,
-    Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutUserInput
+    Prisma.SharedWorkspaceAccountAccessUpdateWithoutUserInput,
+    Prisma.SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput
   >;
 };
 
-export type SharedWorkspaceAccountAccessScalarWhereInput = {
-  AND?:
-    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput
-    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
-  OR?: Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
-  NOT?:
-    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput
-    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
-  id?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
-  workspaceAccountId?:
-    | Prisma.StringFilter<"SharedWorkspaceAccountAccess">
-    | string;
-  userId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
-  assignerId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
-  allReleases?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allTracks?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allVideos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allRingtones?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allArtists?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allPerformers?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allProducersAndEngineers?:
-    | Prisma.BoolFilter<"SharedWorkspaceAccountAccess">
-    | boolean;
-  allWriters?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allPublishers?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allLabels?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allTransactions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  allWithdrawals?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
-  workspaceAccountAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  ringtoneAccessLevel?: Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  artistAccessLevel?: Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  performerAccessLevel?: Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  producerAndEngineerAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  writerAccessLevel?: Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  withdrawalAccessLevel?: Prisma.EnumWITHDRAWAL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
-  metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
+export type SharedWorkspaceAccountAccessUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRingtones?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allArtists?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allPerformers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allProducersAndEngineers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allWriters?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  releaseAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
+  trackAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
+  videoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
+  ringtoneAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
+  artistAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
+  performerAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
+  producerAndEngineerAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
+  writerAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
+  publisherAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
+  labelAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
+  transactionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
     | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
-  createdAt?:
-    | Prisma.DateTimeFilter<"SharedWorkspaceAccountAccess">
-    | Date
-    | string;
-  updatedAt?:
-    | Prisma.DateTimeFilter<"SharedWorkspaceAccountAccess">
-    | Date
-    | string;
-  expiresAt?:
-    | Prisma.DateTimeFilter<"SharedWorkspaceAccountAccess">
-    | Date
-    | string;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   suspendedAt?:
-    | Prisma.DateTimeNullableFilter<"SharedWorkspaceAccountAccess">
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
     | string
     | null;
+  assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  tracks?: Prisma.TrackUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  videos?: Prisma.VideoUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  ringtones?: Prisma.RingtoneUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  artists?: Prisma.ArtistUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  performers?: Prisma.PerformerUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  writers?: Prisma.WriterUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  publishers?: Prisma.PublisherUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  labels?: Prisma.LabelUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  transactions?: Prisma.TransactionUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  withdrawals?: Prisma.WithdrawalUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+};
+
+export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
+  assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
+  allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRingtones?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allArtists?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allPerformers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allProducersAndEngineers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allWriters?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  releaseAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
+    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
+  trackAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
+    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
+  videoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
+    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
+  ringtoneAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
+    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
+  artistAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
+    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
+  performerAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
+    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
+  producerAndEngineerAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
+    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
+  writerAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
+    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
+  publisherAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
+    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
+  labelAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
+    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
+  transactionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
+    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
+  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  role?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  tracks?: Prisma.TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  videos?: Prisma.VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  artists?: Prisma.ArtistUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  performers?: Prisma.PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  writers?: Prisma.WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  labels?: Prisma.LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
+  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
 };
 
 export type SharedWorkspaceAccountAccessUpsertWithWhereUniqueWithoutAssignerInput =
@@ -3837,6 +4226,77 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutAssignerInput 
     >;
   };
 
+export type SharedWorkspaceAccountAccessScalarWhereInput = {
+  AND?:
+    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput
+    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
+  OR?: Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
+  NOT?:
+    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput
+    | Prisma.SharedWorkspaceAccountAccessScalarWhereInput[];
+  id?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
+  workspaceAccountId?:
+    | Prisma.StringFilter<"SharedWorkspaceAccountAccess">
+    | string;
+  userId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
+  assignerId?: Prisma.StringFilter<"SharedWorkspaceAccountAccess"> | string;
+  allReleases?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allTracks?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allVideos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allRingtones?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allArtists?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allPerformers?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allProducersAndEngineers?:
+    | Prisma.BoolFilter<"SharedWorkspaceAccountAccess">
+    | boolean;
+  allWriters?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allPublishers?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allLabels?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allTransactions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allWithdraws?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allConsumptions?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allEngagements?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allRevenues?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  allGeos?: Prisma.BoolFilter<"SharedWorkspaceAccountAccess"> | boolean;
+  releaseAccessLevel?: Prisma.EnumRELEASE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  trackAccessLevel?: Prisma.EnumTRACK_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  videoAccessLevel?: Prisma.EnumVIDEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  ringtoneAccessLevel?: Prisma.EnumRINGTONE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  artistAccessLevel?: Prisma.EnumARTIST_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  performerAccessLevel?: Prisma.EnumPERFORMER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  producerAndEngineerAccessLevel?: Prisma.EnumPRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  writerAccessLevel?: Prisma.EnumWRITER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  publisherAccessLevel?: Prisma.EnumPUBLISHER_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  labelAccessLevel?: Prisma.EnumLABEL_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  transactionAccessLevel?: Prisma.EnumTRANSACTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  consumptionAccessLevel?: Prisma.EnumCONSUMPTION_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  engagementAccessLevel?: Prisma.EnumENGAGEMENT_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  revenueAccessLevel?: Prisma.EnumREVENUE_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  geoAccessLevel?: Prisma.EnumGEO_WORKSPACE_ACCESS_LEVELNullableListFilter<"SharedWorkspaceAccountAccess">;
+  metadata?: Prisma.JsonNullableFilter<"SharedWorkspaceAccountAccess">;
+  role?:
+    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFilter<"SharedWorkspaceAccountAccess">
+    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
+  createdAt?:
+    | Prisma.DateTimeFilter<"SharedWorkspaceAccountAccess">
+    | Date
+    | string;
+  updatedAt?:
+    | Prisma.DateTimeFilter<"SharedWorkspaceAccountAccess">
+    | Date
+    | string;
+  expiresAt?:
+    | Prisma.DateTimeFilter<"SharedWorkspaceAccountAccess">
+    | Date
+    | string;
+  suspendedAt?:
+    | Prisma.DateTimeNullableFilter<"SharedWorkspaceAccountAccess">
+    | Date
+    | string
+    | null;
+};
+
 export type SharedWorkspaceAccountAccessCreateWithoutWorkspaceAccountInput = {
   id?: string;
   allReleases?: boolean;
@@ -3850,10 +4310,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutWorkspaceAccountInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3887,9 +4348,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutWorkspaceAccountInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -3928,10 +4401,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWorkspaceAccountIn
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -3965,9 +4439,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWorkspaceAccountIn
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -4049,10 +4535,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutReleasesInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4086,9 +4573,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutReleasesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4127,10 +4626,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutReleasesInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4164,9 +4664,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutReleasesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4238,10 +4750,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutTracksInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4275,9 +4788,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutTracksInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4316,10 +4841,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTracksInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4353,9 +4879,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTracksInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4427,10 +4965,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutVideosInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4464,9 +5003,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutVideosInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4505,10 +5056,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutVideosInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4542,9 +5094,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutVideosInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4616,10 +5180,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutRingtonesInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4653,9 +5218,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutRingtonesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4694,10 +5271,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutRingtonesInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4731,9 +5309,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutRingtonesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4805,10 +5395,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutArtistsInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4842,9 +5433,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutArtistsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4883,10 +5486,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutArtistsInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -4920,9 +5524,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutArtistsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -4994,10 +5610,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutPerformersInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5031,9 +5648,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutPerformersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5073,10 +5702,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPerformersInput =
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5110,9 +5740,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPerformersInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5186,10 +5828,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutProducersAndEngineersInput 
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5223,9 +5866,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutProducersAndEngineersInput 
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5265,10 +5920,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutProducersAndEngine
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5302,9 +5958,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutProducersAndEngine
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5377,10 +6045,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutWritersInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5414,9 +6083,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutWritersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5455,10 +6136,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWritersInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5492,9 +6174,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWritersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5566,10 +6260,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutPublishersInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5603,9 +6298,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutPublishersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5645,10 +6352,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPublishersInput =
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5682,9 +6390,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutPublishersInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -5757,10 +6477,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutLabelsInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5794,9 +6515,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutLabelsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5835,10 +6568,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutLabelsInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5872,9 +6606,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutLabelsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -5946,10 +6692,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutTransactionsInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -5983,9 +6730,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutTransactionsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6025,10 +6784,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTransactionsInput 
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6062,9 +6822,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutTransactionsInput 
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -6137,10 +6909,11 @@ export type SharedWorkspaceAccountAccessCreateWithoutWithdrawalsInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6174,9 +6947,21 @@ export type SharedWorkspaceAccountAccessCreateWithoutWithdrawalsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6216,10 +7001,11 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWithdrawalsInput =
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6253,9 +7039,21 @@ export type SharedWorkspaceAccountAccessUncheckedCreateWithoutWithdrawalsInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
     createdAt?: Date | string;
@@ -6315,69 +7113,6 @@ export type SharedWorkspaceAccountAccessUpdateManyWithWhereWithoutWithdrawalsInp
     >;
   };
 
-export type SharedWorkspaceAccountAccessCreateManyUserInput = {
-  id?: string;
-  workspaceAccountId: string;
-  assignerId: string;
-  allReleases?: boolean;
-  allTracks?: boolean;
-  allVideos?: boolean;
-  allRingtones?: boolean;
-  allArtists?: boolean;
-  allPerformers?: boolean;
-  allProducersAndEngineers?: boolean;
-  allWriters?: boolean;
-  allPublishers?: boolean;
-  allLabels?: boolean;
-  allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-  releaseAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
-    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
-  trackAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatetrackAccessLevelInput
-    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
-  videoAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatevideoAccessLevelInput
-    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
-  ringtoneAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateringtoneAccessLevelInput
-    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
-  artistAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateartistAccessLevelInput
-    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
-  performerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateperformerAccessLevelInput
-    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
-  producerAndEngineerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateproducerAndEngineerAccessLevelInput
-    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
-  writerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewriterAccessLevelInput
-    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
-  publisherAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatepublisherAccessLevelInput
-    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
-  labelAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatelabelAccessLevelInput
-    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
-  transactionAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
-    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
-  createdAt?: Date | string;
-  updatedAt?: Date | string;
-  expiresAt: Date | string;
-  suspendedAt?: Date | string | null;
-};
-
 export type SharedWorkspaceAccountAccessCreateManyAssignerInput = {
   id?: string;
   workspaceAccountId: string;
@@ -6393,10 +7128,11 @@ export type SharedWorkspaceAccountAccessCreateManyAssignerInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6430,246 +7166,27 @@ export type SharedWorkspaceAccountAccessCreateManyAssignerInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-};
-
-export type SharedWorkspaceAccountAccessUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allRingtones?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allArtists?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allPerformers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allProducersAndEngineers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWriters?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-  releaseAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
-  trackAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
-  videoAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
-  ringtoneAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
-  artistAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
-  performerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
-  producerAndEngineerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
-  writerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
-  publisherAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
-  labelAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
-  transactionAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  role?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  suspendedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
-  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
-  releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  tracks?: Prisma.TrackUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  videos?: Prisma.VideoUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  ringtones?: Prisma.RingtoneUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  artists?: Prisma.ArtistUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  performers?: Prisma.PerformerUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  writers?: Prisma.WriterUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  publishers?: Prisma.PublisherUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  labels?: Prisma.LabelUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  transactions?: Prisma.TransactionUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  withdrawals?: Prisma.WithdrawalUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-};
-
-export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allRingtones?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allArtists?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allPerformers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allProducersAndEngineers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWriters?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-  releaseAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
-  trackAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
-  videoAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
-  ringtoneAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
-  artistAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
-  performerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
-  producerAndEngineerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
-  writerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
-  publisherAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
-  labelAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
-  transactionAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  role?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  suspendedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
-  releases?: Prisma.ReleaseUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  tracks?: Prisma.TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  videos?: Prisma.VideoUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  ringtones?: Prisma.RingtoneUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  artists?: Prisma.ArtistUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  performers?: Prisma.PerformerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  producersAndEngineers?: Prisma.ProducerAndEngineerUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  writers?: Prisma.WriterUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  publishers?: Prisma.PublisherUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  labels?: Prisma.LabelUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  transactions?: Prisma.TransactionUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-  withdrawals?: Prisma.WithdrawalUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
-};
-
-export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
-  assignerId?: Prisma.StringFieldUpdateOperationsInput | string;
-  allReleases?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allTracks?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allVideos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allRingtones?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allArtists?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allPerformers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allProducersAndEngineers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWriters?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
-  releaseAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
-    | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
-  trackAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatetrackAccessLevelInput
-    | $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
-  videoAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatevideoAccessLevelInput
-    | $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
-  ringtoneAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateringtoneAccessLevelInput
-    | $Enums.RINGTONE_WORKSPACE_ACCESS_LEVEL[];
-  artistAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateartistAccessLevelInput
-    | $Enums.ARTIST_WORKSPACE_ACCESS_LEVEL[];
-  performerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateperformerAccessLevelInput
-    | $Enums.PERFORMER_WORKSPACE_ACCESS_LEVEL[];
-  producerAndEngineerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateproducerAndEngineerAccessLevelInput
-    | $Enums.PRODUCER_AND_ENGINEER_WORKSPACE_ACCESS_LEVEL[];
-  writerAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewriterAccessLevelInput
-    | $Enums.WRITER_WORKSPACE_ACCESS_LEVEL[];
-  publisherAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatepublisherAccessLevelInput
-    | $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
-  labelAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatelabelAccessLevelInput
-    | $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
-  transactionAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
-    | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
-  metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  role?:
-    | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
-    | $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  expiresAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  suspendedAt?:
-    | Prisma.NullableDateTimeFieldUpdateOperationsInput
-    | Date
-    | string
-    | null;
 };
 
 export type SharedWorkspaceAccountAccessUpdateWithoutAssignerInput = {
@@ -6685,10 +7202,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutAssignerInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6722,9 +7240,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutAssignerInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6768,10 +7298,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutAssignerInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6805,9 +7336,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutAssignerInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6850,10 +7393,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerInput 
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6887,9 +7431,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerInput 
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -6919,10 +7475,11 @@ export type SharedWorkspaceAccountAccessCreateManyWorkspaceAccountInput = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -6956,9 +7513,21 @@ export type SharedWorkspaceAccountAccessCreateManyWorkspaceAccountInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessCreatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessCreategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
   createdAt?: Date | string;
@@ -6980,10 +7549,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWorkspaceAccountInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7017,9 +7587,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWorkspaceAccountInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7064,10 +7646,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWorkspaceAccountIn
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7101,9 +7684,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWorkspaceAccountIn
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7146,10 +7741,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccou
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7183,9 +7779,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWorkspaceAccou
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7213,10 +7821,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutReleasesInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7250,9 +7859,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutReleasesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7297,10 +7918,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutReleasesInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7334,9 +7956,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutReleasesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7379,10 +8013,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesInput 
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7416,9 +8051,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutReleasesInput 
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7446,10 +8093,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTracksInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7483,9 +8131,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTracksInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7530,10 +8190,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTracksInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7567,9 +8228,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTracksInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7612,10 +8285,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7649,9 +8323,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7679,10 +8365,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutVideosInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7716,9 +8403,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutVideosInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7763,10 +8462,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutVideosInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7800,9 +8500,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutVideosInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7845,10 +8557,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7882,9 +8595,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutVideosInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7912,10 +8637,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutRingtonesInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -7949,9 +8675,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutRingtonesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -7996,10 +8734,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutRingtonesInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8033,9 +8772,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutRingtonesInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8078,10 +8829,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesInput
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8115,9 +8867,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutRingtonesInput
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8145,10 +8909,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutArtistsInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8182,9 +8947,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutArtistsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8229,10 +9006,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutArtistsInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8266,9 +9044,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutArtistsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8311,10 +9101,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutArtistsInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8348,9 +9139,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutArtistsInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8378,10 +9181,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPerformersInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8415,9 +9219,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPerformersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8463,10 +9279,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPerformersInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8500,9 +9317,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPerformersInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8545,10 +9374,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersInpu
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8582,9 +9412,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPerformersInpu
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8613,10 +9455,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutProducersAndEngineersInput 
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8650,9 +9493,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutProducersAndEngineersInput 
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8698,10 +9553,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutProducersAndEngine
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8735,9 +9591,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutProducersAndEngine
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8780,10 +9648,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEn
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8817,9 +9686,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutProducersAndEn
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8847,10 +9728,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWritersInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8884,9 +9766,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWritersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -8931,10 +9825,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWritersInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -8968,9 +9863,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWritersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9013,10 +9920,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9050,9 +9958,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWritersInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9080,10 +10000,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPublishersInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9117,9 +10038,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPublishersInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9165,10 +10098,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPublishersInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9202,9 +10136,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutPublishersInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9247,10 +10193,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersInpu
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9284,9 +10231,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutPublishersInpu
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9314,10 +10273,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutLabelsInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9351,9 +10311,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutLabelsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9398,10 +10370,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutLabelsInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9435,9 +10408,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutLabelsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9480,10 +10465,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9517,9 +10503,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutLabelsInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9547,10 +10545,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTransactionsInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9584,9 +10583,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTransactionsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9632,10 +10643,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTransactionsInput 
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9669,9 +10681,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutTransactionsInput 
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9714,10 +10738,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsIn
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9751,9 +10776,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTransactionsIn
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9781,10 +10818,11 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWithdrawalsInput = {
   allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-  workspaceAccountAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-    | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+  allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+  allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
   releaseAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
     | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9818,9 +10856,21 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWithdrawalsInput = {
   transactionAccessLevel?:
     | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
     | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-  withdrawalAccessLevel?:
-    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-    | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+  withdrawsAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+    | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+  consumptionAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+    | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+  engagementAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+    | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+  revenueAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+    | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+  geoAccessLevel?:
+    | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+    | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   role?:
     | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9866,10 +10916,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWithdrawalsInput =
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9903,9 +10954,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateWithoutWithdrawalsInput =
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -9948,10 +11011,11 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWithdrawalsInp
     allPublishers?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allLabels?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     allTransactions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    allWithdrawals?: Prisma.BoolFieldUpdateOperationsInput | boolean;
-    workspaceAccountAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdateworkspaceAccountAccessLevelInput
-      | $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+    allWithdraws?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allConsumptions?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allEngagements?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allRevenues?: Prisma.BoolFieldUpdateOperationsInput | boolean;
+    allGeos?: Prisma.BoolFieldUpdateOperationsInput | boolean;
     releaseAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatereleaseAccessLevelInput
       | $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
@@ -9985,9 +11049,21 @@ export type SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutWithdrawalsInp
     transactionAccessLevel?:
       | Prisma.SharedWorkspaceAccountAccessUpdatetransactionAccessLevelInput
       | $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-    withdrawalAccessLevel?:
-      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawalAccessLevelInput
-      | $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+    withdrawsAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdatewithdrawsAccessLevelInput
+      | $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+    consumptionAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateconsumptionAccessLevelInput
+      | $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+    engagementAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdateengagementAccessLevelInput
+      | $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+    revenueAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdaterevenueAccessLevelInput
+      | $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+    geoAccessLevel?:
+      | Prisma.SharedWorkspaceAccountAccessUpdategeoAccessLevelInput
+      | $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     role?:
       | Prisma.EnumWORKSPACE_ACCOUNT_ACCESS_ROLEFieldUpdateOperationsInput
@@ -10210,8 +11286,11 @@ export type SharedWorkspaceAccountAccessSelect<
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?: boolean;
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?: boolean;
     trackAccessLevel?: boolean;
     videoAccessLevel?: boolean;
@@ -10223,7 +11302,11 @@ export type SharedWorkspaceAccountAccessSelect<
     publisherAccessLevel?: boolean;
     labelAccessLevel?: boolean;
     transactionAccessLevel?: boolean;
-    withdrawalAccessLevel?: boolean;
+    withdrawsAccessLevel?: boolean;
+    consumptionAccessLevel?: boolean;
+    engagementAccessLevel?: boolean;
+    revenueAccessLevel?: boolean;
+    geoAccessLevel?: boolean;
     metadata?: boolean;
     role?: boolean;
     createdAt?: boolean;
@@ -10290,8 +11373,11 @@ export type SharedWorkspaceAccountAccessSelectCreateManyAndReturn<
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?: boolean;
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?: boolean;
     trackAccessLevel?: boolean;
     videoAccessLevel?: boolean;
@@ -10303,7 +11389,11 @@ export type SharedWorkspaceAccountAccessSelectCreateManyAndReturn<
     publisherAccessLevel?: boolean;
     labelAccessLevel?: boolean;
     transactionAccessLevel?: boolean;
-    withdrawalAccessLevel?: boolean;
+    withdrawsAccessLevel?: boolean;
+    consumptionAccessLevel?: boolean;
+    engagementAccessLevel?: boolean;
+    revenueAccessLevel?: boolean;
+    geoAccessLevel?: boolean;
     metadata?: boolean;
     role?: boolean;
     createdAt?: boolean;
@@ -10337,8 +11427,11 @@ export type SharedWorkspaceAccountAccessSelectUpdateManyAndReturn<
     allPublishers?: boolean;
     allLabels?: boolean;
     allTransactions?: boolean;
-    allWithdrawals?: boolean;
-    workspaceAccountAccessLevel?: boolean;
+    allWithdraws?: boolean;
+    allConsumptions?: boolean;
+    allEngagements?: boolean;
+    allRevenues?: boolean;
+    allGeos?: boolean;
     releaseAccessLevel?: boolean;
     trackAccessLevel?: boolean;
     videoAccessLevel?: boolean;
@@ -10350,7 +11443,11 @@ export type SharedWorkspaceAccountAccessSelectUpdateManyAndReturn<
     publisherAccessLevel?: boolean;
     labelAccessLevel?: boolean;
     transactionAccessLevel?: boolean;
-    withdrawalAccessLevel?: boolean;
+    withdrawsAccessLevel?: boolean;
+    consumptionAccessLevel?: boolean;
+    engagementAccessLevel?: boolean;
+    revenueAccessLevel?: boolean;
+    geoAccessLevel?: boolean;
     metadata?: boolean;
     role?: boolean;
     createdAt?: boolean;
@@ -10380,8 +11477,11 @@ export type SharedWorkspaceAccountAccessSelectScalar = {
   allPublishers?: boolean;
   allLabels?: boolean;
   allTransactions?: boolean;
-  allWithdrawals?: boolean;
-  workspaceAccountAccessLevel?: boolean;
+  allWithdraws?: boolean;
+  allConsumptions?: boolean;
+  allEngagements?: boolean;
+  allRevenues?: boolean;
+  allGeos?: boolean;
   releaseAccessLevel?: boolean;
   trackAccessLevel?: boolean;
   videoAccessLevel?: boolean;
@@ -10393,7 +11493,11 @@ export type SharedWorkspaceAccountAccessSelectScalar = {
   publisherAccessLevel?: boolean;
   labelAccessLevel?: boolean;
   transactionAccessLevel?: boolean;
-  withdrawalAccessLevel?: boolean;
+  withdrawsAccessLevel?: boolean;
+  consumptionAccessLevel?: boolean;
+  engagementAccessLevel?: boolean;
+  revenueAccessLevel?: boolean;
+  geoAccessLevel?: boolean;
   metadata?: boolean;
   role?: boolean;
   createdAt?: boolean;
@@ -10421,8 +11525,11 @@ export type SharedWorkspaceAccountAccessOmit<
   | "allPublishers"
   | "allLabels"
   | "allTransactions"
-  | "allWithdrawals"
-  | "workspaceAccountAccessLevel"
+  | "allWithdraws"
+  | "allConsumptions"
+  | "allEngagements"
+  | "allRevenues"
+  | "allGeos"
   | "releaseAccessLevel"
   | "trackAccessLevel"
   | "videoAccessLevel"
@@ -10434,7 +11541,11 @@ export type SharedWorkspaceAccountAccessOmit<
   | "publisherAccessLevel"
   | "labelAccessLevel"
   | "transactionAccessLevel"
-  | "withdrawalAccessLevel"
+  | "withdrawsAccessLevel"
+  | "consumptionAccessLevel"
+  | "engagementAccessLevel"
+  | "revenueAccessLevel"
+  | "geoAccessLevel"
   | "metadata"
   | "role"
   | "createdAt"
@@ -10536,8 +11647,11 @@ export type $SharedWorkspaceAccountAccessPayload<
       allPublishers: boolean;
       allLabels: boolean;
       allTransactions: boolean;
-      allWithdrawals: boolean;
-      workspaceAccountAccessLevel: $Enums.WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[];
+      allWithdraws: boolean;
+      allConsumptions: boolean;
+      allEngagements: boolean;
+      allRevenues: boolean;
+      allGeos: boolean;
       releaseAccessLevel: $Enums.RELEASE_WORKSPACE_ACCESS_LEVEL[];
       trackAccessLevel: $Enums.TRACK_WORKSPACE_ACCESS_LEVEL[];
       videoAccessLevel: $Enums.VIDEO_WORKSPACE_ACCESS_LEVEL[];
@@ -10549,7 +11663,11 @@ export type $SharedWorkspaceAccountAccessPayload<
       publisherAccessLevel: $Enums.PUBLISHER_WORKSPACE_ACCESS_LEVEL[];
       labelAccessLevel: $Enums.LABEL_WORKSPACE_ACCESS_LEVEL[];
       transactionAccessLevel: $Enums.TRANSACTION_WORKSPACE_ACCESS_LEVEL[];
-      withdrawalAccessLevel: $Enums.WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[];
+      withdrawsAccessLevel: $Enums.WITHDRAWS_WORKSPACE_ACCESS_LEVEL[];
+      consumptionAccessLevel: $Enums.CONSUMPTION_WORKSPACE_ACCESS_LEVEL[];
+      engagementAccessLevel: $Enums.ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[];
+      revenueAccessLevel: $Enums.REVENUE_WORKSPACE_ACCESS_LEVEL[];
+      geoAccessLevel: $Enums.GEO_WORKSPACE_ACCESS_LEVEL[];
       metadata: runtime.JsonValue | null;
       role: $Enums.WORKSPACE_ACCOUNT_ACCESS_ROLE;
       createdAt: Date;
@@ -11504,14 +12622,23 @@ export interface SharedWorkspaceAccountAccessFieldRefs {
     "SharedWorkspaceAccountAccess",
     "Boolean"
   >;
-  readonly allWithdrawals: Prisma.FieldRef<
+  readonly allWithdraws: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
     "Boolean"
   >;
-  readonly workspaceAccountAccessLevel: Prisma.FieldRef<
+  readonly allConsumptions: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]"
+    "Boolean"
   >;
+  readonly allEngagements: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "Boolean"
+  >;
+  readonly allRevenues: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "Boolean"
+  >;
+  readonly allGeos: Prisma.FieldRef<"SharedWorkspaceAccountAccess", "Boolean">;
   readonly releaseAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
     "RELEASE_WORKSPACE_ACCESS_LEVEL[]"
@@ -11556,9 +12683,25 @@ export interface SharedWorkspaceAccountAccessFieldRefs {
     "SharedWorkspaceAccountAccess",
     "TRANSACTION_WORKSPACE_ACCESS_LEVEL[]"
   >;
-  readonly withdrawalAccessLevel: Prisma.FieldRef<
+  readonly withdrawsAccessLevel: Prisma.FieldRef<
     "SharedWorkspaceAccountAccess",
-    "WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]"
+    "WITHDRAWS_WORKSPACE_ACCESS_LEVEL[]"
+  >;
+  readonly consumptionAccessLevel: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "CONSUMPTION_WORKSPACE_ACCESS_LEVEL[]"
+  >;
+  readonly engagementAccessLevel: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[]"
+  >;
+  readonly revenueAccessLevel: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "REVENUE_WORKSPACE_ACCESS_LEVEL[]"
+  >;
+  readonly geoAccessLevel: Prisma.FieldRef<
+    "SharedWorkspaceAccountAccess",
+    "GEO_WORKSPACE_ACCESS_LEVEL[]"
   >;
   readonly metadata: Prisma.FieldRef<"SharedWorkspaceAccountAccess", "Json">;
   readonly role: Prisma.FieldRef<

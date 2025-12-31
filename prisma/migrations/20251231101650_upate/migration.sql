@@ -1,0 +1,97 @@
+/*
+  Warnings:
+
+  - The values [WRITE,UPDATE,DELETE] on the enum `CONSUMPTION_SYSTEM_ACCESS_LEVEL` will be removed. If these variants are still used in the database, this will fail.
+  - The values [WRITE,UPDATE,DELETE] on the enum `ENGAGEMENT_SYSTEM_ACCESS_LEVEL` will be removed. If these variants are still used in the database, this will fail.
+  - The values [WRITE,UPDATE,DELETE] on the enum `GEO_SYSTEM_ACCESS_LEVEL` will be removed. If these variants are still used in the database, this will fail.
+  - The values [WRITE,UPDATE,DELETE] on the enum `REVENUE_SYSTEM_ACCESS_LEVEL` will be removed. If these variants are still used in the database, this will fail.
+  - You are about to drop the column `allWithdrawals` on the `SharedWorkspaceAccountAccess` table. All the data in the column will be lost.
+  - You are about to drop the column `withdrawalAccessLevel` on the `SharedWorkspaceAccountAccess` table. All the data in the column will be lost.
+  - The `withdrawsAccessLevel` column on the `SystemAccess` table would be dropped and recreated. This will lead to data loss if there is data in the column.
+
+*/
+-- CreateEnum
+CREATE TYPE "WITHDRAWS_SYSTEM_ACCESS_LEVEL" AS ENUM ('READ', 'WRITE', 'UPDATE', 'DELETE');
+
+-- CreateEnum
+CREATE TYPE "WITHDRAWS_WORKSPACE_ACCESS_LEVEL" AS ENUM ('READ', 'WRITE', 'UPDATE', 'DELETE');
+
+-- CreateEnum
+CREATE TYPE "CONSUMPTION_WORKSPACE_ACCESS_LEVEL" AS ENUM ('READ', 'WRITE', 'UPDATE', 'DELETE');
+
+-- CreateEnum
+CREATE TYPE "ENGAGEMENT_WORKSPACE_ACCESS_LEVEL" AS ENUM ('READ', 'WRITE', 'UPDATE', 'DELETE');
+
+-- CreateEnum
+CREATE TYPE "REVENUE_WORKSPACE_ACCESS_LEVEL" AS ENUM ('READ', 'WRITE', 'UPDATE', 'DELETE');
+
+-- CreateEnum
+CREATE TYPE "GEO_WORKSPACE_ACCESS_LEVEL" AS ENUM ('READ', 'WRITE', 'UPDATE', 'DELETE');
+
+-- AlterEnum
+BEGIN;
+CREATE TYPE "CONSUMPTION_SYSTEM_ACCESS_LEVEL_new" AS ENUM ('READ');
+ALTER TABLE "public"."SystemAccess" ALTER COLUMN "consumptionAccessLevel" DROP DEFAULT;
+ALTER TABLE "SystemAccess" ALTER COLUMN "consumptionAccessLevel" TYPE "CONSUMPTION_SYSTEM_ACCESS_LEVEL_new"[] USING ("consumptionAccessLevel"::text::"CONSUMPTION_SYSTEM_ACCESS_LEVEL_new"[]);
+ALTER TYPE "CONSUMPTION_SYSTEM_ACCESS_LEVEL" RENAME TO "CONSUMPTION_SYSTEM_ACCESS_LEVEL_old";
+ALTER TYPE "CONSUMPTION_SYSTEM_ACCESS_LEVEL_new" RENAME TO "CONSUMPTION_SYSTEM_ACCESS_LEVEL";
+DROP TYPE "public"."CONSUMPTION_SYSTEM_ACCESS_LEVEL_old";
+ALTER TABLE "SystemAccess" ALTER COLUMN "consumptionAccessLevel" SET DEFAULT ARRAY[]::"CONSUMPTION_SYSTEM_ACCESS_LEVEL"[];
+COMMIT;
+
+-- AlterEnum
+BEGIN;
+CREATE TYPE "ENGAGEMENT_SYSTEM_ACCESS_LEVEL_new" AS ENUM ('READ');
+ALTER TABLE "public"."SystemAccess" ALTER COLUMN "engagementAccessLevel" DROP DEFAULT;
+ALTER TABLE "SystemAccess" ALTER COLUMN "engagementAccessLevel" TYPE "ENGAGEMENT_SYSTEM_ACCESS_LEVEL_new"[] USING ("engagementAccessLevel"::text::"ENGAGEMENT_SYSTEM_ACCESS_LEVEL_new"[]);
+ALTER TYPE "ENGAGEMENT_SYSTEM_ACCESS_LEVEL" RENAME TO "ENGAGEMENT_SYSTEM_ACCESS_LEVEL_old";
+ALTER TYPE "ENGAGEMENT_SYSTEM_ACCESS_LEVEL_new" RENAME TO "ENGAGEMENT_SYSTEM_ACCESS_LEVEL";
+DROP TYPE "public"."ENGAGEMENT_SYSTEM_ACCESS_LEVEL_old";
+ALTER TABLE "SystemAccess" ALTER COLUMN "engagementAccessLevel" SET DEFAULT ARRAY[]::"ENGAGEMENT_SYSTEM_ACCESS_LEVEL"[];
+COMMIT;
+
+-- AlterEnum
+BEGIN;
+CREATE TYPE "GEO_SYSTEM_ACCESS_LEVEL_new" AS ENUM ('READ');
+ALTER TABLE "public"."SystemAccess" ALTER COLUMN "geoAccessLevel" DROP DEFAULT;
+ALTER TABLE "SystemAccess" ALTER COLUMN "geoAccessLevel" TYPE "GEO_SYSTEM_ACCESS_LEVEL_new"[] USING ("geoAccessLevel"::text::"GEO_SYSTEM_ACCESS_LEVEL_new"[]);
+ALTER TYPE "GEO_SYSTEM_ACCESS_LEVEL" RENAME TO "GEO_SYSTEM_ACCESS_LEVEL_old";
+ALTER TYPE "GEO_SYSTEM_ACCESS_LEVEL_new" RENAME TO "GEO_SYSTEM_ACCESS_LEVEL";
+DROP TYPE "public"."GEO_SYSTEM_ACCESS_LEVEL_old";
+ALTER TABLE "SystemAccess" ALTER COLUMN "geoAccessLevel" SET DEFAULT ARRAY[]::"GEO_SYSTEM_ACCESS_LEVEL"[];
+COMMIT;
+
+-- AlterEnum
+BEGIN;
+CREATE TYPE "REVENUE_SYSTEM_ACCESS_LEVEL_new" AS ENUM ('READ');
+ALTER TABLE "public"."SystemAccess" ALTER COLUMN "revenueAccessLevel" DROP DEFAULT;
+ALTER TABLE "SystemAccess" ALTER COLUMN "revenueAccessLevel" TYPE "REVENUE_SYSTEM_ACCESS_LEVEL_new"[] USING ("revenueAccessLevel"::text::"REVENUE_SYSTEM_ACCESS_LEVEL_new"[]);
+ALTER TYPE "REVENUE_SYSTEM_ACCESS_LEVEL" RENAME TO "REVENUE_SYSTEM_ACCESS_LEVEL_old";
+ALTER TYPE "REVENUE_SYSTEM_ACCESS_LEVEL_new" RENAME TO "REVENUE_SYSTEM_ACCESS_LEVEL";
+DROP TYPE "public"."REVENUE_SYSTEM_ACCESS_LEVEL_old";
+ALTER TABLE "SystemAccess" ALTER COLUMN "revenueAccessLevel" SET DEFAULT ARRAY[]::"REVENUE_SYSTEM_ACCESS_LEVEL"[];
+COMMIT;
+
+-- AlterTable
+ALTER TABLE "SharedWorkspaceAccountAccess" DROP COLUMN "allWithdrawals",
+DROP COLUMN "withdrawalAccessLevel",
+ADD COLUMN     "allConsumptions" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allEngagements" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allGeos" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allRevenues" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allWithdraws" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "consumptionAccessLevel" "CONSUMPTION_WORKSPACE_ACCESS_LEVEL"[] DEFAULT ARRAY[]::"CONSUMPTION_WORKSPACE_ACCESS_LEVEL"[],
+ADD COLUMN     "engagementAccessLevel" "ENGAGEMENT_WORKSPACE_ACCESS_LEVEL"[] DEFAULT ARRAY[]::"ENGAGEMENT_WORKSPACE_ACCESS_LEVEL"[],
+ADD COLUMN     "geoAccessLevel" "GEO_WORKSPACE_ACCESS_LEVEL"[] DEFAULT ARRAY[]::"GEO_WORKSPACE_ACCESS_LEVEL"[],
+ADD COLUMN     "revenueAccessLevel" "REVENUE_WORKSPACE_ACCESS_LEVEL"[] DEFAULT ARRAY[]::"REVENUE_WORKSPACE_ACCESS_LEVEL"[],
+ADD COLUMN     "withdrawsAccessLevel" "WITHDRAWS_WORKSPACE_ACCESS_LEVEL"[] DEFAULT ARRAY[]::"WITHDRAWS_WORKSPACE_ACCESS_LEVEL"[];
+
+-- AlterTable
+ALTER TABLE "SystemAccess" DROP COLUMN "withdrawsAccessLevel",
+ADD COLUMN     "withdrawsAccessLevel" "WITHDRAWS_SYSTEM_ACCESS_LEVEL"[] DEFAULT ARRAY[]::"WITHDRAWS_SYSTEM_ACCESS_LEVEL"[];
+
+-- DropEnum
+DROP TYPE "WITHDRAWAL_SYSTEM_ACCESS_LEVEL";
+
+-- DropEnum
+DROP TYPE "WITHDRAWAL_WORKSPACE_ACCESS_LEVEL";

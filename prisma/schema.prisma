@@ -124,7 +124,7 @@ enum TRANSACTION_SYSTEM_ACCESS_LEVEL {
   DELETE
 }
 
-enum WITHDRAWAL_SYSTEM_ACCESS_LEVEL {
+enum WITHDRAWS_SYSTEM_ACCESS_LEVEL {
   READ
   WRITE
   UPDATE
@@ -133,30 +133,18 @@ enum WITHDRAWAL_SYSTEM_ACCESS_LEVEL {
 
 enum CONSUMPTION_SYSTEM_ACCESS_LEVEL {
   READ
-  WRITE
-  UPDATE
-  DELETE
 }
 
 enum ENGAGEMENT_SYSTEM_ACCESS_LEVEL {
   READ
-  WRITE
-  UPDATE
-  DELETE
 }
 
 enum REVENUE_SYSTEM_ACCESS_LEVEL {
   READ
-  WRITE
-  UPDATE
-  DELETE
 }
 
 enum GEO_SYSTEM_ACCESS_LEVEL {
   READ
-  WRITE
-  UPDATE
-  DELETE
 }
 
 enum RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL {
@@ -262,7 +250,35 @@ enum TRANSACTION_WORKSPACE_ACCESS_LEVEL {
   DELETE
 }
 
-enum WITHDRAWAL_WORKSPACE_ACCESS_LEVEL {
+enum WITHDRAWS_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum CONSUMPTION_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum ENGAGEMENT_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum REVENUE_WORKSPACE_ACCESS_LEVEL {
+  READ
+  WRITE
+  UPDATE
+  DELETE
+}
+
+enum GEO_WORKSPACE_ACCESS_LEVEL {
   READ
   WRITE
   UPDATE
@@ -518,7 +534,7 @@ model User {
   systemAccess                     SystemAccess?                  @relation("SystemAccessUser")
   assignedSystemAccesses           SystemAccess[]                 @relation("SystemAccessAssigner")
   ownWorkspaceAccount              WorkspaceAccount?
-  sharedWorkspaceAccountAccesses   SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessUser")
+  sharedWorkspaceAccountAccesses   SharedWorkspaceAccountAccess?  @relation("SharedWorkspaceAccountAccessUser")
   assignedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessAssigner")
   rightsManagements                RightsManagement[]
   auditLogs                        AuditLog[]
@@ -591,7 +607,7 @@ model SystemAccess {
   publishersAccessLevel            PUBLISHER_SYSTEM_ACCESS_LEVEL[]             @default([])
   labelsAccessLevel                LABEL_SYSTEM_ACCESS_LEVEL[]                 @default([])
   transactionsAccessLevel          TRANSACTION_SYSTEM_ACCESS_LEVEL[]           @default([])
-  withdrawsAccessLevel             WITHDRAWAL_SYSTEM_ACCESS_LEVEL[]            @default([])
+  withdrawsAccessLevel             WITHDRAWS_SYSTEM_ACCESS_LEVEL[]             @default([])
   consumptionAccessLevel           CONSUMPTION_SYSTEM_ACCESS_LEVEL[]           @default([])
   engagementAccessLevel            ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]            @default([])
   revenueAccessLevel               REVENUE_SYSTEM_ACCESS_LEVEL[]               @default([])
@@ -1005,7 +1021,7 @@ model SharedWorkspaceAccountAccess {
 
   // Foreign Keys
   workspaceAccountId String
-  userId             String
+  userId             String @unique
   assignerId         String
 
   // Fields
@@ -1020,8 +1036,11 @@ model SharedWorkspaceAccountAccess {
   allPublishers                  Boolean                                        @default(false)
   allLabels                      Boolean                                        @default(false)
   allTransactions                Boolean                                        @default(false)
-  allWithdrawals                 Boolean                                        @default(false)
-  workspaceAccountAccessLevel    WORKSPACE_ACCOUNT_WORKSPACE_ACCESS_LEVEL[]     @default([])
+  allWithdraws                   Boolean                                        @default(false)
+  allConsumptions                Boolean                                        @default(false)
+  allEngagements                 Boolean                                        @default(false)
+  allRevenues                    Boolean                                        @default(false)
+  allGeos                        Boolean                                        @default(false)
   releaseAccessLevel             RELEASE_WORKSPACE_ACCESS_LEVEL[]               @default([])
   trackAccessLevel               TRACK_WORKSPACE_ACCESS_LEVEL[]                 @default([])
   videoAccessLevel               VIDEO_WORKSPACE_ACCESS_LEVEL[]                 @default([])
@@ -1033,7 +1052,11 @@ model SharedWorkspaceAccountAccess {
   publisherAccessLevel           PUBLISHER_WORKSPACE_ACCESS_LEVEL[]             @default([])
   labelAccessLevel               LABEL_WORKSPACE_ACCESS_LEVEL[]                 @default([])
   transactionAccessLevel         TRANSACTION_WORKSPACE_ACCESS_LEVEL[]           @default([])
-  withdrawalAccessLevel          WITHDRAWAL_WORKSPACE_ACCESS_LEVEL[]            @default([])
+  withdrawsAccessLevel           WITHDRAWS_WORKSPACE_ACCESS_LEVEL[]             @default([])
+  consumptionAccessLevel         CONSUMPTION_WORKSPACE_ACCESS_LEVEL[]           @default([])
+  engagementAccessLevel          ENGAGEMENT_WORKSPACE_ACCESS_LEVEL[]            @default([])
+  revenueAccessLevel             REVENUE_WORKSPACE_ACCESS_LEVEL[]               @default([])
+  geoAccessLevel                 GEO_WORKSPACE_ACCESS_LEVEL[]                   @default([])
   metadata                       Json?                                          @db.JsonB
 
   // Enums

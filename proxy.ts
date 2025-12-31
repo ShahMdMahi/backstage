@@ -2,12 +2,30 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getDeviceInfo } from "@/lib/device-info";
 import { logAuditEvent } from "@/actions/system/audit-log";
-import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY, ROLE } from "@/lib/prisma/enums";
 import {
+  AUDIT_LOG_ACTION,
+  AUDIT_LOG_ENTITY,
+  ROLE,
+  WORKSPACE_ACCOUNT_ACCESS_ROLE,
+} from "@/lib/prisma/enums";
+import {
+  Artist,
+  Label,
+  Performer,
+  ProducerAndEngineer,
+  Publisher,
+  Release,
+  Ringtone,
   Session,
-  // SharedWorkspaceAccountAccess,
+  SharedWorkspaceAccountAccess,
   SystemAccess,
+  Track,
+  Transaction,
   User,
+  Video,
+  Withdrawal,
+  WorkspaceAccount,
+  Writer,
 } from "@/lib/prisma/client";
 
 export async function proxy(request: NextRequest) {
@@ -24,7 +42,42 @@ export async function proxy(request: NextRequest) {
   let dbSession: (Session & { user: User }) | null = null;
   let role: ROLE | null = null;
   let systemAccess: SystemAccess | null = null;
-  // let sharedAccess: SharedWorkspaceAccountAccess | null = null;
+  let ownWorkspaceAccount:
+    | (WorkspaceAccount & {
+        owner: User;
+        releases: Release[];
+        tracks: Track[];
+        videos: Video[];
+        ringtones: Ringtone[];
+        artists: Artist[];
+        performers: Performer[];
+        producersAndEngineers: ProducerAndEngineer[];
+        writers: Writer[];
+        publishers: Publisher[];
+        labels: Label[];
+        transactions: Transaction[];
+        withdrawals: Withdrawal[];
+      })
+    | null = null;
+  let sharedAccess:
+    | (SharedWorkspaceAccountAccess & {
+        user: User;
+        workspaceAccount: WorkspaceAccount;
+        releases: Release[];
+        tracks: Track[];
+        videos: Video[];
+        ringtones: Ringtone[];
+        artists: Artist[];
+        performers: Performer[];
+        producersAndEngineers: ProducerAndEngineer[];
+        writers: Writer[];
+        publishers: Publisher[];
+        labels: Label[];
+        transactions: Transaction[];
+        withdrawals: Withdrawal[];
+      })
+    | null = null;
+  let isSharedAccessAdmin = false;
 
   // Route checks
   const isAuthRoute = url.pathname.startsWith("/auth");
@@ -44,6 +97,8 @@ export async function proxy(request: NextRequest) {
   const isSystemAdministrationRoute = url.pathname.startsWith(
     "/system/administration"
   );
+  const isSystemCatalogRoute = url.pathname.startsWith("/system/catalog");
+  const isSystemAssetsRoute = url.pathname.startsWith("/system/catalog/assets");
   const isSystemReleasesRoute = url.pathname.startsWith(
     "/system/catalog/assets/releases"
   );
@@ -56,7 +111,9 @@ export async function proxy(request: NextRequest) {
   const isSystemRingtonesRoute = url.pathname.startsWith(
     "/system/catalog/assets/ringtones"
   );
-  const isSystemAssetsRoute = url.pathname.startsWith("/system/catalog/assets");
+  const isSystemContributorsRoute = url.pathname.startsWith(
+    "/system/catalog/contributors"
+  );
   const isSystemArtistsRoute = url.pathname.startsWith(
     "/system/catalog/contributors/artists"
   );
@@ -75,17 +132,17 @@ export async function proxy(request: NextRequest) {
   const isSystemLabelsRoute = url.pathname.startsWith(
     "/system/catalog/contributors/labels"
   );
-  const isSystemContributorsRoute = url.pathname.startsWith(
-    "/system/catalog/contributors"
-  );
-  const isSystemCatalogRoute = url.pathname.startsWith("/system/catalog");
+  const isSystemRoyaltiesRoute = url.pathname.startsWith("/system/royalties");
   const isSystemTransactionsRoute = url.pathname.startsWith(
     "/system/royalties/transactions"
   );
   const isSystemWithdrawsRoute = url.pathname.startsWith(
     "/system/royalties/withdraws"
   );
-  const isSystemRoyaltiesRoute = url.pathname.startsWith("/system/royalties");
+  const isSystemReportsRoute = url.pathname.startsWith("/system/reports");
+  const isSystemAnalyticsRoute = url.pathname.startsWith(
+    "/system/reports/analytics"
+  );
   const isSystemConsumptionRoute = url.pathname.startsWith(
     "/system/reports/analytics/consumption"
   );
@@ -98,24 +155,82 @@ export async function proxy(request: NextRequest) {
   const isSystemGeoRoute = url.pathname.startsWith(
     "/system/reports/analytics/geo"
   );
-  const isSystemAnalyticsRoute = url.pathname.startsWith(
-    "/system/reports/analytics"
-  );
-  const isSystemReportsRoute = url.pathname.startsWith("/system/reports");
+  const isSystemServicesRoute = url.pathname.startsWith("/system/services");
   const isSystemRightsManagementRoute = url.pathname.startsWith(
     "/system/services/rights-management"
   );
-  const isSystemServicesRoute = url.pathname.startsWith("/system/services");
   const isNormalRoute = !isAuthRoute && !isSystemRoute;
+  const isNormalAdministrationRoute =
+    url.pathname.startsWith("/administration");
+  const isNormalWorkspacesRoute = url.pathname.startsWith(
+    "/administration/workspaces"
+  );
+  const isNormalAccessesRoute = url.pathname.startsWith(
+    "/administration/accesses"
+  );
+  const isNormalCatalogRoute = url.pathname.startsWith("/catalog");
+  const isNormalAssetsRoute = url.pathname.startsWith("/catalog/assets");
+  const isNormalReleasesRoute = url.pathname.startsWith(
+    "/catalog/assets/releases"
+  );
+  const isNormalTracksRoute = url.pathname.startsWith("/catalog/assets/tracks");
+  const isNormalVideosRoute = url.pathname.startsWith("/catalog/assets/videos");
+  const isNormalRingtonesRoute = url.pathname.startsWith(
+    "/catalog/assets/ringtones"
+  );
+  const isNormalContributorsRoute = url.pathname.startsWith(
+    "/catalog/contributors"
+  );
+  const isNormalArtistsRoute = url.pathname.startsWith(
+    "/catalog/contributors/artists"
+  );
+  const isNormalPerformersRoute = url.pathname.startsWith(
+    "/catalog/contributors/performers"
+  );
+  const isNormalProducersAndEngineersRoute = url.pathname.startsWith(
+    "/catalog/contributors/producers-and-engineers"
+  );
+  const isNormalWritersRoute = url.pathname.startsWith(
+    "/catalog/contributors/writers"
+  );
+  const isNormalPublishersRoute = url.pathname.startsWith(
+    "/catalog/contributors/publishers"
+  );
+  const isNormalLabelsRoute = url.pathname.startsWith(
+    "/catalog/contributors/labels"
+  );
+  const isNormalRoyaltiesRoute = url.pathname.startsWith("/royalties");
+  const isNormalTransactionsRoute = url.pathname.startsWith(
+    "/royalties/transactions"
+  );
+  const isNormalWithdrawsRoute = url.pathname.startsWith(
+    "/royalties/withdraws"
+  );
+  const isNormalReportsRoute = url.pathname.startsWith("/reports");
+  const isNormalAnalyticsRoute = url.pathname.startsWith("/reports/analytics");
+  const isNormalConsumptionRoute = url.pathname.startsWith(
+    "/reports/analytics/consumption"
+  );
+  const isNormalEngagementRoute = url.pathname.startsWith(
+    "/reports/analytics/engagement"
+  );
+  const isNormalRevenueRoute = url.pathname.startsWith(
+    "/reports/analytics/revenue"
+  );
+  const isNormalGeoRoute = url.pathname.startsWith("/reports/analytics/geo");
 
   // ============================================================================
   // PHASE 1: Session Token Check
   // ============================================================================
   if (!sessionToken) {
-    response.cookies.delete("session_token");
     if (!isAuthRoute) {
-      return NextResponse.redirect(new URL("/auth/login", request.url));
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
     }
+    response.cookies.delete("session_token");
     return response;
   }
 
@@ -130,10 +245,14 @@ export async function proxy(request: NextRequest) {
     role = dbSession?.user.role || null;
   } catch (error) {
     console.error("Error fetching session from database:", error);
-    response.cookies.delete("session_token");
     if (!isAuthRoute) {
-      return NextResponse.redirect(new URL("/auth/login", request.url));
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
     }
+    response.cookies.delete("session_token");
     return response;
   }
 
@@ -141,21 +260,39 @@ export async function proxy(request: NextRequest) {
   // PHASE 3: Session Validation
   // ============================================================================
   if (!dbSession || !dbSession.user) {
-    response.cookies.delete("session_token");
     if (!isAuthRoute) {
-      return NextResponse.redirect(new URL("/auth/login", request.url));
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
     }
+    response.cookies.delete("session_token");
     return response;
   }
 
   // Check session expiry
   if (dbSession.expiresAt < new Date()) {
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
+    }
     response.cookies.delete("session_token");
     return response;
   }
 
   // Check if session is revoked
   if (dbSession.revokedAt) {
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
+    }
     response.cookies.delete("session_token");
     return response;
   }
@@ -193,6 +330,13 @@ export async function proxy(request: NextRequest) {
       });
     } catch (error) {
       console.error("Error revoking session:", error);
+    }
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
     }
     response.cookies.delete("session_token");
     return response;
@@ -232,6 +376,13 @@ export async function proxy(request: NextRequest) {
     } catch (error) {
       console.error("Error revoking session:", error);
     }
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
+    }
     response.cookies.delete("session_token");
     return response;
   }
@@ -264,6 +415,13 @@ export async function proxy(request: NextRequest) {
       });
     } catch (error) {
       console.error("Error logging audit event for unverified user:", error);
+    }
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
     }
     response.cookies.delete("session_token");
     return response;
@@ -298,6 +456,13 @@ export async function proxy(request: NextRequest) {
     } catch (error) {
       console.error("Error logging audit event for unapproved user:", error);
     }
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
+    }
     response.cookies.delete("session_token");
     return response;
   }
@@ -330,6 +495,13 @@ export async function proxy(request: NextRequest) {
       });
     } catch (error) {
       console.error("Error logging audit event for suspended user:", error);
+    }
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
     }
     response.cookies.delete("session_token");
     return response;
@@ -396,6 +568,13 @@ export async function proxy(request: NextRequest) {
             error
           );
         }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
+        }
         response.cookies.delete("session_token");
         return response;
       }
@@ -426,6 +605,13 @@ export async function proxy(request: NextRequest) {
             "Error revoking session for suspended system access:",
             error
           );
+        }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
         }
         response.cookies.delete("session_token");
         return response;
@@ -465,122 +651,121 @@ export async function proxy(request: NextRequest) {
             error
           );
         }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
+        }
         response.cookies.delete("session_token");
         return response;
       }
     } catch (error) {
       console.error("Error fetching system access from database:", error);
+      if (!isAuthRoute) {
+        const redirect = NextResponse.redirect(
+          new URL("/auth/login", request.url)
+        );
+        redirect.cookies.delete("session_token");
+        return redirect;
+      }
       response.cookies.delete("session_token");
       return response;
     }
   }
 
-  // if (role === normalUser) {
-  //   try {
-  //     sharedAccess = await prisma.sharedWorkspaceAccountAccess.findFirst({
-  //       where: {
-  //         userId: dbSession.userId,
-  //       },
-  //     });
+  if (role === normalUser) {
+    try {
+      ownWorkspaceAccount = await prisma.workspaceAccount.findUnique({
+        where: { ownerId: dbSession.userId },
+        include: {
+          owner: true,
+          releases: true,
+          tracks: true,
+          videos: true,
+          ringtones: true,
+          artists: true,
+          performers: true,
+          producersAndEngineers: true,
+          writers: true,
+          publishers: true,
+          labels: true,
+          transactions: true,
+          withdrawals: true,
+        },
+      });
 
-  //     if (!sharedAccess) {
-  //       try {
-  //         const session = await prisma.session.update({
-  //           where: { id: dbSession.id },
-  //           data: {
-  //             revokedAt: new Date(),
-  //             ipAddress: deviceInfo.ipAddress,
-  //             metadata: {
-  //               revokedReason: "Missing shared workspace account access",
-  //               deviceInfo: JSON.stringify(deviceInfo),
-  //             },
-  //           },
-  //         });
-  //         await logAuditEvent({
-  //           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-  //           entity: AUDIT_LOG_ENTITY.SESSION,
-  //           entityId: session.id,
-  //           description: `Session revoked due to missing shared workspace account access for user ID ${session.userId}`,
-  //           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-  //           user: { connect: { id: session.userId } },
-  //         });
-  //       } catch (error) {
-  //         console.error(
-  //           "Error revoking session due to missing shared access:",
-  //           error
-  //         );
-  //       }
-  //       response.cookies.delete("session_token");
-  //       return response;
-  //     }
-
-  //     if (sharedAccess.suspendedAt) {
-  //       try {
-  //         const session = await prisma.session.update({
-  //           where: { id: dbSession.id },
-  //           data: {
-  //             revokedAt: new Date(),
-  //             ipAddress: deviceInfo.ipAddress,
-  //             metadata: {
-  //               revokedReason: "Shared access suspended",
-  //               deviceInfo: JSON.stringify(deviceInfo),
-  //             },
-  //           },
-  //         });
-  //         await logAuditEvent({
-  //           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-  //           entity: AUDIT_LOG_ENTITY.SESSION,
-  //           entityId: session.id,
-  //           description: `Session revoked due to suspended shared access for user ID ${session.userId}`,
-  //           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-  //           user: { connect: { id: session.userId } },
-  //         });
-  //       } catch (error) {
-  //         console.error(
-  //           "Error revoking session for suspended shared access:",
-  //           error
-  //         );
-  //       }
-  //       response.cookies.delete("session_token");
-  //       return response;
-  //     }
-
-  //     if (sharedAccess.expiresAt < new Date()) {
-  //       try {
-  //         const session = await prisma.session.update({
-  //           where: { id: dbSession.id },
-  //           data: {
-  //             revokedAt: new Date(),
-  //             ipAddress: deviceInfo.ipAddress,
-  //             metadata: {
-  //               revokedReason: "Shared access expired",
-  //               deviceInfo: JSON.stringify(deviceInfo),
-  //             },
-  //           },
-  //         });
-  //         await logAuditEvent({
-  //           action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-  //           entity: AUDIT_LOG_ENTITY.SESSION,
-  //           entityId: session.id,
-  //           description: `Session revoked due to expired shared access for user ID ${session.userId}`,
-  //           metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-  //           user: { connect: { id: session.userId } },
-  //         });
-  //       } catch (error) {
-  //         console.error(
-  //           "Error revoking session for expired shared access:",
-  //           error
-  //         );
-  //       }
-  //       response.cookies.delete("session_token");
-  //       return response;
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching shared access from database:", error);
-  //     response.cookies.delete("session_token");
-  //     return response;
-  //   }
-  // }
+      sharedAccess = await prisma.sharedWorkspaceAccountAccess.findUnique({
+        where: {
+          userId: dbSession.userId,
+        },
+        include: {
+          user: true,
+          workspaceAccount: true,
+          releases: true,
+          tracks: true,
+          videos: true,
+          ringtones: true,
+          artists: true,
+          performers: true,
+          producersAndEngineers: true,
+          writers: true,
+          publishers: true,
+          labels: true,
+          transactions: true,
+          withdrawals: true,
+        },
+      });
+      isSharedAccessAdmin =
+        sharedAccess?.role === WORKSPACE_ACCOUNT_ACCESS_ROLE.ADMIN;
+      if (!ownWorkspaceAccount && !sharedAccess) {
+        try {
+          const session = await prisma.session.update({
+            where: { id: dbSession.id },
+            data: {
+              revokedAt: new Date(),
+              ipAddress: deviceInfo.ipAddress,
+              metadata: {
+                revokedReason: "Missing workspace account access",
+                deviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          await logAuditEvent({
+            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+            entity: AUDIT_LOG_ENTITY.SESSION,
+            entityId: session.id,
+            description: `Session revoked due to missing access for user ID ${session.userId}`,
+            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+            user: { connect: { id: session.userId } },
+          });
+        } catch (error) {
+          console.error("Error revoking session due to missing access:", error);
+        }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
+        }
+        response.cookies.delete("session_token");
+        return response;
+      }
+    } catch (error) {
+      console.error("Error fetching shared access from database:", error);
+      if (!isAuthRoute) {
+        const redirect = NextResponse.redirect(
+          new URL("/auth/login", request.url)
+        );
+        redirect.cookies.delete("session_token");
+        return redirect;
+      }
+      response.cookies.delete("session_token");
+      return response;
+    }
+  }
 
   // ============================================================================
   // PHASE 5: Calculate All Permissions (NOW role is properly set)
@@ -641,7 +826,7 @@ export async function proxy(request: NextRequest) {
       systemAccess.rightsManagementAccessLevel.length > 0;
   }
 
-  // Calculated composite permissions
+  // Calculated composite permissions for system access
   const haveSystemAdministrationAccess =
     haveSystemUsersAccess ||
     haveSystemWorkspacesAccess ||
@@ -674,6 +859,105 @@ export async function proxy(request: NextRequest) {
   // Top-level system access
   const haveSystemAccess =
     role === systemOwner || role === systemAdmin || role === systemUser;
+
+  // Shared access permissions
+  let haveNormalWorkspacesAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalAccessesAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalReleasesAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalTracksAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalVideosAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalRingtonesAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalArtistsAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalPerformersAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalProducersAndEngineersAccess =
+    role === systemOwner || role === systemAdmin;
+  let haveNormalWritersAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalPublishersAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalLabelsAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalTransactionsAccess =
+    role === systemOwner || role === systemAdmin;
+  let haveNormalWithdrawsAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalConsumptionAccess =
+    role === systemOwner || role === systemAdmin;
+  let haveNormalEngagementAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalRevenueAccess = role === systemOwner || role === systemAdmin;
+  let haveNormalGeoAccess = role === systemOwner || role === systemAdmin;
+
+  // Override permissions for normalUser based on their workspace account access
+  if (role === normalUser) {
+    if (ownWorkspaceAccount) {
+      haveNormalWorkspacesAccess = true;
+      haveNormalAccessesAccess = true;
+      haveNormalReleasesAccess = true;
+      haveNormalTracksAccess = true;
+      haveNormalVideosAccess = true;
+      haveNormalRingtonesAccess = true;
+      haveNormalArtistsAccess = true;
+      haveNormalPerformersAccess = true;
+      haveNormalProducersAndEngineersAccess = true;
+      haveNormalWritersAccess = true;
+      haveNormalPublishersAccess = true;
+      haveNormalLabelsAccess = true;
+      haveNormalTransactionsAccess = true;
+      haveNormalWithdrawsAccess = true;
+      haveNormalConsumptionAccess = true;
+      haveNormalEngagementAccess = true;
+      haveNormalRevenueAccess = true;
+      haveNormalGeoAccess = true;
+    }
+    if (sharedAccess) {
+      if (isSharedAccessAdmin) {
+        haveNormalWorkspacesAccess = true;
+        haveNormalAccessesAccess = true;
+      }
+      haveNormalReleasesAccess = sharedAccess.releaseAccessLevel.length > 0;
+      haveNormalTracksAccess = sharedAccess.trackAccessLevel.length > 0;
+      haveNormalVideosAccess = sharedAccess.videoAccessLevel.length > 0;
+      haveNormalRingtonesAccess = sharedAccess.ringtoneAccessLevel.length > 0;
+      haveNormalArtistsAccess = sharedAccess.artistAccessLevel.length > 0;
+      haveNormalPerformersAccess = sharedAccess.performerAccessLevel.length > 0;
+      haveNormalProducersAndEngineersAccess =
+        sharedAccess.producerAndEngineerAccessLevel.length > 0;
+      haveNormalWritersAccess = sharedAccess.writerAccessLevel.length > 0;
+      haveNormalPublishersAccess = sharedAccess.publisherAccessLevel.length > 0;
+      haveNormalLabelsAccess = sharedAccess.labels.length > 0;
+      haveNormalTransactionsAccess =
+        sharedAccess.transactionAccessLevel.length > 0;
+      haveNormalWithdrawsAccess = sharedAccess.withdrawsAccessLevel.length > 0;
+      haveNormalConsumptionAccess =
+        sharedAccess.consumptionAccessLevel.length > 0;
+      haveNormalEngagementAccess =
+        sharedAccess.engagementAccessLevel.length > 0;
+      haveNormalRevenueAccess = sharedAccess.revenueAccessLevel.length > 0;
+      haveNormalGeoAccess = sharedAccess.geoAccessLevel.length > 0;
+    }
+  }
+
+  // Calculated composite permissions for normal access
+  const haveNormalAdministrationAccess =
+    haveNormalWorkspacesAccess || haveNormalAccessesAccess;
+  const haveNormalAssetsAccess =
+    haveNormalReleasesAccess ||
+    haveNormalTracksAccess ||
+    haveNormalVideosAccess ||
+    haveNormalRingtonesAccess;
+  const haveNormalContributorsAccess =
+    haveNormalArtistsAccess ||
+    haveNormalPerformersAccess ||
+    haveNormalProducersAndEngineersAccess ||
+    haveNormalWritersAccess ||
+    haveNormalPublishersAccess ||
+    haveNormalLabelsAccess;
+  const haveNormalCatalogAccess =
+    haveNormalAssetsAccess || haveNormalContributorsAccess;
+  const haveNormalRoyaltiesAccess =
+    haveNormalTransactionsAccess || haveNormalWithdrawsAccess;
+  const haveNormalAnalyticsAccess =
+    haveNormalConsumptionAccess ||
+    haveNormalEngagementAccess ||
+    haveNormalRevenueAccess ||
+    haveNormalGeoAccess;
+  const haveNormalReportsAccess = haveNormalAnalyticsAccess;
 
   // Normal route access
   const haveNormalAccess =
@@ -923,13 +1207,223 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  // Normal access
+  // Normal access check
   if (isNormalRoute && !haveNormalAccess) {
     if (role === systemUser) {
       return NextResponse.redirect(new URL("/system", request.url));
     }
+    if (!isAuthRoute) {
+      const redirect = NextResponse.redirect(
+        new URL("/auth/login", request.url)
+      );
+      redirect.cookies.delete("session_token");
+      return redirect;
+    }
     response.cookies.delete("session_token");
     return response;
+  }
+
+  // Normal adminstration access
+  if (isNormalAdministrationRoute && !haveNormalAdministrationAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal workspaces access
+  if (isNormalWorkspacesRoute && !haveNormalWorkspacesAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal accesses access
+  if (isNormalAccessesRoute && !haveNormalAccessesAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal catalog access
+  if (isNormalCatalogRoute && !haveNormalCatalogAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal assets access
+  if (isNormalAssetsRoute && !haveNormalAssetsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal releases access
+  if (isNormalReleasesRoute && !haveNormalReleasesAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal tracks access
+  if (isNormalTracksRoute && !haveNormalTracksAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal videos access
+  if (isNormalVideosRoute && !haveNormalVideosAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal ringtones access
+  if (isNormalRingtonesRoute && !haveNormalRingtonesAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal contributors access
+  if (isNormalContributorsRoute && !haveNormalContributorsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal artists access
+  if (isNormalArtistsRoute && !haveNormalArtistsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal performers access
+  if (isNormalPerformersRoute && !haveNormalPerformersAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal producers and engineers access
+  if (
+    isNormalProducersAndEngineersRoute &&
+    !haveNormalProducersAndEngineersAccess
+  ) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal writers access
+  if (isNormalWritersRoute && !haveNormalWritersAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal publishers access
+  if (isNormalPublishersRoute && !haveNormalPublishersAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal labels access
+  if (isNormalLabelsRoute && !haveNormalLabelsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal royalties access
+  if (isNormalRoyaltiesRoute && !haveNormalRoyaltiesAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal transactions access
+  if (isNormalTransactionsRoute && !haveNormalTransactionsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal withdraws access
+  if (isNormalWithdrawsRoute && !haveNormalWithdrawsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal reports access
+  if (isNormalReportsRoute && !haveNormalReportsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal analytics access
+  if (isNormalAnalyticsRoute && !haveNormalAnalyticsAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal consumption access
+  if (isNormalConsumptionRoute && !haveNormalConsumptionAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal engagement access
+  if (isNormalEngagementRoute && !haveNormalEngagementAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal revenue access
+  if (isNormalRevenueRoute && !haveNormalRevenueAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
+  // Normal geo access
+  if (isNormalGeoRoute && !haveNormalGeoAccess) {
+    if (role === systemUser) {
+      return NextResponse.redirect(new URL("/system", request.url));
+    }
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return response;
