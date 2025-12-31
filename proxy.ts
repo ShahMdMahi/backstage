@@ -112,8 +112,8 @@ export async function proxy(request: NextRequest) {
   // PHASE 1: Session Token Check
   // ============================================================================
   if (!sessionToken) {
+    response.cookies.delete("session_token");
     if (!isAuthRoute) {
-      response.cookies.delete("session_token");
       return NextResponse.redirect(new URL("/auth/login", request.url));
     }
     return response;
@@ -151,13 +151,13 @@ export async function proxy(request: NextRequest) {
   // Check session expiry
   if (dbSession.expiresAt < new Date()) {
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Check if session is revoked
   if (dbSession.revokedAt) {
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Check user agent mismatch
@@ -195,7 +195,7 @@ export async function proxy(request: NextRequest) {
       console.error("Error revoking session:", error);
     }
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Check device fingerprint mismatch
@@ -233,7 +233,7 @@ export async function proxy(request: NextRequest) {
       console.error("Error revoking session:", error);
     }
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Check if user is verified
@@ -266,7 +266,7 @@ export async function proxy(request: NextRequest) {
       console.error("Error logging audit event for unverified user:", error);
     }
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Check if user is approved
@@ -299,7 +299,7 @@ export async function proxy(request: NextRequest) {
       console.error("Error logging audit event for unapproved user:", error);
     }
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Check if user is suspended
@@ -332,7 +332,7 @@ export async function proxy(request: NextRequest) {
       console.error("Error logging audit event for suspended user:", error);
     }
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   // Redirect authenticated users away from auth routes
@@ -397,7 +397,7 @@ export async function proxy(request: NextRequest) {
           );
         }
         response.cookies.delete("session_token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+        return response;
       }
 
       if (systemAccess.suspendedAt) {
@@ -428,7 +428,7 @@ export async function proxy(request: NextRequest) {
           );
         }
         response.cookies.delete("session_token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+        return response;
       }
 
       if (systemAccess.expiresAt < new Date()) {
@@ -466,12 +466,12 @@ export async function proxy(request: NextRequest) {
           );
         }
         response.cookies.delete("session_token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+        return response;
       }
     } catch (error) {
       console.error("Error fetching system access from database:", error);
       response.cookies.delete("session_token");
-      return NextResponse.redirect(new URL("/auth/login", request.url));
+      return response;
     }
   }
 
@@ -512,7 +512,7 @@ export async function proxy(request: NextRequest) {
           );
         }
         response.cookies.delete("session_token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+        return response;
       }
 
       if (sharedAccess.suspendedAt) {
@@ -543,7 +543,7 @@ export async function proxy(request: NextRequest) {
           );
         }
         response.cookies.delete("session_token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+        return response;
       }
 
       if (sharedAccess.expiresAt < new Date()) {
@@ -574,12 +574,12 @@ export async function proxy(request: NextRequest) {
           );
         }
         response.cookies.delete("session_token");
-        return NextResponse.redirect(new URL("/auth/login", request.url));
+        return response;
       }
     } catch (error) {
       console.error("Error fetching shared access from database:", error);
       response.cookies.delete("session_token");
-      return NextResponse.redirect(new URL("/auth/login", request.url));
+      return response;
     }
   }
 
@@ -930,7 +930,7 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/system", request.url));
     }
     response.cookies.delete("session_token");
-    return NextResponse.redirect(new URL("/auth/login", request.url));
+    return response;
   }
 
   return response;
