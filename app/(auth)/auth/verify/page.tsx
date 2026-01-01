@@ -3,6 +3,8 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import Image from "next/image";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function Verify() {
   return (
     <div className="relative mx-auto w-full max-w-sm">
