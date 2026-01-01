@@ -862,7 +862,7 @@ export type SharedWorkspaceAccountAccessCreateInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -1046,7 +1046,7 @@ export type SharedWorkspaceAccountAccessUpdateInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -3868,7 +3868,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutAssignerInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -4369,7 +4369,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutWorkspaceAccountInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -4594,7 +4594,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutReleasesInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   tracks?: Prisma.TrackCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -4809,7 +4809,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutTracksInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -5024,7 +5024,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutVideosInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -5239,7 +5239,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutRingtonesInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -5454,7 +5454,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutArtistsInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -5669,7 +5669,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutPerformersInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -5887,7 +5887,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutProducersAndEngineersInput 
     updatedAt?: Date | string;
     expiresAt: Date | string;
     suspendedAt?: Date | string | null;
-    user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+    user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
     assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
     workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
     releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -6104,7 +6104,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutWritersInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -6319,7 +6319,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutPublishersInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -6536,7 +6536,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutLabelsInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -6751,7 +6751,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutTransactionsInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -6968,7 +6968,7 @@ export type SharedWorkspaceAccountAccessCreateWithoutWithdrawalsInput = {
   updatedAt?: Date | string;
   expiresAt: Date | string;
   suspendedAt?: Date | string | null;
-  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
+  user: Prisma.UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput;
   assigner: Prisma.UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput;
   releases?: Prisma.ReleaseCreateNestedManyWithoutSharedWorkspaceAccountAccessesInput;
@@ -7267,7 +7267,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutAssignerInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -7614,7 +7614,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWorkspaceAccountInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -7886,7 +7886,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutReleasesInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   tracks?: Prisma.TrackUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -8158,7 +8158,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTracksInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -8430,7 +8430,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutVideosInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -8702,7 +8702,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutRingtonesInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -8974,7 +8974,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutArtistsInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -9246,7 +9246,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPerformersInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -9520,7 +9520,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutProducersAndEngineersInput 
       | Date
       | string
       | null;
-    user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+    user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
     assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
     workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
     releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -9793,7 +9793,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWritersInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -10065,7 +10065,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutPublishersInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -10338,7 +10338,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutLabelsInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -10610,7 +10610,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutTransactionsInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;
@@ -10883,7 +10883,7 @@ export type SharedWorkspaceAccountAccessUpdateWithoutWithdrawalsInput = {
     | Date
     | string
     | null;
-  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
+  user?: Prisma.UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput;
   assigner?: Prisma.UserUpdateOneRequiredWithoutAssignedWorkspaceAccountAccessesNestedInput;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput;
   releases?: Prisma.ReleaseUpdateManyWithoutSharedWorkspaceAccountAccessesNestedInput;

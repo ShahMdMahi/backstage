@@ -2,12 +2,13 @@
 
 import { prisma } from "@/lib/prisma";
 import { SystemAccess } from "@/lib/prisma/client";
+import { ROLE } from "@/lib/prisma/enums";
 import { getCurrentSession } from "@/actions/shared/session";
 
 export async function getCurrentSystemAccess(): Promise<{
   success: boolean;
   message: string;
-  data: (SystemAccess & {}) | null;
+  data: SystemAccess | null;
   errors: unknown | null;
 }> {
   try {
@@ -26,6 +27,14 @@ export async function getCurrentSystemAccess(): Promise<{
         message: "User is not authenticated.",
         data: null,
         errors: new Error("Unauthenticated user"),
+      };
+    }
+    if (session.data.user.role !== ROLE.SYSTEM_USER) {
+      return {
+        success: false,
+        message: "User does not have system access permissions.",
+        data: null,
+        errors: new Error("Insufficient permissions"),
       };
     }
     const systemAccess = await prisma.systemAccess.findUnique({
@@ -50,10 +59,10 @@ export async function getCurrentSystemAccess(): Promise<{
       errors: null,
     };
   } catch (error) {
-    console.error("Error retrieving system access settings:", error);
+    console.error("Error retrieving system access:", error);
     return {
       success: false,
-      message: "Failed to retrieve system access settings.",
+      message: "Failed to retrieve system access.",
       data: null,
       errors: error,
     };

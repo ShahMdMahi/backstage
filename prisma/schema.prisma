@@ -534,7 +534,7 @@ model User {
   systemAccess                     SystemAccess?                  @relation("SystemAccessUser")
   assignedSystemAccesses           SystemAccess[]                 @relation("SystemAccessAssigner")
   ownWorkspaceAccount              WorkspaceAccount?
-  sharedWorkspaceAccountAccesses   SharedWorkspaceAccountAccess?  @relation("SharedWorkspaceAccountAccessUser")
+  sharedWorkspaceAccountAccess   SharedWorkspaceAccountAccess?  @relation("SharedWorkspaceAccountAccessUser")
   assignedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessAssigner")
   rightsManagements                RightsManagement[]
   auditLogs                        AuditLog[]

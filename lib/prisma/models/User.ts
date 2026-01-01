@@ -263,7 +263,7 @@ export type UserWhereInput = {
     Prisma.WorkspaceAccountNullableScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
   > | null;
-  sharedWorkspaceAccountAccesses?: Prisma.XOR<
+  sharedWorkspaceAccountAccess?: Prisma.XOR<
     Prisma.SharedWorkspaceAccountAccessNullableScalarRelationFilter,
     Prisma.SharedWorkspaceAccountAccessWhereInput
   > | null;
@@ -291,7 +291,7 @@ export type UserOrderByWithRelationInput = {
   systemAccess?: Prisma.SystemAccessOrderByWithRelationInput;
   assignedSystemAccesses?: Prisma.SystemAccessOrderByRelationAggregateInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOrderByWithRelationInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessOrderByRelationAggregateInput;
   rightsManagements?: Prisma.RightsManagementOrderByRelationAggregateInput;
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput;
@@ -326,7 +326,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<
       Prisma.WorkspaceAccountNullableScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
     > | null;
-    sharedWorkspaceAccountAccesses?: Prisma.XOR<
+    sharedWorkspaceAccountAccess?: Prisma.XOR<
       Prisma.SharedWorkspaceAccountAccessNullableScalarRelationFilter,
       Prisma.SharedWorkspaceAccountAccessWhereInput
     > | null;
@@ -415,7 +415,7 @@ export type UserCreateInput = {
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
@@ -440,7 +440,7 @@ export type UserUncheckedCreateInput = {
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
@@ -480,7 +480,7 @@ export type UserUpdateInput = {
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
@@ -520,7 +520,7 @@ export type UserUncheckedUpdateInput = {
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
@@ -790,12 +790,12 @@ export type UserUpdateOneRequiredWithoutOwnWorkspaceAccountNestedInput = {
   >;
 };
 
-export type UserCreateNestedOneWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserCreateNestedOneWithoutSharedWorkspaceAccountAccessInput = {
   create?: Prisma.XOR<
-    Prisma.UserCreateWithoutSharedWorkspaceAccountAccessesInput,
-    Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+    Prisma.UserCreateWithoutSharedWorkspaceAccountAccessInput,
+    Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
   >;
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput;
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSharedWorkspaceAccountAccessInput;
   connect?: Prisma.UserWhereUniqueInput;
 };
 
@@ -808,21 +808,21 @@ export type UserCreateNestedOneWithoutAssignedWorkspaceAccountAccessesInput = {
   connect?: Prisma.UserWhereUniqueInput;
 };
 
-export type UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessesNestedInput =
+export type UserUpdateOneRequiredWithoutSharedWorkspaceAccountAccessNestedInput =
   {
     create?: Prisma.XOR<
-      Prisma.UserCreateWithoutSharedWorkspaceAccountAccessesInput,
-      Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+      Prisma.UserCreateWithoutSharedWorkspaceAccountAccessInput,
+      Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
     >;
-    connectOrCreate?: Prisma.UserCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput;
-    upsert?: Prisma.UserUpsertWithoutSharedWorkspaceAccountAccessesInput;
+    connectOrCreate?: Prisma.UserCreateOrConnectWithoutSharedWorkspaceAccountAccessInput;
+    upsert?: Prisma.UserUpsertWithoutSharedWorkspaceAccountAccessInput;
     connect?: Prisma.UserWhereUniqueInput;
     update?: Prisma.XOR<
       Prisma.XOR<
-        Prisma.UserUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessesInput,
-        Prisma.UserUpdateWithoutSharedWorkspaceAccountAccessesInput
+        Prisma.UserUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessInput,
+        Prisma.UserUpdateWithoutSharedWorkspaceAccountAccessInput
       >,
-      Prisma.UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
+      Prisma.UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
     >;
   };
 
@@ -916,7 +916,7 @@ export type UserCreateWithoutSessionsInput = {
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
@@ -940,7 +940,7 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
@@ -1007,7 +1007,7 @@ export type UserUpdateWithoutSessionsInput = {
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
@@ -1046,7 +1046,7 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
@@ -1070,7 +1070,7 @@ export type UserCreateWithoutSystemAccessInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
@@ -1094,7 +1094,7 @@ export type UserUncheckedCreateWithoutSystemAccessInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
@@ -1126,7 +1126,7 @@ export type UserCreateWithoutAssignedSystemAccessesInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
@@ -1150,7 +1150,7 @@ export type UserUncheckedCreateWithoutAssignedSystemAccessesInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
@@ -1217,7 +1217,7 @@ export type UserUpdateWithoutSystemAccessInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
@@ -1256,7 +1256,7 @@ export type UserUncheckedUpdateWithoutSystemAccessInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
@@ -1315,7 +1315,7 @@ export type UserUpdateWithoutAssignedSystemAccessesInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
@@ -1354,7 +1354,7 @@ export type UserUncheckedUpdateWithoutAssignedSystemAccessesInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
@@ -1378,7 +1378,7 @@ export type UserCreateWithoutOwnWorkspaceAccountInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput;
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
@@ -1402,7 +1402,7 @@ export type UserUncheckedCreateWithoutOwnWorkspaceAccountInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput;
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
@@ -1469,7 +1469,7 @@ export type UserUpdateWithoutOwnWorkspaceAccountInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput;
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
@@ -1508,13 +1508,13 @@ export type UserUncheckedUpdateWithoutOwnWorkspaceAccountInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput;
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
 };
 
-export type UserCreateWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   ownWorkspaceAccountId?: string | null;
   name: string;
@@ -1538,7 +1538,7 @@ export type UserCreateWithoutSharedWorkspaceAccountAccessesInput = {
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
 };
 
-export type UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserUncheckedCreateWithoutSharedWorkspaceAccountAccessInput = {
   id?: string;
   ownWorkspaceAccountId?: string | null;
   name: string;
@@ -1562,11 +1562,11 @@ export type UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
 };
 
-export type UserCreateOrConnectWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserCreateOrConnectWithoutSharedWorkspaceAccountAccessInput = {
   where: Prisma.UserWhereUniqueInput;
   create: Prisma.XOR<
-    Prisma.UserCreateWithoutSharedWorkspaceAccountAccessesInput,
-    Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+    Prisma.UserCreateWithoutSharedWorkspaceAccountAccessInput,
+    Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
   >;
 };
 
@@ -1589,7 +1589,7 @@ export type UserCreateWithoutAssignedWorkspaceAccountAccessesInput = {
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
 };
@@ -1613,7 +1613,7 @@ export type UserUncheckedCreateWithoutAssignedWorkspaceAccountAccessesInput = {
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
 };
@@ -1626,28 +1626,27 @@ export type UserCreateOrConnectWithoutAssignedWorkspaceAccountAccessesInput = {
   >;
 };
 
-export type UserUpsertWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserUpsertWithoutSharedWorkspaceAccountAccessInput = {
   update: Prisma.XOR<
-    Prisma.UserUpdateWithoutSharedWorkspaceAccountAccessesInput,
-    Prisma.UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
+    Prisma.UserUpdateWithoutSharedWorkspaceAccountAccessInput,
+    Prisma.UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
   >;
   create: Prisma.XOR<
-    Prisma.UserCreateWithoutSharedWorkspaceAccountAccessesInput,
-    Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput
+    Prisma.UserCreateWithoutSharedWorkspaceAccountAccessInput,
+    Prisma.UserUncheckedCreateWithoutSharedWorkspaceAccountAccessInput
   >;
   where?: Prisma.UserWhereInput;
 };
 
-export type UserUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessesInput =
-  {
-    where?: Prisma.UserWhereInput;
-    data: Prisma.XOR<
-      Prisma.UserUpdateWithoutSharedWorkspaceAccountAccessesInput,
-      Prisma.UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
-    >;
-  };
+export type UserUpdateToOneWithWhereWithoutSharedWorkspaceAccountAccessInput = {
+  where?: Prisma.UserWhereInput;
+  data: Prisma.XOR<
+    Prisma.UserUpdateWithoutSharedWorkspaceAccountAccessInput,
+    Prisma.UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput
+  >;
+};
 
-export type UserUpdateWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   ownWorkspaceAccountId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -1686,7 +1685,7 @@ export type UserUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
 };
 
-export type UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
+export type UserUncheckedUpdateWithoutSharedWorkspaceAccountAccessInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   ownWorkspaceAccountId?:
     | Prisma.NullableStringFieldUpdateOperationsInput
@@ -1780,7 +1779,7 @@ export type UserUpdateWithoutAssignedWorkspaceAccountAccessesInput = {
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
 };
@@ -1819,7 +1818,7 @@ export type UserUncheckedUpdateWithoutAssignedWorkspaceAccountAccessesInput = {
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
 };
@@ -1843,7 +1842,7 @@ export type UserCreateWithoutRightsManagementsInput = {
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput;
 };
@@ -1867,7 +1866,7 @@ export type UserUncheckedCreateWithoutRightsManagementsInput = {
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput;
 };
@@ -1934,7 +1933,7 @@ export type UserUpdateWithoutRightsManagementsInput = {
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput;
 };
@@ -1973,7 +1972,7 @@ export type UserUncheckedUpdateWithoutRightsManagementsInput = {
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput;
 };
@@ -1997,7 +1996,7 @@ export type UserCreateWithoutAuditLogsInput = {
   systemAccess?: Prisma.SystemAccessCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementCreateNestedManyWithoutUserInput;
 };
@@ -2021,7 +2020,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   systemAccess?: Prisma.SystemAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedCreateNestedManyWithoutAssignerInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedCreateNestedOneWithoutOwnerInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedOneWithoutUserInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutAssignerInput;
   rightsManagements?: Prisma.RightsManagementUncheckedCreateNestedManyWithoutUserInput;
 };
@@ -2088,7 +2087,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   systemAccess?: Prisma.SystemAccessUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUpdateManyWithoutUserNestedInput;
 };
@@ -2127,7 +2126,7 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   systemAccess?: Prisma.SystemAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedSystemAccesses?: Prisma.SystemAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   ownWorkspaceAccount?: Prisma.WorkspaceAccountUncheckedUpdateOneWithoutOwnerNestedInput;
-  sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
+  sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateOneWithoutUserNestedInput;
   assignedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutAssignerNestedInput;
   rightsManagements?: Prisma.RightsManagementUncheckedUpdateManyWithoutUserNestedInput;
 };
@@ -2249,9 +2248,9 @@ export type UserSelect<
     ownWorkspaceAccount?:
       | boolean
       | Prisma.User$ownWorkspaceAccountArgs<ExtArgs>;
-    sharedWorkspaceAccountAccesses?:
+    sharedWorkspaceAccountAccess?:
       | boolean
-      | Prisma.User$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
+      | Prisma.User$sharedWorkspaceAccountAccessArgs<ExtArgs>;
     assignedWorkspaceAccountAccesses?:
       | boolean
       | Prisma.User$assignedWorkspaceAccountAccessesArgs<ExtArgs>;
@@ -2355,9 +2354,9 @@ export type UserInclude<
     | boolean
     | Prisma.User$assignedSystemAccessesArgs<ExtArgs>;
   ownWorkspaceAccount?: boolean | Prisma.User$ownWorkspaceAccountArgs<ExtArgs>;
-  sharedWorkspaceAccountAccesses?:
+  sharedWorkspaceAccountAccess?:
     | boolean
-    | Prisma.User$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
+    | Prisma.User$sharedWorkspaceAccountAccessArgs<ExtArgs>;
   assignedWorkspaceAccountAccesses?:
     | boolean
     | Prisma.User$assignedWorkspaceAccountAccessesArgs<ExtArgs>;
@@ -2384,7 +2383,7 @@ export type $UserPayload<
     systemAccess: Prisma.$SystemAccessPayload<ExtArgs> | null;
     assignedSystemAccesses: Prisma.$SystemAccessPayload<ExtArgs>[];
     ownWorkspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs> | null;
-    sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs> | null;
+    sharedWorkspaceAccountAccess: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs> | null;
     assignedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
     rightsManagements: Prisma.$RightsManagementPayload<ExtArgs>[];
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[];
@@ -3007,12 +3006,12 @@ export interface Prisma__UserClient<
     ExtArgs,
     GlobalOmitOptions
   >;
-  sharedWorkspaceAccountAccesses<
-    T extends Prisma.User$sharedWorkspaceAccountAccessesArgs<ExtArgs> = {},
+  sharedWorkspaceAccountAccess<
+    T extends Prisma.User$sharedWorkspaceAccountAccessArgs<ExtArgs> = {},
   >(
     args?: Prisma.Subset<
       T,
-      Prisma.User$sharedWorkspaceAccountAccessesArgs<ExtArgs>
+      Prisma.User$sharedWorkspaceAccountAccessArgs<ExtArgs>
     >
   ): Prisma.Prisma__SharedWorkspaceAccountAccessClient<
     runtime.Types.Result.GetResult<
@@ -3664,9 +3663,9 @@ export type User$ownWorkspaceAccountArgs<
 };
 
 /**
- * User.sharedWorkspaceAccountAccesses
+ * User.sharedWorkspaceAccountAccess
  */
-export type User$sharedWorkspaceAccountAccessesArgs<
+export type User$sharedWorkspaceAccountAccessArgs<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {

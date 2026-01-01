@@ -14,7 +14,6 @@ import {
 import { Session } from "@/lib/prisma/browser";
 import { toast } from "sonner";
 import { revokeSessionById } from "@/actions/shared/session";
-import { getDeviceInfo } from "@/lib/device-info";
 
 interface SessionActionsProps {
   session: Session;
@@ -54,12 +53,7 @@ export function SessionActions({
   const handleRevoke = async () => {
     try {
       setIsRevoking(true);
-      const deviceInfo = await getDeviceInfo();
-      const revokedSession = await revokeSessionById(
-        session.id,
-        currentSession.userId,
-        deviceInfo
-      );
+      const revokedSession = await revokeSessionById(session.id);
       if (!revokedSession.success) {
         toast.error("Failed to revoke the session. Please try again.");
         return;

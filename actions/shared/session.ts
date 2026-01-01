@@ -184,23 +184,30 @@ export async function getCurrentSession(): Promise<{
             },
           },
         });
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: updatedSession.id,
-          description: `Session revoked due to user agent mismatch for user ID ${updatedSession.userId}`,
-          metadata: {
-            originalDeviceInfo: (
-              updatedSession.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: session.userId },
-          },
-        });
+        try {
+          await logAuditEvent({
+            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+            entity: AUDIT_LOG_ENTITY.SESSION,
+            entityId: updatedSession.id,
+            description: `Session revoked due to user agent mismatch for user ID ${updatedSession.userId}`,
+            metadata: {
+              originalDeviceInfo: (
+                updatedSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              currentDeviceInfo: JSON.stringify(deviceInfo),
+            },
+            user: {
+              connect: { id: session.userId },
+            },
+          });
+        } catch (error) {
+          console.error(
+            "Error logging audit event for user agent mismatch:",
+            error
+          );
+        }
       } catch (error) {
         console.error("Error revoking session:", error);
       }
@@ -228,23 +235,30 @@ export async function getCurrentSession(): Promise<{
             },
           },
         });
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: updatedSession.id,
-          description: `Session revoked due to device fingerprint mismatch for user ID ${updatedSession.userId}`,
-          metadata: {
-            originalDeviceInfo: (
-              updatedSession.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: updatedSession.userId },
-          },
-        });
+        try {
+          await logAuditEvent({
+            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+            entity: AUDIT_LOG_ENTITY.SESSION,
+            entityId: updatedSession.id,
+            description: `Session revoked due to device fingerprint mismatch for user ID ${updatedSession.userId}`,
+            metadata: {
+              originalDeviceInfo: (
+                updatedSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              currentDeviceInfo: JSON.stringify(deviceInfo),
+            },
+            user: {
+              connect: { id: updatedSession.userId },
+            },
+          });
+        } catch (error) {
+          console.error(
+            "Error logging audit event for device fingerprint mismatch:",
+            error
+          );
+        }
       } catch (error) {
         console.error("Error revoking session:", error);
       }
@@ -272,23 +286,30 @@ export async function getCurrentSession(): Promise<{
             },
           },
         });
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: updatedSession.id,
-          description: `Session revoked due to unverified user for user ID ${updatedSession.userId}`,
-          metadata: {
-            originalDeviceInfo: (
-              updatedSession.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: updatedSession.userId },
-          },
-        });
+        try {
+          await logAuditEvent({
+            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+            entity: AUDIT_LOG_ENTITY.SESSION,
+            entityId: updatedSession.id,
+            description: `Session revoked due to unverified user for user ID ${updatedSession.userId}`,
+            metadata: {
+              originalDeviceInfo: (
+                updatedSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              currentDeviceInfo: JSON.stringify(deviceInfo),
+            },
+            user: {
+              connect: { id: updatedSession.userId },
+            },
+          });
+        } catch (error) {
+          console.error(
+            "Error logging audit event for unverified user:",
+            error
+          );
+        }
       } catch (error) {
         console.error("Error logging audit event for unverified user:", error);
       }
@@ -316,23 +337,30 @@ export async function getCurrentSession(): Promise<{
             },
           },
         });
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: updatedSession.id,
-          description: `Session revoked due to unapproved user for user ID ${updatedSession.userId}`,
-          metadata: {
-            originalDeviceInfo: (
-              updatedSession.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: session.userId },
-          },
-        });
+        try {
+          await logAuditEvent({
+            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+            entity: AUDIT_LOG_ENTITY.SESSION,
+            entityId: updatedSession.id,
+            description: `Session revoked due to unapproved user for user ID ${updatedSession.userId}`,
+            metadata: {
+              originalDeviceInfo: (
+                updatedSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              currentDeviceInfo: JSON.stringify(deviceInfo),
+            },
+            user: {
+              connect: { id: session.userId },
+            },
+          });
+        } catch (error) {
+          console.error(
+            "Error logging audit event for unapproved user:",
+            error
+          );
+        }
       } catch (error) {
         console.error("Error logging audit event for unapproved user:", error);
       }
@@ -360,23 +388,27 @@ export async function getCurrentSession(): Promise<{
             },
           },
         });
-        await logAuditEvent({
-          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-          entity: AUDIT_LOG_ENTITY.SESSION,
-          entityId: updatedSession.id,
-          description: `Session revoked due to suspended user for user ID ${updatedSession.userId}`,
-          metadata: {
-            originalDeviceInfo: (
-              updatedSession.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            currentDeviceInfo: JSON.stringify(deviceInfo),
-          },
-          user: {
-            connect: { id: updatedSession.userId },
-          },
-        });
+        try {
+          await logAuditEvent({
+            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+            entity: AUDIT_LOG_ENTITY.SESSION,
+            entityId: updatedSession.id,
+            description: `Session revoked due to suspended user for user ID ${updatedSession.userId}`,
+            metadata: {
+              originalDeviceInfo: (
+                updatedSession.metadata as {
+                  deviceInfo: string & Record<string, unknown>;
+                }
+              )?.deviceInfo,
+              currentDeviceInfo: JSON.stringify(deviceInfo),
+            },
+            user: {
+              connect: { id: updatedSession.userId },
+            },
+          });
+        } catch (error) {
+          console.error("Error logging audit event for suspended user:", error);
+        }
       } catch (error) {
         console.error("Error logging audit event for suspended user:", error);
       }
@@ -424,22 +456,20 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
       };
     }
 
-    const session = await prisma.$transaction(async (tx) => {
-      return await tx.session.update({
-        where: {
-          token: sessionToken,
+    const session = await prisma.session.update({
+      where: {
+        token: sessionToken,
+      },
+      data: {
+        revokedAt: new Date(),
+        metadata: {
+          revokedReason: "Current session revoked",
+          deviceInfo: JSON.stringify(deviceInfo),
         },
-        data: {
-          revokedAt: new Date(),
-          metadata: {
-            revokedReason: "Current session revoked",
-            deviceInfo: JSON.stringify(deviceInfo),
-          },
-        },
-        include: {
-          user: true,
-        },
-      });
+      },
+      include: {
+        user: true,
+      },
     });
 
     if (!session) {
@@ -490,16 +520,33 @@ export async function revokeCurrentSession(deviceInfo: DeviceInfo): Promise<{
   }
 }
 
-export async function getAllSessionsForUser(userId: string): Promise<{
+export async function getAllSessionsForCurrentUser(): Promise<{
   success: boolean;
   message: string;
   data: Session[] | null;
   errors: unknown | null;
 }> {
   try {
+    const currentSession = await getCurrentSession();
+    if (!currentSession.success) {
+      return {
+        success: false,
+        message: currentSession.message,
+        data: null,
+        errors: currentSession.errors,
+      };
+    }
+    if (!currentSession.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
     const sessions = await prisma.session.findMany({
       where: {
-        userId,
+        userId: currentSession.data.userId,
       },
       orderBy: {
         createdAt: "desc",
@@ -532,26 +579,41 @@ export async function getAllSessionsForUser(userId: string): Promise<{
   }
 }
 
-export async function revokeAllSessionsForUser(
-  userId: string,
-  deviceInfo: DeviceInfo
-): Promise<{
+export async function revokeAllOtherSessionsForCurrentUser(): Promise<{
   success: boolean;
   message: string;
   data: null;
   errors: unknown | null;
 }> {
   try {
-    const sessions = await prisma.$transaction(async (tx) => {
-      return await tx.session.updateMany({
-        where: {
-          userId,
-          revokedAt: null,
-        },
-        data: {
-          revokedAt: new Date(),
-        },
-      });
+    const currentSession = await getCurrentSession();
+    if (!currentSession.success) {
+      return {
+        success: false,
+        message: currentSession.message,
+        data: null,
+        errors: currentSession.errors,
+      };
+    }
+    if (!currentSession.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
+
+    const deviceInfo = await getDeviceInfo();
+    const sessions = await prisma.session.updateMany({
+      where: {
+        userId: currentSession.data?.userId,
+        token: { not: currentSession.data?.token },
+        revokedAt: null,
+      },
+      data: {
+        revokedAt: new Date(),
+      },
     });
 
     try {
@@ -559,13 +621,13 @@ export async function revokeAllSessionsForUser(
         action: AUDIT_LOG_ACTION.SESSION_REVOKED,
         entity: AUDIT_LOG_ENTITY.SESSION,
         entityId: null,
-        description: `All sessions revoked for user ID ${userId}`,
+        description: `All sessions revoked for user ID ${currentSession.data.userId}`,
         metadata: {
           deviceInfo: JSON.stringify(deviceInfo),
           totalRevoked: sessions.count,
         },
         user: {
-          connect: { id: userId },
+          connect: { id: currentSession.data.userId },
         },
       });
     } catch (error) {
@@ -592,58 +654,32 @@ export async function revokeAllSessionsForUser(
   }
 }
 
-export async function getSessionById(sessionId: string): Promise<{
+export async function revokeSessionById(sessionId: string): Promise<{
   success: boolean;
   message: string;
   data: Session | null;
   errors: unknown | null;
 }> {
   try {
-    const session = await prisma.session.findUnique({
-      where: {
-        id: sessionId,
-      },
-    });
-
-    if (!session) {
+    const currentSession = await getCurrentSession();
+    if (!currentSession.success) {
       return {
         success: false,
-        message: "Session not found",
+        message: currentSession.message,
         data: null,
-        errors: new Error("Session not found"),
+        errors: currentSession.errors,
       };
     }
-
-    return {
-      success: true,
-      message: "Session retrieved successfully",
-      data: session,
-      errors: null,
-    };
-  } catch (error) {
-    console.error("Failed to retrieve session by ID:", error);
-    return {
-      success: false,
-      message: "Failed to retrieve session by ID",
-      data: null,
-      errors: error,
-    };
-  }
-}
-
-export async function revokeSessionById(
-  sessionId: string,
-  userId: string,
-  deviceInfo: DeviceInfo
-): Promise<{
-  success: boolean;
-  message: string;
-  data: Session | null;
-  errors: unknown | null;
-}> {
-  try {
+    if (!currentSession.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
     const sessionExists = await prisma.session.findUnique({
-      where: { id: sessionId },
+      where: { id: sessionId, userId: currentSession.data.userId },
     });
 
     if (!sessionExists) {
@@ -655,24 +691,24 @@ export async function revokeSessionById(
       };
     }
 
-    const session = await prisma.$transaction(async (tx) => {
-      return await tx.session.update({
-        where: {
-          id: sessionId,
+    const deviceInfo = await getDeviceInfo();
+
+    const session = await prisma.session.update({
+      where: {
+        id: sessionId,
+      },
+      data: {
+        revokedAt: new Date(),
+        metadata: {
+          revokedReason: `Session revoked by ${currentSession.data.userId}`,
+          deviceInfo: (
+            sessionExists.metadata as {
+              deviceInfo: string & Record<string, unknown>;
+            }
+          )?.deviceInfo,
+          revokedDeviceInfo: JSON.stringify(deviceInfo),
         },
-        data: {
-          revokedAt: new Date(),
-          metadata: {
-            revokedReason: `Revoked from dashboard by ${userId}`,
-            deviceInfo: (
-              sessionExists.metadata as {
-                deviceInfo: string & Record<string, unknown>;
-              }
-            )?.deviceInfo,
-            revokedDeviceInfo: JSON.stringify(deviceInfo),
-          },
-        },
-      });
+      },
     });
 
     if (!session) {
@@ -689,10 +725,10 @@ export async function revokeSessionById(
         action: AUDIT_LOG_ACTION.SESSION_REVOKED,
         entity: AUDIT_LOG_ENTITY.SESSION,
         entityId: session.id,
-        description: `Session ID ${sessionId} revoked by user ID ${userId}`,
+        description: `Session ID ${sessionId} revoked by user ID ${currentSession.data.userId}`,
         metadata: { deviceInfo: JSON.stringify(deviceInfo) },
         user: {
-          connect: { id: userId },
+          connect: { id: currentSession.data.userId },
         },
       });
     } catch (error) {

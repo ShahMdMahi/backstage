@@ -3,7 +3,7 @@ import { SessionsList } from "@/components/shared/sessions/session-list";
 import { SessionCardSkeleton } from "@/components/shared/sessions/session-card-skeleton";
 import { ShieldIcon } from "lucide-react";
 import {
-  getAllSessionsForUser,
+  getAllSessionsForCurrentUser,
   getCurrentSession,
 } from "@/actions/shared/session";
 
@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 async function SessionsContent() {
   const currentSession = await getCurrentSession();
-  const sessions = await getAllSessionsForUser(currentSession.data!.userId);
+  const sessions = await getAllSessionsForCurrentUser();
 
   return (
     <SessionsList
@@ -24,9 +24,19 @@ async function SessionsContent() {
 function SessionsLoading() {
   return (
     <div className="space-y-4">
-      <SessionCardSkeleton />
-      <SessionCardSkeleton />
-      <SessionCardSkeleton />
+      <div className="flex items-center justify-between">
+        <div className="flex gap-2">
+          <div className="h-10 w-32 bg-muted rounded-md animate-pulse" />
+          <div className="h-10 w-24 bg-muted rounded-md animate-pulse" />
+          <div className="h-10 w-28 bg-muted rounded-md animate-pulse" />
+        </div>
+        <div className="h-10 w-40 bg-muted rounded-md animate-pulse" />
+      </div>
+      <div className="space-y-4">
+        <SessionCardSkeleton />
+        <SessionCardSkeleton />
+        <SessionCardSkeleton />
+      </div>
     </div>
   );
 }

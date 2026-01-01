@@ -315,19 +315,28 @@ export async function proxy(request: NextRequest) {
           },
         },
       });
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.id,
-        description: `Session revoked due to user agent mismatch for user ID ${session.userId}`,
-        metadata: {
-          originalDeviceInfo: (
-            session.metadata as { deviceInfo: string & Record<string, unknown> }
-          )?.deviceInfo,
-          currentDeviceInfo: JSON.stringify(deviceInfo),
-        },
-        user: { connect: { id: session.userId } },
-      });
+      try {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: session.id,
+          description: `Session revoked due to user agent mismatch for user ID ${session.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              session.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: { connect: { id: session.userId } },
+        });
+      } catch (error) {
+        console.error(
+          "Error logging audit event for user agent mismatch:",
+          error
+        );
+      }
     } catch (error) {
       console.error("Error revoking session:", error);
     }
@@ -360,19 +369,28 @@ export async function proxy(request: NextRequest) {
           },
         },
       });
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.id,
-        description: `Session revoked due to device fingerprint mismatch for user ID ${session.userId}`,
-        metadata: {
-          originalDeviceInfo: (
-            session.metadata as { deviceInfo: string & Record<string, unknown> }
-          )?.deviceInfo,
-          currentDeviceInfo: JSON.stringify(deviceInfo),
-        },
-        user: { connect: { id: session.userId } },
-      });
+      try {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: session.id,
+          description: `Session revoked due to device fingerprint mismatch for user ID ${session.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              session.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: { connect: { id: session.userId } },
+        });
+      } catch (error) {
+        console.error(
+          "Error logging audit event for device fingerprint mismatch:",
+          error
+        );
+      }
     } catch (error) {
       console.error("Error revoking session:", error);
     }
@@ -400,19 +418,25 @@ export async function proxy(request: NextRequest) {
           },
         },
       });
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.id,
-        description: `Session revoked due to unverified user for user ID ${session.userId}`,
-        metadata: {
-          originalDeviceInfo: (
-            session.metadata as { deviceInfo: string & Record<string, unknown> }
-          )?.deviceInfo,
-          currentDeviceInfo: JSON.stringify(deviceInfo),
-        },
-        user: { connect: { id: session.userId } },
-      });
+      try {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: session.id,
+          description: `Session revoked due to unverified user for user ID ${session.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              session.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: { connect: { id: session.userId } },
+        });
+      } catch (error) {
+        console.error("Error logging audit event for unverified user:", error);
+      }
     } catch (error) {
       console.error("Error logging audit event for unverified user:", error);
     }
@@ -440,19 +464,25 @@ export async function proxy(request: NextRequest) {
           },
         },
       });
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.id,
-        description: `Session revoked due to unapproved user for user ID ${session.userId}`,
-        metadata: {
-          originalDeviceInfo: (
-            session.metadata as { deviceInfo: string & Record<string, unknown> }
-          )?.deviceInfo,
-          currentDeviceInfo: JSON.stringify(deviceInfo),
-        },
-        user: { connect: { id: session.userId } },
-      });
+      try {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: session.id,
+          description: `Session revoked due to unapproved user for user ID ${session.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              session.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: { connect: { id: session.userId } },
+        });
+      } catch (error) {
+        console.error("Error logging audit event for unapproved user:", error);
+      }
     } catch (error) {
       console.error("Error logging audit event for unapproved user:", error);
     }
@@ -480,19 +510,25 @@ export async function proxy(request: NextRequest) {
           },
         },
       });
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-        entity: AUDIT_LOG_ENTITY.SESSION,
-        entityId: session.id,
-        description: `Session revoked due to suspended user for user ID ${session.userId}`,
-        metadata: {
-          originalDeviceInfo: (
-            session.metadata as { deviceInfo: string & Record<string, unknown> }
-          )?.deviceInfo,
-          currentDeviceInfo: JSON.stringify(deviceInfo),
-        },
-        user: { connect: { id: session.userId } },
-      });
+      try {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+          entity: AUDIT_LOG_ENTITY.SESSION,
+          entityId: session.id,
+          description: `Session revoked due to suspended user for user ID ${session.userId}`,
+          metadata: {
+            originalDeviceInfo: (
+              session.metadata as {
+                deviceInfo: string & Record<string, unknown>;
+              }
+            )?.deviceInfo,
+            currentDeviceInfo: JSON.stringify(deviceInfo),
+          },
+          user: { connect: { id: session.userId } },
+        });
+      } catch (error) {
+        console.error("Error logging audit event for suspended user:", error);
+      }
     } catch (error) {
       console.error("Error logging audit event for suspended user:", error);
     }
@@ -554,14 +590,21 @@ export async function proxy(request: NextRequest) {
               },
             },
           });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to missing system access record for user ID ${session.userId}`,
-            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-            user: { connect: { id: session.userId } },
-          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to missing system access record for user ID ${session.userId}`,
+              metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for missing system access record:",
+              error
+            );
+          }
         } catch (error) {
           console.error(
             "Error revoking session due to missing system access record:",
@@ -592,14 +635,21 @@ export async function proxy(request: NextRequest) {
               },
             },
           });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to suspended system access for user ID ${session.userId}`,
-            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-            user: { connect: { id: session.userId } },
-          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to suspended system access for user ID ${session.userId}`,
+              metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for suspended system access:",
+              error
+            );
+          }
         } catch (error) {
           console.error(
             "Error revoking session for suspended system access:",
@@ -630,21 +680,28 @@ export async function proxy(request: NextRequest) {
               },
             },
           });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to expired system access for user ID ${session.userId}`,
-            metadata: {
-              originalDeviceInfo: (
-                session.metadata as {
-                  deviceInfo: string & Record<string, unknown>;
-                }
-              )?.deviceInfo,
-              currentDeviceInfo: JSON.stringify(deviceInfo),
-            },
-            user: { connect: { id: session.userId } },
-          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to expired system access for user ID ${session.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for expired system access:",
+              error
+            );
+          }
         } catch (error) {
           console.error(
             "Error revoking session for expired system access:",
@@ -732,14 +789,21 @@ export async function proxy(request: NextRequest) {
               },
             },
           });
-          await logAuditEvent({
-            action: AUDIT_LOG_ACTION.SESSION_REVOKED,
-            entity: AUDIT_LOG_ENTITY.SESSION,
-            entityId: session.id,
-            description: `Session revoked due to missing access for user ID ${session.userId}`,
-            metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-            user: { connect: { id: session.userId } },
-          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to missing access for user ID ${session.userId}`,
+              metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for missing access:",
+              error
+            );
+          }
         } catch (error) {
           console.error("Error revoking session due to missing access:", error);
         }
