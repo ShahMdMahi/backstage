@@ -27,129 +27,150 @@ enum SESSION_DEVICE_TYPE {
 }
 
 enum USER_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  SUSPEND
+  CREATE
   UPDATE
   DELETE
 }
 
 enum WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  SUSPEND
+  TERMINATE
+  CREATE
   UPDATE
   DELETE
 }
 
 enum REPORTING_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
-  UPDATE
+  VIEW
+  CREATE
   DELETE
 }
 
 enum RELEASE_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum TRACK_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  CREATE
   UPDATE
   DELETE
 }
 
 enum VIDEO_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum RINGTONE_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum ARTIST_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum PERFORMER_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  CREATE
   UPDATE
   DELETE
 }
 
 enum PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  CREATE
   UPDATE
   DELETE
 }
 
 enum WRITER_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  CREATE
   UPDATE
   DELETE
 }
 
 enum PUBLISHER_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum LABEL_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum TRANSACTION_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  EXPORT
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
 
 enum WITHDRAWS_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
-  UPDATE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   DELETE
 }
 
 enum CONSUMPTION_SYSTEM_ACCESS_LEVEL {
-  READ
+  VIEW
 }
 
 enum ENGAGEMENT_SYSTEM_ACCESS_LEVEL {
-  READ
+  VIEW
 }
 
 enum REVENUE_SYSTEM_ACCESS_LEVEL {
-  READ
+  VIEW
 }
 
 enum GEO_SYSTEM_ACCESS_LEVEL {
-  READ
+  VIEW
 }
 
 enum RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL {
-  READ
-  WRITE
+  VIEW
+  APPROVE
+  STATUS
+  CREATE
   UPDATE
   DELETE
 }
@@ -286,153 +307,84 @@ enum GEO_WORKSPACE_ACCESS_LEVEL {
 }
 
 enum RELEASE_STATUS {
-  DRAFT
   PENDING
-  APPROVED
   PROCESSING
-  PUBLISHED
-  REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
-}
-
-enum TRACK_STATUS {
-  DRAFT
-  PENDING
   APPROVED
-  PROCESSING
-  PUBLISHED
   REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
+  SUSPENDED
+  TAKENDOWN
+  RELEASED
 }
 
 enum VIDEO_STATUS {
-  DRAFT
   PENDING
-  APPROVED
   PROCESSING
-  PUBLISHED
+  APPROVED
   REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
+  SUSPENDED
+  TAKENDOWN
+  RELEASED
 }
 
 enum RINGTONE_STATUS {
-  DRAFT
   PENDING
-  APPROVED
   PROCESSING
-  PUBLISHED
+  APPROVED
   REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
+  SUSPENDED
+  TAKENDOWN
+  RELEASED
 }
 
 enum ARTIST_STATUS {
-  DRAFT
   PENDING
-  APPROVED
   PROCESSING
-  PUBLISHED
-  REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
-}
-
-enum PERFORMER_STATUS {
-  DRAFT
-  PENDING
   APPROVED
-  PROCESSING
-  PUBLISHED
   REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
-}
-
-enum PRODUCER_AND_ENGINEER_STATUS {
-  DRAFT
-  PENDING
-  APPROVED
-  PROCESSING
-  PUBLISHED
-  REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
-}
-
-enum WRITER_STATUS {
-  DRAFT
-  PENDING
-  APPROVED
-  PROCESSING
-  PUBLISHED
-  REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
+  SUSPENDED
+  ACTIVE
 }
 
 enum PUBLISHER_STATUS {
-  DRAFT
   PENDING
-  APPROVED
   PROCESSING
-  PUBLISHED
+  APPROVED
   REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
+  SUSPENDED
+  ACTIVE
 }
 
 enum LABEL_STATUS {
-  DRAFT
   PENDING
-  APPROVED
   PROCESSING
-  PUBLISHED
+  APPROVED
   REJECTED
-  ARCHIVED
-  PAUSED
-  TAKEN_DOWN
+  SUSPENDED
+  ACTIVE
 }
 
 enum TRANSACTION_STATUS {
-  PENDING
   PROCESSING
-  ON_HOLD
-  COMPLETED
-  FAILED
-  CANCELLED
+  APPROVED
   REJECTED
+  COMPLETED
 }
 
 enum WITHDRAWAL_STATUS {
   PENDING
   PROCESSING
-  ON_HOLD
-  COMPLETED
-  FAILED
-  CANCELLED
+  APPROVED
   REJECTED
+  COMPLETED
 }
 
 enum RIGHTS_MANAGEMENT_STATUS {
   PENDING
-  APPROVED
   PROCESSING
-  COMPLETED
-  FAILED
-  CANCELLED
+  APPROVED
   REJECTED
+  FAILED
+  COMPLETED
 }
 
 enum AUDIT_LOG_ACTION {
@@ -534,7 +486,7 @@ model User {
   systemAccess                     SystemAccess?                  @relation("SystemAccessUser")
   assignedSystemAccesses           SystemAccess[]                 @relation("SystemAccessAssigner")
   ownWorkspaceAccount              WorkspaceAccount?
-  sharedWorkspaceAccountAccess   SharedWorkspaceAccountAccess?  @relation("SharedWorkspaceAccountAccessUser")
+  sharedWorkspaceAccountAccess     SharedWorkspaceAccountAccess?  @relation("SharedWorkspaceAccountAccessUser")
   assignedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[] @relation("SharedWorkspaceAccountAccessAssigner")
   rightsManagements                RightsManagement[]
   auditLogs                        AuditLog[]
@@ -671,6 +623,7 @@ model WorkspaceAccount {
   renewedAt          DateTime?
   canceledAt         DateTime?
   suspendedAt        DateTime?
+  terminatedAt       DateTime?
   agreementSignedAt  DateTime?
   agreementExpiresAt DateTime?
   agreementRenewedAt DateTime?
@@ -689,7 +642,7 @@ model Release {
   metadata Json? @db.JsonB
 
   // Enums
-  status RELEASE_STATUS @default(DRAFT)
+  status RELEASE_STATUS @default(PENDING)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -714,7 +667,6 @@ model Track {
   metadata Json? @db.JsonB
 
   // Enums
-  status TRACK_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -739,7 +691,7 @@ model Video {
   metadata Json? @db.JsonB
 
   // Enums
-  status VIDEO_STATUS @default(DRAFT)
+  status VIDEO_STATUS @default(PENDING)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -764,7 +716,7 @@ model Ringtone {
   metadata Json? @db.JsonB
 
   // Enums
-  status RINGTONE_STATUS @default(DRAFT)
+  status RINGTONE_STATUS @default(PENDING)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -789,7 +741,7 @@ model Artist {
   metadata Json? @db.JsonB
 
   // Enums
-  status ARTIST_STATUS @default(DRAFT)
+  status ARTIST_STATUS @default(PENDING)
 
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -815,7 +767,6 @@ model Performer {
   metadata Json? @db.JsonB
 
   // Enums
-  status PERFORMER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -841,7 +792,6 @@ model ProducerAndEngineer {
   metadata Json? @db.JsonB
 
   // Enums
-  status PRODUCER_AND_ENGINEER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount                    WorkspaceAccount                    @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -895,7 +845,6 @@ model Writer {
   metadata Json? @db.JsonB
 
   // Enums
-  status WRITER_STATUS @default(DRAFT)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -920,7 +869,7 @@ model Publisher {
   metadata Json? @db.JsonB
 
   // Enums
-  status PUBLISHER_STATUS @default(DRAFT)
+  status PUBLISHER_STATUS @default(PENDING)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -945,7 +894,7 @@ model Label {
   metadata Json? @db.JsonB
 
   // Enums
-  status LABEL_STATUS @default(DRAFT)
+  status LABEL_STATUS @default(PENDING)
 
   // Relations
   workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
@@ -978,7 +927,7 @@ model Transaction {
   metadata Json? @db.JsonB
 
   // Enums
-  status TRANSACTION_STATUS @default(PENDING)
+  status TRANSACTION_STATUS @default(PROCESSING)
 
   // Relations
   workspaceAccount               WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)

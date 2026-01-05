@@ -9,23 +9,11 @@ import {
   WORKSPACE_ACCOUNT_ACCESS_ROLE,
 } from "@/lib/prisma/enums";
 import {
-  Artist,
-  Label,
-  Performer,
-  ProducerAndEngineer,
-  Publisher,
-  Release,
-  Ringtone,
   Session,
   SharedWorkspaceAccountAccess,
   SystemAccess,
-  Track,
-  Transaction,
   User,
-  Video,
-  Withdrawal,
   WorkspaceAccount,
-  Writer,
 } from "@/lib/prisma/client";
 
 export async function proxy(request: NextRequest) {
@@ -42,41 +30,8 @@ export async function proxy(request: NextRequest) {
   let dbSession: (Session & { user: User }) | null = null;
   let role: ROLE | null = null;
   let systemAccess: SystemAccess | null = null;
-  let ownWorkspaceAccount:
-    | (WorkspaceAccount & {
-        owner: User;
-        releases: Release[];
-        tracks: Track[];
-        videos: Video[];
-        ringtones: Ringtone[];
-        artists: Artist[];
-        performers: Performer[];
-        producersAndEngineers: ProducerAndEngineer[];
-        writers: Writer[];
-        publishers: Publisher[];
-        labels: Label[];
-        transactions: Transaction[];
-        withdrawals: Withdrawal[];
-      })
-    | null = null;
-  let sharedAccess:
-    | (SharedWorkspaceAccountAccess & {
-        user: User;
-        workspaceAccount: WorkspaceAccount;
-        releases: Release[];
-        tracks: Track[];
-        videos: Video[];
-        ringtones: Ringtone[];
-        artists: Artist[];
-        performers: Performer[];
-        producersAndEngineers: ProducerAndEngineer[];
-        writers: Writer[];
-        publishers: Publisher[];
-        labels: Label[];
-        transactions: Transaction[];
-        withdrawals: Withdrawal[];
-      })
-    | null = null;
+  let ownWorkspaceAccount: WorkspaceAccount | null = null;
+  let sharedAccess: SharedWorkspaceAccountAccess | null = null;
   let isSharedAccessAdmin = false;
 
   // Route checks
@@ -576,7 +531,6 @@ export async function proxy(request: NextRequest) {
       systemAccess = await prisma.systemAccess.findUnique({
         where: { userId: dbSession.userId },
       });
-
       if (!systemAccess) {
         try {
           const session = await prisma.session.update({
@@ -621,7 +575,6 @@ export async function proxy(request: NextRequest) {
         response.cookies.delete("session_token");
         return response;
       }
-
       if (systemAccess.suspendedAt) {
         try {
           const session = await prisma.session.update({
@@ -666,7 +619,6 @@ export async function proxy(request: NextRequest) {
         response.cookies.delete("session_token");
         return response;
       }
-
       if (systemAccess.expiresAt < new Date()) {
         try {
           const session = await prisma.session.update({
@@ -736,43 +688,9 @@ export async function proxy(request: NextRequest) {
     try {
       ownWorkspaceAccount = await prisma.workspaceAccount.findUnique({
         where: { ownerId: dbSession.userId },
-        include: {
-          owner: true,
-          releases: true,
-          tracks: true,
-          videos: true,
-          ringtones: true,
-          artists: true,
-          performers: true,
-          producersAndEngineers: true,
-          writers: true,
-          publishers: true,
-          labels: true,
-          transactions: true,
-          withdrawals: true,
-        },
       });
-
       sharedAccess = await prisma.sharedWorkspaceAccountAccess.findUnique({
-        where: {
-          userId: dbSession.userId,
-        },
-        include: {
-          user: true,
-          workspaceAccount: true,
-          releases: true,
-          tracks: true,
-          videos: true,
-          ringtones: true,
-          artists: true,
-          performers: true,
-          producersAndEngineers: true,
-          writers: true,
-          publishers: true,
-          labels: true,
-          transactions: true,
-          withdrawals: true,
-        },
+        where: { userId: dbSession.userId },
       });
       isSharedAccessAdmin =
         sharedAccess?.role === WORKSPACE_ACCOUNT_ACCESS_ROLE.ADMIN;
@@ -806,6 +724,138 @@ export async function proxy(request: NextRequest) {
           }
         } catch (error) {
           console.error("Error revoking session due to missing access:", error);
+        }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
+        }
+        response.cookies.delete("session_token");
+        return response;
+      }
+      if (!ownWorkspaceAccount && sharedAccess?.suspendedAt) {
+        try {
+          const session = await prisma.session.update({
+            where: { id: dbSession.id },
+            data: {
+              revokedAt: new Date(),
+              ipAddress: deviceInfo.ipAddress,
+              metadata: {
+                revokedReason: "Shared workspace access suspended",
+                deviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to suspended shared access for user ID ${session.userId}`,
+              metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for suspended shared access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error revoking session for suspended shared access:",
+            error
+          );
+        }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
+        }
+        response.cookies.delete("session_token");
+        return response;
+      }
+      if (!ownWorkspaceAccount && sharedAccess!.expiresAt < new Date()) {
+        try {
+          const session = await prisma.session.update({
+            where: { id: dbSession.id },
+            data: {
+              revokedAt: new Date(),
+              ipAddress: deviceInfo.ipAddress,
+              metadata: {
+                revokedReason: "Shared workspace access expired",
+                deviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to expired shared access for user ID ${session.userId}`,
+              metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for expired shared access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error revoking session for expired shared access:",
+            error
+          );
+        }
+        if (!isAuthRoute) {
+          const redirect = NextResponse.redirect(
+            new URL("/auth/login", request.url)
+          );
+          redirect.cookies.delete("session_token");
+          return redirect;
+        }
+        response.cookies.delete("session_token");
+        return response;
+      }
+      if (!sharedAccess && ownWorkspaceAccount?.terminatedAt) {
+        try {
+          const session = await prisma.session.update({
+            where: { id: dbSession.id },
+            data: {
+              revokedAt: new Date(),
+              ipAddress: deviceInfo.ipAddress,
+              metadata: {
+                revokedReason: "Workspace account terminated",
+                deviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: session.id,
+              description: `Session revoked due to terminated workspace account for user ID ${session.userId}`,
+              metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+              user: { connect: { id: session.userId } },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for terminated workspace account:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error revoking session for terminated workspace account:",
+            error
+          );
         }
         if (!isAuthRoute) {
           const redirect = NextResponse.redirect(
@@ -970,30 +1020,41 @@ export async function proxy(request: NextRequest) {
       haveNormalGeoAccess = true;
     }
     if (sharedAccess) {
-      if (isSharedAccessAdmin) {
-        haveNormalWorkspacesAccess = true;
-        haveNormalAccessesAccess = true;
-      }
-      haveNormalReleasesAccess = sharedAccess.releaseAccessLevel.length > 0;
-      haveNormalTracksAccess = sharedAccess.trackAccessLevel.length > 0;
-      haveNormalVideosAccess = sharedAccess.videoAccessLevel.length > 0;
-      haveNormalRingtonesAccess = sharedAccess.ringtoneAccessLevel.length > 0;
-      haveNormalArtistsAccess = sharedAccess.artistAccessLevel.length > 0;
-      haveNormalPerformersAccess = sharedAccess.performerAccessLevel.length > 0;
+      haveNormalWorkspacesAccess = isSharedAccessAdmin;
+      haveNormalAccessesAccess = isSharedAccessAdmin;
+      haveNormalReleasesAccess =
+        isSharedAccessAdmin || sharedAccess.releaseAccessLevel.length > 0;
+      haveNormalTracksAccess =
+        isSharedAccessAdmin || sharedAccess.trackAccessLevel.length > 0;
+      haveNormalVideosAccess =
+        isSharedAccessAdmin || sharedAccess.videoAccessLevel.length > 0;
+      haveNormalRingtonesAccess =
+        isSharedAccessAdmin || sharedAccess.ringtoneAccessLevel.length > 0;
+      haveNormalArtistsAccess =
+        isSharedAccessAdmin || sharedAccess.artistAccessLevel.length > 0;
+      haveNormalPerformersAccess =
+        isSharedAccessAdmin || sharedAccess.performerAccessLevel.length > 0;
       haveNormalProducersAndEngineersAccess =
+        isSharedAccessAdmin ||
         sharedAccess.producerAndEngineerAccessLevel.length > 0;
-      haveNormalWritersAccess = sharedAccess.writerAccessLevel.length > 0;
-      haveNormalPublishersAccess = sharedAccess.publisherAccessLevel.length > 0;
-      haveNormalLabelsAccess = sharedAccess.labels.length > 0;
+      haveNormalWritersAccess =
+        isSharedAccessAdmin || sharedAccess.writerAccessLevel.length > 0;
+      haveNormalPublishersAccess =
+        isSharedAccessAdmin || sharedAccess.publisherAccessLevel.length > 0;
+      haveNormalLabelsAccess =
+        isSharedAccessAdmin || sharedAccess.labelAccessLevel.length > 0;
       haveNormalTransactionsAccess =
-        sharedAccess.transactionAccessLevel.length > 0;
-      haveNormalWithdrawsAccess = sharedAccess.withdrawsAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.transactionAccessLevel.length > 0;
+      haveNormalWithdrawsAccess =
+        isSharedAccessAdmin || sharedAccess.withdrawsAccessLevel.length > 0;
       haveNormalConsumptionAccess =
-        sharedAccess.consumptionAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.consumptionAccessLevel.length > 0;
       haveNormalEngagementAccess =
-        sharedAccess.engagementAccessLevel.length > 0;
-      haveNormalRevenueAccess = sharedAccess.revenueAccessLevel.length > 0;
-      haveNormalGeoAccess = sharedAccess.geoAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.engagementAccessLevel.length > 0;
+      haveNormalRevenueAccess =
+        isSharedAccessAdmin || sharedAccess.revenueAccessLevel.length > 0;
+      haveNormalGeoAccess =
+        isSharedAccessAdmin || sharedAccess.geoAccessLevel.length > 0;
     }
   }
 

@@ -181,6 +181,7 @@ export const WorkspaceAccountScalarFieldEnum = {
   renewedAt: "renewedAt",
   canceledAt: "canceledAt",
   suspendedAt: "suspendedAt",
+  terminatedAt: "terminatedAt",
   agreementSignedAt: "agreementSignedAt",
   agreementExpiresAt: "agreementExpiresAt",
   agreementRenewedAt: "agreementRenewedAt",
@@ -205,7 +206,6 @@ export const TrackScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -253,7 +253,6 @@ export const PerformerScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -265,7 +264,6 @@ export const ProducerAndEngineerScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;
@@ -293,7 +291,6 @@ export const WriterScalarFieldEnum = {
   id: "id",
   workspaceAccountId: "workspaceAccountId",
   metadata: "metadata",
-  status: "status",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
 } as const;

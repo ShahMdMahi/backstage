@@ -39,6 +39,7 @@ export type WorkspaceAccountMinAggregateOutputType = {
   renewedAt: Date | null;
   canceledAt: Date | null;
   suspendedAt: Date | null;
+  terminatedAt: Date | null;
   agreementSignedAt: Date | null;
   agreementExpiresAt: Date | null;
   agreementRenewedAt: Date | null;
@@ -59,6 +60,7 @@ export type WorkspaceAccountMaxAggregateOutputType = {
   renewedAt: Date | null;
   canceledAt: Date | null;
   suspendedAt: Date | null;
+  terminatedAt: Date | null;
   agreementSignedAt: Date | null;
   agreementExpiresAt: Date | null;
   agreementRenewedAt: Date | null;
@@ -80,6 +82,7 @@ export type WorkspaceAccountCountAggregateOutputType = {
   renewedAt: number;
   canceledAt: number;
   suspendedAt: number;
+  terminatedAt: number;
   agreementSignedAt: number;
   agreementExpiresAt: number;
   agreementRenewedAt: number;
@@ -101,6 +104,7 @@ export type WorkspaceAccountMinAggregateInputType = {
   renewedAt?: true;
   canceledAt?: true;
   suspendedAt?: true;
+  terminatedAt?: true;
   agreementSignedAt?: true;
   agreementExpiresAt?: true;
   agreementRenewedAt?: true;
@@ -121,6 +125,7 @@ export type WorkspaceAccountMaxAggregateInputType = {
   renewedAt?: true;
   canceledAt?: true;
   suspendedAt?: true;
+  terminatedAt?: true;
   agreementSignedAt?: true;
   agreementExpiresAt?: true;
   agreementRenewedAt?: true;
@@ -142,6 +147,7 @@ export type WorkspaceAccountCountAggregateInputType = {
   renewedAt?: true;
   canceledAt?: true;
   suspendedAt?: true;
+  terminatedAt?: true;
   agreementSignedAt?: true;
   agreementExpiresAt?: true;
   agreementRenewedAt?: true;
@@ -247,6 +253,7 @@ export type WorkspaceAccountGroupByOutputType = {
   renewedAt: Date | null;
   canceledAt: Date | null;
   suspendedAt: Date | null;
+  terminatedAt: Date | null;
   agreementSignedAt: Date | null;
   agreementExpiresAt: Date | null;
   agreementRenewedAt: Date | null;
@@ -302,6 +309,11 @@ export type WorkspaceAccountWhereInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
     | Date
@@ -349,6 +361,7 @@ export type WorkspaceAccountOrderByWithRelationInput = {
   renewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   canceledAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  terminatedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementSignedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementRenewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -406,6 +419,11 @@ export type WorkspaceAccountWhereUniqueInput = Prisma.AtLeast<
       | Date
       | string
       | null;
+    terminatedAt?:
+      | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
+      | Date
+      | string
+      | null;
     agreementSignedAt?:
       | Prisma.DateTimeNullableFilter<"WorkspaceAccount">
       | Date
@@ -455,6 +473,7 @@ export type WorkspaceAccountOrderByWithAggregationInput = {
   renewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   canceledAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
+  terminatedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementSignedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   agreementRenewedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -512,6 +531,11 @@ export type WorkspaceAccountScalarWhereWithAggregatesInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.DateTimeNullableWithAggregatesFilter<"WorkspaceAccount">
     | Date
@@ -544,6 +568,7 @@ export type WorkspaceAccountCreateInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -579,6 +604,7 @@ export type WorkspaceAccountUncheckedCreateInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -622,6 +648,11 @@ export type WorkspaceAccountUpdateInput = {
     | string
     | null;
   suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  terminatedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
     | string
@@ -687,6 +718,11 @@ export type WorkspaceAccountUncheckedUpdateInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -733,6 +769,7 @@ export type WorkspaceAccountCreateManyInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -763,6 +800,11 @@ export type WorkspaceAccountUpdateManyMutationInput = {
     | string
     | null;
   suspendedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  terminatedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
     | string
@@ -814,6 +856,11 @@ export type WorkspaceAccountUncheckedUpdateManyInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -852,6 +899,7 @@ export type WorkspaceAccountCountOrderByAggregateInput = {
   renewedAt?: Prisma.SortOrder;
   canceledAt?: Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrder;
+  terminatedAt?: Prisma.SortOrder;
   agreementSignedAt?: Prisma.SortOrder;
   agreementExpiresAt?: Prisma.SortOrder;
   agreementRenewedAt?: Prisma.SortOrder;
@@ -872,6 +920,7 @@ export type WorkspaceAccountMaxOrderByAggregateInput = {
   renewedAt?: Prisma.SortOrder;
   canceledAt?: Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrder;
+  terminatedAt?: Prisma.SortOrder;
   agreementSignedAt?: Prisma.SortOrder;
   agreementExpiresAt?: Prisma.SortOrder;
   agreementRenewedAt?: Prisma.SortOrder;
@@ -892,6 +941,7 @@ export type WorkspaceAccountMinOrderByAggregateInput = {
   renewedAt?: Prisma.SortOrder;
   canceledAt?: Prisma.SortOrder;
   suspendedAt?: Prisma.SortOrder;
+  terminatedAt?: Prisma.SortOrder;
   agreementSignedAt?: Prisma.SortOrder;
   agreementExpiresAt?: Prisma.SortOrder;
   agreementRenewedAt?: Prisma.SortOrder;
@@ -1322,6 +1372,7 @@ export type WorkspaceAccountCreateWithoutOwnerInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1355,6 +1406,7 @@ export type WorkspaceAccountUncheckedCreateWithoutOwnerInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1430,6 +1482,11 @@ export type WorkspaceAccountUpdateWithoutOwnerInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -1489,6 +1546,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutOwnerInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -1534,6 +1596,7 @@ export type WorkspaceAccountCreateWithoutReleasesInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1568,6 +1631,7 @@ export type WorkspaceAccountUncheckedCreateWithoutReleasesInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1642,6 +1706,11 @@ export type WorkspaceAccountUpdateWithoutReleasesInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -1702,6 +1771,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutReleasesInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -1746,6 +1820,7 @@ export type WorkspaceAccountCreateWithoutTracksInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1780,6 +1855,7 @@ export type WorkspaceAccountUncheckedCreateWithoutTracksInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1854,6 +1930,11 @@ export type WorkspaceAccountUpdateWithoutTracksInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -1914,6 +1995,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutTracksInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -1958,6 +2044,7 @@ export type WorkspaceAccountCreateWithoutVideosInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -1992,6 +2079,7 @@ export type WorkspaceAccountUncheckedCreateWithoutVideosInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2066,6 +2154,11 @@ export type WorkspaceAccountUpdateWithoutVideosInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2126,6 +2219,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutVideosInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2170,6 +2268,7 @@ export type WorkspaceAccountCreateWithoutRingtonesInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2204,6 +2303,7 @@ export type WorkspaceAccountUncheckedCreateWithoutRingtonesInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2278,6 +2378,11 @@ export type WorkspaceAccountUpdateWithoutRingtonesInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2338,6 +2443,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutRingtonesInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2382,6 +2492,7 @@ export type WorkspaceAccountCreateWithoutArtistsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2416,6 +2527,7 @@ export type WorkspaceAccountUncheckedCreateWithoutArtistsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2490,6 +2602,11 @@ export type WorkspaceAccountUpdateWithoutArtistsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2550,6 +2667,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutArtistsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2594,6 +2716,7 @@ export type WorkspaceAccountCreateWithoutPerformersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2628,6 +2751,7 @@ export type WorkspaceAccountUncheckedCreateWithoutPerformersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2702,6 +2826,11 @@ export type WorkspaceAccountUpdateWithoutPerformersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2762,6 +2891,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutPerformersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2806,6 +2940,7 @@ export type WorkspaceAccountCreateWithoutProducersAndEngineersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2840,6 +2975,7 @@ export type WorkspaceAccountUncheckedCreateWithoutProducersAndEngineersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -2915,6 +3051,11 @@ export type WorkspaceAccountUpdateWithoutProducersAndEngineersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -2975,6 +3116,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutProducersAndEngineersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3019,6 +3165,7 @@ export type WorkspaceAccountCreateWithoutWritersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3053,6 +3200,7 @@ export type WorkspaceAccountUncheckedCreateWithoutWritersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3127,6 +3275,11 @@ export type WorkspaceAccountUpdateWithoutWritersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3187,6 +3340,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutWritersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3231,6 +3389,7 @@ export type WorkspaceAccountCreateWithoutPublishersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3265,6 +3424,7 @@ export type WorkspaceAccountUncheckedCreateWithoutPublishersInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3339,6 +3499,11 @@ export type WorkspaceAccountUpdateWithoutPublishersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3399,6 +3564,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutPublishersInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3443,6 +3613,7 @@ export type WorkspaceAccountCreateWithoutLabelsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3477,6 +3648,7 @@ export type WorkspaceAccountUncheckedCreateWithoutLabelsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3551,6 +3723,11 @@ export type WorkspaceAccountUpdateWithoutLabelsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3611,6 +3788,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutLabelsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3655,6 +3837,7 @@ export type WorkspaceAccountCreateWithoutTransactionsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3689,6 +3872,7 @@ export type WorkspaceAccountUncheckedCreateWithoutTransactionsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3763,6 +3947,11 @@ export type WorkspaceAccountUpdateWithoutTransactionsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3823,6 +4012,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutTransactionsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -3867,6 +4061,7 @@ export type WorkspaceAccountCreateWithoutWithdrawalsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3901,6 +4096,7 @@ export type WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -3975,6 +4171,11 @@ export type WorkspaceAccountUpdateWithoutWithdrawalsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -4035,6 +4236,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutWithdrawalsInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -4079,6 +4285,7 @@ export type WorkspaceAccountCreateWithoutSharedWorkspaceAccountAccessesInput = {
   renewedAt?: Date | string | null;
   canceledAt?: Date | string | null;
   suspendedAt?: Date | string | null;
+  terminatedAt?: Date | string | null;
   agreementSignedAt?: Date | string | null;
   agreementExpiresAt?: Date | string | null;
   agreementRenewedAt?: Date | string | null;
@@ -4114,6 +4321,7 @@ export type WorkspaceAccountUncheckedCreateWithoutSharedWorkspaceAccountAccesses
     renewedAt?: Date | string | null;
     canceledAt?: Date | string | null;
     suspendedAt?: Date | string | null;
+    terminatedAt?: Date | string | null;
     agreementSignedAt?: Date | string | null;
     agreementExpiresAt?: Date | string | null;
     agreementRenewedAt?: Date | string | null;
@@ -4190,6 +4398,11 @@ export type WorkspaceAccountUpdateWithoutSharedWorkspaceAccountAccessesInput = {
     | Date
     | string
     | null;
+  terminatedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   agreementSignedAt?:
     | Prisma.NullableDateTimeFieldUpdateOperationsInput
     | Date
@@ -4247,6 +4460,11 @@ export type WorkspaceAccountUncheckedUpdateWithoutSharedWorkspaceAccountAccesses
       | string
       | null;
     suspendedAt?:
+      | Prisma.NullableDateTimeFieldUpdateOperationsInput
+      | Date
+      | string
+      | null;
+    terminatedAt?:
       | Prisma.NullableDateTimeFieldUpdateOperationsInput
       | Date
       | string
@@ -4486,6 +4704,7 @@ export type WorkspaceAccountSelect<
     renewedAt?: boolean;
     canceledAt?: boolean;
     suspendedAt?: boolean;
+    terminatedAt?: boolean;
     agreementSignedAt?: boolean;
     agreementExpiresAt?: boolean;
     agreementRenewedAt?: boolean;
@@ -4534,6 +4753,7 @@ export type WorkspaceAccountSelectCreateManyAndReturn<
     renewedAt?: boolean;
     canceledAt?: boolean;
     suspendedAt?: boolean;
+    terminatedAt?: boolean;
     agreementSignedAt?: boolean;
     agreementExpiresAt?: boolean;
     agreementRenewedAt?: boolean;
@@ -4562,6 +4782,7 @@ export type WorkspaceAccountSelectUpdateManyAndReturn<
     renewedAt?: boolean;
     canceledAt?: boolean;
     suspendedAt?: boolean;
+    terminatedAt?: boolean;
     agreementSignedAt?: boolean;
     agreementExpiresAt?: boolean;
     agreementRenewedAt?: boolean;
@@ -4586,6 +4807,7 @@ export type WorkspaceAccountSelectScalar = {
   renewedAt?: boolean;
   canceledAt?: boolean;
   suspendedAt?: boolean;
+  terminatedAt?: boolean;
   agreementSignedAt?: boolean;
   agreementExpiresAt?: boolean;
   agreementRenewedAt?: boolean;
@@ -4610,6 +4832,7 @@ export type WorkspaceAccountOmit<
   | "renewedAt"
   | "canceledAt"
   | "suspendedAt"
+  | "terminatedAt"
   | "agreementSignedAt"
   | "agreementExpiresAt"
   | "agreementRenewedAt",
@@ -4690,6 +4913,7 @@ export type $WorkspaceAccountPayload<
       renewedAt: Date | null;
       canceledAt: Date | null;
       suspendedAt: Date | null;
+      terminatedAt: Date | null;
       agreementSignedAt: Date | null;
       agreementExpiresAt: Date | null;
       agreementRenewedAt: Date | null;
@@ -5486,6 +5710,7 @@ export interface WorkspaceAccountFieldRefs {
   readonly renewedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
   readonly canceledAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
   readonly suspendedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
+  readonly terminatedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
   readonly agreementSignedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
   readonly agreementExpiresAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;
   readonly agreementRenewedAt: Prisma.FieldRef<"WorkspaceAccount", "DateTime">;

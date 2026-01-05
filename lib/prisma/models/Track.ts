@@ -27,7 +27,6 @@ export type AggregateTrack = {
 export type TrackMinAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
-  status: $Enums.TRACK_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -35,7 +34,6 @@ export type TrackMinAggregateOutputType = {
 export type TrackMaxAggregateOutputType = {
   id: string | null;
   workspaceAccountId: string | null;
-  status: $Enums.TRACK_STATUS | null;
   createdAt: Date | null;
   updatedAt: Date | null;
 };
@@ -44,7 +42,6 @@ export type TrackCountAggregateOutputType = {
   id: number;
   workspaceAccountId: number;
   metadata: number;
-  status: number;
   createdAt: number;
   updatedAt: number;
   _all: number;
@@ -53,7 +50,6 @@ export type TrackCountAggregateOutputType = {
 export type TrackMinAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
-  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -61,7 +57,6 @@ export type TrackMinAggregateInputType = {
 export type TrackMaxAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
-  status?: true;
   createdAt?: true;
   updatedAt?: true;
 };
@@ -70,7 +65,6 @@ export type TrackCountAggregateInputType = {
   id?: true;
   workspaceAccountId?: true;
   metadata?: true;
-  status?: true;
   createdAt?: true;
   updatedAt?: true;
   _all?: true;
@@ -159,7 +153,6 @@ export type TrackGroupByOutputType = {
   id: string;
   workspaceAccountId: string;
   metadata: runtime.JsonValue | null;
-  status: $Enums.TRACK_STATUS;
   createdAt: Date;
   updatedAt: Date;
   _count: TrackCountAggregateOutputType | null;
@@ -186,7 +179,6 @@ export type TrackWhereInput = {
   id?: Prisma.StringFilter<"Track"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Track"> | string;
   metadata?: Prisma.JsonNullableFilter<"Track">;
-  status?: Prisma.EnumTRACK_STATUSFilter<"Track"> | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Track"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Track"> | Date | string;
   workspaceAccount?: Prisma.XOR<
@@ -201,7 +193,6 @@ export type TrackOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   workspaceAccount?: Prisma.WorkspaceAccountOrderByWithRelationInput;
@@ -217,7 +208,6 @@ export type TrackWhereUniqueInput = Prisma.AtLeast<
     NOT?: Prisma.TrackWhereInput | Prisma.TrackWhereInput[];
     workspaceAccountId?: Prisma.StringFilter<"Track"> | string;
     metadata?: Prisma.JsonNullableFilter<"Track">;
-    status?: Prisma.EnumTRACK_STATUSFilter<"Track"> | $Enums.TRACK_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Track"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Track"> | Date | string;
     workspaceAccount?: Prisma.XOR<
@@ -234,7 +224,6 @@ export type TrackOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   _count?: Prisma.TrackCountOrderByAggregateInput;
@@ -253,9 +242,6 @@ export type TrackScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Track"> | string;
   workspaceAccountId?: Prisma.StringWithAggregatesFilter<"Track"> | string;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Track">;
-  status?:
-    | Prisma.EnumTRACK_STATUSWithAggregatesFilter<"Track">
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Track"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Track"> | Date | string;
 };
@@ -263,7 +249,6 @@ export type TrackScalarWhereWithAggregatesInput = {
 export type TrackCreateInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTracksInput;
@@ -275,7 +260,6 @@ export type TrackUncheckedCreateInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
@@ -285,9 +269,6 @@ export type TrackUncheckedCreateInput = {
 export type TrackUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTracksNestedInput;
@@ -299,9 +280,6 @@ export type TrackUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
@@ -312,7 +290,6 @@ export type TrackCreateManyInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -320,9 +297,6 @@ export type TrackCreateManyInput = {
 export type TrackUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -331,9 +305,6 @@ export type TrackUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -352,7 +323,6 @@ export type TrackCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -360,7 +330,6 @@ export type TrackCountOrderByAggregateInput = {
 export type TrackMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -368,7 +337,6 @@ export type TrackMaxOrderByAggregateInput = {
 export type TrackMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   workspaceAccountId?: Prisma.SortOrder;
-  status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
 };
@@ -457,10 +425,6 @@ export type TrackUncheckedUpdateManyWithoutWorkspaceAccountNestedInput = {
     | Prisma.TrackUpdateManyWithWhereWithoutWorkspaceAccountInput
     | Prisma.TrackUpdateManyWithWhereWithoutWorkspaceAccountInput[];
   deleteMany?: Prisma.TrackScalarWhereInput | Prisma.TrackScalarWhereInput[];
-};
-
-export type EnumTRACK_STATUSFieldUpdateOperationsInput = {
-  set?: $Enums.TRACK_STATUS;
 };
 
 export type TrackCreateNestedManyWithoutLabelInput = {
@@ -632,7 +596,6 @@ export type TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesNestedI
 export type TrackCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTracksInput;
@@ -642,7 +605,6 @@ export type TrackCreateWithoutWorkspaceAccountInput = {
 export type TrackUncheckedCreateWithoutWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
@@ -699,7 +661,6 @@ export type TrackScalarWhereInput = {
   id?: Prisma.StringFilter<"Track"> | string;
   workspaceAccountId?: Prisma.StringFilter<"Track"> | string;
   metadata?: Prisma.JsonNullableFilter<"Track">;
-  status?: Prisma.EnumTRACK_STATUSFilter<"Track"> | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFilter<"Track"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Track"> | Date | string;
 };
@@ -707,7 +668,6 @@ export type TrackScalarWhereInput = {
 export type TrackCreateWithoutLabelInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTracksInput;
@@ -718,7 +678,6 @@ export type TrackUncheckedCreateWithoutLabelInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedCreateNestedManyWithoutTracksInput;
@@ -763,7 +722,6 @@ export type TrackUpdateManyWithWhereWithoutLabelInput = {
 export type TrackCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTracksInput;
@@ -774,7 +732,6 @@ export type TrackUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: string;
   workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
   label?: Prisma.LabelUncheckedCreateNestedManyWithoutTracksInput;
@@ -822,7 +779,6 @@ export type TrackUpdateManyWithWhereWithoutSharedWorkspaceAccountAccessesInput =
 export type TrackCreateManyWorkspaceAccountInput = {
   id?: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?: $Enums.TRACK_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 };
@@ -830,9 +786,6 @@ export type TrackCreateManyWorkspaceAccountInput = {
 export type TrackUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTracksNestedInput;
@@ -842,9 +795,6 @@ export type TrackUpdateWithoutWorkspaceAccountInput = {
 export type TrackUncheckedUpdateWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
@@ -854,9 +804,6 @@ export type TrackUncheckedUpdateWithoutWorkspaceAccountInput = {
 export type TrackUncheckedUpdateManyWithoutWorkspaceAccountInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -864,9 +811,6 @@ export type TrackUncheckedUpdateManyWithoutWorkspaceAccountInput = {
 export type TrackUpdateWithoutLabelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTracksNestedInput;
@@ -877,9 +821,6 @@ export type TrackUncheckedUpdateWithoutLabelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUncheckedUpdateManyWithoutTracksNestedInput;
@@ -889,9 +830,6 @@ export type TrackUncheckedUpdateManyWithoutLabelInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
@@ -899,9 +837,6 @@ export type TrackUncheckedUpdateManyWithoutLabelInput = {
 export type TrackUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTracksNestedInput;
@@ -912,9 +847,6 @@ export type TrackUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-  status?:
-    | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-    | $Enums.TRACK_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   label?: Prisma.LabelUncheckedUpdateManyWithoutTracksNestedInput;
@@ -925,9 +857,6 @@ export type TrackUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
     id?: Prisma.StringFieldUpdateOperationsInput | string;
     workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
-    status?:
-      | Prisma.EnumTRACK_STATUSFieldUpdateOperationsInput
-      | $Enums.TRACK_STATUS;
     createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   };
@@ -992,7 +921,6 @@ export type TrackSelect<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
-    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -1013,7 +941,6 @@ export type TrackSelectCreateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
-    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -1029,7 +956,6 @@ export type TrackSelectUpdateManyAndReturn<
     id?: boolean;
     workspaceAccountId?: boolean;
     metadata?: boolean;
-    status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
     workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
@@ -1041,7 +967,6 @@ export type TrackSelectScalar = {
   id?: boolean;
   workspaceAccountId?: boolean;
   metadata?: boolean;
-  status?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
 };
@@ -1050,12 +975,7 @@ export type TrackOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  | "id"
-  | "workspaceAccountId"
-  | "metadata"
-  | "status"
-  | "createdAt"
-  | "updatedAt",
+  "id" | "workspaceAccountId" | "metadata" | "createdAt" | "updatedAt",
   ExtArgs["result"]["track"]
 >;
 export type TrackInclude<
@@ -1097,7 +1017,6 @@ export type $TrackPayload<
       id: string;
       workspaceAccountId: string;
       metadata: runtime.JsonValue | null;
-      status: $Enums.TRACK_STATUS;
       createdAt: Date;
       updatedAt: Date;
     },
@@ -1736,7 +1655,6 @@ export interface TrackFieldRefs {
   readonly id: Prisma.FieldRef<"Track", "String">;
   readonly workspaceAccountId: Prisma.FieldRef<"Track", "String">;
   readonly metadata: Prisma.FieldRef<"Track", "Json">;
-  readonly status: Prisma.FieldRef<"Track", "TRACK_STATUS">;
   readonly createdAt: Prisma.FieldRef<"Track", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Track", "DateTime">;
 }
