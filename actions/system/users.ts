@@ -89,7 +89,7 @@ export async function getAllUsers(): Promise<{
         };
       }
       if (
-        !systemAccess.usersAccessLevel.includes(USER_SYSTEM_ACCESS_LEVEL.READ)
+        !systemAccess.usersAccessLevel.includes(USER_SYSTEM_ACCESS_LEVEL.VIEW)
       ) {
         return {
           success: false,
@@ -230,7 +230,7 @@ export async function getUserById(userId: string): Promise<{
         };
       }
       if (
-        !systemAccess.usersAccessLevel.includes(USER_SYSTEM_ACCESS_LEVEL.READ)
+        !systemAccess.usersAccessLevel.includes(USER_SYSTEM_ACCESS_LEVEL.VIEW)
       ) {
         return {
           success: false,
