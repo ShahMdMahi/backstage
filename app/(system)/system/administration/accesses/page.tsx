@@ -1,3 +1,3 @@
-export default async function Page() {
-  return <h1>Page</h1>;
+export default async function AccessesPage() {
+  return <h1>Accesses Page</h1>;
 }
