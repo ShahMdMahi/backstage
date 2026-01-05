@@ -671,6 +671,7 @@ model WorkspaceAccount {
   renewedAt          DateTime?
   canceledAt         DateTime?
   suspendedAt        DateTime?
+  terminatedAt       DateTime?
   agreementSignedAt  DateTime?
   agreementExpiresAt DateTime?
   agreementRenewedAt DateTime?
