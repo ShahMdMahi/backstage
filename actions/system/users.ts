@@ -374,6 +374,39 @@ export async function approveUserById(userId: string): Promise<{
       }
     }
 
+    const userExists = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+
+    if (!userExists) {
+      return {
+        success: false,
+        message: "User not found.",
+        data: null,
+        errors: new Error("User not found"),
+      };
+    }
+
+    if (!userExists.verifiedAt) {
+      return {
+        success: false,
+        message: "User must be verified before approval.",
+        data: null,
+        errors: new Error("User not verified"),
+      };
+    }
+
+    if (userExists.approvedAt) {
+      return {
+        success: false,
+        message: "User is already approved.",
+        data: null,
+        errors: new Error("User already approved"),
+      };
+    }
+
     const updatedUser = await prisma.user.update({
       where: {
         id: userId,

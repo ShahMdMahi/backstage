@@ -247,22 +247,24 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                      {haveApproveAccess && !user.approvedAt && (
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8"
-                          onClick={() => handleApproveUser(user.id!)}
-                          disabled={approvingUserIds.has(user.id!)}
-                        >
-                          {approvingUserIds.has(user.id!) ? (
-                            <Spinner className="h-4 w-4" />
-                          ) : (
-                            <BadgeCheck className="h-4 w-4" />
-                          )}
-                          <span className="sr-only">Approve User</span>
-                        </Button>
-                      )}
+                      {haveApproveAccess &&
+                        user.verifiedAt &&
+                        !user.approvedAt && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8"
+                            onClick={() => handleApproveUser(user.id!)}
+                            disabled={approvingUserIds.has(user.id!)}
+                          >
+                            {approvingUserIds.has(user.id!) ? (
+                              <Spinner className="h-4 w-4" />
+                            ) : (
+                              <BadgeCheck className="h-4 w-4" />
+                            )}
+                            <span className="sr-only">Approve User</span>
+                          </Button>
+                        )}
                       <Button
                         variant="ghost"
                         size="icon"
