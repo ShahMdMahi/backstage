@@ -92,15 +92,6 @@ export function SessionsList({
               Inactive ({inactiveSessions.length})
             </TabsTrigger>
           </TabsList>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleRevokeAllOtherSessions}
-            disabled={isRevokingAll}
-          >
-            <ShieldXIcon className="size-4 mr-2" />
-            {isRevokingAll ? "Revoking..." : "Revoke All Other"}
-          </Button>
         </div>
 
         <TabsContent value="all" className="space-y-4">
@@ -151,6 +142,15 @@ export function SessionsList({
           )}
         </TabsContent>
       </Tabs>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={handleRevokeAllOtherSessions}
+        disabled={isRevokingAll}
+      >
+        <ShieldXIcon className="size-4 mr-2" />
+        {isRevokingAll ? "Revoking..." : "Revoke All Other"}
+      </Button>
     </div>
   );
 }
