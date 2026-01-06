@@ -125,7 +125,7 @@ export async function getCurrentSession(): Promise<{
         user: User & {
           systemAccess: SystemAccess | null;
           ownWorkspaceAccount: WorkspaceAccount | null;
-          sharedWorkspaceAccountAccesss: SharedWorkspaceAccountAccess | null;
+          sharedWorkspaceAccountAccess: SharedWorkspaceAccountAccess | null;
         };
       })
     | null;
@@ -154,7 +154,7 @@ export async function getCurrentSession(): Promise<{
           include: {
             systemAccess: true,
             ownWorkspaceAccount: true,
-            sharedWorkspaceAccountAccesss: true,
+            sharedWorkspaceAccountAccess: true,
           },
         },
       },
@@ -603,7 +603,7 @@ export async function getCurrentSession(): Promise<{
     if (session.user.role === ROLE.USER) {
       if (
         !session.user.ownWorkspaceAccount &&
-        !session.user.sharedWorkspaceAccountAccesss
+        !session.user.sharedWorkspaceAccountAccess
       ) {
         try {
           const updatedSession = await prisma.session.update({
@@ -657,6 +657,177 @@ export async function getCurrentSession(): Promise<{
             "Session revoked due to user lacking workspace account access",
           data: null,
           errors: new Error("User lacks workspace account access"),
+        };
+      }
+      if (
+        !session.user.ownWorkspaceAccount &&
+        session.user.sharedWorkspaceAccountAccess!.suspendedAt
+      ) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User's workspace account access suspended",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to suspended workspace account access for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for suspended workspace account access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for suspended workspace account access:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message: "Session revoked due to suspended workspace account access",
+          data: null,
+          errors: new Error("User's workspace account access suspended"),
+        };
+      }
+      if (
+        !session.user.ownWorkspaceAccount &&
+        session.user.sharedWorkspaceAccountAccess!.expiresAt < new Date()
+      ) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User's workspace account access expired",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to expired workspace account access for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for expired workspace account access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for expired workspace account access:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message: "Session revoked due to expired workspace account access",
+          data: null,
+          errors: new Error("User's workspace account access expired"),
+        };
+      }
+      if (
+        !session.user.sharedWorkspaceAccountAccess &&
+        session.user.ownWorkspaceAccount?.terminatedAt
+      ) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User's workspace account terminated",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to terminated workspace account for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for terminated workspace account:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for terminated workspace account:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message: "Session revoked due to terminated workspace account",
+          data: null,
+          errors: new Error("User's workspace account terminated"),
         };
       }
     }
