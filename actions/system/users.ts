@@ -284,3 +284,118 @@ export async function getUserById(userId: string): Promise<{
     };
   }
 }
+
+export async function approveUserById(userId: string): Promise<{
+  success: boolean;
+  message: string;
+  data: User | null;
+  errors: unknown | null;
+}> {
+  try {
+    const session = await getCurrentSession();
+    if (!session.success) {
+      return {
+        success: false,
+        message: session.message,
+        data: null,
+        errors: session.errors,
+      };
+    }
+    if (!session.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
+    if (
+      session.data.user.role !== ROLE.SYSTEM_OWNER &&
+      session.data.user.role !== ROLE.SYSTEM_ADMIN &&
+      session.data.user.role !== ROLE.SYSTEM_USER
+    ) {
+      return {
+        success: false,
+        message: "User does not have permission to view all users.",
+        data: null,
+        errors: new Error("Insufficient permissions"),
+      };
+    }
+
+    if (session.data.user.role === ROLE.SYSTEM_USER) {
+      const systemAccess = await prisma.systemAccess.findUnique({
+        where: {
+          userId: session.data.userId,
+        },
+      });
+      if (!systemAccess) {
+        return {
+          success: false,
+          message: "System access not found for the user.",
+          data: null,
+          errors: new Error("System access not found"),
+        };
+      }
+      if (systemAccess.expiresAt < new Date()) {
+        return {
+          success: false,
+          message: "User's system access has expired.",
+          data: null,
+          errors: new Error("System access expired"),
+        };
+      }
+      if (systemAccess.suspendedAt) {
+        return {
+          success: false,
+          message: "User's system access is suspended.",
+          data: null,
+          errors: new Error("System access suspended"),
+        };
+      }
+      if (!(systemAccess.usersAccessLevel.length > 0)) {
+        return {
+          success: false,
+          message: "User does not have permission to approve users.",
+          data: null,
+          errors: new Error("Insufficient permissions"),
+        };
+      }
+      if (
+        !systemAccess.usersAccessLevel.includes(
+          USER_SYSTEM_ACCESS_LEVEL.APPROVE
+        )
+      ) {
+        return {
+          success: false,
+          message: "User does not have permission to approve users.",
+          data: null,
+          errors: new Error("Insufficient permissions"),
+        };
+      }
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        approvedAt: new Date(),
+      },
+    });
+
+    return {
+      success: true,
+      message: "User approved successfully.",
+      data: updatedUser,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Error approving user by ID:", error);
+    return {
+      success: false,
+      message: "Failed to approve user.",
+      data: null,
+      errors: error,
+    };
+  }
+}

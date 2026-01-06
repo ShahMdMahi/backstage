@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Eye, Pencil, Search } from "lucide-react";
+import { BadgeCheck, Eye, Pencil, Search } from "lucide-react";
 import { Session, SystemAccess, User } from "@/lib/prisma/browser";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
@@ -18,6 +18,10 @@ import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ROLE, USER_SYSTEM_ACCESS_LEVEL } from "@/lib/prisma/enums";
+import { useRouter } from "next/navigation";
+import { approveUserById } from "@/actions/system/users";
+import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
 
 interface UsersTableProps {
   session: Session & { user: User & { systemAccess: SystemAccess | null } };
@@ -43,7 +47,11 @@ function getInitials(name: string | null | undefined): string {
 }
 
 export default function UsersTable({ session, users }: UsersTableProps) {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [approvingUserIds, setApprovingUserIds] = useState<Set<string>>(
+    new Set()
+  );
 
   const filteredUsers = useMemo(() => {
     if (!searchQuery.trim()) return users;
@@ -66,6 +74,34 @@ export default function UsersTable({ session, users }: UsersTableProps) {
     session.user.systemAccess?.usersAccessLevel.includes(
       USER_SYSTEM_ACCESS_LEVEL.UPDATE
     );
+
+  const haveApproveAccess =
+    session.user.role === ROLE.SYSTEM_OWNER ||
+    session.user.systemAccess?.usersAccessLevel.includes(
+      USER_SYSTEM_ACCESS_LEVEL.APPROVE
+    );
+
+  const handleApproveUser = async (userId: string) => {
+    setApprovingUserIds((prev) => new Set(prev).add(userId));
+    try {
+      const result = await approveUserById(userId);
+      if (result.success) {
+        toast.success(result.message);
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
+    } catch (error) {
+      toast.error("Failed to approve user");
+      console.error(error);
+    } finally {
+      setApprovingUserIds((prev) => {
+        const next = new Set(prev);
+        next.delete(userId);
+        return next;
+      });
+    }
+  };
 
   return (
     <div className="space-y-4">
@@ -211,12 +247,46 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                   </TableCell>
                   <TableCell>
                     <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
+                      {haveApproveAccess && !user.approvedAt && (
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8"
+                          onClick={() => handleApproveUser(user.id!)}
+                          disabled={approvingUserIds.has(user.id!)}
+                        >
+                          {approvingUserIds.has(user.id!) ? (
+                            <Spinner className="h-4 w-4" />
+                          ) : (
+                            <BadgeCheck className="h-4 w-4" />
+                          )}
+                          <span className="sr-only">Approve User</span>
+                        </Button>
+                      )}
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => {
+                          router.push(
+                            `/system/administration/users/view/${user.id}`
+                          );
+                        }}
+                      >
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View</span>
                       </Button>
                       {haveEditAccess && (
-                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8"
+                          onClick={() => {
+                            router.push(
+                              `/system/administration/users/edit/${user.id}`
+                            );
+                          }}
+                        >
                           <Pencil className="h-4 w-4" />
                           <span className="sr-only">Edit</span>
                         </Button>
