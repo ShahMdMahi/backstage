@@ -2,8 +2,14 @@
 
 import { DeviceInfo, getDeviceInfo } from "@/lib/device-info";
 import { prisma } from "@/lib/prisma";
-import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
-import { Session, User } from "@/lib/prisma/client";
+import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY, ROLE } from "@/lib/prisma/enums";
+import {
+  Session,
+  SharedWorkspaceAccountAccess,
+  SystemAccess,
+  User,
+  WorkspaceAccount,
+} from "@/lib/prisma/client";
 import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
 import { logAuditEvent } from "@/actions/shared/audit-log";
@@ -114,7 +120,15 @@ export async function createSession(
 export async function getCurrentSession(): Promise<{
   success: boolean;
   message: string;
-  data: (Session & { user: User }) | null;
+  data:
+    | (Session & {
+        user: User & {
+          systemAccess: SystemAccess | null;
+          ownWorkspaceAccount: WorkspaceAccount | null;
+          sharedWorkspaceAccountAccesss: SharedWorkspaceAccountAccess | null;
+        };
+      })
+    | null;
   errors: unknown | null;
 }> {
   try {
@@ -136,7 +150,13 @@ export async function getCurrentSession(): Promise<{
         token: sessionToken,
       },
       include: {
-        user: true,
+        user: {
+          include: {
+            systemAccess: true,
+            ownWorkspaceAccount: true,
+            sharedWorkspaceAccountAccesss: true,
+          },
+        },
       },
     });
 
@@ -148,7 +168,6 @@ export async function getCurrentSession(): Promise<{
         errors: new Error("Session not found"),
       };
     }
-
     if (session.expiresAt < new Date()) {
       return {
         success: false,
@@ -157,7 +176,6 @@ export async function getCurrentSession(): Promise<{
         errors: new Error("Session expired"),
       };
     }
-
     if (session.revokedAt) {
       return {
         success: false,
@@ -166,7 +184,6 @@ export async function getCurrentSession(): Promise<{
         errors: new Error("Session revoked"),
       };
     }
-
     if (session.userAgent !== deviceInfo.userAgent) {
       try {
         const updatedSession = await prisma.session.update({
@@ -418,6 +435,230 @@ export async function getCurrentSession(): Promise<{
         data: null,
         errors: new Error("User suspended"),
       };
+    }
+    if (session.user.role === ROLE.SYSTEM_USER) {
+      if (!session.user.systemAccess) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User lacks system access",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to user lacking system access for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for user lacking system access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for user lacking system access:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message: "Session revoked due to user lacking system access",
+          data: null,
+          errors: new Error("User lacks system access"),
+        };
+      }
+      if (session.user.systemAccess.expiresAt < new Date()) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User's system access expired",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to expired system access for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for expired system access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for expired system access:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message: "Session revoked due to expired system access",
+          data: null,
+          errors: new Error("User's system access expired"),
+        };
+      }
+      if (session.user.systemAccess.suspendedAt) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User's system access suspended",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to suspended system access for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for suspended system access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for suspended system access:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message: "Session revoked due to suspended system access",
+          data: null,
+          errors: new Error("User's system access suspended"),
+        };
+      }
+    }
+    if (session.user.role === ROLE.USER) {
+      if (
+        !session.user.ownWorkspaceAccount &&
+        !session.user.sharedWorkspaceAccountAccesss
+      ) {
+        try {
+          const updatedSession = await prisma.session.update({
+            where: { id: session.id },
+            data: {
+              revokedAt: new Date(),
+              metadata: {
+                revokedReason: "User lacks workspace account access",
+                deviceInfo: (
+                  session.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                newDeviceInfo: JSON.stringify(deviceInfo),
+              },
+            },
+          });
+          try {
+            await logAuditEvent({
+              action: AUDIT_LOG_ACTION.SESSION_REVOKED,
+              entity: AUDIT_LOG_ENTITY.SESSION,
+              entityId: updatedSession.id,
+              description: `Session revoked due to user lacking workspace account access for user ID ${updatedSession.userId}`,
+              metadata: {
+                originalDeviceInfo: (
+                  updatedSession.metadata as {
+                    deviceInfo: string & Record<string, unknown>;
+                  }
+                )?.deviceInfo,
+                currentDeviceInfo: JSON.stringify(deviceInfo),
+              },
+              user: {
+                connect: { id: updatedSession.userId },
+              },
+            });
+          } catch (error) {
+            console.error(
+              "Error logging audit event for user lacking workspace account access:",
+              error
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Error logging audit event for user lacking workspace account access:",
+            error
+          );
+        }
+        return {
+          success: false,
+          message:
+            "Session revoked due to user lacking workspace account access",
+          data: null,
+          errors: new Error("User lacks workspace account access"),
+        };
+      }
     }
 
     return {
