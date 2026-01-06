@@ -913,31 +913,34 @@ export async function proxy(request: NextRequest) {
 
   // Override permissions for systemUser based on their systemAccess record
   if (role === systemUser && systemAccess) {
-    haveSystemUsersAccess = systemAccess.usersAccessLevel.length > 0;
+    haveSystemUsersAccess = systemAccess.usersAccessLevel.length !== 0;
     haveSystemWorkspacesAccess =
-      systemAccess.workspaceAccountsAccessLevel.length > 0;
-    haveSystemReportingAccess = systemAccess.reportingAccessLevel.length > 0;
-    haveSystemReleasesAccess = systemAccess.releasesAccessLevel.length > 0;
-    haveSystemTracksAccess = systemAccess.tracksAccessLevel.length > 0;
-    haveSystemVideosAccess = systemAccess.videosAccessLevel.length > 0;
-    haveSystemRingtonesAccess = systemAccess.ringtonesAccessLevel.length > 0;
-    haveSystemArtistsAccess = systemAccess.artistsAccessLevel.length > 0;
-    haveSystemPerformersAccess = systemAccess.performersAccessLevel.length > 0;
+      systemAccess.workspaceAccountsAccessLevel.length !== 0;
+    haveSystemReportingAccess = systemAccess.reportingAccessLevel.length !== 0;
+    haveSystemReleasesAccess = systemAccess.releasesAccessLevel.length !== 0;
+    haveSystemTracksAccess = systemAccess.tracksAccessLevel.length !== 0;
+    haveSystemVideosAccess = systemAccess.videosAccessLevel.length !== 0;
+    haveSystemRingtonesAccess = systemAccess.ringtonesAccessLevel.length !== 0;
+    haveSystemArtistsAccess = systemAccess.artistsAccessLevel.length !== 0;
+    haveSystemPerformersAccess =
+      systemAccess.performersAccessLevel.length !== 0;
     haveSystemProducersAndEngineersAccess =
-      systemAccess.producersAndEngineersAccessLevel.length > 0;
-    haveSystemWritersAccess = systemAccess.writersAccessLevel.length > 0;
-    haveSystemPublishersAccess = systemAccess.publishersAccessLevel.length > 0;
-    haveSystemLabelsAccess = systemAccess.labelsAccessLevel.length > 0;
+      systemAccess.producersAndEngineersAccessLevel.length !== 0;
+    haveSystemWritersAccess = systemAccess.writersAccessLevel.length !== 0;
+    haveSystemPublishersAccess =
+      systemAccess.publishersAccessLevel.length !== 0;
+    haveSystemLabelsAccess = systemAccess.labelsAccessLevel.length !== 0;
     haveSystemTransactionsAccess =
-      systemAccess.transactionsAccessLevel.length > 0;
-    haveSystemWithdrawsAccess = systemAccess.withdrawsAccessLevel.length > 0;
+      systemAccess.transactionsAccessLevel.length !== 0;
+    haveSystemWithdrawsAccess = systemAccess.withdrawsAccessLevel.length !== 0;
     haveSystemConsumptionAccess =
-      systemAccess.consumptionAccessLevel.length > 0;
-    haveSystemEngagementAccess = systemAccess.engagementAccessLevel.length > 0;
-    haveSystemRevenueAccess = systemAccess.revenueAccessLevel.length > 0;
-    haveSystemGeoAccess = systemAccess.geoAccessLevel.length > 0;
+      systemAccess.consumptionAccessLevel.length !== 0;
+    haveSystemEngagementAccess =
+      systemAccess.engagementAccessLevel.length !== 0;
+    haveSystemRevenueAccess = systemAccess.revenueAccessLevel.length !== 0;
+    haveSystemGeoAccess = systemAccess.geoAccessLevel.length !== 0;
     haveSystemRightsManagementAccess =
-      systemAccess.rightsManagementAccessLevel.length > 0;
+      systemAccess.rightsManagementAccessLevel.length !== 0;
   }
 
   // Calculated composite permissions for system access
@@ -1023,38 +1026,38 @@ export async function proxy(request: NextRequest) {
       haveNormalWorkspacesAccess = isSharedAccessAdmin;
       haveNormalAccessesAccess = isSharedAccessAdmin;
       haveNormalReleasesAccess =
-        isSharedAccessAdmin || sharedAccess.releaseAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.releaseAccessLevel.length !== 0;
       haveNormalTracksAccess =
-        isSharedAccessAdmin || sharedAccess.trackAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.trackAccessLevel.length !== 0;
       haveNormalVideosAccess =
-        isSharedAccessAdmin || sharedAccess.videoAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.videoAccessLevel.length !== 0;
       haveNormalRingtonesAccess =
-        isSharedAccessAdmin || sharedAccess.ringtoneAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.ringtoneAccessLevel.length !== 0;
       haveNormalArtistsAccess =
-        isSharedAccessAdmin || sharedAccess.artistAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.artistAccessLevel.length !== 0;
       haveNormalPerformersAccess =
-        isSharedAccessAdmin || sharedAccess.performerAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.performerAccessLevel.length !== 0;
       haveNormalProducersAndEngineersAccess =
         isSharedAccessAdmin ||
-        sharedAccess.producerAndEngineerAccessLevel.length > 0;
+        sharedAccess.producerAndEngineerAccessLevel.length !== 0;
       haveNormalWritersAccess =
-        isSharedAccessAdmin || sharedAccess.writerAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.writerAccessLevel.length !== 0;
       haveNormalPublishersAccess =
-        isSharedAccessAdmin || sharedAccess.publisherAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.publisherAccessLevel.length !== 0;
       haveNormalLabelsAccess =
-        isSharedAccessAdmin || sharedAccess.labelAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.labelAccessLevel.length !== 0;
       haveNormalTransactionsAccess =
-        isSharedAccessAdmin || sharedAccess.transactionAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.transactionAccessLevel.length !== 0;
       haveNormalWithdrawsAccess =
-        isSharedAccessAdmin || sharedAccess.withdrawsAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.withdrawsAccessLevel.length !== 0;
       haveNormalConsumptionAccess =
-        isSharedAccessAdmin || sharedAccess.consumptionAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.consumptionAccessLevel.length !== 0;
       haveNormalEngagementAccess =
-        isSharedAccessAdmin || sharedAccess.engagementAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.engagementAccessLevel.length !== 0;
       haveNormalRevenueAccess =
-        isSharedAccessAdmin || sharedAccess.revenueAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.revenueAccessLevel.length !== 0;
       haveNormalGeoAccess =
-        isSharedAccessAdmin || sharedAccess.geoAccessLevel.length > 0;
+        isSharedAccessAdmin || sharedAccess.geoAccessLevel.length !== 0;
     }
   }
 
