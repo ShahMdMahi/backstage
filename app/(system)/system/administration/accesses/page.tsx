@@ -5,9 +5,37 @@ import { getAllSystemAccesses } from "@/actions/system/access";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { getCurrentSession } from "@/actions/shared/session";
+import { redirect } from "next/navigation";
+import { ROLE } from "@/lib/prisma/enums";
+import { logout } from "@/actions/auth/auth";
 
 export default async function AccessesPage() {
-  const result = await getAllSystemAccesses();
+  const session = await getCurrentSession();
+  if (!session?.data?.user) redirect("/auth/login");
+  if (
+    session?.data?.user.role !== ROLE.SYSTEM_OWNER &&
+    session?.data?.user.role !== ROLE.SYSTEM_ADMIN
+  ) {
+    if (session?.data?.user.role === ROLE.SYSTEM_USER) {
+      if (!session?.data?.user?.systemAccess) {
+        const result = await logout();
+        if (result.success) {
+          redirect("/auth/login");
+        } else {
+          redirect("/");
+        }
+      }
+      redirect("/system");
+    }
+    redirect("/");
+  }
+
+  const accesses = await getAllSystemAccesses();
+
+  const haveCreateAccess =
+    session.data.user.role === ROLE.SYSTEM_OWNER ||
+    session.data.user.role === ROLE.SYSTEM_ADMIN;
 
   return (
     <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
@@ -24,21 +52,23 @@ export default async function AccessesPage() {
               </p>
             </div>
           </div>
-          <Button asChild>
-            <Link href="/system/administration/accesses/create">
-              <Plus className="mr-2 h-4 w-4" />
-              Create Access
-            </Link>
-          </Button>
+          {haveCreateAccess && (
+            <Button asChild>
+              <Link href="/system/administration/accesses/create">
+                <Plus className="mr-2 h-4 w-4" />
+                Create Access
+              </Link>
+            </Button>
+          )}
         </div>
-        {!result.success ? (
+        {!accesses.success ? (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{result.message}</AlertDescription>
+            <AlertDescription>{accesses.message}</AlertDescription>
           </Alert>
         ) : (
-          <AccessesTable accesses={result.data || []} />
+          <AccessesTable accesses={accesses.data || []} />
         )}
       </div>
     </div>

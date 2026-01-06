@@ -4,9 +4,45 @@ import { getAllUsers } from "@/actions/system/users";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { getCurrentSession } from "@/actions/shared/session";
+import { redirect } from "next/navigation";
+import { ROLE, USER_SYSTEM_ACCESS_LEVEL } from "@/lib/prisma/enums";
+import { logout } from "@/actions/auth/auth";
 
 export default async function UsersPage() {
-  const result = await getAllUsers();
+  const session = await getCurrentSession();
+  if (!session?.data?.user) redirect("/auth/login");
+  if (
+    session?.data?.user.role !== ROLE.SYSTEM_OWNER &&
+    session?.data?.user.role !== ROLE.SYSTEM_ADMIN
+  ) {
+    if (session?.data?.user.role === ROLE.SYSTEM_USER) {
+      if (!session?.data?.user?.systemAccess) {
+        const result = await logout();
+        if (result.success) {
+          redirect("/auth/login");
+        } else {
+          redirect("/");
+        }
+      }
+      if (
+        !session?.data?.user?.systemAccess?.usersAccessLevel.includes(
+          USER_SYSTEM_ACCESS_LEVEL.VIEW
+        )
+      )
+        redirect("/system");
+    }
+    redirect("/");
+  }
+
+  const users = await getAllUsers();
+
+  const haveCreateAccess =
+    session.data.user.role === ROLE.SYSTEM_OWNER ||
+    session.data.user.role === ROLE.SYSTEM_ADMIN ||
+    session.data.user.systemAccess?.usersAccessLevel.includes(
+      USER_SYSTEM_ACCESS_LEVEL.CREATE
+    );
 
   return (
     <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
@@ -21,21 +57,23 @@ export default async function UsersPage() {
               <p className="text-muted-foreground mt-1">Manage system users</p>
             </div>
           </div>
-          <Button asChild>
-            <Link href="/system/administration/users/create">
-              <Plus className="mr-2 h-4 w-4" />
-              Create User
-            </Link>
-          </Button>
+          {haveCreateAccess && (
+            <Button asChild>
+              <Link href="/system/administration/users/create">
+                <Plus className="mr-2 h-4 w-4" />
+                Create User
+              </Link>
+            </Button>
+          )}
         </div>
-        {!result.success ? (
+        {!users.success ? (
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{result.message}</AlertDescription>
+            <AlertDescription>{users.message}</AlertDescription>
           </Alert>
         ) : (
-          <UsersTable users={result.data || []} />
+          <UsersTable session={session.data} users={users.data || []} />
         )}
       </div>
     </div>

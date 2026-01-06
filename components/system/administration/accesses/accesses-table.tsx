@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Search } from "lucide-react";
-import { SystemAccess, User } from "@/lib/prisma/client";
+import { SystemAccess, User } from "@/lib/prisma/browser";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format } from "date-fns";

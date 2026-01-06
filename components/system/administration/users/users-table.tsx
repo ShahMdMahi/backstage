@@ -10,16 +10,17 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Search } from "lucide-react";
-import { User } from "@/lib/prisma/client";
+import { Session, SystemAccess, User } from "@/lib/prisma/browser";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ROLE } from "@/lib/prisma/enums";
+import { ROLE, USER_SYSTEM_ACCESS_LEVEL } from "@/lib/prisma/enums";
 
 interface UsersTableProps {
+  session: Session & { user: User & { systemAccess: SystemAccess | null } };
   users: Partial<User>[];
 }
 
@@ -41,7 +42,7 @@ function getInitials(name: string | null | undefined): string {
     .slice(0, 2);
 }
 
-export default function UsersTable({ users }: UsersTableProps) {
+export default function UsersTable({ session, users }: UsersTableProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredUsers = useMemo(() => {
@@ -58,6 +59,13 @@ export default function UsersTable({ users }: UsersTableProps) {
       );
     });
   }, [users, searchQuery]);
+
+  const haveEditAccess =
+    session.user.role === ROLE.SYSTEM_OWNER ||
+    session.user.role === ROLE.SYSTEM_ADMIN ||
+    session.user.systemAccess?.usersAccessLevel.includes(
+      USER_SYSTEM_ACCESS_LEVEL.UPDATE
+    );
 
   return (
     <div className="space-y-4">
@@ -207,10 +215,12 @@ export default function UsersTable({ users }: UsersTableProps) {
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View</span>
                       </Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8">
-                        <Pencil className="h-4 w-4" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
+                      {haveEditAccess && (
+                        <Button variant="ghost" size="icon" className="h-8 w-8">
+                          <Pencil className="h-4 w-4" />
+                          <span className="sr-only">Edit</span>
+                        </Button>
+                      )}
                     </div>
                   </TableCell>
                 </TableRow>
