@@ -401,7 +401,7 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                                 className="h-8 w-8 text-blue-600 hover:text-blue-700 hover:bg-blue-100"
                                 onClick={() => {
                                   router.push(
-                                    `/system/administration/users/view/${user.id}`
+                                    `/system/administration/users/${user.id}`
                                   );
                                 }}
                               >
@@ -466,7 +466,7 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                                   className="h-8 w-8 text-amber-600 hover:text-amber-700 hover:bg-amber-100"
                                   onClick={() => {
                                     router.push(
-                                      `/system/administration/users/edit/${user.id}`
+                                      `/system/administration/users/${user.id}/edit`
                                     );
                                   }}
                                 >

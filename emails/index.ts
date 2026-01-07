@@ -1,4 +1,11 @@
 export { WelcomeEmailTemplate } from "./welcome-email";
 export { VerificationEmailTemplate } from "./verification-email";
 export { PasswordResetEmailTemplate } from "./password-reset-email";
-export { NewLoginDetectedEmailTemplate } from "./new-login-detected";
+export { NewLoginDetectedEmailTemplate } from "./new-login-detected-email";
+export { ApprovedUserEmailTemplate } from "./approved-user-email";
+export { UserSuspendedEmailTemplate } from "./user-suspended-email";
+export { UserUnsuspendedEmailTemplate } from "./user-unsuspended-email";
+export { AssignedSystemAccessEmailTemplate } from "./assigned-system-access-email";
+export { SuspendedSystemAccessEmailTemplate } from "./suspended-system-access-email";
+export { UnsuspendedSystemAccessEmailTemplate } from "./unsuspended-system-access-email";
+export { UpdatedSystemAccessEmailTemplate } from "./updated-system-access-email";

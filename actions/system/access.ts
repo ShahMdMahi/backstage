@@ -2,7 +2,8 @@
 
 import { prisma } from "@/lib/prisma";
 import { SystemAccess, User } from "@/lib/prisma/client";
-import { ROLE } from "@/lib/prisma/enums";
+import { ROLE, AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
+import { logAuditEvent } from "@/actions/shared/audit-log";
 import { getCurrentSession } from "@/actions/shared/session";
 import {
   CreateAccessData,
@@ -11,6 +12,13 @@ import {
   updateAccessSchema,
 } from "@/validators/system/access";
 import z from "zod";
+import { getDeviceInfo } from "@/lib/device-info";
+import {
+  sendAssignedSystemAccessEmail,
+  sendSuspendedSystemAccessEmail,
+  sendUnsuspendedSystemAccessEmail,
+  sendUpdatedSystemAccessEmail,
+} from "@/actions/shared/email";
 
 export async function getCurrentSystemAccess(): Promise<{
   success: boolean;
@@ -369,6 +377,8 @@ export async function createSystemAccess(data: CreateAccessData): Promise<{
       };
     }
 
+    const deviceInfo = await getDeviceInfo();
+
     const systemAccess = await prisma.systemAccess.create({
       data: {
         usersAccessLevel: validate.data.permissions?.userAccess,
@@ -429,6 +439,32 @@ export async function createSystemAccess(data: CreateAccessData): Promise<{
         data: null,
         errors: new Error("System access creation failed"),
       };
+    }
+
+    try {
+      await sendAssignedSystemAccessEmail(
+        userExists.email,
+        userExists.name,
+        session.data.user.name
+      );
+    } catch (emailError) {
+      console.error("Failed to send assigned system access email:", emailError);
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_CREATED,
+        entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+        entityId: systemAccess.id,
+        description: `System access created for user ${systemAccess.user.email} by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (auditError) {
+      console.error(
+        "Failed to log audit event for system access creation:",
+        auditError
+      );
     }
 
     return {
@@ -535,6 +571,8 @@ export async function updateSystemAccess(data: UpdateAccessData): Promise<{
       suspendedAt = null;
     }
 
+    const deviceInfo = getDeviceInfo();
+
     const systemAccess = await prisma.systemAccess.update({
       where: { id: validate.data.id },
       data: {
@@ -598,6 +636,64 @@ export async function updateSystemAccess(data: UpdateAccessData): Promise<{
       };
     }
 
+    try {
+      if (existingAccess.suspendedAt && !systemAccess.suspendedAt) {
+        await sendUnsuspendedSystemAccessEmail(
+          systemAccess.user.email,
+          systemAccess.user.name
+        );
+      } else if (!existingAccess.suspendedAt && systemAccess.suspendedAt) {
+        await sendSuspendedSystemAccessEmail(
+          systemAccess.user.email,
+          systemAccess.user.name
+        );
+      } else {
+        await sendUpdatedSystemAccessEmail(
+          systemAccess.user.email,
+          systemAccess.user.name,
+          session.data.user.name
+        );
+      }
+    } catch (emailError) {
+      console.error("Failed to send updated system access email:", emailError);
+    }
+
+    try {
+      if (existingAccess.suspendedAt && !systemAccess.suspendedAt) {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_UNSUSPENDED,
+          entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+          entityId: systemAccess.id,
+          description: `System access unsuspended for user ${systemAccess.user.email} by ${session.data?.user?.email}.`,
+          metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+          user: { connect: { id: session.data.userId } },
+        });
+      } else if (!existingAccess.suspendedAt && systemAccess.suspendedAt) {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_SUSPENDED,
+          entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+          entityId: systemAccess.id,
+          description: `System access suspended for user ${systemAccess.user.email} by ${session.data?.user?.email}.`,
+          metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+          user: { connect: { id: session.data.userId } },
+        });
+      } else {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_UPDATED,
+          entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+          entityId: systemAccess.id,
+          description: `System access updated for user ${systemAccess.user.email} by ${session.data?.user?.email}.`,
+          metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+          user: { connect: { id: session.data.userId } },
+        });
+      }
+    } catch (auditError) {
+      console.error(
+        "Failed to log audit event for system access update:",
+        auditError
+      );
+    }
+
     return {
       success: true,
       message: "System access updated successfully.",
@@ -609,6 +705,322 @@ export async function updateSystemAccess(data: UpdateAccessData): Promise<{
     return {
       success: false,
       message: "Failed to update system access.",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function suspendSystemAccess(accessId: string): Promise<{
+  success: boolean;
+  message: string;
+  data:
+    | (SystemAccess & { user: Partial<User>; assigner: Partial<User> })
+    | null;
+  errors: unknown | null;
+}> {
+  try {
+    const session = await getCurrentSession();
+    if (!session.success) {
+      return {
+        success: false,
+        message: session.message,
+        data: null,
+        errors: session.errors,
+      };
+    }
+    if (!session.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
+    if (
+      session.data.user.role !== ROLE.SYSTEM_OWNER &&
+      session.data.user.role !== ROLE.SYSTEM_ADMIN
+    ) {
+      return {
+        success: false,
+        message: "User does not have permission to suspend system accesses.",
+        data: null,
+        errors: new Error("Insufficient permissions"),
+      };
+    }
+
+    const existingAccess = await prisma.systemAccess.findUnique({
+      where: { id: accessId },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!existingAccess) {
+      return {
+        success: false,
+        message: "System access not found.",
+        data: null,
+        errors: new Error("System access not found"),
+      };
+    }
+
+    if (existingAccess.userId === session.data.userId) {
+      return {
+        success: false,
+        message: "Cannot suspend your own system access.",
+        data: null,
+        errors: new Error("Self-suspension not allowed"),
+      };
+    }
+
+    if (existingAccess.suspendedAt) {
+      return {
+        success: false,
+        message: "System access is already suspended.",
+        data: null,
+        errors: new Error("System access already suspended"),
+      };
+    }
+
+    const deviceInfo = await getDeviceInfo();
+
+    const updatedAccess = await prisma.systemAccess.update({
+      where: { id: accessId },
+      data: {
+        suspendedAt: new Date(),
+        assigner: { connect: { id: session.data.userId } },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            phone: true,
+            role: true,
+            avatar: true,
+          },
+        },
+        assigner: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            phone: true,
+            role: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+    if (!updatedAccess) {
+      return {
+        success: false,
+        message: "Failed to suspend system access.",
+        data: null,
+        errors: new Error("System access suspension failed"),
+      };
+    }
+
+    try {
+      await sendSuspendedSystemAccessEmail(
+        updatedAccess.user.email,
+        updatedAccess.user.name
+      );
+    } catch (emailError) {
+      console.error(
+        "Failed to send suspended system access email:",
+        emailError
+      );
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_SUSPENDED,
+        entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+        entityId: updatedAccess.id,
+        description: `System access suspended for user ${updatedAccess.user.email} by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (auditError) {
+      console.error(
+        "Failed to log audit event for system access suspension:",
+        auditError
+      );
+    }
+
+    return {
+      success: true,
+      message: "System access suspended successfully.",
+      data: updatedAccess,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Error suspending system access:", error);
+    return {
+      success: false,
+      message: "Failed to suspend system access.",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function unsuspendSystemAccess(accessId: string): Promise<{
+  success: boolean;
+  message: string;
+  data:
+    | (SystemAccess & { user: Partial<User>; assigner: Partial<User> })
+    | null;
+  errors: unknown | null;
+}> {
+  try {
+    const session = await getCurrentSession();
+    if (!session.success) {
+      return {
+        success: false,
+        message: session.message,
+        data: null,
+        errors: session.errors,
+      };
+    }
+    if (!session.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
+    if (
+      session.data.user.role !== ROLE.SYSTEM_OWNER &&
+      session.data.user.role !== ROLE.SYSTEM_ADMIN
+    ) {
+      return {
+        success: false,
+        message: "User does not have permission to unsuspend system accesses.",
+        data: null,
+        errors: new Error("Insufficient permissions"),
+      };
+    }
+
+    const existingAccess = await prisma.systemAccess.findUnique({
+      where: { id: accessId },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!existingAccess) {
+      return {
+        success: false,
+        message: "System access not found.",
+        data: null,
+        errors: new Error("System access not found"),
+      };
+    }
+
+    if (existingAccess.userId === session.data.userId) {
+      return {
+        success: false,
+        message: "Cannot unsuspend your own system access.",
+        data: null,
+        errors: new Error("Self-unsuspension not allowed"),
+      };
+    }
+
+    if (!existingAccess.suspendedAt) {
+      return {
+        success: false,
+        message: "System access is not suspended.",
+        data: null,
+        errors: new Error("System access not suspended"),
+      };
+    }
+
+    const deviceInfo = await getDeviceInfo();
+
+    const updatedAccess = await prisma.systemAccess.update({
+      where: { id: accessId },
+      data: {
+        suspendedAt: null,
+        assigner: { connect: { id: session.data.userId } },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            phone: true,
+            role: true,
+            avatar: true,
+          },
+        },
+        assigner: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            phone: true,
+            role: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+    if (!updatedAccess) {
+      return {
+        success: false,
+        message: "Failed to unsuspend system access.",
+        data: null,
+        errors: new Error("System access unsuspension failed"),
+      };
+    }
+
+    try {
+      await sendUnsuspendedSystemAccessEmail(
+        updatedAccess.user.email,
+        updatedAccess.user.name
+      );
+    } catch (emailError) {
+      console.error(
+        "Failed to send unsuspended system access email:",
+        emailError
+      );
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_UNSUSPENDED,
+        entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+        entityId: updatedAccess.id,
+        description: `System access unsuspended for user ${updatedAccess.user.email} by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (auditError) {
+      console.error(
+        "Failed to log audit event for system access unsuspension:",
+        auditError
+      );
+    }
+
+    return {
+      success: true,
+      message: "System access unsuspended successfully.",
+      data: updatedAccess,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Error unsuspending system access:", error);
+    return {
+      success: false,
+      message: "Failed to unsuspend system access.",
       data: null,
       errors: error,
     };
@@ -678,6 +1090,8 @@ export async function deleteSystemAccess(accessId: string): Promise<{
       };
     }
 
+    const deviceInfo = await getDeviceInfo();
+
     const deletedAccess = await prisma.systemAccess.delete({
       where: { id: accessId },
       include: {
@@ -711,6 +1125,22 @@ export async function deleteSystemAccess(accessId: string): Promise<{
         data: null,
         errors: new Error("System access deletion failed"),
       };
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.SYSTEM_ACCESS_DELETED,
+        entity: AUDIT_LOG_ENTITY.SYSTEM_ACCESS,
+        entityId: deletedAccess.id,
+        description: `System access deleted for user ${deletedAccess.user.email} by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (auditError) {
+      console.error(
+        "Failed to log audit event for system access deletion:",
+        auditError
+      );
     }
 
     return {

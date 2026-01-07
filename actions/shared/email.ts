@@ -7,6 +7,13 @@ import {
   VerificationEmailTemplate,
   PasswordResetEmailTemplate,
   NewLoginDetectedEmailTemplate,
+  ApprovedUserEmailTemplate,
+  UserSuspendedEmailTemplate,
+  UserUnsuspendedEmailTemplate,
+  AssignedSystemAccessEmailTemplate,
+  SuspendedSystemAccessEmailTemplate,
+  UnsuspendedSystemAccessEmailTemplate,
+  UpdatedSystemAccessEmailTemplate,
 } from "@/emails";
 import { render } from "@react-email/render";
 import { randomBytes } from "crypto";
@@ -102,5 +109,164 @@ export async function sendNewLoginDetectedEmail(
     });
   } catch (error) {
     console.error("Failed to send new login detected email:", error);
+  }
+}
+
+export async function sendApprovedUserEmail(
+  email: string,
+  name: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      ApprovedUserEmailTemplate({ name, email, dashboardUrl })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "Your Account Has Been Approved!",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send approved user email:", error);
+  }
+}
+
+export async function sendUserSuspendedEmail(
+  email: string,
+  name: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      UserSuspendedEmailTemplate({ name, email, dashboardUrl })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "Your Account Has Been Suspended",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send user suspended email:", error);
+  }
+}
+
+export async function sendUserUnsuspendedEmail(
+  email: string,
+  name: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      UserUnsuspendedEmailTemplate({ name, email, dashboardUrl })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "Your Account Has Been Restored!",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send user unsuspended email:", error);
+  }
+}
+
+export async function sendAssignedSystemAccessEmail(
+  userEmail: string,
+  userName: string,
+  assignerName: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      AssignedSystemAccessEmailTemplate({
+        userEmail,
+        userName,
+        assignerName,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: userEmail,
+      subject: "You Have Been Granted System Access",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send assigned system access email:", error);
+  }
+}
+
+export async function sendSuspendedSystemAccessEmail(
+  userEmail: string,
+  userName: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      SuspendedSystemAccessEmailTemplate({
+        userEmail,
+        userName,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: userEmail,
+      subject: "Your System Access Has Been Suspended",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send suspended system access email:", error);
+  }
+}
+
+export async function sendUnsuspendedSystemAccessEmail(
+  userEmail: string,
+  userName: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      UnsuspendedSystemAccessEmailTemplate({
+        userEmail,
+        userName,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: userEmail,
+      subject: "Your System Access Has Been Restored",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send unsuspended system access email:", error);
+  }
+}
+export async function sendUpdatedSystemAccessEmail(
+  userEmail: string,
+  userName: string,
+  updatedByName: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      UpdatedSystemAccessEmailTemplate({
+        userEmail,
+        userName,
+        updatedByName,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: userEmail,
+      subject: "Your System Access Has Been Updated",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send updated system access email:", error);
   }
 }

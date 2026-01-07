@@ -10,8 +10,20 @@ import {
   User,
   WorkspaceAccount,
 } from "@/lib/prisma/client";
-import { ROLE, USER_SYSTEM_ACCESS_LEVEL } from "@/lib/prisma/enums";
+import {
+  ROLE,
+  USER_SYSTEM_ACCESS_LEVEL,
+  AUDIT_LOG_ACTION,
+  AUDIT_LOG_ENTITY,
+} from "@/lib/prisma/enums";
+import { logAuditEvent } from "@/actions/shared/audit-log";
 import { getCurrentSession } from "@/actions/shared/session";
+import {
+  sendApprovedUserEmail,
+  sendUserSuspendedEmail,
+  sendUserUnsuspendedEmail,
+} from "@/actions/shared/email";
+import { getDeviceInfo } from "@/lib/device-info";
 
 export async function getAllUsers(): Promise<{
   success: boolean;
@@ -407,6 +419,8 @@ export async function approveUserById(userId: string): Promise<{
       };
     }
 
+    const deviceInfo = await getDeviceInfo();
+
     const updatedUser = await prisma.user.update({
       where: {
         id: userId,
@@ -415,6 +429,25 @@ export async function approveUserById(userId: string): Promise<{
         approvedAt: new Date(),
       },
     });
+
+    try {
+      await sendApprovedUserEmail(updatedUser.email, updatedUser.name);
+    } catch (error) {
+      console.error("Failed to send approved user email:", error);
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.USER_APPROVED,
+        entity: AUDIT_LOG_ENTITY.USER,
+        entityId: updatedUser.id,
+        description: `User ${updatedUser.email} approved by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (error) {
+      console.error("Failed to log audit event for user approval:", error);
+    }
 
     return {
       success: true,
@@ -609,6 +642,8 @@ export async function suspendUserById(userId: string): Promise<{
       };
     }
 
+    const deviceInfo = await getDeviceInfo();
+
     const updatedUser = await prisma.user.update({
       where: {
         id: userId,
@@ -617,6 +652,25 @@ export async function suspendUserById(userId: string): Promise<{
         suspendedAt: new Date(),
       },
     });
+
+    try {
+      await sendUserSuspendedEmail(updatedUser.email, updatedUser.name);
+    } catch (error) {
+      console.error("Failed to send user suspended email:", error);
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.USER_SUSPENDED,
+        entity: AUDIT_LOG_ENTITY.USER,
+        entityId: updatedUser.id,
+        description: `User ${updatedUser.email} suspended by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (error) {
+      console.error("Failed to log audit event for user suspension:", error);
+    }
 
     return {
       success: true,
@@ -811,6 +865,8 @@ export async function unsuspendUserById(userId: string): Promise<{
       };
     }
 
+    const deviceInfo = await getDeviceInfo();
+
     const updatedUser = await prisma.user.update({
       where: {
         id: userId,
@@ -819,6 +875,25 @@ export async function unsuspendUserById(userId: string): Promise<{
         suspendedAt: null,
       },
     });
+
+    try {
+      await sendUserUnsuspendedEmail(updatedUser.email, updatedUser.name);
+    } catch (error) {
+      console.error("Failed to send user unsuspended email:", error);
+    }
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.USER_UNSUSPENDED,
+        entity: AUDIT_LOG_ENTITY.USER,
+        entityId: updatedUser.id,
+        description: `User ${updatedUser.email} unsuspended by ${session.data?.user?.email}.`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (error) {
+      console.error("Failed to log audit event for user unsuspension:", error);
+    }
 
     return {
       success: true,

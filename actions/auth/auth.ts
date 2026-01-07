@@ -18,7 +18,7 @@ import { prisma } from "@/lib/prisma";
 import * as argon2 from "argon2";
 import z from "zod";
 import { logAuditEvent } from "@/actions/shared/audit-log";
-import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
+import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY, ROLE } from "@/lib/prisma/enums";
 import {
   sendNewLoginDetectedEmail,
   sendPasswordResetEmail,
@@ -420,6 +420,11 @@ export async function login(data: LoginData): Promise<{
       where: {
         email: validate.data.email,
       },
+      include: {
+        systemAccess: true,
+        ownWorkspaceAccount: true,
+        sharedWorkspaceAccountAccess: true,
+      },
     });
 
     if (!userExists) {
@@ -520,6 +525,80 @@ export async function login(data: LoginData): Promise<{
           ])
         ),
       };
+    }
+
+    if (userExists.role === ROLE.SYSTEM_USER) {
+      if (!userExists.systemAccess) {
+        return {
+          success: false,
+          message: "System access not found for the user.",
+          data: null,
+          errors: new Error("System access not found"),
+        };
+      }
+      if (userExists.systemAccess.suspendedAt) {
+        return {
+          success: false,
+          message: "System access is suspended for the user.",
+          data: null,
+          errors: new Error("System access is suspended"),
+        };
+      }
+      if (userExists.systemAccess.expiresAt < new Date()) {
+        return {
+          success: false,
+          message: "System access has expired for the user.",
+          data: null,
+          errors: new Error("System access has expired"),
+        };
+      }
+    }
+
+    if (userExists.role === ROLE.USER) {
+      if (
+        !userExists.ownWorkspaceAccount &&
+        !userExists.sharedWorkspaceAccountAccess
+      ) {
+        return {
+          success: false,
+          message: "User does not have access to any workspace.",
+          data: null,
+          errors: new Error("No workspace access"),
+        };
+      }
+      if (
+        !userExists.ownWorkspaceAccount &&
+        userExists.sharedWorkspaceAccountAccess?.suspendedAt
+      ) {
+        return {
+          success: false,
+          message: "Shared workspace access is suspended for the user.",
+          data: null,
+          errors: new Error("Shared workspace access is suspended"),
+        };
+      }
+      if (
+        !userExists.ownWorkspaceAccount &&
+        userExists.sharedWorkspaceAccountAccess!.expiresAt < new Date()
+      ) {
+        return {
+          success: false,
+          message: "Shared workspace access has expired for the user.",
+          data: null,
+          errors: new Error("Shared workspace access has expired"),
+        };
+      }
+      if (
+        !userExists.sharedWorkspaceAccountAccess &&
+        userExists.ownWorkspaceAccount?.terminatedAt
+      ) {
+        return {
+          success: false,
+          message: "Own workspace account is terminated for the user.",
+          data: null,
+          errors: new Error("Own workspace account is terminated"),
+        };
+      }
     }
 
     const session = await createSession(userExists.id, deviceInfo);
