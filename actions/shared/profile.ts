@@ -85,9 +85,6 @@ export async function updateMe(data: UpdateMeData): Promise<{
         description: `User ${updatedUser.email} updated by ${session.data?.user?.email}.`,
         metadata: {
           deviceInfo: JSON.stringify(deviceInfo),
-          updatedFrom: JSON.stringify(userExists),
-          updatedTo: JSON.stringify(updatedUser),
-          updateBy: JSON.stringify(session.data),
         },
         user: {
           connect: { id: updatedUser.id },
@@ -207,7 +204,6 @@ export async function updateMyPassword(data: UpdateMyPasswordData): Promise<{
         description: `User ${updatedUser.email} password updated by ${session.data?.user?.email}.`,
         metadata: {
           deviceInfo: JSON.stringify(deviceInfo),
-          updateBy: JSON.stringify(session.data),
         },
         user: {
           connect: { id: updatedUser.id },

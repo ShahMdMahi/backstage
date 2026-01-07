@@ -14,6 +14,8 @@ import {
   SuspendedSystemAccessEmailTemplate,
   UnsuspendedSystemAccessEmailTemplate,
   UpdatedSystemAccessEmailTemplate,
+  NewUserCreatedEmailTemplate,
+  UserUpdatedEmailTemplate,
 } from "@/emails";
 import { render } from "@react-email/render";
 import { randomBytes } from "crypto";
@@ -268,5 +270,59 @@ export async function sendUpdatedSystemAccessEmail(
     });
   } catch (error) {
     console.error("Failed to send updated system access email:", error);
+  }
+}
+
+export async function sendNewUserCreatedEmail(
+  email: string,
+  name: string,
+  password: string,
+  createdByName: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      NewUserCreatedEmailTemplate({
+        name,
+        email,
+        password,
+        createdByName,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "Your Account Has Been Created!",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send new user created email:", error);
+  }
+}
+
+export async function sendUserUpdatedEmail(
+  email: string,
+  name: string,
+  updatedByName: string
+): Promise<void> {
+  try {
+    const dashboardUrl = getBaseUrl();
+    const emailHtml = await render(
+      UserUpdatedEmailTemplate({
+        name,
+        email,
+        updatedByName,
+        dashboardUrl,
+      })
+    );
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!,
+      to: email,
+      subject: "Your Account Has Been Updated",
+      html: emailHtml,
+    });
+  } catch (error) {
+    console.error("Failed to send user updated email:", error);
   }
 }

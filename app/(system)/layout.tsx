@@ -11,7 +11,6 @@ import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { AvatarWithDropdown } from "@/components/shared/avatar-with-dropdown";
 import { getCurrentSession } from "@/actions/shared/session";
 import { ROLE } from "@/lib/prisma/enums";
-import { getCurrentSystemAccess } from "@/actions/system/access";
 import { logout } from "@/actions/auth/auth";
 
 export const dynamic = "force-dynamic";
@@ -22,16 +21,15 @@ export default async function SystemLayout({
   const session = await getCurrentSession();
   if (!session?.data?.user) redirect("/auth/login");
   if (session?.data?.user.role === ROLE.USER) redirect("/");
-  const systemAccess = await getCurrentSystemAccess();
   if (session?.data?.user?.role === ROLE.SYSTEM_USER) {
-    if (!systemAccess.success || !systemAccess.data) {
+    if (!session?.data?.user!.systemAccess) {
       await logout();
       redirect("/auth/login");
     }
-    if (systemAccess.data.expiresAt < new Date()) {
+    if (session?.data?.user!.systemAccess!.expiresAt < new Date()) {
       redirect("/system/access-expired");
     }
-    if (systemAccess.data.suspendedAt) {
+    if (session?.data?.user!.systemAccess?.suspendedAt) {
       redirect("/system/access-suspended");
     }
   }
@@ -39,7 +37,7 @@ export default async function SystemLayout({
     <SidebarProvider>
       <SystemSidebar
         session={session?.data}
-        systemAccess={systemAccess?.data}
+        systemAccess={session?.data?.user!.systemAccess}
       />
       <SidebarInset
         className="flex max-h-screen min-h-screen flex-col overflow-hidden"

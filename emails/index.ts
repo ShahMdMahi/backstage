@@ -9,3 +9,5 @@ export { AssignedSystemAccessEmailTemplate } from "./assigned-system-access-emai
 export { SuspendedSystemAccessEmailTemplate } from "./suspended-system-access-email";
 export { UnsuspendedSystemAccessEmailTemplate } from "./unsuspended-system-access-email";
 export { UpdatedSystemAccessEmailTemplate } from "./updated-system-access-email";
+export { NewUserCreatedEmailTemplate } from "./new-user-created-email";
+export { UserUpdatedEmailTemplate } from "./user-updated-email";
