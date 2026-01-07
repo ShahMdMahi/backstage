@@ -507,7 +507,7 @@ export async function updateSystemAccess(data: UpdateAccessData): Promise<{
       suspendedAt = null;
     }
 
-    const deviceInfo = getDeviceInfo();
+    const deviceInfo = await getDeviceInfo();
 
     const systemAccess = await prisma.systemAccess.update({
       where: { id: validate.data.id },

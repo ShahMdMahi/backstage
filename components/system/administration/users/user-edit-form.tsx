@@ -8,12 +8,20 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { ROLE } from "@/lib/prisma/enums";
 import { updateUserSchema } from "@/validators/system/user";
-import { updateUser } from "@/actions/system/users";
+import { updateUser } from "@/actions/system/user";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Spinner } from "@/components/ui/spinner";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -24,15 +32,22 @@ import {
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { getInitials } from "@/lib/utils";
 import { validateAvatarFile } from "@/lib/avatar-validation";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 import {
   UserIcon,
   MailIcon,
   PhoneIcon,
   ShieldIcon,
   ImageIcon,
-  TrashIcon,
+  XIcon,
   AlertCircleIcon,
+  SaveIcon,
+  ArrowLeftIcon,
+  BanIcon,
+  PenIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 type UpdateUserFormData = z.infer<typeof updateUserSchema>;
 
@@ -44,6 +59,7 @@ interface UserEditFormProps {
     phone: string;
     avatar: string;
     role: ROLE;
+    suspendedAt: Date | null;
   };
   availableRoles: ROLE[];
   currentUserRole: ROLE;
@@ -109,6 +125,7 @@ export function UserEditForm({
   );
   const [compressedAvatar, setCompressedAvatar] = useState<string | null>(null);
   const [removeAvatar, setRemoveAvatar] = useState(false);
+  const [isSuspended, setIsSuspended] = useState<boolean>(!!user.suspendedAt);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
@@ -125,10 +142,12 @@ export function UserEditForm({
       name: user.name,
       phone: user.phone || "",
       role: user.role,
+      isSuspended: !!user.suspendedAt,
     },
   });
 
   const selectedRole = watch("role");
+  const watchedName = watch("name");
 
   // Handle avatar file selection
   const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,6 +182,12 @@ export function UserEditForm({
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+  };
+
+  // Handle suspend change
+  const handleSuspendChange = (checked: boolean) => {
+    setIsSuspended(checked);
+    setValue("isSuspended", checked, { shouldValidate: true });
   };
 
   const onSubmit = async (data: UpdateUserFormData) => {
@@ -223,176 +248,306 @@ export function UserEditForm({
     availableRoles.includes(user.role) || currentUserRole === ROLE.SYSTEM_OWNER;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {formMessage && (
-        <Alert variant="destructive">
-          <AlertCircleIcon className="size-4" />
-          <AlertDescription>{formMessage}</AlertDescription>
-        </Alert>
-      )}
-
-      {/* Avatar Upload */}
-      <div className="flex flex-col items-center gap-4">
-        <Avatar className="size-24 border-4 border-muted">
-          <AvatarImage src={avatarPreview || undefined} />
-          <AvatarFallback className="text-2xl border-2 border-dashed border-muted-foreground/50">
-            {getInitials(user.name)}
-          </AvatarFallback>
-        </Avatar>
-        <div className="flex gap-2">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <ImageIcon className="mr-2 size-4" />
-            {avatarPreview ? "Change Image" : "Upload Image"}
+    <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
+      <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
+        {/* Page Header */}
+        <div className="flex items-center justify-between gap-3 flex-wrap">
+          <div className="flex items-center gap-3">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
+              <PenIcon className="size-5 text-primary" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight">Edit User</h1>
+              <p className="text-muted-foreground mt-1">
+                Update information for {user.name}
+              </p>
+            </div>
+          </div>
+          <Button variant="outline" asChild>
+            <Link href="/system/administration/users">
+              <ArrowLeftIcon className="mr-2 size-4" />
+              Back to Users
+            </Link>
           </Button>
-          {avatarPreview && (
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {formMessage && (
+            <Alert variant="destructive">
+              <AlertCircleIcon className="size-4" />
+              <AlertDescription>{formMessage}</AlertDescription>
+            </Alert>
+          )}
+
+          {/* Avatar Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ImageIcon className="size-5" />
+                Profile Picture
+              </CardTitle>
+              <CardDescription>
+                Update the user&apos;s profile picture
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-6">
+                <Avatar className="size-24 border-2 border-muted">
+                  <AvatarImage src={avatarPreview || undefined} />
+                  <AvatarFallback className="text-2xl border-2 border-dashed border-muted-foreground/50">
+                    {getInitials(watchedName || user.name)}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col gap-2">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleAvatarChange}
+                    className="hidden"
+                    id="avatar-upload"
+                  />
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isSubmitting}
+                  >
+                    <ImageIcon className="mr-2 size-4" />
+                    {avatarPreview ? "Change Image" : "Upload Image"}
+                  </Button>
+                  {avatarPreview && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleRemoveAvatar}
+                      className="text-destructive hover:text-destructive"
+                      disabled={isSubmitting}
+                    >
+                      <XIcon className="mr-2 size-4" />
+                      Remove
+                    </Button>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    300x300px, max 50KB. Auto-compressed for optimization.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Basic Information */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <UserIcon className="size-5" />
+                Basic Information
+              </CardTitle>
+              <CardDescription>
+                Update the user&apos;s basic details
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {/* Name Field */}
+              <div className="space-y-2">
+                <Label htmlFor="name" className="flex items-center gap-2">
+                  <UserIcon className="size-4" />
+                  Full Name <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="name"
+                  placeholder="Enter full name"
+                  {...register("name")}
+                  disabled={isSubmitting}
+                />
+                {errors.name && (
+                  <p className="text-sm text-destructive">
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Email Field (disabled) */}
+              <div className="space-y-2">
+                <Label htmlFor="email" className="flex items-center gap-2">
+                  <MailIcon className="size-4" />
+                  Email Address
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={user.email}
+                  disabled
+                  className="bg-muted"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Email cannot be changed
+                </p>
+              </div>
+
+              {/* Phone Field */}
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="flex items-center gap-2">
+                  <PhoneIcon className="size-4" />
+                  Phone Number <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="phone"
+                  placeholder="+8801XXXXXXXXX or 01XXXXXXXXX"
+                  {...register("phone")}
+                  disabled={isSubmitting}
+                />
+                {errors.phone && (
+                  <p className="text-sm text-destructive">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Role Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <ShieldIcon className="size-5" />
+                User Role
+              </CardTitle>
+              <CardDescription>
+                Update the user&apos;s system role and permissions
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {canChangeRole ? (
+                <div className="space-y-2">
+                  <Label htmlFor="role">
+                    Role <span className="text-destructive">*</span>
+                  </Label>
+                  <Select
+                    value={selectedRole}
+                    onValueChange={(value) => setValue("role", value as ROLE)}
+                    disabled={isSubmitting}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a role" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {availableRoles.map((role) => (
+                        <SelectItem key={role} value={role}>
+                          {formatRole(role)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errors.role && (
+                    <p className="text-sm text-destructive">
+                      {errors.role.message}
+                    </p>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    Changing role may affect user&apos;s access permissions
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <Label>Current Role</Label>
+                  <Input
+                    value={formatRole(user.role)}
+                    disabled
+                    className="bg-muted"
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    You cannot change this user&apos;s role
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Suspend Status */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BanIcon
+                  className={cn("size-5", isSuspended && "text-destructive")}
+                />
+                Account Status
+              </CardTitle>
+              <CardDescription>
+                Suspend this user to temporarily block their access
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-start gap-4 p-4 rounded-lg border bg-card">
+                <Checkbox
+                  id="suspend-user"
+                  checked={isSuspended}
+                  onCheckedChange={(checked) =>
+                    handleSuspendChange(checked as boolean)
+                  }
+                  disabled={isSubmitting}
+                  className="mt-0.5 data-[state=checked]:bg-destructive data-[state=checked]:border-destructive"
+                />
+                <div className="flex-1 space-y-1">
+                  <Label
+                    htmlFor="suspend-user"
+                    className={cn(
+                      "font-semibold cursor-pointer",
+                      isSuspended && "text-destructive"
+                    )}
+                  >
+                    Suspend User
+                  </Label>
+                  <p className="text-sm text-muted-foreground">
+                    When suspended, the user will not be able to log in or
+                    access any system resources. This can be reversed at any
+                    time.
+                  </p>
+                  {isSuspended && user.suspendedAt && (
+                    <p className="text-xs text-destructive mt-2">
+                      Originally suspended on:{" "}
+                      {format(new Date(user.suspendedAt), "PPP 'at' p")}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Hidden ID field */}
+          <input type="hidden" {...register("id")} />
+
+          {/* Submit Buttons */}
+          <div className="flex justify-end gap-3">
             <Button
-              type="button"
               variant="outline"
-              size="sm"
-              onClick={handleRemoveAvatar}
+              type="button"
+              disabled={isSubmitting}
+              onClick={() =>
+                router.push(`/system/administration/users/${user.id}`)
+              }
             >
-              <TrashIcon className="mr-2 size-4" />
-              Remove
+              <ArrowLeftIcon className="mr-2 size-4" />
+              Cancel
             </Button>
-          )}
-        </div>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleAvatarChange}
-        />
-        <p className="text-xs text-muted-foreground">
-          300x300px, max 50KB. Auto-compressed for optimization.
-        </p>
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <Spinner className="mr-2" />
+                  Saving...
+                </>
+              ) : (
+                <>
+                  <SaveIcon className="mr-2 size-4" />
+                  Save Changes
+                </>
+              )}
+            </Button>
+          </div>
+        </form>
       </div>
-
-      {/* Name Field */}
-      <div className="space-y-2">
-        <Label htmlFor="name" className="flex items-center gap-2">
-          <UserIcon className="size-4" />
-          Name <span className="text-destructive">*</span>
-        </Label>
-        <Input
-          id="name"
-          placeholder="Enter full name"
-          {...register("name")}
-          disabled={isSubmitting}
-        />
-        {errors.name && (
-          <p className="text-sm text-destructive">{errors.name.message}</p>
-        )}
-      </div>
-
-      {/* Email Field (disabled) */}
-      <div className="space-y-2">
-        <Label htmlFor="email" className="flex items-center gap-2">
-          <MailIcon className="size-4" />
-          Email
-        </Label>
-        <Input
-          id="email"
-          type="email"
-          value={user.email}
-          disabled
-          className="bg-muted"
-        />
-        <p className="text-xs text-muted-foreground">Email cannot be changed</p>
-      </div>
-
-      {/* Phone Field */}
-      <div className="space-y-2">
-        <Label htmlFor="phone" className="flex items-center gap-2">
-          <PhoneIcon className="size-4" />
-          Phone
-        </Label>
-        <Input
-          id="phone"
-          placeholder="+8801XXXXXXXXX or 01XXXXXXXXX"
-          {...register("phone")}
-          disabled={isSubmitting}
-        />
-        {errors.phone && (
-          <p className="text-sm text-destructive">{errors.phone.message}</p>
-        )}
-      </div>
-
-      {/* Role Field */}
-      {canChangeRole && (
-        <div className="space-y-2">
-          <Label htmlFor="role" className="flex items-center gap-2">
-            <ShieldIcon className="size-4" />
-            Role <span className="text-destructive">*</span>
-          </Label>
-          <Select
-            value={selectedRole}
-            onValueChange={(value) => setValue("role", value as ROLE)}
-            disabled={isSubmitting}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select a role" />
-            </SelectTrigger>
-            <SelectContent>
-              {availableRoles.map((role) => (
-                <SelectItem key={role} value={role}>
-                  {formatRole(role)}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.role && (
-            <p className="text-sm text-destructive">{errors.role.message}</p>
-          )}
-          <p className="text-xs text-muted-foreground">
-            Changing role may affect user&apos;s access permissions
-          </p>
-        </div>
-      )}
-
-      {!canChangeRole && (
-        <div className="space-y-2">
-          <Label className="flex items-center gap-2">
-            <ShieldIcon className="size-4" />
-            Role
-          </Label>
-          <Input value={formatRole(user.role)} disabled className="bg-muted" />
-          <p className="text-xs text-muted-foreground">
-            You cannot change this user&apos;s role
-          </p>
-        </div>
-      )}
-
-      {/* Hidden ID field */}
-      <input type="hidden" {...register("id")} />
-
-      {/* Submit Button */}
-      <div className="flex justify-end gap-3">
-        <Button
-          variant="outline"
-          type="button"
-          disabled={isSubmitting}
-          onClick={() => router.back()}
-          className="w-full sm:w-auto"
-        >
-          Cancel
-        </Button>
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? (
-            <>
-              <Spinner className="mr-2" />
-              Saving...
-            </>
-          ) : (
-            "Save Changes"
-          )}
-        </Button>
-      </div>
-    </form>
+    </div>
   );
 }

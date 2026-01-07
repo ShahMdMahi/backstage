@@ -1,6 +1,6 @@
 import { Users, Plus, AlertCircle } from "lucide-react";
 import UsersTable from "@/components/system/administration/users/users-table";
-import { getAllUsers } from "@/actions/system/users";
+import { getAllUsers } from "@/actions/system/user";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";

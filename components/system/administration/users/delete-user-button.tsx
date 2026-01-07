@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { deleteUser } from "@/actions/system/users";
+import { deleteUser } from "@/actions/system/user";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,

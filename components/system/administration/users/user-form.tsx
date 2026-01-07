@@ -48,7 +48,7 @@ import {
   createUserSchema,
   type CreateUserData,
 } from "@/validators/system/user";
-import { createUser } from "@/actions/system/users";
+import { createUser } from "@/actions/system/user";
 import { ROLE } from "@/lib/prisma/enums";
 import { Session, SystemAccess, User } from "@/lib/prisma/browser";
 import Link from "next/link";

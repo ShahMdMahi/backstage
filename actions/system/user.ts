@@ -1392,6 +1392,7 @@ export async function updateUser(data: UpdateUserData): Promise<{
       phone?: string;
       avatar?: string | null;
       role?: ROLE;
+      suspendedAt?: Date | null;
     } = {};
 
     if (validate.data.name) updateData.name = validate.data.name;
@@ -1405,6 +1406,14 @@ export async function updateUser(data: UpdateUserData): Promise<{
     }
     if (newRole !== userToUpdate.role) updateData.role = newRole;
 
+    if (validate.data.isSuspended !== undefined) {
+      if (validate.data.isSuspended && !userToUpdate.suspendedAt) {
+        updateData.suspendedAt = new Date();
+      } else if (!validate.data.isSuspended && userToUpdate.suspendedAt) {
+        updateData.suspendedAt = null;
+      }
+    }
+
     const deviceInfo = await getDeviceInfo();
 
     const updatedUser = await prisma.user.update({
@@ -1413,24 +1422,50 @@ export async function updateUser(data: UpdateUserData): Promise<{
     });
 
     try {
-      await sendUserUpdatedEmail(
-        updatedUser.email,
-        updatedUser.name,
-        session.data.user.name
-      );
+      if (userToUpdate.suspendedAt && !updatedUser.suspendedAt) {
+        await sendUserUnsuspendedEmail(updatedUser.email, updatedUser.name);
+      } else if (!userToUpdate.suspendedAt && updatedUser.suspendedAt) {
+        await sendUserSuspendedEmail(updatedUser.email, updatedUser.name);
+      } else {
+        await sendUserUpdatedEmail(
+          updatedUser.email,
+          updatedUser.name,
+          session.data.user.name
+        );
+      }
     } catch (error) {
       console.error("Failed to send user updated email:", error);
     }
 
     try {
-      await logAuditEvent({
-        action: AUDIT_LOG_ACTION.USER_UPDATED,
-        entity: AUDIT_LOG_ENTITY.USER,
-        entityId: updatedUser.id,
-        description: `User ${updatedUser.email} updated by ${session.data.user.email}.`,
-        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
-        user: { connect: { id: session.data.userId } },
-      });
+      if (userToUpdate.suspendedAt && !updatedUser.suspendedAt) {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.USER_UNSUSPENDED,
+          entity: AUDIT_LOG_ENTITY.USER,
+          entityId: updatedUser.id,
+          description: `User ${updatedUser.email} unsuspended by ${session.data.user.email}.`,
+          metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+          user: { connect: { id: session.data.userId } },
+        });
+      } else if (!userToUpdate.suspendedAt && updatedUser.suspendedAt) {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.USER_SUSPENDED,
+          entity: AUDIT_LOG_ENTITY.USER,
+          entityId: updatedUser.id,
+          description: `User ${updatedUser.email} suspended by ${session.data.user.email}.`,
+          metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+          user: { connect: { id: session.data.userId } },
+        });
+      } else {
+        await logAuditEvent({
+          action: AUDIT_LOG_ACTION.USER_UPDATED,
+          entity: AUDIT_LOG_ENTITY.USER,
+          entityId: updatedUser.id,
+          description: `User ${updatedUser.email} updated by ${session.data.user.email}.`,
+          metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+          user: { connect: { id: session.data.userId } },
+        });
+      }
     } catch (error) {
       console.error("Failed to log audit event for user update:", error);
     }

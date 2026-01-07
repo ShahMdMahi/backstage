@@ -1,4 +1,4 @@
-import { getUserById } from "@/actions/system/users";
+import { getUserById } from "@/actions/system/user";
 import { DeleteUserButton } from "@/components/system/administration/users/delete-user-button";
 import { RevokeSessionButton } from "@/components/system/administration/users/revoke-session-button";
 import { AuditLogsTabs } from "@/components/system/administration/users/audit-logs-tabs";

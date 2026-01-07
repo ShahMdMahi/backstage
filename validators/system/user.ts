@@ -51,6 +51,7 @@ export const updateUserSchema = z.object({
   role: z
     .enum([ROLE.SYSTEM_OWNER, ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER])
     .optional(),
+  isSuspended: z.boolean().optional(),
 });
 
 export type UpdateUserData = z.infer<typeof updateUserSchema>;

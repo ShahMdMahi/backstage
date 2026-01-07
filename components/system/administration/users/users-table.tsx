@@ -46,7 +46,7 @@ import {
   approveUserById,
   suspendUserById,
   unsuspendUserById,
-} from "@/actions/system/users";
+} from "@/actions/system/user";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 

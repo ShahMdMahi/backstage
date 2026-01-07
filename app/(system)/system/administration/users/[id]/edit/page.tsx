@@ -1,13 +1,6 @@
-import { getUserById } from "@/actions/system/users";
+import { getUserById } from "@/actions/system/user";
 import { UserEditForm } from "@/components/system/administration/users/user-edit-form";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { AlertCircleIcon, ArrowLeftIcon, PenIcon } from "lucide-react";
@@ -151,47 +144,18 @@ export default async function UserEditPage({ params }: PageProps) {
   };
 
   return (
-    <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
-      <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
-        {/* Page Header */}
-        <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-              <PenIcon className="size-5 text-primary" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">Edit User</h1>
-              <p className="text-muted-foreground mt-1">
-                Update information for {user.name}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Edit Form Card */}
-        <Card>
-          <CardHeader>
-            <CardTitle>User Information</CardTitle>
-            <CardDescription>
-              Update the user&apos;s profile details and role
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <UserEditForm
-              user={{
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                phone: user.phone || "",
-                avatar: user.avatar || "",
-                role: user.role as ROLE,
-              }}
-              availableRoles={getAvailableRoles()}
-              currentUserRole={session.data.user.role as ROLE}
-            />
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+    <UserEditForm
+      user={{
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone || "",
+        avatar: user.avatar || "",
+        role: user.role as ROLE,
+        suspendedAt: user.suspendedAt,
+      }}
+      availableRoles={getAvailableRoles()}
+      currentUserRole={session.data.user.role as ROLE}
+    />
   );
 }

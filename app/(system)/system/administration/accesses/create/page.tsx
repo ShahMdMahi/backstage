@@ -1,5 +1,5 @@
 import { AccessForm } from "@/components/system/administration/accesses/access-form";
-import { getAllSystemUsers } from "@/actions/system/users";
+import { getAllSystemUsers } from "@/actions/system/user";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircleIcon, ShieldCheckIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
