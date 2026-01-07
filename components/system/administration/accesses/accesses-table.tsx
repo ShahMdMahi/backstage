@@ -8,8 +8,24 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Eye, Pencil, Search } from "lucide-react";
+import { Eye, OctagonAlert, OctagonX, Pencil, Search } from "lucide-react";
 import { SystemAccess, User } from "@/lib/prisma/browser";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -19,6 +35,12 @@ import { ROLE } from "@/lib/prisma/enums";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
+import { Spinner } from "@/components/ui/spinner";
+import {
+  suspendSystemAccess,
+  unsuspendSystemAccess,
+} from "@/actions/system/access";
+import { toast } from "sonner";
 
 interface AccessesTableProps {
   accesses: (SystemAccess & { user: Partial<User>; assigner: Partial<User> })[];
@@ -52,6 +74,13 @@ function formatRole(role: string): string {
 export default function AccessesTable({ accesses }: AccessesTableProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [suspendDialogOpen, setSuspendDialogOpen] = useState(false);
+  const [unsuspendDialogOpen, setUnsuspendDialogOpen] = useState(false);
+  const [selectedAccess, setSelectedAccess] = useState<
+    (SystemAccess & { user: Partial<User>; assigner: Partial<User> }) | null
+  >(null);
+  const [isSuspending, setIsSuspending] = useState(false);
+  const [isUnsuspending, setIsUnsuspending] = useState(false);
 
   const filteredAccesses = useMemo(() => {
     if (!searchQuery.trim()) return accesses;
@@ -73,6 +102,42 @@ export default function AccessesTable({ accesses }: AccessesTableProps) {
       );
     });
   }, [accesses, searchQuery]);
+
+  const handleSuspend = async () => {
+    if (!selectedAccess?.id) return;
+    setIsSuspending(true);
+    try {
+      const result = await suspendSystemAccess(selectedAccess.id);
+      if (result.success) {
+        toast.success(result.message);
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
+    } finally {
+      setIsSuspending(false);
+      setSuspendDialogOpen(false);
+      setSelectedAccess(null);
+    }
+  };
+
+  const handleUnsuspend = async () => {
+    if (!selectedAccess?.id) return;
+    setIsUnsuspending(true);
+    try {
+      const result = await unsuspendSystemAccess(selectedAccess.id);
+      if (result.success) {
+        toast.success(result.message);
+        router.refresh();
+      } else {
+        toast.error(result.message);
+      }
+    } finally {
+      setIsUnsuspending(false);
+      setUnsuspendDialogOpen(false);
+      setSelectedAccess(null);
+    }
+  };
   return (
     <div className="space-y-4">
       <div className="relative">
@@ -241,34 +306,91 @@ export default function AccessesTable({ accesses }: AccessesTableProps) {
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() =>
-                          router.push(
-                            `/system/administration/accesses/${access.id}`
-                          )
-                        }
-                      >
-                        <Eye className="h-4 w-4" />
-                        <span className="sr-only">View</span>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8"
-                        onClick={() =>
-                          router.push(
-                            `/system/administration/accesses/${access.id}/edit`
-                          )
-                        }
-                      >
-                        <Pencil className="h-4 w-4" />
-                        <span className="sr-only">Edit</span>
-                      </Button>
-                    </div>
+                    <TooltipProvider>
+                      <div className="flex gap-2">
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-blue-600 hover:text-blue-700 hover:bg-blue-100"
+                              onClick={() =>
+                                router.push(
+                                  `/system/administration/accesses/${access.id}`
+                                )
+                              }
+                            >
+                              <Eye className="h-4 w-4" />
+                              <span className="sr-only">View</span>
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>View System Access</p>
+                          </TooltipContent>
+                        </Tooltip>
+                        {access.suspendedAt ? (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-100"
+                                onClick={() => {
+                                  setSelectedAccess(access);
+                                  setUnsuspendDialogOpen(true);
+                                }}
+                              >
+                                <OctagonAlert className="h-4 w-4" />
+                                <span className="sr-only">Unsuspend</span>
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Unsuspend User</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        ) : (
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-100"
+                                onClick={() => {
+                                  setSelectedAccess(access);
+                                  setSuspendDialogOpen(true);
+                                }}
+                              >
+                                <OctagonX className="h-4 w-4" />
+                                <span className="sr-only">Suspend</span>
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Suspend User</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        )}
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-amber-600 hover:text-amber-700 hover:bg-amber-100"
+                              onClick={() =>
+                                router.push(
+                                  `/system/administration/accesses/${access.id}/edit`
+                                )
+                              }
+                            >
+                              <Pencil className="h-4 w-4" />
+                              <span className="sr-only">Edit</span>
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Edit System Access</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </div>
+                    </TooltipProvider>
                   </TableCell>
                 </TableRow>
               ))
@@ -276,6 +398,86 @@ export default function AccessesTable({ accesses }: AccessesTableProps) {
           </TableBody>
         </Table>
       </div>
+
+      {/* Suspend Confirmation Dialog */}
+      <AlertDialog
+        open={suspendDialogOpen}
+        onOpenChange={(open) => {
+          if (!isSuspending) setSuspendDialogOpen(open);
+        }}
+      >
+        <AlertDialogContent
+          onEscapeKeyDown={(e) => isSuspending && e.preventDefault()}
+        >
+          <AlertDialogHeader>
+            <AlertDialogTitle>Suspend System Access</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to suspend system access for{" "}
+              <span className="font-semibold">{selectedAccess?.user.name}</span>
+              ? This will revoke their access to the system.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isSuspending}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleSuspend}
+              disabled={isSuspending}
+              className="bg-red-600 hover:bg-red-700"
+            >
+              {isSuspending ? (
+                <>
+                  <Spinner className="mr-2 h-4 w-4" />
+                  Suspending...
+                </>
+              ) : (
+                "Suspend"
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Unsuspend Confirmation Dialog */}
+      <AlertDialog
+        open={unsuspendDialogOpen}
+        onOpenChange={(open) => {
+          if (!isUnsuspending) setUnsuspendDialogOpen(open);
+        }}
+      >
+        <AlertDialogContent
+          onEscapeKeyDown={(e) => isUnsuspending && e.preventDefault()}
+        >
+          <AlertDialogHeader>
+            <AlertDialogTitle>Unsuspend System Access</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to unsuspend system access for{" "}
+              <span className="font-semibold">{selectedAccess?.user.name}</span>
+              ? This will revoke their access to the system.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isSuspending}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleUnsuspend}
+              disabled={isUnsuspending}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              {isUnsuspending ? (
+                <>
+                  <Spinner className="mr-2 h-4 w-4" />
+                  Unsuspending...
+                </>
+              ) : (
+                "Unsuspend"
+              )}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }
