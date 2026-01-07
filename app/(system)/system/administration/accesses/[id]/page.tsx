@@ -1,4 +1,5 @@
 import { getSystemAccessById } from "@/actions/system/access";
+import { DeleteAccessButton } from "@/components/system/administration/accesses/delete-access-button";
 import {
   Card,
   CardContent,
@@ -7,8 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getInitials, cn } from "@/lib/utils";
 import { formatInTimeZone } from "date-fns-tz";
@@ -42,6 +45,7 @@ import {
   DollarSignIcon,
   GlobeIcon,
   ScaleIcon,
+  PenIcon,
 } from "lucide-react";
 import { getCurrentSession } from "@/actions/shared/session";
 import { redirect } from "next/navigation";
@@ -311,6 +315,15 @@ export default async function AccessPage({ params }: PageProps) {
             <p className="text-muted-foreground mt-1">
               View system access permissions and details
             </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button asChild size="sm" className="gap-1.5">
+              <Link href={`/system/administration/accesses/${access.id}/edit`}>
+                <PenIcon className="size-4" />
+                Edit Access
+              </Link>
+            </Button>
+            <DeleteAccessButton accessId={access.id} userName={user.name} />
           </div>
         </div>
 

@@ -1269,6 +1269,7 @@ export function AccessForm({ users }: AccessFormProps) {
               type="button"
               variant="outline"
               disabled={isSubmitting}
+              onClick={() => router.back()}
               className="w-full sm:w-auto"
             >
               Cancel

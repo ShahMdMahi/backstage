@@ -614,3 +614,118 @@ export async function updateSystemAccess(data: UpdateAccessData): Promise<{
     };
   }
 }
+
+export async function deleteSystemAccess(accessId: string): Promise<{
+  success: boolean;
+  message: string;
+  data:
+    | (SystemAccess & { user: Partial<User>; assigner: Partial<User> })
+    | null;
+  errors: unknown | null;
+}> {
+  try {
+    const session = await getCurrentSession();
+    if (!session.success) {
+      return {
+        success: false,
+        message: session.message,
+        data: null,
+        errors: session.errors,
+      };
+    }
+    if (!session.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
+    if (
+      session.data.user.role !== ROLE.SYSTEM_OWNER &&
+      session.data.user.role !== ROLE.SYSTEM_ADMIN
+    ) {
+      return {
+        success: false,
+        message: "User does not have permission to delete system accesses.",
+        data: null,
+        errors: new Error("Insufficient permissions"),
+      };
+    }
+
+    const existingAccess = await prisma.systemAccess.findUnique({
+      where: { id: accessId },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!existingAccess) {
+      return {
+        success: false,
+        message: "System access not found.",
+        data: null,
+        errors: new Error("System access not found"),
+      };
+    }
+
+    if (existingAccess.userId === session.data.userId) {
+      return {
+        success: false,
+        message: "Cannot delete your own system access.",
+        data: null,
+        errors: new Error("Self-deletion not allowed"),
+      };
+    }
+
+    const deletedAccess = await prisma.systemAccess.delete({
+      where: { id: accessId },
+      include: {
+        user: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            phone: true,
+            role: true,
+            avatar: true,
+          },
+        },
+        assigner: {
+          select: {
+            id: true,
+            email: true,
+            name: true,
+            phone: true,
+            role: true,
+            avatar: true,
+          },
+        },
+      },
+    });
+
+    if (!deletedAccess) {
+      return {
+        success: false,
+        message: "Failed to delete system access.",
+        data: null,
+        errors: new Error("System access deletion failed"),
+      };
+    }
+
+    return {
+      success: true,
+      message: "System access deleted successfully.",
+      data: deletedAccess,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Error deleting system access:", error);
+    return {
+      success: false,
+      message: "Failed to delete system access.",
+      data: null,
+      errors: error,
+    };
+  }
+}

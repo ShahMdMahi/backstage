@@ -31,6 +31,10 @@ export default function Loading() {
               View system access permissions and details
             </p>
           </div>
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-9 w-28" />
+            <Skeleton className="h-9 w-20" />
+          </div>
         </div>
 
         {/* Access Info Card Skeleton */}
