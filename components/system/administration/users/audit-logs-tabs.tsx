@@ -178,7 +178,7 @@ export function AuditLogsTabs({ auditLogs }: AuditLogsTabsProps) {
                           <div className="flex items-center gap-1.5">
                             <FingerprintIcon className="size-3" />
                             <span className="font-mono">
-                              {deviceInfo.deviceFingerprint.slice(0, 8)}...
+                              {deviceInfo.deviceFingerprint}
                             </span>
                           </div>
                         )}

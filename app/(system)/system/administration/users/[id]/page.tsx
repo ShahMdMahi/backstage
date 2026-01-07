@@ -398,23 +398,14 @@ export default async function UserViewPage({ params }: PageProps) {
                   )}
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm text-muted-foreground">Users Access</p>
+                  <p className="text-sm text-muted-foreground">Assigned By</p>
                   <div className="flex flex-wrap gap-1">
-                    {user.systemAccess.usersAccessLevel.length > 0 ? (
-                      user.systemAccess.usersAccessLevel.map((level) => (
-                        <Badge
-                          key={level}
-                          variant="outline"
-                          className="text-xs"
-                        >
-                          {level}
-                        </Badge>
-                      ))
-                    ) : (
-                      <span className="text-sm text-muted-foreground">
-                        None
-                      </span>
-                    )}
+                    <Link
+                      href={`/system/administration/users/${user.systemAccess.assignerId}`}
+                      className="text-sm text-primary hover:underline"
+                    >
+                      {user.systemAccess.assignerId}
+                    </Link>
                   </div>
                 </div>
               </div>
