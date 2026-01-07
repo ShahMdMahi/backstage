@@ -7,6 +7,26 @@ import {
   AUDIT_LOG_ENTITY,
   ROLE,
   WORKSPACE_ACCOUNT_ACCESS_ROLE,
+  USER_SYSTEM_ACCESS_LEVEL,
+  WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL,
+  REPORTING_SYSTEM_ACCESS_LEVEL,
+  RELEASE_SYSTEM_ACCESS_LEVEL,
+  TRACK_SYSTEM_ACCESS_LEVEL,
+  VIDEO_SYSTEM_ACCESS_LEVEL,
+  RINGTONE_SYSTEM_ACCESS_LEVEL,
+  ARTIST_SYSTEM_ACCESS_LEVEL,
+  PERFORMER_SYSTEM_ACCESS_LEVEL,
+  PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL,
+  WRITER_SYSTEM_ACCESS_LEVEL,
+  PUBLISHER_SYSTEM_ACCESS_LEVEL,
+  LABEL_SYSTEM_ACCESS_LEVEL,
+  TRANSACTION_SYSTEM_ACCESS_LEVEL,
+  WITHDRAW_SYSTEM_ACCESS_LEVEL,
+  CONSUMPTION_SYSTEM_ACCESS_LEVEL,
+  ENGAGEMENT_SYSTEM_ACCESS_LEVEL,
+  REVENUE_SYSTEM_ACCESS_LEVEL,
+  GEO_SYSTEM_ACCESS_LEVEL,
+  RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL,
 } from "@/lib/prisma/enums";
 import {
   Session,
@@ -913,34 +933,70 @@ export async function proxy(request: NextRequest) {
 
   // Override permissions for systemUser based on their systemAccess record
   if (role === systemUser && systemAccess) {
-    haveSystemUsersAccess = systemAccess.usersAccessLevel.length !== 0;
+    haveSystemUsersAccess = systemAccess.usersAccessLevel.includes(
+      USER_SYSTEM_ACCESS_LEVEL.VIEW
+    );
     haveSystemWorkspacesAccess =
-      systemAccess.workspaceAccountsAccessLevel.length !== 0;
-    haveSystemReportingAccess = systemAccess.reportingAccessLevel.length !== 0;
-    haveSystemReleasesAccess = systemAccess.releasesAccessLevel.length !== 0;
-    haveSystemTracksAccess = systemAccess.tracksAccessLevel.length !== 0;
-    haveSystemVideosAccess = systemAccess.videosAccessLevel.length !== 0;
-    haveSystemRingtonesAccess = systemAccess.ringtonesAccessLevel.length !== 0;
-    haveSystemArtistsAccess = systemAccess.artistsAccessLevel.length !== 0;
-    haveSystemPerformersAccess =
-      systemAccess.performersAccessLevel.length !== 0;
+      systemAccess.workspaceAccountsAccessLevel.includes(
+        WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL.VIEW
+      );
+    haveSystemReportingAccess = systemAccess.reportingAccessLevel.includes(
+      REPORTING_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemReleasesAccess = systemAccess.releasesAccessLevel.includes(
+      RELEASE_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemTracksAccess = systemAccess.tracksAccessLevel.includes(
+      TRACK_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemVideosAccess = systemAccess.videosAccessLevel.includes(
+      VIDEO_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemRingtonesAccess = systemAccess.ringtonesAccessLevel.includes(
+      RINGTONE_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemArtistsAccess = systemAccess.artistsAccessLevel.includes(
+      ARTIST_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemPerformersAccess = systemAccess.performersAccessLevel.includes(
+      PERFORMER_SYSTEM_ACCESS_LEVEL.VIEW
+    );
     haveSystemProducersAndEngineersAccess =
-      systemAccess.producersAndEngineersAccessLevel.length !== 0;
-    haveSystemWritersAccess = systemAccess.writersAccessLevel.length !== 0;
-    haveSystemPublishersAccess =
-      systemAccess.publishersAccessLevel.length !== 0;
-    haveSystemLabelsAccess = systemAccess.labelsAccessLevel.length !== 0;
+      systemAccess.producersAndEngineersAccessLevel.includes(
+        PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL.VIEW
+      );
+    haveSystemWritersAccess = systemAccess.writersAccessLevel.includes(
+      WRITER_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemPublishersAccess = systemAccess.publishersAccessLevel.includes(
+      PUBLISHER_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemLabelsAccess = systemAccess.labelsAccessLevel.includes(
+      LABEL_SYSTEM_ACCESS_LEVEL.VIEW
+    );
     haveSystemTransactionsAccess =
-      systemAccess.transactionsAccessLevel.length !== 0;
-    haveSystemWithdrawsAccess = systemAccess.withdrawsAccessLevel.length !== 0;
-    haveSystemConsumptionAccess =
-      systemAccess.consumptionAccessLevel.length !== 0;
-    haveSystemEngagementAccess =
-      systemAccess.engagementAccessLevel.length !== 0;
-    haveSystemRevenueAccess = systemAccess.revenueAccessLevel.length !== 0;
-    haveSystemGeoAccess = systemAccess.geoAccessLevel.length !== 0;
+      systemAccess.transactionsAccessLevel.includes(
+        TRANSACTION_SYSTEM_ACCESS_LEVEL.VIEW
+      );
+    haveSystemWithdrawsAccess = systemAccess.withdrawsAccessLevel.includes(
+      WITHDRAW_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemConsumptionAccess = systemAccess.consumptionAccessLevel.includes(
+      CONSUMPTION_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemEngagementAccess = systemAccess.engagementAccessLevel.includes(
+      ENGAGEMENT_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemRevenueAccess = systemAccess.revenueAccessLevel.includes(
+      REVENUE_SYSTEM_ACCESS_LEVEL.VIEW
+    );
+    haveSystemGeoAccess = systemAccess.geoAccessLevel.includes(
+      GEO_SYSTEM_ACCESS_LEVEL.VIEW
+    );
     haveSystemRightsManagementAccess =
-      systemAccess.rightsManagementAccessLevel.length !== 0;
+      systemAccess.rightsManagementAccessLevel.includes(
+        RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL.VIEW
+      );
   }
 
   // Calculated composite permissions for system access

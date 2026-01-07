@@ -204,10 +204,10 @@ export type WriterOrderByWithRelationInput = {
 export type WriterWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    workspaceAccountId?: string;
     AND?: Prisma.WriterWhereInput | Prisma.WriterWhereInput[];
     OR?: Prisma.WriterWhereInput[];
     NOT?: Prisma.WriterWhereInput | Prisma.WriterWhereInput[];
+    workspaceAccountId?: Prisma.StringFilter<"Writer"> | string;
     metadata?: Prisma.JsonNullableFilter<"Writer">;
     createdAt?: Prisma.DateTimeFilter<"Writer"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Writer"> | Date | string;
@@ -218,7 +218,7 @@ export type WriterWhereUniqueInput = Prisma.AtLeast<
     sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
-  "id" | "workspaceAccountId"
+  "id"
 >;
 
 export type WriterOrderByWithAggregationInput = {

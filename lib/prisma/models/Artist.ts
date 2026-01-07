@@ -218,10 +218,10 @@ export type ArtistOrderByWithRelationInput = {
 export type ArtistWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    workspaceAccountId?: string;
     AND?: Prisma.ArtistWhereInput | Prisma.ArtistWhereInput[];
     OR?: Prisma.ArtistWhereInput[];
     NOT?: Prisma.ArtistWhereInput | Prisma.ArtistWhereInput[];
+    workspaceAccountId?: Prisma.StringFilter<"Artist"> | string;
     metadata?: Prisma.JsonNullableFilter<"Artist">;
     status?: Prisma.EnumARTIST_STATUSFilter<"Artist"> | $Enums.ARTIST_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Artist"> | Date | string;
@@ -237,7 +237,7 @@ export type ArtistWhereUniqueInput = Prisma.AtLeast<
     sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
-  "id" | "workspaceAccountId"
+  "id"
 >;
 
 export type ArtistOrderByWithAggregationInput = {

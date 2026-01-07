@@ -142,7 +142,7 @@ enum TRANSACTION_SYSTEM_ACCESS_LEVEL {
   DELETE
 }
 
-enum WITHDRAWS_SYSTEM_ACCESS_LEVEL {
+enum WITHDRAW_SYSTEM_ACCESS_LEVEL {
   VIEW
   APPROVE
   STATUS
@@ -313,7 +313,7 @@ enum RELEASE_STATUS {
   REJECTED
   SUSPENDED
   TAKENDOWN
-  RELEASED
+  DISTRIBUTED
 }
 
 enum VIDEO_STATUS {
@@ -323,7 +323,7 @@ enum VIDEO_STATUS {
   REJECTED
   SUSPENDED
   TAKENDOWN
-  RELEASED
+  DISTRIBUTED
 }
 
 enum RINGTONE_STATUS {
@@ -333,7 +333,7 @@ enum RINGTONE_STATUS {
   REJECTED
   SUSPENDED
   TAKENDOWN
-  RELEASED
+  DISTRIBUTED
 }
 
 enum ARTIST_STATUS {
@@ -559,7 +559,7 @@ model SystemAccess {
   publishersAccessLevel            PUBLISHER_SYSTEM_ACCESS_LEVEL[]             @default([])
   labelsAccessLevel                LABEL_SYSTEM_ACCESS_LEVEL[]                 @default([])
   transactionsAccessLevel          TRANSACTION_SYSTEM_ACCESS_LEVEL[]           @default([])
-  withdrawsAccessLevel             WITHDRAWS_SYSTEM_ACCESS_LEVEL[]             @default([])
+  withdrawsAccessLevel             WITHDRAW_SYSTEM_ACCESS_LEVEL[]              @default([])
   consumptionAccessLevel           CONSUMPTION_SYSTEM_ACCESS_LEVEL[]           @default([])
   engagementAccessLevel            ENGAGEMENT_SYSTEM_ACCESS_LEVEL[]            @default([])
   revenueAccessLevel               REVENUE_SYSTEM_ACCESS_LEVEL[]               @default([])
@@ -735,7 +735,7 @@ model Artist {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String @unique
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -761,7 +761,7 @@ model Performer {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String @unique
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -786,7 +786,7 @@ model ProducerAndEngineer {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String @unique
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -839,7 +839,7 @@ model Writer {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String @unique
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -863,7 +863,7 @@ model Publisher {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String @unique
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -888,7 +888,7 @@ model Label {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String @unique
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -921,7 +921,7 @@ model Transaction {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String?
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -930,7 +930,7 @@ model Transaction {
   status TRANSACTION_STATUS @default(PROCESSING)
 
   // Relations
-  workspaceAccount               WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
 
   // Timestamps
@@ -945,7 +945,7 @@ model Withdrawal {
   id String @id @default(cuid())
 
   // Foreign Keys
-  workspaceAccountId String?
+  workspaceAccountId String
 
   // Fields
   metadata Json? @db.JsonB
@@ -954,7 +954,7 @@ model Withdrawal {
   status WITHDRAWAL_STATUS @default(PENDING)
 
   // Relations
-  workspaceAccount               WorkspaceAccount?              @relation(fields: [workspaceAccountId], references: [id], onDelete: SetNull)
+  workspaceAccount               WorkspaceAccount               @relation(fields: [workspaceAccountId], references: [id], onDelete: Cascade)
   sharedWorkspaceAccountAccesses SharedWorkspaceAccountAccess[]
 
   // Timestamps

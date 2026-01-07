@@ -1282,15 +1282,13 @@ export type WorkspaceAccountCreateNestedOneWithoutTransactionsInput = {
   connect?: Prisma.WorkspaceAccountWhereUniqueInput;
 };
 
-export type WorkspaceAccountUpdateOneWithoutTransactionsNestedInput = {
+export type WorkspaceAccountUpdateOneRequiredWithoutTransactionsNestedInput = {
   create?: Prisma.XOR<
     Prisma.WorkspaceAccountCreateWithoutTransactionsInput,
     Prisma.WorkspaceAccountUncheckedCreateWithoutTransactionsInput
   >;
   connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutTransactionsInput;
   upsert?: Prisma.WorkspaceAccountUpsertWithoutTransactionsInput;
-  disconnect?: Prisma.WorkspaceAccountWhereInput | boolean;
-  delete?: Prisma.WorkspaceAccountWhereInput | boolean;
   connect?: Prisma.WorkspaceAccountWhereUniqueInput;
   update?: Prisma.XOR<
     Prisma.XOR<
@@ -1310,15 +1308,13 @@ export type WorkspaceAccountCreateNestedOneWithoutWithdrawalsInput = {
   connect?: Prisma.WorkspaceAccountWhereUniqueInput;
 };
 
-export type WorkspaceAccountUpdateOneWithoutWithdrawalsNestedInput = {
+export type WorkspaceAccountUpdateOneRequiredWithoutWithdrawalsNestedInput = {
   create?: Prisma.XOR<
     Prisma.WorkspaceAccountCreateWithoutWithdrawalsInput,
     Prisma.WorkspaceAccountUncheckedCreateWithoutWithdrawalsInput
   >;
   connectOrCreate?: Prisma.WorkspaceAccountCreateOrConnectWithoutWithdrawalsInput;
   upsert?: Prisma.WorkspaceAccountUpsertWithoutWithdrawalsInput;
-  disconnect?: Prisma.WorkspaceAccountWhereInput | boolean;
-  delete?: Prisma.WorkspaceAccountWhereInput | boolean;
   connect?: Prisma.WorkspaceAccountWhereUniqueInput;
   update?: Prisma.XOR<
     Prisma.XOR<

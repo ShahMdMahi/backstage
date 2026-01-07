@@ -228,10 +228,10 @@ export type LabelOrderByWithRelationInput = {
 export type LabelWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    workspaceAccountId?: string;
     AND?: Prisma.LabelWhereInput | Prisma.LabelWhereInput[];
     OR?: Prisma.LabelWhereInput[];
     NOT?: Prisma.LabelWhereInput | Prisma.LabelWhereInput[];
+    workspaceAccountId?: Prisma.StringFilter<"Label"> | string;
     metadata?: Prisma.JsonNullableFilter<"Label">;
     status?: Prisma.EnumLABEL_STATUSFilter<"Label"> | $Enums.LABEL_STATUS;
     createdAt?: Prisma.DateTimeFilter<"Label"> | Date | string;
@@ -251,7 +251,7 @@ export type LabelWhereUniqueInput = Prisma.AtLeast<
     writers?: Prisma.WriterListRelationFilter;
     publishers?: Prisma.PublisherListRelationFilter;
   },
-  "id" | "workspaceAccountId"
+  "id"
 >;
 
 export type LabelOrderByWithAggregationInput = {

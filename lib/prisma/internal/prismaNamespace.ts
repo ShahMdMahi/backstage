@@ -2662,16 +2662,16 @@ export type EnumTRANSACTION_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "TRANSACTION_SYSTEM_ACCESS_LEVEL">;
 
 /**
- * Reference to a field of type 'WITHDRAWS_SYSTEM_ACCESS_LEVEL[]'
+ * Reference to a field of type 'WITHDRAW_SYSTEM_ACCESS_LEVEL[]'
  */
-export type ListEnumWITHDRAWS_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WITHDRAWS_SYSTEM_ACCESS_LEVEL[]">;
+export type ListEnumWITHDRAW_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAW_SYSTEM_ACCESS_LEVEL[]">;
 
 /**
- * Reference to a field of type 'WITHDRAWS_SYSTEM_ACCESS_LEVEL'
+ * Reference to a field of type 'WITHDRAW_SYSTEM_ACCESS_LEVEL'
  */
-export type EnumWITHDRAWS_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
-  FieldRefInputType<$PrismaModel, "WITHDRAWS_SYSTEM_ACCESS_LEVEL">;
+export type EnumWITHDRAW_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "WITHDRAW_SYSTEM_ACCESS_LEVEL">;
 
 /**
  * Reference to a field of type 'CONSUMPTION_SYSTEM_ACCESS_LEVEL[]'

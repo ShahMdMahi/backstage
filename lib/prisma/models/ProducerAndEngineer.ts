@@ -221,7 +221,6 @@ export type ProducerAndEngineerOrderByWithRelationInput = {
 export type ProducerAndEngineerWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    workspaceAccountId?: string;
     AND?:
       | Prisma.ProducerAndEngineerWhereInput
       | Prisma.ProducerAndEngineerWhereInput[];
@@ -229,6 +228,7 @@ export type ProducerAndEngineerWhereUniqueInput = Prisma.AtLeast<
     NOT?:
       | Prisma.ProducerAndEngineerWhereInput
       | Prisma.ProducerAndEngineerWhereInput[];
+    workspaceAccountId?: Prisma.StringFilter<"ProducerAndEngineer"> | string;
     metadata?: Prisma.JsonNullableFilter<"ProducerAndEngineer">;
     createdAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"ProducerAndEngineer"> | Date | string;
@@ -243,7 +243,7 @@ export type ProducerAndEngineerWhereUniqueInput = Prisma.AtLeast<
     sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
-  "id" | "workspaceAccountId"
+  "id"
 >;
 
 export type ProducerAndEngineerOrderByWithAggregationInput = {

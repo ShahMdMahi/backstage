@@ -157,7 +157,7 @@ export type TransactionGroupByArgs<
 
 export type TransactionGroupByOutputType = {
   id: string;
-  workspaceAccountId: string | null;
+  workspaceAccountId: string;
   metadata: runtime.JsonValue | null;
   status: $Enums.TRANSACTION_STATUS;
   createdAt: Date;
@@ -185,10 +185,7 @@ export type TransactionWhereInput = {
   OR?: Prisma.TransactionWhereInput[];
   NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[];
   id?: Prisma.StringFilter<"Transaction"> | string;
-  workspaceAccountId?:
-    | Prisma.StringNullableFilter<"Transaction">
-    | string
-    | null;
+  workspaceAccountId?: Prisma.StringFilter<"Transaction"> | string;
   metadata?: Prisma.JsonNullableFilter<"Transaction">;
   status?:
     | Prisma.EnumTRANSACTION_STATUSFilter<"Transaction">
@@ -196,15 +193,15 @@ export type TransactionWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
   workspaceAccount?: Prisma.XOR<
-    Prisma.WorkspaceAccountNullableScalarRelationFilter,
+    Prisma.WorkspaceAccountScalarRelationFilter,
     Prisma.WorkspaceAccountWhereInput
-  > | null;
+  >;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
 };
 
 export type TransactionOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
-  workspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -219,10 +216,7 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<
     AND?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[];
     OR?: Prisma.TransactionWhereInput[];
     NOT?: Prisma.TransactionWhereInput | Prisma.TransactionWhereInput[];
-    workspaceAccountId?:
-      | Prisma.StringNullableFilter<"Transaction">
-      | string
-      | null;
+    workspaceAccountId?: Prisma.StringFilter<"Transaction"> | string;
     metadata?: Prisma.JsonNullableFilter<"Transaction">;
     status?:
       | Prisma.EnumTRANSACTION_STATUSFilter<"Transaction">
@@ -230,9 +224,9 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Transaction"> | Date | string;
     workspaceAccount?: Prisma.XOR<
-      Prisma.WorkspaceAccountNullableScalarRelationFilter,
+      Prisma.WorkspaceAccountScalarRelationFilter,
       Prisma.WorkspaceAccountWhereInput
-    > | null;
+    >;
     sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
   },
   "id"
@@ -240,7 +234,7 @@ export type TransactionWhereUniqueInput = Prisma.AtLeast<
 
 export type TransactionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
-  workspaceAccountId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  workspaceAccountId?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   status?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
@@ -260,9 +254,8 @@ export type TransactionScalarWhereWithAggregatesInput = {
     | Prisma.TransactionScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<"Transaction"> | string;
   workspaceAccountId?:
-    | Prisma.StringNullableWithAggregatesFilter<"Transaction">
-    | string
-    | null;
+    | Prisma.StringWithAggregatesFilter<"Transaction">
+    | string;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Transaction">;
   status?:
     | Prisma.EnumTRANSACTION_STATUSWithAggregatesFilter<"Transaction">
@@ -283,13 +276,13 @@ export type TransactionCreateInput = {
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  workspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessCreateNestedManyWithoutTransactionsInput;
 };
 
 export type TransactionUncheckedCreateInput = {
   id?: string;
-  workspaceAccountId?: string | null;
+  workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
@@ -305,16 +298,13 @@ export type TransactionUpdateInput = {
     | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutTransactionsNestedInput;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTransactionsNestedInput;
   sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessUpdateManyWithoutTransactionsNestedInput;
 };
 
 export type TransactionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
     | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
@@ -326,7 +316,7 @@ export type TransactionUncheckedUpdateInput = {
 
 export type TransactionCreateManyInput = {
   id?: string;
-  workspaceAccountId?: string | null;
+  workspaceAccountId: string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
@@ -345,10 +335,7 @@ export type TransactionUpdateManyMutationInput = {
 
 export type TransactionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
-  workspaceAccountId?:
-    | Prisma.NullableStringFieldUpdateOperationsInput
-    | string
-    | null;
+  workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   status?:
     | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
@@ -686,10 +673,7 @@ export type TransactionScalarWhereInput = {
     | Prisma.TransactionScalarWhereInput
     | Prisma.TransactionScalarWhereInput[];
   id?: Prisma.StringFilter<"Transaction"> | string;
-  workspaceAccountId?:
-    | Prisma.StringNullableFilter<"Transaction">
-    | string
-    | null;
+  workspaceAccountId?: Prisma.StringFilter<"Transaction"> | string;
   metadata?: Prisma.JsonNullableFilter<"Transaction">;
   status?:
     | Prisma.EnumTRANSACTION_STATUSFilter<"Transaction">
@@ -704,13 +688,13 @@ export type TransactionCreateWithoutSharedWorkspaceAccountAccessesInput = {
   status?: $Enums.TRANSACTION_STATUS;
   createdAt?: Date | string;
   updatedAt?: Date | string;
-  workspaceAccount?: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
+  workspaceAccount: Prisma.WorkspaceAccountCreateNestedOneWithoutTransactionsInput;
 };
 
 export type TransactionUncheckedCreateWithoutSharedWorkspaceAccountAccessesInput =
   {
     id?: string;
-    workspaceAccountId?: string | null;
+    workspaceAccountId: string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     status?: $Enums.TRANSACTION_STATUS;
     createdAt?: Date | string;
@@ -805,16 +789,13 @@ export type TransactionUpdateWithoutSharedWorkspaceAccountAccessesInput = {
     | $Enums.TRANSACTION_STATUS;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneWithoutTransactionsNestedInput;
+  workspaceAccount?: Prisma.WorkspaceAccountUpdateOneRequiredWithoutTransactionsNestedInput;
 };
 
 export type TransactionUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    workspaceAccountId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
+    workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     status?:
       | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
@@ -826,10 +807,7 @@ export type TransactionUncheckedUpdateWithoutSharedWorkspaceAccountAccessesInput
 export type TransactionUncheckedUpdateManyWithoutSharedWorkspaceAccountAccessesInput =
   {
     id?: Prisma.StringFieldUpdateOperationsInput | string;
-    workspaceAccountId?:
-      | Prisma.NullableStringFieldUpdateOperationsInput
-      | string
-      | null;
+    workspaceAccountId?: Prisma.StringFieldUpdateOperationsInput | string;
     metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
     status?:
       | Prisma.EnumTRANSACTION_STATUSFieldUpdateOperationsInput
@@ -889,9 +867,7 @@ export type TransactionSelect<
     status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    workspaceAccount?:
-      | boolean
-      | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+    workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
     sharedWorkspaceAccountAccesses?:
       | boolean
       | Prisma.Transaction$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
@@ -911,9 +887,7 @@ export type TransactionSelectCreateManyAndReturn<
     status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    workspaceAccount?:
-      | boolean
-      | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+    workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["transaction"]
 >;
@@ -929,9 +903,7 @@ export type TransactionSelectUpdateManyAndReturn<
     status?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
-    workspaceAccount?:
-      | boolean
-      | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+    workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["transaction"]
 >;
@@ -961,7 +933,7 @@ export type TransactionInclude<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+  workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
   sharedWorkspaceAccountAccesses?:
     | boolean
     | Prisma.Transaction$sharedWorkspaceAccountAccessesArgs<ExtArgs>;
@@ -971,13 +943,13 @@ export type TransactionIncludeCreateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+  workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
 };
 export type TransactionIncludeUpdateManyAndReturn<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = {
-  workspaceAccount?: boolean | Prisma.Transaction$workspaceAccountArgs<ExtArgs>;
+  workspaceAccount?: boolean | Prisma.WorkspaceAccountDefaultArgs<ExtArgs>;
 };
 
 export type $TransactionPayload<
@@ -986,13 +958,13 @@ export type $TransactionPayload<
 > = {
   name: "Transaction";
   objects: {
-    workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs> | null;
+    workspaceAccount: Prisma.$WorkspaceAccountPayload<ExtArgs>;
     sharedWorkspaceAccountAccesses: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>[];
   };
   scalars: runtime.Types.Extensions.GetPayloadResult<
     {
       id: string;
-      workspaceAccountId: string | null;
+      workspaceAccountId: string;
       metadata: runtime.JsonValue | null;
       status: $Enums.TRANSACTION_STATUS;
       createdAt: Date;
@@ -1550,18 +1522,17 @@ export interface Prisma__TransactionClient<
   GlobalOmitOptions = {},
 > extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise";
-  workspaceAccount<
-    T extends Prisma.Transaction$workspaceAccountArgs<ExtArgs> = {},
-  >(
-    args?: Prisma.Subset<T, Prisma.Transaction$workspaceAccountArgs<ExtArgs>>
+  workspaceAccount<T extends Prisma.WorkspaceAccountDefaultArgs<ExtArgs> = {}>(
+    args?: Prisma.Subset<T, Prisma.WorkspaceAccountDefaultArgs<ExtArgs>>
   ): Prisma.Prisma__WorkspaceAccountClient<
-    runtime.Types.Result.GetResult<
-      Prisma.$WorkspaceAccountPayload<ExtArgs>,
-      T,
-      "findUniqueOrThrow",
-      GlobalOmitOptions
-    > | null,
-    null,
+    | runtime.Types.Result.GetResult<
+        Prisma.$WorkspaceAccountPayload<ExtArgs>,
+        T,
+        "findUniqueOrThrow",
+        GlobalOmitOptions
+      >
+    | Null,
+    Null,
     ExtArgs,
     GlobalOmitOptions
   >;
@@ -2094,28 +2065,6 @@ export type TransactionDeleteManyArgs<
    * Limit how many Transactions to delete.
    */
   limit?: number;
-};
-
-/**
- * Transaction.workspaceAccount
- */
-export type Transaction$workspaceAccountArgs<
-  ExtArgs extends runtime.Types.Extensions.InternalArgs =
-    runtime.Types.Extensions.DefaultArgs,
-> = {
-  /**
-   * Select specific fields to fetch from the WorkspaceAccount
-   */
-  select?: Prisma.WorkspaceAccountSelect<ExtArgs> | null;
-  /**
-   * Omit specific fields from the WorkspaceAccount
-   */
-  omit?: Prisma.WorkspaceAccountOmit<ExtArgs> | null;
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.WorkspaceAccountInclude<ExtArgs> | null;
-  where?: Prisma.WorkspaceAccountWhereInput;
 };
 
 /**

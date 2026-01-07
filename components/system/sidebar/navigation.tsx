@@ -52,7 +52,29 @@ import {
 } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ROLE } from "@/lib/prisma/enums";
+import {
+  ROLE,
+  USER_SYSTEM_ACCESS_LEVEL,
+  WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL,
+  REPORTING_SYSTEM_ACCESS_LEVEL,
+  RELEASE_SYSTEM_ACCESS_LEVEL,
+  TRACK_SYSTEM_ACCESS_LEVEL,
+  VIDEO_SYSTEM_ACCESS_LEVEL,
+  RINGTONE_SYSTEM_ACCESS_LEVEL,
+  ARTIST_SYSTEM_ACCESS_LEVEL,
+  PERFORMER_SYSTEM_ACCESS_LEVEL,
+  PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL,
+  WRITER_SYSTEM_ACCESS_LEVEL,
+  PUBLISHER_SYSTEM_ACCESS_LEVEL,
+  LABEL_SYSTEM_ACCESS_LEVEL,
+  TRANSACTION_SYSTEM_ACCESS_LEVEL,
+  WITHDRAW_SYSTEM_ACCESS_LEVEL,
+  CONSUMPTION_SYSTEM_ACCESS_LEVEL,
+  ENGAGEMENT_SYSTEM_ACCESS_LEVEL,
+  REVENUE_SYSTEM_ACCESS_LEVEL,
+  GEO_SYSTEM_ACCESS_LEVEL,
+  RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL,
+} from "@/lib/prisma/enums";
 import { Session, SystemAccess, User } from "@/lib/prisma/browser";
 
 type NavigationItem = {
@@ -97,15 +119,22 @@ export function Navigation({
   const haveUsersAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.usersAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.usersAccessLevel.includes(USER_SYSTEM_ACCESS_LEVEL.VIEW));
   const haveWorkspacesAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.workspaceAccountsAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.workspaceAccountsAccessLevel.includes(
+        WORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveReportingAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.reportingAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.reportingAccessLevel.includes(
+        REPORTING_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveAdministrationAccess =
     haveAccessesAccess ||
     haveUsersAccess ||
@@ -115,19 +144,27 @@ export function Navigation({
   const haveReleasesAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.releasesAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.releasesAccessLevel.includes(
+        RELEASE_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveTracksAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.tracksAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.tracksAccessLevel.includes(TRACK_SYSTEM_ACCESS_LEVEL.VIEW));
   const haveVideosAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.videosAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.videosAccessLevel.includes(VIDEO_SYSTEM_ACCESS_LEVEL.VIEW));
   const haveRingtonesAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.ringtonesAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.ringtonesAccessLevel.includes(
+        RINGTONE_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveAssetsAccess =
     haveReleasesAccess ||
     haveTracksAccess ||
@@ -136,27 +173,43 @@ export function Navigation({
   const haveArtistsAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.artistsAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.artistsAccessLevel.includes(
+        ARTIST_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const havePerformersAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.performersAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.performersAccessLevel.includes(
+        PERFORMER_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveProducersAndEngineersAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.producersAndEngineersAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.producersAndEngineersAccessLevel.includes(
+        PRODUCER_AND_ENGINEER_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveWritersAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.writersAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.writersAccessLevel.includes(
+        WRITER_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const havePublishersAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.publishersAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.publishersAccessLevel.includes(
+        PUBLISHER_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveLabelsAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.labelsAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.labelsAccessLevel.includes(LABEL_SYSTEM_ACCESS_LEVEL.VIEW));
   const haveContributorsAccess =
     haveArtistsAccess ||
     havePerformersAccess ||
@@ -169,29 +222,45 @@ export function Navigation({
   const haveTransactionsAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.transactionsAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.transactionsAccessLevel.includes(
+        TRANSACTION_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveWithdrawsAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.withdrawsAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.withdrawsAccessLevel.includes(
+        WITHDRAW_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveRoyaltiesAccess = haveTransactionsAccess || haveWithdrawsAccess;
 
   const haveConsumptionAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.consumptionAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.consumptionAccessLevel.includes(
+        CONSUMPTION_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveEngagementAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.engagementAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.engagementAccessLevel.includes(
+        ENGAGEMENT_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveRevenueAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.revenueAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.revenueAccessLevel.includes(
+        REVENUE_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveGeoAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.geoAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.geoAccessLevel.includes(GEO_SYSTEM_ACCESS_LEVEL.VIEW));
   const haveAnalyticsAccess =
     haveConsumptionAccess ||
     haveEngagementAccess ||
@@ -202,7 +271,10 @@ export function Navigation({
   const haveRightsManagementAccess =
     role === owner ||
     role === admin ||
-    (accessValid && systemAccess.rightsManagementAccessLevel.length > 0);
+    (accessValid &&
+      systemAccess.rightsManagementAccessLevel.includes(
+        RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL.VIEW
+      ));
   const haveServicesAccess = haveRightsManagementAccess;
 
   const navigation = [

@@ -226,7 +226,7 @@ export type SystemAccessGroupByOutputType = {
   publishersAccessLevel: $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
   labelsAccessLevel: $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
   transactionsAccessLevel: $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
-  withdrawsAccessLevel: $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+  withdrawsAccessLevel: $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel: $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
   engagementAccessLevel: $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
   revenueAccessLevel: $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
@@ -276,7 +276,7 @@ export type SystemAccessWhereInput = {
   publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAW_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
@@ -350,7 +350,7 @@ export type SystemAccessWhereUniqueInput = Prisma.AtLeast<
     publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-    withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+    withdrawsAccessLevel?: Prisma.EnumWITHDRAW_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
@@ -433,7 +433,7 @@ export type SystemAccessScalarWhereWithAggregatesInput = {
   publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAW_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
@@ -505,7 +505,7 @@ export type SystemAccessCreateInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -578,7 +578,7 @@ export type SystemAccessUncheckedCreateInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -647,7 +647,7 @@ export type SystemAccessUpdateInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -724,7 +724,7 @@ export type SystemAccessUncheckedUpdateInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -799,7 +799,7 @@ export type SystemAccessCreateManyInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -868,7 +868,7 @@ export type SystemAccessUpdateManyMutationInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -943,7 +943,7 @@ export type SystemAccessUncheckedUpdateManyInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -1265,23 +1265,23 @@ export type EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<
   isEmpty?: boolean;
 };
 
-export type EnumWITHDRAWS_SYSTEM_ACCESS_LEVELNullableListFilter<
+export type EnumWITHDRAW_SYSTEM_ACCESS_LEVELNullableListFilter<
   $PrismaModel = never,
 > = {
   equals?:
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[]
-    | Prisma.ListEnumWITHDRAWS_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAW_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   has?:
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL
-    | Prisma.EnumWITHDRAWS_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL
+    | Prisma.EnumWITHDRAW_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>
     | null;
   hasEvery?:
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[]
-    | Prisma.ListEnumWITHDRAWS_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAW_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   hasSome?:
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[]
-    | Prisma.ListEnumWITHDRAWS_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[]
+    | Prisma.ListEnumWITHDRAW_SYSTEM_ACCESS_LEVELFieldRefInput<$PrismaModel>;
   isEmpty?: boolean;
 };
 
@@ -1659,7 +1659,7 @@ export type SystemAccessCreatetransactionsAccessLevelInput = {
 };
 
 export type SystemAccessCreatewithdrawsAccessLevelInput = {
-  set: $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+  set: $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessCreateconsumptionAccessLevelInput = {
@@ -1773,10 +1773,10 @@ export type SystemAccessUpdatetransactionsAccessLevelInput = {
 };
 
 export type SystemAccessUpdatewithdrawsAccessLevelInput = {
-  set?: $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+  set?: $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   push?:
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
 };
 
 export type SystemAccessUpdateconsumptionAccessLevelInput = {
@@ -1858,7 +1858,7 @@ export type SystemAccessCreateWithoutUserInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -1929,7 +1929,7 @@ export type SystemAccessUncheckedCreateWithoutUserInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2006,7 +2006,7 @@ export type SystemAccessCreateWithoutAssignerInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2077,7 +2077,7 @@ export type SystemAccessUncheckedCreateWithoutAssignerInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2181,7 +2181,7 @@ export type SystemAccessUpdateWithoutUserInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2256,7 +2256,7 @@ export type SystemAccessUncheckedUpdateWithoutUserInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2336,7 +2336,7 @@ export type SystemAccessScalarWhereInput = {
   publishersAccessLevel?: Prisma.EnumPUBLISHER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   labelsAccessLevel?: Prisma.EnumLABEL_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   transactionsAccessLevel?: Prisma.EnumTRANSACTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
-  withdrawsAccessLevel?: Prisma.EnumWITHDRAWS_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
+  withdrawsAccessLevel?: Prisma.EnumWITHDRAW_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   consumptionAccessLevel?: Prisma.EnumCONSUMPTION_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   engagementAccessLevel?: Prisma.EnumENGAGEMENT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
   revenueAccessLevel?: Prisma.EnumREVENUE_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
@@ -2400,7 +2400,7 @@ export type SystemAccessCreateManyAssignerInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessCreatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessCreateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2469,7 +2469,7 @@ export type SystemAccessUpdateWithoutAssignerInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2544,7 +2544,7 @@ export type SystemAccessUncheckedUpdateWithoutAssignerInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2618,7 +2618,7 @@ export type SystemAccessUncheckedUpdateManyWithoutAssignerInput = {
     | $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
   withdrawsAccessLevel?:
     | Prisma.SystemAccessUpdatewithdrawsAccessLevelInput
-    | $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+    | $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
   consumptionAccessLevel?:
     | Prisma.SystemAccessUpdateconsumptionAccessLevelInput
     | $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
@@ -2877,7 +2877,7 @@ export type $SystemAccessPayload<
       publishersAccessLevel: $Enums.PUBLISHER_SYSTEM_ACCESS_LEVEL[];
       labelsAccessLevel: $Enums.LABEL_SYSTEM_ACCESS_LEVEL[];
       transactionsAccessLevel: $Enums.TRANSACTION_SYSTEM_ACCESS_LEVEL[];
-      withdrawsAccessLevel: $Enums.WITHDRAWS_SYSTEM_ACCESS_LEVEL[];
+      withdrawsAccessLevel: $Enums.WITHDRAW_SYSTEM_ACCESS_LEVEL[];
       consumptionAccessLevel: $Enums.CONSUMPTION_SYSTEM_ACCESS_LEVEL[];
       engagementAccessLevel: $Enums.ENGAGEMENT_SYSTEM_ACCESS_LEVEL[];
       revenueAccessLevel: $Enums.REVENUE_SYSTEM_ACCESS_LEVEL[];
@@ -3575,7 +3575,7 @@ export interface SystemAccessFieldRefs {
   >;
   readonly withdrawsAccessLevel: Prisma.FieldRef<
     "SystemAccess",
-    "WITHDRAWS_SYSTEM_ACCESS_LEVEL[]"
+    "WITHDRAW_SYSTEM_ACCESS_LEVEL[]"
   >;
   readonly consumptionAccessLevel: Prisma.FieldRef<
     "SystemAccess",

@@ -42,6 +42,13 @@ function getInitials(name: string | null | undefined): string {
     .slice(0, 2);
 }
 
+function formatRole(role: string): string {
+  return role
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (l) => l.toUpperCase());
+}
+
 export default function AccessesTable({ accesses }: AccessesTableProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
@@ -127,7 +134,7 @@ export default function AccessesTable({ accesses }: AccessesTableProps) {
                         >
                           <div className="flex flex-col leading-tight">
                             {access.user.role?.split("_").map((word, i) => (
-                              <span key={i}>{word}</span>
+                              <span key={i}>{formatRole(word)}</span>
                             ))}
                           </div>
                         </Badge>
@@ -168,7 +175,7 @@ export default function AccessesTable({ accesses }: AccessesTableProps) {
                         >
                           <div className="flex flex-col leading-tight">
                             {access.assigner.role?.split("_").map((word, i) => (
-                              <span key={i}>{word}</span>
+                              <span key={i}>{formatRole(word)}</span>
                             ))}
                           </div>
                         </Badge>

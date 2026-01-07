@@ -209,10 +209,10 @@ export type PerformerOrderByWithRelationInput = {
 export type PerformerWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
-    workspaceAccountId?: string;
     AND?: Prisma.PerformerWhereInput | Prisma.PerformerWhereInput[];
     OR?: Prisma.PerformerWhereInput[];
     NOT?: Prisma.PerformerWhereInput | Prisma.PerformerWhereInput[];
+    workspaceAccountId?: Prisma.StringFilter<"Performer"> | string;
     metadata?: Prisma.JsonNullableFilter<"Performer">;
     createdAt?: Prisma.DateTimeFilter<"Performer"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Performer"> | Date | string;
@@ -227,7 +227,7 @@ export type PerformerWhereUniqueInput = Prisma.AtLeast<
     sharedWorkspaceAccountAccesses?: Prisma.SharedWorkspaceAccountAccessListRelationFilter;
     label?: Prisma.LabelListRelationFilter;
   },
-  "id" | "workspaceAccountId"
+  "id"
 >;
 
 export type PerformerOrderByWithAggregationInput = {

@@ -8,6 +8,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { BadgeCheck, Eye, Pencil, Search } from "lucide-react";
 import { Session, SystemAccess, User } from "@/lib/prisma/browser";
@@ -44,6 +50,13 @@ function getInitials(name: string | null | undefined): string {
     .join("")
     .toUpperCase()
     .slice(0, 2);
+}
+
+function formatRole(role: string): string {
+  return role
+    .replace(/_/g, " ")
+    .toLowerCase()
+    .replace(/\b\w/g, (l) => l.toUpperCase());
 }
 
 export default function UsersTable({ session, users }: UsersTableProps) {
@@ -184,7 +197,7 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                     >
                       <div className="flex flex-col leading-tight">
                         {user.role?.split("_").map((word, i) => (
-                          <span key={i}>{word}</span>
+                          <span key={i}>{formatRole(word)}</span>
                         ))}
                       </div>
                     </Badge>

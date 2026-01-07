@@ -12,23 +12,25 @@ import { logout } from "@/actions/auth/auth";
 
 export default async function AccessesPage() {
   const session = await getCurrentSession();
+  if (!session.success) redirect("/auth/login");
   if (!session?.data?.user) redirect("/auth/login");
   if (
-    session?.data?.user.role !== ROLE.SYSTEM_OWNER &&
-    session?.data?.user.role !== ROLE.SYSTEM_ADMIN
+    session?.data?.user?.role !== ROLE.SYSTEM_OWNER &&
+    session?.data?.user?.role !== ROLE.SYSTEM_ADMIN
   ) {
-    if (session?.data?.user.role === ROLE.SYSTEM_USER) {
+    if (session?.data?.user?.role === ROLE.SYSTEM_USER) {
       if (!session?.data?.user?.systemAccess) {
         const result = await logout();
         if (result.success) {
           redirect("/auth/login");
         } else {
-          redirect("/");
+          redirect("/auth/login");
         }
       }
       redirect("/system");
+    } else {
+      redirect("/");
     }
-    redirect("/");
   }
 
   const accesses = await getAllSystemAccesses();
