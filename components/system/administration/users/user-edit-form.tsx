@@ -47,7 +47,6 @@ import {
   BanIcon,
   PenIcon,
 } from "lucide-react";
-import Link from "next/link";
 
 type UpdateUserFormData = z.infer<typeof updateUserSchema>;
 
@@ -60,6 +59,11 @@ interface UserEditFormProps {
     avatar: string;
     role: ROLE;
     suspendedAt: Date | null;
+    systemAccess: { id: string } | null;
+    assignedSystemAccesses: { id: string }[];
+    ownWorkspaceAccount: { id: string } | null;
+    sharedWorkspaceAccountAccess: { id: string } | null;
+    assignedWorkspaceAccountAccesses: { id: string }[];
   };
   availableRoles: ROLE[];
   currentUserRole: ROLE;
@@ -244,8 +248,43 @@ export function UserEditForm({
   // SYSTEM_OWNER can change any role
   // SYSTEM_ADMIN can change to SYSTEM_USER or USER
   // SYSTEM_USER can only keep USER
+  // Cannot change role if:
+  // - User is SYSTEM_USER with system access
+  // - User is SYSTEM_OWNER or SYSTEM_ADMIN with assigned system accesses
+  // - User has workspace associations (own, shared, or assigned)
+  const hasSystemAccess = user.role === ROLE.SYSTEM_USER && !!user.systemAccess;
+  const hasAssignedSystemAccesses =
+    (user.role === ROLE.SYSTEM_OWNER || user.role === ROLE.SYSTEM_ADMIN) &&
+    user.assignedSystemAccesses.length > 0;
+  const hasWorkspaceAssociations =
+    !!user.ownWorkspaceAccount ||
+    !!user.sharedWorkspaceAccountAccess ||
+    user.assignedWorkspaceAccountAccesses.length > 0;
+
+  const roleChangeRestricted =
+    hasSystemAccess || hasAssignedSystemAccesses || hasWorkspaceAssociations;
+
   const canChangeRole =
-    availableRoles.includes(user.role) || currentUserRole === ROLE.SYSTEM_OWNER;
+    !roleChangeRestricted &&
+    (availableRoles.includes(user.role) ||
+      currentUserRole === ROLE.SYSTEM_OWNER);
+
+  // Get restriction message for role change
+  const getRoleRestrictionMessage = () => {
+    if (hasSystemAccess) {
+      return "Cannot change role for system user with active system access";
+    }
+    if (hasAssignedSystemAccesses) {
+      return "Cannot change role for owner or admin with assigned system accesses";
+    }
+    if (hasWorkspaceAssociations) {
+      return "Cannot change role for user with workspace account associations";
+    }
+    if (!canChangeRole) {
+      return "You cannot change this user's role";
+    }
+    return null;
+  };
 
   return (
     <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
@@ -263,12 +302,6 @@ export function UserEditForm({
               </p>
             </div>
           </div>
-          <Button variant="outline" asChild>
-            <Link href="/system/administration/users">
-              <ArrowLeftIcon className="mr-2 size-4" />
-              Back to Users
-            </Link>
-          </Button>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -459,7 +492,8 @@ export function UserEditForm({
                     className="bg-muted"
                   />
                   <p className="text-xs text-muted-foreground">
-                    You cannot change this user&apos;s role
+                    {getRoleRestrictionMessage() ||
+                      "You cannot change this user's role"}
                   </p>
                 </div>
               )}

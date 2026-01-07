@@ -1346,9 +1346,34 @@ export async function updateUser(data: UpdateUserData): Promise<{
 
     let newRole = userToUpdate.role;
     if (validate.data.role && validate.data.role !== userToUpdate.role) {
+      // Check if user is SYSTEM_USER with system access
+      if (userToUpdate.role === ROLE.SYSTEM_USER && userToUpdate.systemAccess) {
+        return {
+          success: false,
+          message:
+            "Cannot change role for system user with active system access.",
+          data: null,
+          errors: new Error("Role change not allowed"),
+        };
+      }
+
+      // Check if user is SYSTEM_OWNER or SYSTEM_ADMIN with assigned system accesses
       if (
-        userToUpdate.systemAccess ||
-        userToUpdate.assignedSystemAccesses.length > 0 ||
+        (userToUpdate.role === ROLE.SYSTEM_OWNER ||
+          userToUpdate.role === ROLE.SYSTEM_ADMIN) &&
+        userToUpdate.assignedSystemAccesses.length > 0
+      ) {
+        return {
+          success: false,
+          message:
+            "Cannot change role for owner or admin with assigned system accesses.",
+          data: null,
+          errors: new Error("Role change not allowed"),
+        };
+      }
+
+      // Check if user has workspace associations
+      if (
         userToUpdate.ownWorkspaceAccount ||
         userToUpdate.sharedWorkspaceAccountAccess ||
         userToUpdate.assignedWorkspaceAccountAccesses.length > 0
@@ -1356,7 +1381,7 @@ export async function updateUser(data: UpdateUserData): Promise<{
         return {
           success: false,
           message:
-            "Cannot change role for user with system access or workspace associations.",
+            "Cannot change role for user with workspace account associations.",
           data: null,
           errors: new Error("Role change not allowed"),
         };

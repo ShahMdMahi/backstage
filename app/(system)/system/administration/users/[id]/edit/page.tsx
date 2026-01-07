@@ -153,6 +153,20 @@ export default async function UserEditPage({ params }: PageProps) {
         avatar: user.avatar || "",
         role: user.role as ROLE,
         suspendedAt: user.suspendedAt,
+        systemAccess: user.systemAccess ? { id: user.systemAccess.id } : null,
+        assignedSystemAccesses: user.assignedSystemAccesses.map((access) => ({
+          id: access.id,
+        })),
+        ownWorkspaceAccount: user.ownWorkspaceAccount
+          ? { id: user.ownWorkspaceAccount.id }
+          : null,
+        sharedWorkspaceAccountAccess: user.sharedWorkspaceAccountAccess
+          ? { id: user.sharedWorkspaceAccountAccess.id }
+          : null,
+        assignedWorkspaceAccountAccesses:
+          user.assignedWorkspaceAccountAccesses.map((access) => ({
+            id: access.id,
+          })),
       }}
       availableRoles={getAvailableRoles()}
       currentUserRole={session.data.user.role as ROLE}
