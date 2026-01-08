@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] w-full items-center justify-center p-4 sm:p-6 md:p-8">
+    <div className="flex min-h-[calc(100vh-4rem)] w-full items-center justify-center max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="w-full max-w-4xl text-center">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
           Welcome to RoyalMotionIT

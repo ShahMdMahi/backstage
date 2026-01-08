@@ -30,7 +30,7 @@ export default function OfflinePage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background p-4 text-center sm:p-6 md:p-8">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background text-center w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="w-full max-w-md">
         <h1 className="mb-4 text-2xl font-bold text-foreground sm:text-3xl md:text-4xl">
           You&apos;re Offline

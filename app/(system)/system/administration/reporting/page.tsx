@@ -2,7 +2,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ReportingPage() {
   return (
-    <div className="w-full p-4 sm:p-6 md:p-8">
+    <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="mx-auto max-w-7xl">
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
           Reporting

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="relative mx-auto w-full max-w-sm px-4 sm:max-w-md sm:px-6 md:max-w-lg">
+    <div className="relative mx-auto w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       {/* Theme Toggle in top right */}
       <div className="absolute top-0 right-0 z-10">
         <ThemeToggle />
