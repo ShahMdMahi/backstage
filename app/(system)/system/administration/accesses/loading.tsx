@@ -11,18 +11,16 @@ import {
 
 export default function AccessesLoadingPage() {
   return (
-    <div className="w-full max-w-none px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
+    <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 sm:size-12">
-              <KeyIcon className="size-5 text-primary sm:size-6" />
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
+              <KeyIcon className="size-5 text-primary" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-                Accesses
-              </h1>
-              <p className="text-muted-foreground mt-1 text-sm sm:text-base">
+              <h1 className="text-3xl font-bold tracking-tight">Accesses</h1>
+              <p className="text-muted-foreground mt-1">
                 Manage system accesses
               </p>
             </div>
@@ -38,10 +36,10 @@ export default function AccessesLoadingPage() {
                   <TableHead className="pl-4">ID</TableHead>
                   <TableHead>User</TableHead>
                   <TableHead>Assigner</TableHead>
-                  <TableHead>Assigned At</TableHead>
-                  <TableHead>Modified At</TableHead>
-                  <TableHead>Suspended At</TableHead>
-                  <TableHead>Expires At</TableHead>
+                  <TableHead>Assigned</TableHead>
+                  <TableHead>Modified</TableHead>
+                  <TableHead>Suspended</TableHead>
+                  <TableHead>Expires</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
               </TableHeader>

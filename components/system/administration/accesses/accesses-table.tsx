@@ -156,10 +156,10 @@ export default function AccessesTable({ accesses }: AccessesTableProps) {
               <TableHead className="pl-4">ID</TableHead>
               <TableHead>User</TableHead>
               <TableHead>Assigner</TableHead>
-              <TableHead>Assigned At</TableHead>
-              <TableHead>Modified At</TableHead>
-              <TableHead>Suspended At</TableHead>
-              <TableHead>Expires At</TableHead>
+              <TableHead>Assigned</TableHead>
+              <TableHead>Modified</TableHead>
+              <TableHead>Suspended</TableHead>
+              <TableHead>Expires</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
