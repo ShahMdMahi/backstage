@@ -49,15 +49,17 @@ export default async function UserEditPage({ params }: PageProps) {
 
   if (!userResult.success || !userResult.data) {
     return (
-      <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
+      <div className="w-full max-w-none px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
         <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
-          <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-              <PenIcon className="size-5 text-primary" />
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 sm:size-12">
+              <PenIcon className="size-5 text-primary sm:size-6" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Edit User</h1>
-              <p className="text-muted-foreground mt-1">
+              <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+                Edit User
+              </h1>
+              <p className="text-muted-foreground mt-1 text-sm sm:text-base">
                 Update user information
               </p>
             </div>
@@ -96,7 +98,7 @@ export default async function UserEditPage({ params }: PageProps) {
 
   if (!canEdit) {
     return (
-      <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
+      <div className="w-full max-w-none px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
         <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
           <div className="flex items-center gap-3">
             <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">

@@ -30,15 +30,17 @@ export default async function Profile() {
   const initals = getInitials(user.name);
 
   return (
-    <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
+    <div className="w-full max-w-none px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8">
       <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
-        <div className="flex items-center gap-3">
-          <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-            <UserIcon className="size-5 text-primary" />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 sm:size-12">
+            <UserIcon className="size-5 text-primary sm:size-6" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight">Profile</h1>
-            <p className="text-muted-foreground mt-1">
+            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+              Profile
+            </h1>
+            <p className="text-muted-foreground mt-1 text-sm sm:text-base">
               Manage your account information
             </p>
           </div>
@@ -56,8 +58,12 @@ export default async function Profile() {
                 <AvatarFallback>{initals}</AvatarFallback>
               </Avatar>
               <div className="flex-1">
-                <h2 className="text-xl font-bold sm:text-2xl">{user.name}</h2>
-                <p className="text-muted-foreground">{user.email}</p>
+                <h2 className="text-lg font-bold sm:text-xl md:text-2xl">
+                  {user.name}
+                </h2>
+                <p className="text-sm text-muted-foreground sm:text-base">
+                  {user.email}
+                </p>
                 <Badge
                   variant={
                     user.role === ROLE.SYSTEM_OWNER
@@ -68,17 +74,17 @@ export default async function Profile() {
                           ? "outline"
                           : "secondary"
                   }
-                  className="mt-1"
+                  className="mt-1 text-xs sm:text-sm"
                 >
                   {user.role.replaceAll("_", " ")}
                 </Badge>
               </div>
             </div>
             <Separator />
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <div>
-                <label className="text-sm font-medium">Phone</label>
-                <p>{user.phone}</p>
+                <label className="text-xs font-medium sm:text-sm">Phone</label>
+                <p className="text-sm sm:text-base">{user.phone}</p>
               </div>
               <div>
                 <label className="text-sm font-medium">Verified</label>

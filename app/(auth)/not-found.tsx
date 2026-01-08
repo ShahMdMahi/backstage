@@ -5,32 +5,32 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="relative mx-auto w-full max-w-sm">
+    <div className="relative mx-auto w-full max-w-sm px-4 sm:max-w-md sm:px-6 md:max-w-lg">
       {/* Theme Toggle in top right */}
       <div className="absolute top-0 right-0 z-10">
         <ThemeToggle />
       </div>
 
       {/* Logo in center */}
-      <div className="mb-4 flex justify-center">
+      <div className="mb-4 flex justify-center sm:mb-6">
         <Image
           src="/icon_logo.png"
           alt="Royal Records Logo"
           width={48}
           height={48}
-          className="h-12 w-12"
+          className="h-12 w-12 sm:h-14 sm:w-14"
         />
       </div>
 
       {/* Description */}
-      <div className="mb-5 text-center">
-        <h1 className="text-foreground text-8xl font-bold tracking-tight">
+      <div className="mb-5 text-center sm:mb-6">
+        <h1 className="text-foreground text-6xl font-bold tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
           404
         </h1>
-        <h2 className="text-foreground mt-4 text-2xl font-semibold tracking-tight">
+        <h2 className="text-foreground mt-4 text-xl font-semibold tracking-tight sm:text-2xl md:text-3xl">
           Page Not Found
         </h2>
-        <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+        <p className="text-muted-foreground mt-2 text-sm leading-relaxed sm:text-base md:text-lg">
           Sorry, the page you&apos;re looking for doesn&apos;t exist or has been
           moved.
         </p>
@@ -38,13 +38,13 @@ export default function NotFound() {
 
       {/* Action Button */}
       <div className="mt-8 flex justify-center">
-        <Button asChild size="lg">
+        <Button asChild size="lg" className="w-full sm:w-auto">
           <Link href="/">Go Home</Link>
         </Button>
       </div>
 
       {/* Additional Links */}
-      <div className="text-muted-foreground mt-6 text-center text-xs">
+      <div className="text-muted-foreground mt-6 text-center text-xs sm:text-sm">
         <p>
           Need help?{" "}
           <Link

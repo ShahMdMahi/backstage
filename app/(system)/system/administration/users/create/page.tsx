@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import { ROLE, USER_SYSTEM_ACCESS_LEVEL } from "@/lib/prisma/enums";
 import { logout } from "@/actions/auth/auth";
 
+export const dynamic = "force-dynamic";
+
 export default async function CreateUserPage() {
   const session = await getCurrentSession();
   if (!session.success) redirect("/auth/login");
