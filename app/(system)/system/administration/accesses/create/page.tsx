@@ -1,8 +1,7 @@
 import { AccessForm } from "@/components/system/administration/accesses/access-form";
 import { getAllSystemUsers } from "@/actions/system/user";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircleIcon, ShieldCheckIcon } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ShieldCheckIcon, XCircleIcon } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { getCurrentSession } from "@/actions/shared/session";
 import { redirect } from "next/navigation";
 import { ROLE } from "@/lib/prisma/enums";
@@ -52,22 +51,19 @@ export default async function CreateAccessPage() {
             </div>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-destructive">
-                <AlertCircleIcon className="size-5" />
-                Unable to Load Users
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Alert variant="destructive">
-                <AlertCircleIcon className="size-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                  {systemUsers.message ||
-                    "Failed to load system users. Please try again later."}
-                </AlertDescription>
-              </Alert>
+          <Card className="border-destructive/50 bg-destructive/5">
+            <CardContent className="flex flex-col items-center justify-center py-16">
+              <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10 mb-4">
+                <XCircleIcon className="size-8 text-destructive" />
+              </div>
+              <h2 className="text-xl font-semibold text-destructive mb-2">
+                No System Users Found
+              </h2>
+              <p className="text-muted-foreground text-center max-w-md mb-1">
+                Theere is no system user without system access in the system. To
+                create system access, you must first create system users and
+                approve them.
+              </p>
             </CardContent>
           </Card>
         </div>

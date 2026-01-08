@@ -252,6 +252,7 @@ export function UserEditForm({
   // Cannot change role if:
   // - User being edited is SYSTEM_OWNER (permanent role)
   // - Current user is SYSTEM_USER (no permission to change roles)
+  // - User is suspended (suspended users cannot have role changed)
   // - User is SYSTEM_USER with system access
   // - User is SYSTEM_ADMIN with assigned system accesses
   // - User has workspace associations (own, shared, or assigned)
@@ -268,6 +269,7 @@ export function UserEditForm({
   const roleChangeRestricted =
     isSystemOwnerRole ||
     currentUserIsSystemUser ||
+    isSuspended ||
     hasSystemAccess ||
     hasAssignedSystemAccesses ||
     hasWorkspaceAssociations;
@@ -284,6 +286,9 @@ export function UserEditForm({
     }
     if (currentUserIsSystemUser) {
       return "System users do not have permission to change user roles";
+    }
+    if (isSuspended) {
+      return "Cannot change role for suspended users";
     }
     if (hasSystemAccess) {
       return "Cannot change role for system user with active system access";

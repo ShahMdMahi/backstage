@@ -368,6 +368,7 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                     <TableCell>
                       <TooltipProvider>
                         <div className="flex gap-2">
+                          {/* Approve button: only show if user is verified and not approved */}
                           {haveApproveAccess &&
                             user.verifiedAt &&
                             !user.approvedAt && (
@@ -393,6 +394,7 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                                 </TooltipContent>
                               </Tooltip>
                             )}
+                          {/* View button: always show */}
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <Button
@@ -413,6 +415,7 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                               <p>View User</p>
                             </TooltipContent>
                           </Tooltip>
+                          {/* Suspend/Unsuspend button: only show if user is verified and approved */}
                           {canSuspend &&
                             user.verifiedAt &&
                             user.approvedAt &&
@@ -457,28 +460,32 @@ export default function UsersTable({ session, users }: UsersTableProps) {
                                 </TooltipContent>
                               </Tooltip>
                             ))}
-                          {canEdit && user.verifiedAt && user.approvedAt && (
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="h-8 w-8 text-amber-600 hover:text-amber-700 hover:bg-amber-100"
-                                  onClick={() => {
-                                    router.push(
-                                      `/system/administration/users/${user.id}/edit`
-                                    );
-                                  }}
-                                >
-                                  <Pencil className="h-4 w-4" />
-                                  <span className="sr-only">Edit</span>
-                                </Button>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p>Edit User</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          )}
+                          {/* Edit button: only show if user is verified, approved, and not suspended */}
+                          {canEdit &&
+                            user.verifiedAt &&
+                            user.approvedAt &&
+                            !user.suspendedAt && (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-8 w-8 text-amber-600 hover:text-amber-700 hover:bg-amber-100"
+                                    onClick={() => {
+                                      router.push(
+                                        `/system/administration/users/${user.id}/edit`
+                                      );
+                                    }}
+                                  >
+                                    <Pencil className="h-4 w-4" />
+                                    <span className="sr-only">Edit</span>
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>Edit User</p>
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
                         </div>
                       </TooltipProvider>
                     </TableCell>

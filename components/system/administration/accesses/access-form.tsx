@@ -939,12 +939,28 @@ export function AccessForm({ users }: AccessFormProps) {
                               const initials = user.name
                                 ? getInitials(user.name)
                                 : "?";
+                              // Check if user is eligible for access assignment
+                              const isVerified = !!user.verifiedAt;
+                              const isApproved = !!user.approvedAt;
+                              const isSuspended = !!user.suspendedAt;
+                              const isEligible =
+                                isVerified && isApproved && !isSuspended;
+
                               return (
                                 <CommandItem
                                   key={user.id}
                                   value={`${user.id} ${user.name} ${user.email} ${user.phone || ""}`}
-                                  onSelect={() => handleUserChange(user.id!)}
-                                  className="cursor-pointer py-3"
+                                  onSelect={() => {
+                                    if (isEligible) {
+                                      handleUserChange(user.id!);
+                                    }
+                                  }}
+                                  className={cn(
+                                    "cursor-pointer py-3",
+                                    !isEligible &&
+                                      "opacity-50 cursor-not-allowed"
+                                  )}
+                                  disabled={!isEligible}
                                 >
                                   <div className="flex items-start gap-3 w-full">
                                     {/* Avatar and Role Column */}
@@ -995,13 +1011,27 @@ export function AccessForm({ users }: AccessFormProps) {
                                         <PhoneIcon className="size-3" />
                                         <span>{user.phone || "No phone"}</span>
                                       </div>
+                                      {!isEligible && (
+                                        <div className="flex items-center gap-1 mt-1">
+                                          <Badge
+                                            variant="destructive"
+                                            className="text-[10px]"
+                                          >
+                                            {!isVerified
+                                              ? "Not Verified"
+                                              : !isApproved
+                                                ? "Not Approved"
+                                                : "Suspended"}
+                                          </Badge>
+                                        </div>
+                                      )}
                                     </div>
 
                                     {/* Check Icon */}
                                     <CheckIcon
                                       className={cn(
                                         "size-4 shrink-0 mt-3",
-                                        selectedUser === user.id
+                                        selectedUser === user.id && isEligible
                                           ? "opacity-100"
                                           : "opacity-0"
                                       )}
@@ -1057,6 +1087,23 @@ export function AccessForm({ users }: AccessFormProps) {
                         <span>
                           {selectedUserData.phone || "No phone number"}
                         </span>
+                      </div>
+                      <div className="flex items-center gap-2 mt-2">
+                        {selectedUserData.verifiedAt && (
+                          <Badge variant="default" className="text-xs">
+                            Verified
+                          </Badge>
+                        )}
+                        {selectedUserData.approvedAt && (
+                          <Badge variant="default" className="text-xs">
+                            Approved
+                          </Badge>
+                        )}
+                        {selectedUserData.suspendedAt && (
+                          <Badge variant="destructive" className="text-xs">
+                            Suspended
+                          </Badge>
+                        )}
                       </div>
                     </div>
                   </div>

@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getInitials } from "@/lib/utils";
 import { formatInTimeZone } from "date-fns-tz";
 import { DeviceInfo } from "@/lib/device-info";
@@ -22,7 +21,6 @@ import {
   UserIcon,
   MailIcon,
   PhoneIcon,
-  AlertCircleIcon,
   CheckCircleIcon,
   XCircleIcon,
   ShieldCheckIcon,
@@ -145,13 +143,24 @@ export default async function UserViewPage({ params }: PageProps) {
               </p>
             </div>
           </div>
-          <Alert variant="destructive">
-            <AlertCircleIcon className="size-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>
-              {userResult.message || "Failed to load user details."}
-            </AlertDescription>
-          </Alert>
+
+          {/* Not Found Card */}
+          <Card className="border-destructive/50 bg-destructive/5">
+            <CardContent className="flex flex-col items-center justify-center py-16">
+              <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10 mb-4">
+                <XCircleIcon className="size-8 text-destructive" />
+              </div>
+              <h2 className="text-xl font-semibold text-destructive mb-2">
+                User Not Found
+              </h2>
+              <p className="text-muted-foreground text-center max-w-md mb-1">
+                The user you are looking for does not exist or has been removed.
+              </p>
+              <p className="text-xs text-muted-foreground font-mono">
+                ID: {id}
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </div>
     );
@@ -210,14 +219,17 @@ export default async function UserViewPage({ params }: PageProps) {
             </div>
           </div>
           <div className="flex gap-2 flex-wrap">
-            {canEdit && (
-              <Button asChild>
-                <Link href={`/system/administration/users/${user.id}/edit`}>
-                  <PenIcon className="mr-2 size-4" />
-                  Edit
-                </Link>
-              </Button>
-            )}
+            {canEdit &&
+              user.verifiedAt &&
+              user.approvedAt &&
+              !user.suspendedAt && (
+                <Button asChild>
+                  <Link href={`/system/administration/users/${user.id}/edit`}>
+                    <PenIcon className="mr-2 size-4" />
+                    Edit
+                  </Link>
+                </Button>
+              )}
             {canDelete && (
               <DeleteUserButton userId={user.id} userName={user.name} />
             )}

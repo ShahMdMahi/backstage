@@ -1,14 +1,14 @@
 import { KeyIcon, Plus } from "lucide-react";
-import { AlertCircle } from "lucide-react";
+import { XCircleIcon } from "lucide-react";
 import AccessesTable from "@/components/system/administration/accesses/accesses-table";
 import { getAllSystemAccesses } from "@/actions/system/access";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getCurrentSession } from "@/actions/shared/session";
 import { redirect } from "next/navigation";
 import { ROLE } from "@/lib/prisma/enums";
 import { logout } from "@/actions/auth/auth";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default async function AccessesPage() {
   const session = await getCurrentSession();
@@ -64,11 +64,20 @@ export default async function AccessesPage() {
           )}
         </div>
         {!accesses.success ? (
-          <Alert variant="destructive">
-            <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription>{accesses.message}</AlertDescription>
-          </Alert>
+          <Card className="border-destructive/50 bg-destructive/5">
+            <CardContent className="flex flex-col items-center justify-center py-16">
+              <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10 mb-4">
+                <XCircleIcon className="size-8 text-destructive" />
+              </div>
+              <h2 className="text-xl font-semibold text-destructive mb-2">
+                No System Access Found
+              </h2>
+              <p className="text-muted-foreground text-center max-w-md mb-1">
+                The system accesses you are looking for do not exist or have
+                been removed.
+              </p>
+            </CardContent>
+          </Card>
         ) : (
           <AccessesTable accesses={accesses.data || []} />
         )}
