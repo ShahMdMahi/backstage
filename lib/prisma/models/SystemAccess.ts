@@ -332,10 +332,10 @@ export type SystemAccessWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
     userId?: string;
-    assignerId?: string;
     AND?: Prisma.SystemAccessWhereInput | Prisma.SystemAccessWhereInput[];
     OR?: Prisma.SystemAccessWhereInput[];
     NOT?: Prisma.SystemAccessWhereInput | Prisma.SystemAccessWhereInput[];
+    assignerId?: Prisma.StringFilter<"SystemAccess"> | string;
     usersAccessLevel?: Prisma.EnumUSER_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     workspaceAccountsAccessLevel?: Prisma.EnumWORKSPACE_ACCOUNT_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
     reportingAccessLevel?: Prisma.EnumREPORTING_SYSTEM_ACCESS_LEVELNullableListFilter<"SystemAccess">;
@@ -371,7 +371,7 @@ export type SystemAccessWhereUniqueInput = Prisma.AtLeast<
       Prisma.UserWhereInput
     >;
   },
-  "id" | "userId" | "assignerId"
+  "id" | "userId"
 >;
 
 export type SystemAccessOrderByWithAggregationInput = {

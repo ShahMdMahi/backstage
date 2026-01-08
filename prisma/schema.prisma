@@ -549,7 +549,7 @@ model SystemAccess {
 
   // Foreign Keys
   userId     String @unique
-  assignerId String @unique
+  assignerId String
 
   // Fields
   usersAccessLevel                 USER_SYSTEM_ACCESS_LEVEL[]                  @default([])
