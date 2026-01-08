@@ -25,7 +25,6 @@ export default function Loading() {
               </p>
             </div>
           </div>
-          <Skeleton className="h-10 w-32" />
         </div>
 
         {/* Avatar Section Skeleton */}

@@ -129,13 +129,10 @@ export default async function UserEditPage({ params }: PageProps) {
 
   // Determine available roles for the role dropdown
   const getAvailableRoles = () => {
+    // SYSTEM_OWNER role cannot be assigned by anyone
+    // SYSTEM_USER cannot change roles (handled in canChangeRole logic)
     if (session?.data?.user.role === ROLE.SYSTEM_OWNER) {
-      return [
-        ROLE.SYSTEM_OWNER,
-        ROLE.SYSTEM_ADMIN,
-        ROLE.SYSTEM_USER,
-        ROLE.USER,
-      ];
+      return [ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER];
     }
     if (session?.data?.user.role === ROLE.SYSTEM_ADMIN) {
       return [ROLE.SYSTEM_USER, ROLE.USER];

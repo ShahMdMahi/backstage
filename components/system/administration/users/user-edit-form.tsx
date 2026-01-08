@@ -145,7 +145,8 @@ export function UserEditForm({
       id: user.id,
       name: user.name,
       phone: user.phone || "",
-      role: user.role,
+      // SYSTEM_OWNER users cannot change role anyway, so this is safe
+      role: user.role === ROLE.SYSTEM_OWNER ? undefined : user.role,
       isSuspended: !!user.suspendedAt,
     },
   });
@@ -245,24 +246,31 @@ export function UserEditForm({
   };
 
   // Check if the user can change role
-  // SYSTEM_OWNER can change any role
+  // SYSTEM_OWNER can change roles (except SYSTEM_OWNER role - permanent)
   // SYSTEM_ADMIN can change to SYSTEM_USER or USER
-  // SYSTEM_USER can only keep USER
+  // SYSTEM_USER cannot change any roles
   // Cannot change role if:
+  // - User being edited is SYSTEM_OWNER (permanent role)
+  // - Current user is SYSTEM_USER (no permission to change roles)
   // - User is SYSTEM_USER with system access
-  // - User is SYSTEM_OWNER or SYSTEM_ADMIN with assigned system accesses
+  // - User is SYSTEM_ADMIN with assigned system accesses
   // - User has workspace associations (own, shared, or assigned)
+  const isSystemOwnerRole = user.role === ROLE.SYSTEM_OWNER;
+  const currentUserIsSystemUser = currentUserRole === ROLE.SYSTEM_USER;
   const hasSystemAccess = user.role === ROLE.SYSTEM_USER && !!user.systemAccess;
   const hasAssignedSystemAccesses =
-    (user.role === ROLE.SYSTEM_OWNER || user.role === ROLE.SYSTEM_ADMIN) &&
-    user.assignedSystemAccesses.length > 0;
+    user.role === ROLE.SYSTEM_ADMIN && user.assignedSystemAccesses.length > 0;
   const hasWorkspaceAssociations =
     !!user.ownWorkspaceAccount ||
     !!user.sharedWorkspaceAccountAccess ||
     user.assignedWorkspaceAccountAccesses.length > 0;
 
   const roleChangeRestricted =
-    hasSystemAccess || hasAssignedSystemAccesses || hasWorkspaceAssociations;
+    isSystemOwnerRole ||
+    currentUserIsSystemUser ||
+    hasSystemAccess ||
+    hasAssignedSystemAccesses ||
+    hasWorkspaceAssociations;
 
   const canChangeRole =
     !roleChangeRestricted &&
@@ -271,11 +279,17 @@ export function UserEditForm({
 
   // Get restriction message for role change
   const getRoleRestrictionMessage = () => {
+    if (isSystemOwnerRole) {
+      return "System owner role is permanent and cannot be changed";
+    }
+    if (currentUserIsSystemUser) {
+      return "System users do not have permission to change user roles";
+    }
     if (hasSystemAccess) {
       return "Cannot change role for system user with active system access";
     }
     if (hasAssignedSystemAccesses) {
-      return "Cannot change role for owner or admin with assigned system accesses";
+      return "Cannot change role for admin with assigned system accesses";
     }
     if (hasWorkspaceAssociations) {
       return "Cannot change role for user with workspace account associations";
@@ -460,7 +474,12 @@ export function UserEditForm({
                   </Label>
                   <Select
                     value={selectedRole}
-                    onValueChange={(value) => setValue("role", value as ROLE)}
+                    onValueChange={(value) =>
+                      setValue(
+                        "role",
+                        value as "SYSTEM_ADMIN" | "SYSTEM_USER" | "USER"
+                      )
+                    }
                     disabled={isSubmitting}
                   >
                     <SelectTrigger>

@@ -1114,13 +1114,26 @@ export async function createUser(data: CreateUserData): Promise<{
 
     let userRole: ROLE = ROLE.USER;
     if (validate.data.role) {
-      if (session.data.user.role === ROLE.SYSTEM_OWNER) {
-        userRole = validate.data.role;
-      } else if (session.data.user.role === ROLE.SYSTEM_ADMIN) {
-        if (validate.data.role === ROLE.SYSTEM_OWNER) {
+      // SYSTEM_USER cannot assign any role (always creates USER)
+      if (session.data.user.role === ROLE.SYSTEM_USER) {
+        userRole = ROLE.USER;
+      } else if (session.data.user.role === ROLE.SYSTEM_OWNER) {
+        // SYSTEM_OWNER cannot create SYSTEM_ADMIN (validator prevents SYSTEM_OWNER)
+        if (validate.data.role === ROLE.SYSTEM_ADMIN) {
           return {
             success: false,
-            message: "System admin cannot create system owner.",
+            message: "System owner cannot create system admin accounts.",
+            data: null,
+            errors: new Error("Insufficient permissions"),
+          };
+        }
+        userRole = validate.data.role;
+      } else if (session.data.user.role === ROLE.SYSTEM_ADMIN) {
+        // SYSTEM_ADMIN cannot create SYSTEM_ADMIN (validator prevents SYSTEM_OWNER)
+        if (validate.data.role === ROLE.SYSTEM_ADMIN) {
+          return {
+            success: false,
+            message: "System admin cannot create system admin accounts.",
             data: null,
             errors: new Error("Insufficient permissions"),
           };
@@ -1346,6 +1359,27 @@ export async function updateUser(data: UpdateUserData): Promise<{
 
     let newRole = userToUpdate.role;
     if (validate.data.role && validate.data.role !== userToUpdate.role) {
+      // SYSTEM_USER cannot change any user's role
+      if (session.data.user.role === ROLE.SYSTEM_USER) {
+        return {
+          success: false,
+          message: "System user does not have permission to change user roles.",
+          data: null,
+          errors: new Error("Insufficient permissions"),
+        };
+      }
+
+      // No one can remove SYSTEM_OWNER role (validator prevents assigning it)
+      if (userToUpdate.role === ROLE.SYSTEM_OWNER) {
+        return {
+          success: false,
+          message:
+            "System owner role cannot be removed. This role is permanent.",
+          data: null,
+          errors: new Error("Role change not allowed"),
+        };
+      }
+
       // Check if user is SYSTEM_USER with system access
       if (userToUpdate.role === ROLE.SYSTEM_USER && userToUpdate.systemAccess) {
         return {
@@ -1357,16 +1391,15 @@ export async function updateUser(data: UpdateUserData): Promise<{
         };
       }
 
-      // Check if user is SYSTEM_OWNER or SYSTEM_ADMIN with assigned system accesses
+      // Check if user is SYSTEM_ADMIN with assigned system accesses
       if (
-        (userToUpdate.role === ROLE.SYSTEM_OWNER ||
-          userToUpdate.role === ROLE.SYSTEM_ADMIN) &&
+        userToUpdate.role === ROLE.SYSTEM_ADMIN &&
         userToUpdate.assignedSystemAccesses.length > 0
       ) {
         return {
           success: false,
           message:
-            "Cannot change role for owner or admin with assigned system accesses.",
+            "Cannot change role for admin with assigned system accesses.",
           data: null,
           errors: new Error("Role change not allowed"),
         };
@@ -1388,15 +1421,22 @@ export async function updateUser(data: UpdateUserData): Promise<{
       }
 
       if (session.data.user.role === ROLE.SYSTEM_OWNER) {
-        newRole = validate.data.role as ROLE;
-      } else if (session.data.user.role === ROLE.SYSTEM_ADMIN) {
-        if (
-          validate.data.role === ROLE.SYSTEM_OWNER ||
-          validate.data.role === ROLE.SYSTEM_ADMIN
-        ) {
+        // SYSTEM_OWNER cannot assign SYSTEM_ADMIN (validator prevents SYSTEM_OWNER)
+        if (validate.data.role === ROLE.SYSTEM_ADMIN) {
           return {
             success: false,
-            message: "System admin cannot assign system owner or admin role.",
+            message: "System owner cannot assign system admin role.",
+            data: null,
+            errors: new Error("Insufficient permissions"),
+          };
+        }
+        newRole = validate.data.role as ROLE;
+      } else if (session.data.user.role === ROLE.SYSTEM_ADMIN) {
+        // SYSTEM_ADMIN cannot assign SYSTEM_ADMIN (validator prevents SYSTEM_OWNER)
+        if (validate.data.role === ROLE.SYSTEM_ADMIN) {
+          return {
+            success: false,
+            message: "System admin cannot assign system admin role.",
             data: null,
             errors: new Error("Insufficient permissions"),
           };

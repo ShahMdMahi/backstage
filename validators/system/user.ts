@@ -22,9 +22,7 @@ export const createUserSchema = z.object({
     .min(8, "Password must be at least 8 characters")
     .max(100, "Password must be less than 100 characters"),
   avatar: z.string().optional().nullable(),
-  role: z
-    .enum([ROLE.SYSTEM_OWNER, ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER])
-    .optional(),
+  role: z.enum([ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER]).optional(),
 });
 
 export type CreateUserData = z.infer<typeof createUserSchema>;
@@ -48,9 +46,7 @@ export const updateUserSchema = z.object({
     .refine((val) => /^\+8801\d{9}$/.test(val), "Invalid phone number")
     .optional(),
   avatar: z.string().optional().nullable(),
-  role: z
-    .enum([ROLE.SYSTEM_OWNER, ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER])
-    .optional(),
+  role: z.enum([ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER]).optional(),
   isSuspended: z.boolean().optional(),
 });
 

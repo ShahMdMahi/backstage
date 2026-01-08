@@ -40,7 +40,6 @@ import {
   ImageIcon,
   XIcon,
   SaveIcon,
-  ArrowLeftIcon,
   ShieldIcon,
 } from "lucide-react";
 import { getInitials } from "@/lib/utils";
@@ -51,7 +50,6 @@ import {
 import { createUser } from "@/actions/system/user";
 import { ROLE } from "@/lib/prisma/enums";
 import { Session, SystemAccess, User } from "@/lib/prisma/browser";
-import Link from "next/link";
 import { validateAvatarFile } from "@/lib/avatar-validation";
 
 interface UserFormProps {
@@ -120,6 +118,8 @@ export function UserForm({ session }: UserFormProps) {
     session.user.role === ROLE.SYSTEM_ADMIN;
 
   const availableRoles = (() => {
+    // SYSTEM_OWNER role cannot be assigned by anyone
+    // SYSTEM_USER cannot assign roles (will always create USER)
     if (session.user.role === ROLE.SYSTEM_OWNER) {
       return [ROLE.SYSTEM_ADMIN, ROLE.SYSTEM_USER, ROLE.USER];
     }
@@ -246,12 +246,6 @@ export function UserForm({ session }: UserFormProps) {
               </p>
             </div>
           </div>
-          <Button variant="outline" asChild>
-            <Link href="/system/administration/users">
-              <ArrowLeftIcon className="mr-2 size-4" />
-              Back to Users
-            </Link>
-          </Button>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
