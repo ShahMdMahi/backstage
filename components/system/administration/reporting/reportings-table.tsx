@@ -25,7 +25,10 @@ import { REPORTING_CURRENCY, ROLE } from "@/lib/prisma/enums";
 import { Input } from "@/components/ui/input";
 import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { euroToUsd, usdToEuro } from "@/actions/shared/currency-exchange";
+import {
+  getEurToUsdRate,
+  getUsdToEurRate,
+} from "@/actions/shared/currency-exchange";
 
 interface ReportingsTableProps {
   reportings: (Partial<Reporting> & {
@@ -72,40 +75,60 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
 
   useEffect(() => {
     const computeConversions = async () => {
+      const eurDates = new Set<string>();
+      const usdDates = new Set<string>();
+      for (const reporting of reportings) {
+        if (reporting.reportingMonth) {
+          const dateStr = reporting.reportingMonth.toISOString().split("T")[0];
+          if (reporting.currency === REPORTING_CURRENCY.EUR) {
+            eurDates.add(dateStr);
+          } else if (reporting.currency === REPORTING_CURRENCY.USD) {
+            usdDates.add(dateStr);
+          }
+        }
+      }
+
+      const eurToUsdRates: Record<string, number | null> = {};
+      for (const dateStr of eurDates) {
+        const date = new Date(dateStr);
+        const res = await getEurToUsdRate(date);
+        eurToUsdRates[dateStr] = res.success ? res.rate : null;
+      }
+
+      const usdToEurRates: Record<string, number | null> = {};
+      for (const dateStr of usdDates) {
+        const date = new Date(dateStr);
+        const res = await getUsdToEurRate(date);
+        usdToEurRates[dateStr] = res.success ? res.rate : null;
+      }
+
       const newConverted: Record<
         string,
         { usd: number | null; eur: number | null }
       > = {};
       for (const reporting of reportings) {
         if (!reporting.id) continue;
-        let usd: number | null =
-          reporting.currency === REPORTING_CURRENCY.USD
-            ? reporting.netRevenue || 0
-            : 0;
-        let eur: number | null =
-          reporting.currency === REPORTING_CURRENCY.EUR
-            ? reporting.netRevenue || 0
-            : 0;
+        const dateStr = reporting.reportingMonth
+          ? reporting.reportingMonth.toISOString().split("T")[0]
+          : null;
+        let usd: number | null = null;
+        let eur: number | null = null;
         if (
-          reporting.currency === REPORTING_CURRENCY.EUR &&
-          reporting.netRevenue &&
-          reporting.reportingMonth
-        ) {
-          const usdRes = await euroToUsd(
-            reporting.netRevenue,
-            reporting.reportingMonth
-          );
-          usd = usdRes.success ? usdRes.usd : null;
-        } else if (
           reporting.currency === REPORTING_CURRENCY.USD &&
-          reporting.netRevenue &&
-          reporting.reportingMonth
+          reporting.netRevenue !== null
         ) {
-          const eurRes = await usdToEuro(
-            reporting.netRevenue,
-            reporting.reportingMonth
-          );
-          eur = eurRes.success ? eurRes.euro : null;
+          usd = reporting.netRevenue || null;
+          if (dateStr && usd !== null && usdToEurRates[dateStr] !== null) {
+            eur = usd * (usdToEurRates[dateStr] as number);
+          }
+        } else if (
+          reporting.currency === REPORTING_CURRENCY.EUR &&
+          reporting.netRevenue !== null
+        ) {
+          eur = reporting.netRevenue || null;
+          if (dateStr && eur !== null && eurToUsdRates[dateStr] !== null) {
+            usd = eur * (eurToUsdRates[dateStr] as number);
+          }
         }
         newConverted[reporting.id] = { usd, eur };
       }

@@ -91,3 +91,77 @@ export async function usdToEuro(
     };
   }
 }
+
+export async function getEurToUsdRate(
+  date: Date
+): Promise<{ success: boolean; rate: number | null; message: string }> {
+  try {
+    const formattedDate = date.toISOString().split("T")[0];
+    const res = await fetch(
+      `https://api.frankfurter.app/${formattedDate}?from=EUR&to=USD`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      return {
+        success: false,
+        rate: null,
+        message: "Failed to fetch exchange rate",
+      };
+    }
+    const json = await res.json();
+    const rate = json.rates.USD;
+    return {
+      success: true,
+      rate,
+      message: "Rate fetched",
+    };
+  } catch (error) {
+    console.error("Error fetching exchange rate:", error);
+    return {
+      success: false,
+      rate: null,
+      message: "Failed to fetch rate",
+    };
+  }
+}
+
+export async function getUsdToEurRate(
+  date: Date
+): Promise<{ success: boolean; rate: number | null; message: string }> {
+  try {
+    const formattedDate = date.toISOString().split("T")[0];
+    const res = await fetch(
+      `https://api.frankfurter.app/${formattedDate}?from=USD&to=EUR`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      return {
+        success: false,
+        rate: null,
+        message: "Failed to fetch exchange rate",
+      };
+    }
+    const json = await res.json();
+    const rate = json.rates.EUR;
+    return {
+      success: true,
+      rate,
+      message: "Rate fetched",
+    };
+  } catch (error) {
+    console.error("Error fetching exchange rate:", error);
+    return {
+      success: false,
+      rate: null,
+      message: "Failed to fetch rate",
+    };
+  }
+}
