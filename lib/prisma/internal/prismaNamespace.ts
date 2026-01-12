@@ -2272,7 +2272,6 @@ export const ReportingScalarFieldEnum = {
   name: "name",
   raw: "raw",
   hash: "hash",
-  reportingMonth: "reportingMonth",
   netRevenue: "netRevenue",
   metadata: "metadata",
   type: "type",
@@ -2280,6 +2279,7 @@ export const ReportingScalarFieldEnum = {
   currency: "currency",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
+  reportingMonth: "reportingMonth",
 } as const;
 
 export type ReportingScalarFieldEnum =

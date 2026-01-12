@@ -627,12 +627,11 @@ model Reporting {
   processorId String?
 
   // Fields
-  name           String
-  raw            String   @db.Text
-  hash           String   @unique
-  reportingMonth DateTime
-  netRevenue     Float
-  metadata       Json?    @db.JsonB
+  name       String
+  raw        String @db.Text
+  hash       String @unique
+  netRevenue Float
+  metadata   Json?  @db.JsonB
 
   // Enums
   type      REPORTING_TYPE
@@ -645,8 +644,9 @@ model Reporting {
   reports   Report[]
 
   // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  reportingMonth DateTime
 
   // Indexes & Constraints
 }

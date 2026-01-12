@@ -124,7 +124,7 @@ export async function getAllReportings(): Promise<{
         },
       },
       omit: { raw: true },
-      orderBy: { createdAt: "desc" },
+      orderBy: { reportingMonth: "desc" },
     });
 
     if (reportings.length === 0) {

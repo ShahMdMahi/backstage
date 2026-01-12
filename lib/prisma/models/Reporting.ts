@@ -41,13 +41,13 @@ export type ReportingMinAggregateOutputType = {
   name: string | null;
   raw: string | null;
   hash: string | null;
-  reportingMonth: Date | null;
   netRevenue: number | null;
   type: $Enums.REPORTING_TYPE | null;
   delimiter: $Enums.REPORTING_DELIMITER | null;
   currency: $Enums.REPORTING_CURRENCY | null;
   createdAt: Date | null;
   updatedAt: Date | null;
+  reportingMonth: Date | null;
 };
 
 export type ReportingMaxAggregateOutputType = {
@@ -57,13 +57,13 @@ export type ReportingMaxAggregateOutputType = {
   name: string | null;
   raw: string | null;
   hash: string | null;
-  reportingMonth: Date | null;
   netRevenue: number | null;
   type: $Enums.REPORTING_TYPE | null;
   delimiter: $Enums.REPORTING_DELIMITER | null;
   currency: $Enums.REPORTING_CURRENCY | null;
   createdAt: Date | null;
   updatedAt: Date | null;
+  reportingMonth: Date | null;
 };
 
 export type ReportingCountAggregateOutputType = {
@@ -73,7 +73,6 @@ export type ReportingCountAggregateOutputType = {
   name: number;
   raw: number;
   hash: number;
-  reportingMonth: number;
   netRevenue: number;
   metadata: number;
   type: number;
@@ -81,6 +80,7 @@ export type ReportingCountAggregateOutputType = {
   currency: number;
   createdAt: number;
   updatedAt: number;
+  reportingMonth: number;
   _all: number;
 };
 
@@ -99,13 +99,13 @@ export type ReportingMinAggregateInputType = {
   name?: true;
   raw?: true;
   hash?: true;
-  reportingMonth?: true;
   netRevenue?: true;
   type?: true;
   delimiter?: true;
   currency?: true;
   createdAt?: true;
   updatedAt?: true;
+  reportingMonth?: true;
 };
 
 export type ReportingMaxAggregateInputType = {
@@ -115,13 +115,13 @@ export type ReportingMaxAggregateInputType = {
   name?: true;
   raw?: true;
   hash?: true;
-  reportingMonth?: true;
   netRevenue?: true;
   type?: true;
   delimiter?: true;
   currency?: true;
   createdAt?: true;
   updatedAt?: true;
+  reportingMonth?: true;
 };
 
 export type ReportingCountAggregateInputType = {
@@ -131,7 +131,6 @@ export type ReportingCountAggregateInputType = {
   name?: true;
   raw?: true;
   hash?: true;
-  reportingMonth?: true;
   netRevenue?: true;
   metadata?: true;
   type?: true;
@@ -139,6 +138,7 @@ export type ReportingCountAggregateInputType = {
   currency?: true;
   createdAt?: true;
   updatedAt?: true;
+  reportingMonth?: true;
   _all?: true;
 };
 
@@ -242,7 +242,6 @@ export type ReportingGroupByOutputType = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date;
   netRevenue: number;
   metadata: runtime.JsonValue | null;
   type: $Enums.REPORTING_TYPE;
@@ -250,6 +249,7 @@ export type ReportingGroupByOutputType = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt: Date;
   updatedAt: Date;
+  reportingMonth: Date;
   _count: ReportingCountAggregateOutputType | null;
   _avg: ReportingAvgAggregateOutputType | null;
   _sum: ReportingSumAggregateOutputType | null;
@@ -280,7 +280,6 @@ export type ReportingWhereInput = {
   name?: Prisma.StringFilter<"Reporting"> | string;
   raw?: Prisma.StringFilter<"Reporting"> | string;
   hash?: Prisma.StringFilter<"Reporting"> | string;
-  reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   netRevenue?: Prisma.FloatFilter<"Reporting"> | number;
   metadata?: Prisma.JsonNullableFilter<"Reporting">;
   type?: Prisma.EnumREPORTING_TYPEFilter<"Reporting"> | $Enums.REPORTING_TYPE;
@@ -292,6 +291,7 @@ export type ReportingWhereInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
+  reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   uploader?: Prisma.XOR<
     Prisma.UserNullableScalarRelationFilter,
     Prisma.UserWhereInput
@@ -310,7 +310,6 @@ export type ReportingOrderByWithRelationInput = {
   name?: Prisma.SortOrder;
   raw?: Prisma.SortOrder;
   hash?: Prisma.SortOrder;
-  reportingMonth?: Prisma.SortOrder;
   netRevenue?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   type?: Prisma.SortOrder;
@@ -318,6 +317,7 @@ export type ReportingOrderByWithRelationInput = {
   currency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
   uploader?: Prisma.UserOrderByWithRelationInput;
   processor?: Prisma.UserOrderByWithRelationInput;
   reports?: Prisma.ReportOrderByRelationAggregateInput;
@@ -334,7 +334,6 @@ export type ReportingWhereUniqueInput = Prisma.AtLeast<
     processorId?: Prisma.StringNullableFilter<"Reporting"> | string | null;
     name?: Prisma.StringFilter<"Reporting"> | string;
     raw?: Prisma.StringFilter<"Reporting"> | string;
-    reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
     netRevenue?: Prisma.FloatFilter<"Reporting"> | number;
     metadata?: Prisma.JsonNullableFilter<"Reporting">;
     type?: Prisma.EnumREPORTING_TYPEFilter<"Reporting"> | $Enums.REPORTING_TYPE;
@@ -346,6 +345,7 @@ export type ReportingWhereUniqueInput = Prisma.AtLeast<
       | $Enums.REPORTING_CURRENCY;
     createdAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
+    reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
     uploader?: Prisma.XOR<
       Prisma.UserNullableScalarRelationFilter,
       Prisma.UserWhereInput
@@ -366,7 +366,6 @@ export type ReportingOrderByWithAggregationInput = {
   name?: Prisma.SortOrder;
   raw?: Prisma.SortOrder;
   hash?: Prisma.SortOrder;
-  reportingMonth?: Prisma.SortOrder;
   netRevenue?: Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
   type?: Prisma.SortOrder;
@@ -374,6 +373,7 @@ export type ReportingOrderByWithAggregationInput = {
   currency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
   _count?: Prisma.ReportingCountOrderByAggregateInput;
   _avg?: Prisma.ReportingAvgOrderByAggregateInput;
   _max?: Prisma.ReportingMaxOrderByAggregateInput;
@@ -401,10 +401,6 @@ export type ReportingScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Reporting"> | string;
   raw?: Prisma.StringWithAggregatesFilter<"Reporting"> | string;
   hash?: Prisma.StringWithAggregatesFilter<"Reporting"> | string;
-  reportingMonth?:
-    | Prisma.DateTimeWithAggregatesFilter<"Reporting">
-    | Date
-    | string;
   netRevenue?: Prisma.FloatWithAggregatesFilter<"Reporting"> | number;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Reporting">;
   type?:
@@ -418,6 +414,10 @@ export type ReportingScalarWhereWithAggregatesInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Reporting"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Reporting"> | Date | string;
+  reportingMonth?:
+    | Prisma.DateTimeWithAggregatesFilter<"Reporting">
+    | Date
+    | string;
 };
 
 export type ReportingCreateInput = {
@@ -425,7 +425,6 @@ export type ReportingCreateInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -433,6 +432,7 @@ export type ReportingCreateInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   uploader?: Prisma.UserCreateNestedOneWithoutUploadedReportingsInput;
   processor?: Prisma.UserCreateNestedOneWithoutProcessedReportingsInput;
   reports?: Prisma.ReportCreateNestedManyWithoutReportingInput;
@@ -445,7 +445,6 @@ export type ReportingUncheckedCreateInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -453,6 +452,7 @@ export type ReportingUncheckedCreateInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutReportingInput;
 };
 
@@ -461,7 +461,6 @@ export type ReportingUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -475,6 +474,7 @@ export type ReportingUpdateInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   uploader?: Prisma.UserUpdateOneWithoutUploadedReportingsNestedInput;
   processor?: Prisma.UserUpdateOneWithoutProcessedReportingsNestedInput;
   reports?: Prisma.ReportUpdateManyWithoutReportingNestedInput;
@@ -487,7 +487,6 @@ export type ReportingUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -501,6 +500,7 @@ export type ReportingUncheckedUpdateInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reports?: Prisma.ReportUncheckedUpdateManyWithoutReportingNestedInput;
 };
 
@@ -511,7 +511,6 @@ export type ReportingCreateManyInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -519,6 +518,7 @@ export type ReportingCreateManyInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
 };
 
 export type ReportingUpdateManyMutationInput = {
@@ -526,7 +526,6 @@ export type ReportingUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -540,6 +539,7 @@ export type ReportingUpdateManyMutationInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type ReportingUncheckedUpdateManyInput = {
@@ -549,7 +549,6 @@ export type ReportingUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -563,6 +562,7 @@ export type ReportingUncheckedUpdateManyInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type ReportingListRelationFilter = {
@@ -582,7 +582,6 @@ export type ReportingCountOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   raw?: Prisma.SortOrder;
   hash?: Prisma.SortOrder;
-  reportingMonth?: Prisma.SortOrder;
   netRevenue?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
   type?: Prisma.SortOrder;
@@ -590,6 +589,7 @@ export type ReportingCountOrderByAggregateInput = {
   currency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
 };
 
 export type ReportingAvgOrderByAggregateInput = {
@@ -603,13 +603,13 @@ export type ReportingMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   raw?: Prisma.SortOrder;
   hash?: Prisma.SortOrder;
-  reportingMonth?: Prisma.SortOrder;
   netRevenue?: Prisma.SortOrder;
   type?: Prisma.SortOrder;
   delimiter?: Prisma.SortOrder;
   currency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
 };
 
 export type ReportingMinOrderByAggregateInput = {
@@ -619,13 +619,13 @@ export type ReportingMinOrderByAggregateInput = {
   name?: Prisma.SortOrder;
   raw?: Prisma.SortOrder;
   hash?: Prisma.SortOrder;
-  reportingMonth?: Prisma.SortOrder;
   netRevenue?: Prisma.SortOrder;
   type?: Prisma.SortOrder;
   delimiter?: Prisma.SortOrder;
   currency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
 };
 
 export type ReportingSumOrderByAggregateInput = {
@@ -900,7 +900,6 @@ export type ReportingCreateWithoutUploaderInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -908,6 +907,7 @@ export type ReportingCreateWithoutUploaderInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   processor?: Prisma.UserCreateNestedOneWithoutProcessedReportingsInput;
   reports?: Prisma.ReportCreateNestedManyWithoutReportingInput;
 };
@@ -918,7 +918,6 @@ export type ReportingUncheckedCreateWithoutUploaderInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -926,6 +925,7 @@ export type ReportingUncheckedCreateWithoutUploaderInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutReportingInput;
 };
 
@@ -949,7 +949,6 @@ export type ReportingCreateWithoutProcessorInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -957,6 +956,7 @@ export type ReportingCreateWithoutProcessorInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   uploader?: Prisma.UserCreateNestedOneWithoutUploadedReportingsInput;
   reports?: Prisma.ReportCreateNestedManyWithoutReportingInput;
 };
@@ -967,7 +967,6 @@ export type ReportingUncheckedCreateWithoutProcessorInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -975,6 +974,7 @@ export type ReportingUncheckedCreateWithoutProcessorInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutReportingInput;
 };
 
@@ -1031,7 +1031,6 @@ export type ReportingScalarWhereInput = {
   name?: Prisma.StringFilter<"Reporting"> | string;
   raw?: Prisma.StringFilter<"Reporting"> | string;
   hash?: Prisma.StringFilter<"Reporting"> | string;
-  reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   netRevenue?: Prisma.FloatFilter<"Reporting"> | number;
   metadata?: Prisma.JsonNullableFilter<"Reporting">;
   type?: Prisma.EnumREPORTING_TYPEFilter<"Reporting"> | $Enums.REPORTING_TYPE;
@@ -1043,6 +1042,7 @@ export type ReportingScalarWhereInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
+  reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
 };
 
 export type ReportingUpsertWithWhereUniqueWithoutProcessorInput = {
@@ -1078,7 +1078,6 @@ export type ReportingCreateWithoutReportsInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -1086,6 +1085,7 @@ export type ReportingCreateWithoutReportsInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
   uploader?: Prisma.UserCreateNestedOneWithoutUploadedReportingsInput;
   processor?: Prisma.UserCreateNestedOneWithoutProcessedReportingsInput;
 };
@@ -1097,7 +1097,6 @@ export type ReportingUncheckedCreateWithoutReportsInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -1105,6 +1104,7 @@ export type ReportingUncheckedCreateWithoutReportsInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
 };
 
 export type ReportingCreateOrConnectWithoutReportsInput = {
@@ -1140,7 +1140,6 @@ export type ReportingUpdateWithoutReportsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1154,6 +1153,7 @@ export type ReportingUpdateWithoutReportsInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   uploader?: Prisma.UserUpdateOneWithoutUploadedReportingsNestedInput;
   processor?: Prisma.UserUpdateOneWithoutProcessedReportingsNestedInput;
 };
@@ -1165,7 +1165,6 @@ export type ReportingUncheckedUpdateWithoutReportsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1179,6 +1178,7 @@ export type ReportingUncheckedUpdateWithoutReportsInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type ReportingCreateManyUploaderInput = {
@@ -1187,7 +1187,6 @@ export type ReportingCreateManyUploaderInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -1195,6 +1194,7 @@ export type ReportingCreateManyUploaderInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
 };
 
 export type ReportingCreateManyProcessorInput = {
@@ -1203,7 +1203,6 @@ export type ReportingCreateManyProcessorInput = {
   name: string;
   raw: string;
   hash: string;
-  reportingMonth: Date | string;
   netRevenue: number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type: $Enums.REPORTING_TYPE;
@@ -1211,6 +1210,7 @@ export type ReportingCreateManyProcessorInput = {
   currency: $Enums.REPORTING_CURRENCY;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth: Date | string;
 };
 
 export type ReportingUpdateWithoutUploaderInput = {
@@ -1218,7 +1218,6 @@ export type ReportingUpdateWithoutUploaderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1232,6 +1231,7 @@ export type ReportingUpdateWithoutUploaderInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   processor?: Prisma.UserUpdateOneWithoutProcessedReportingsNestedInput;
   reports?: Prisma.ReportUpdateManyWithoutReportingNestedInput;
 };
@@ -1242,7 +1242,6 @@ export type ReportingUncheckedUpdateWithoutUploaderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1256,6 +1255,7 @@ export type ReportingUncheckedUpdateWithoutUploaderInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reports?: Prisma.ReportUncheckedUpdateManyWithoutReportingNestedInput;
 };
 
@@ -1265,7 +1265,6 @@ export type ReportingUncheckedUpdateManyWithoutUploaderInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1279,6 +1278,7 @@ export type ReportingUncheckedUpdateManyWithoutUploaderInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 export type ReportingUpdateWithoutProcessorInput = {
@@ -1286,7 +1286,6 @@ export type ReportingUpdateWithoutProcessorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1300,6 +1299,7 @@ export type ReportingUpdateWithoutProcessorInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   uploader?: Prisma.UserUpdateOneWithoutUploadedReportingsNestedInput;
   reports?: Prisma.ReportUpdateManyWithoutReportingNestedInput;
 };
@@ -1310,7 +1310,6 @@ export type ReportingUncheckedUpdateWithoutProcessorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1324,6 +1323,7 @@ export type ReportingUncheckedUpdateWithoutProcessorInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reports?: Prisma.ReportUncheckedUpdateManyWithoutReportingNestedInput;
 };
 
@@ -1333,7 +1333,6 @@ export type ReportingUncheckedUpdateManyWithoutProcessorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string;
   raw?: Prisma.StringFieldUpdateOperationsInput | string;
   hash?: Prisma.StringFieldUpdateOperationsInput | string;
-  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   netRevenue?: Prisma.FloatFieldUpdateOperationsInput | number;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
   type?:
@@ -1347,6 +1346,7 @@ export type ReportingUncheckedUpdateManyWithoutProcessorInput = {
     | $Enums.REPORTING_CURRENCY;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 
 /**
@@ -1398,7 +1398,6 @@ export type ReportingSelect<
     name?: boolean;
     raw?: boolean;
     hash?: boolean;
-    reportingMonth?: boolean;
     netRevenue?: boolean;
     metadata?: boolean;
     type?: boolean;
@@ -1406,6 +1405,7 @@ export type ReportingSelect<
     currency?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    reportingMonth?: boolean;
     uploader?: boolean | Prisma.Reporting$uploaderArgs<ExtArgs>;
     processor?: boolean | Prisma.Reporting$processorArgs<ExtArgs>;
     reports?: boolean | Prisma.Reporting$reportsArgs<ExtArgs>;
@@ -1425,7 +1425,6 @@ export type ReportingSelectCreateManyAndReturn<
     name?: boolean;
     raw?: boolean;
     hash?: boolean;
-    reportingMonth?: boolean;
     netRevenue?: boolean;
     metadata?: boolean;
     type?: boolean;
@@ -1433,6 +1432,7 @@ export type ReportingSelectCreateManyAndReturn<
     currency?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    reportingMonth?: boolean;
     uploader?: boolean | Prisma.Reporting$uploaderArgs<ExtArgs>;
     processor?: boolean | Prisma.Reporting$processorArgs<ExtArgs>;
   },
@@ -1450,7 +1450,6 @@ export type ReportingSelectUpdateManyAndReturn<
     name?: boolean;
     raw?: boolean;
     hash?: boolean;
-    reportingMonth?: boolean;
     netRevenue?: boolean;
     metadata?: boolean;
     type?: boolean;
@@ -1458,6 +1457,7 @@ export type ReportingSelectUpdateManyAndReturn<
     currency?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    reportingMonth?: boolean;
     uploader?: boolean | Prisma.Reporting$uploaderArgs<ExtArgs>;
     processor?: boolean | Prisma.Reporting$processorArgs<ExtArgs>;
   },
@@ -1471,7 +1471,6 @@ export type ReportingSelectScalar = {
   name?: boolean;
   raw?: boolean;
   hash?: boolean;
-  reportingMonth?: boolean;
   netRevenue?: boolean;
   metadata?: boolean;
   type?: boolean;
@@ -1479,6 +1478,7 @@ export type ReportingSelectScalar = {
   currency?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
+  reportingMonth?: boolean;
 };
 
 export type ReportingOmit<
@@ -1491,14 +1491,14 @@ export type ReportingOmit<
   | "name"
   | "raw"
   | "hash"
-  | "reportingMonth"
   | "netRevenue"
   | "metadata"
   | "type"
   | "delimiter"
   | "currency"
   | "createdAt"
-  | "updatedAt",
+  | "updatedAt"
+  | "reportingMonth",
   ExtArgs["result"]["reporting"]
 >;
 export type ReportingInclude<
@@ -1543,7 +1543,6 @@ export type $ReportingPayload<
       name: string;
       raw: string;
       hash: string;
-      reportingMonth: Date;
       netRevenue: number;
       metadata: runtime.JsonValue | null;
       type: $Enums.REPORTING_TYPE;
@@ -1551,6 +1550,7 @@ export type $ReportingPayload<
       currency: $Enums.REPORTING_CURRENCY;
       createdAt: Date;
       updatedAt: Date;
+      reportingMonth: Date;
     },
     ExtArgs["result"]["reporting"]
   >;
@@ -2186,7 +2186,6 @@ export interface ReportingFieldRefs {
   readonly name: Prisma.FieldRef<"Reporting", "String">;
   readonly raw: Prisma.FieldRef<"Reporting", "String">;
   readonly hash: Prisma.FieldRef<"Reporting", "String">;
-  readonly reportingMonth: Prisma.FieldRef<"Reporting", "DateTime">;
   readonly netRevenue: Prisma.FieldRef<"Reporting", "Float">;
   readonly metadata: Prisma.FieldRef<"Reporting", "Json">;
   readonly type: Prisma.FieldRef<"Reporting", "REPORTING_TYPE">;
@@ -2194,6 +2193,7 @@ export interface ReportingFieldRefs {
   readonly currency: Prisma.FieldRef<"Reporting", "REPORTING_CURRENCY">;
   readonly createdAt: Prisma.FieldRef<"Reporting", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Reporting", "DateTime">;
+  readonly reportingMonth: Prisma.FieldRef<"Reporting", "DateTime">;
 }
 
 // Custom InputTypes

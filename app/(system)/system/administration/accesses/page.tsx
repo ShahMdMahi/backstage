@@ -70,7 +70,7 @@ export default async function AccessesPage() {
                 <XCircleIcon className="size-8 text-destructive" />
               </div>
               <h2 className="text-xl font-semibold text-destructive mb-2">
-                No System Access Found
+                {accesses.message || "No System Accesses Found"}
               </h2>
               <p className="text-muted-foreground text-center max-w-md mb-1">
                 The system accesses you are looking for do not exist or have
