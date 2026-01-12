@@ -147,7 +147,6 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
         reporting.name?.toLowerCase().includes(query) ||
         reporting.type?.toLowerCase().includes(query) ||
         reporting.currency?.toLowerCase().includes(query) ||
-        reporting.delimiter?.toLowerCase().includes(query) ||
         reporting.hash?.toLowerCase().includes(query) ||
         reporting.uploader?.id?.toLowerCase().includes(query) ||
         reporting.uploader?.email?.toLowerCase().includes(query) ||
@@ -186,7 +185,7 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
               <TableHead>Hash</TableHead>
               <TableHead>Uploader</TableHead>
               <TableHead>Processor</TableHead>
-              <TableHead>Created</TableHead>
+              <TableHead>Uploaded</TableHead>
               <TableHead>Modified</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>

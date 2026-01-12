@@ -43,7 +43,7 @@ export default function ReportingsLoadingPage() {
                   <TableHead>Hash</TableHead>
                   <TableHead>Uploader</TableHead>
                   <TableHead>Processor</TableHead>
-                  <TableHead>Created</TableHead>
+                  <TableHead>Uploaded</TableHead>
                   <TableHead>Modified</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
