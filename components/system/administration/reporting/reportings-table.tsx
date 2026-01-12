@@ -23,14 +23,9 @@ import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { REPORTING_CURRENCY, ROLE } from "@/lib/prisma/enums";
 import { Input } from "@/components/ui/input";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import {
-  euroToBdt,
-  euroToUsd,
-  usdToBdt,
-  usdToEuro,
-} from "@/actions/shared/currency-exchange";
+import { euroToUsd, usdToEuro } from "@/actions/shared/currency-exchange";
 
 interface ReportingsTableProps {
   reportings: (Partial<Reporting> & {
@@ -71,6 +66,53 @@ function formatCurrency(currency: REPORTING_CURRENCY): string {
 export default function ReportingsTable({ reportings }: ReportingsTableProps) {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const [convertedRevenues, setConvertedRevenues] = useState<
+    Record<string, { usd: number | null; eur: number | null }>
+  >({});
+
+  useEffect(() => {
+    const computeConversions = async () => {
+      const newConverted: Record<
+        string,
+        { usd: number | null; eur: number | null }
+      > = {};
+      for (const reporting of reportings) {
+        if (!reporting.id) continue;
+        let usd: number | null =
+          reporting.currency === REPORTING_CURRENCY.USD
+            ? reporting.netRevenue || 0
+            : 0;
+        let eur: number | null =
+          reporting.currency === REPORTING_CURRENCY.EUR
+            ? reporting.netRevenue || 0
+            : 0;
+        if (
+          reporting.currency === REPORTING_CURRENCY.EUR &&
+          reporting.netRevenue &&
+          reporting.reportingMonth
+        ) {
+          const usdRes = await euroToUsd(
+            reporting.netRevenue,
+            reporting.reportingMonth
+          );
+          usd = usdRes.success ? usdRes.usd : null;
+        } else if (
+          reporting.currency === REPORTING_CURRENCY.USD &&
+          reporting.netRevenue &&
+          reporting.reportingMonth
+        ) {
+          const eurRes = await usdToEuro(
+            reporting.netRevenue,
+            reporting.reportingMonth
+          );
+          eur = eurRes.success ? eurRes.euro : null;
+        }
+        newConverted[reporting.id] = { usd, eur };
+      }
+      setConvertedRevenues(newConverted);
+    };
+    computeConversions();
+  }, [reportings]);
 
   const filteredReportings = useMemo(() => {
     if (!searchQuery.trim()) return reportings;
@@ -116,7 +158,6 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
               <TableHead>Reporting Month</TableHead>
               <TableHead>Net Revenue(USD)</TableHead>
               <TableHead>Net Revenue(EUR)</TableHead>
-              <TableHead>Net Revenue(BDT)</TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Currency</TableHead>
               <TableHead>Hash</TableHead>
@@ -130,59 +171,18 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
           <TableBody className="overflow-hidden">
             {filteredReportings.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={14} className="text-center h-24">
+                <TableCell colSpan={13} className="text-center h-24">
                   {searchQuery.trim()
                     ? "No reportings found matching your search."
                     : "No reportings found."}
                 </TableCell>
               </TableRow>
             ) : (
-              filteredReportings.map(async (reporting) => {
-                let revenueInUsd: number | null =
-                  reporting.currency === REPORTING_CURRENCY.USD
-                    ? reporting.netRevenue || 0
-                    : 0;
-                let revenueInEur: number | null =
-                  reporting.currency === REPORTING_CURRENCY.EUR
-                    ? reporting.netRevenue || 0
-                    : 0;
-                let revenueInBdt: number | null = 0;
-                if (
-                  reporting.currency === REPORTING_CURRENCY.EUR &&
-                  reporting.netRevenue &&
-                  reporting.reportingMonth
-                ) {
-                  const usd = euroToUsd(
-                    reporting.netRevenue,
-                    reporting.reportingMonth
-                  );
-                  const bdt = euroToBdt(
-                    reporting.netRevenue,
-                    reporting.reportingMonth
-                  );
-                  Promise.all([usd, bdt]).then(([usdRes, bdtRes]) => {
-                    revenueInUsd = usdRes.success ? usdRes.usd : null;
-                    revenueInBdt = bdtRes.success ? bdtRes.bdt : null;
-                  });
-                }
-                if (
-                  reporting.currency === REPORTING_CURRENCY.USD &&
-                  reporting.netRevenue &&
-                  reporting.reportingMonth
-                ) {
-                  const eur = usdToEuro(
-                    reporting.netRevenue,
-                    reporting.reportingMonth
-                  );
-                  const bdt = usdToBdt(
-                    reporting.netRevenue,
-                    reporting.reportingMonth
-                  );
-                  Promise.all([eur, bdt]).then(([eurRes, bdtRes]) => {
-                    revenueInEur = eurRes.success ? eurRes.euro : null;
-                    revenueInBdt = bdtRes.success ? bdtRes.bdt : null;
-                  });
-                }
+              filteredReportings.map((reporting) => {
+                const revenues = convertedRevenues[reporting.id!] || {
+                  usd: 0,
+                  eur: 0,
+                };
                 return (
                   <TableRow
                     key={reporting.id}
@@ -213,13 +213,14 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                       </div>
                     </TableCell>
                     <TableCell className="font-mono text-xs">
-                      {revenueInUsd}
+                      {revenues.usd !== null
+                        ? `$${revenues.usd.toFixed(2)}`
+                        : "N/A"}
                     </TableCell>
                     <TableCell className="font-mono text-xs">
-                      {revenueInEur}
-                    </TableCell>
-                    <TableCell className="font-mono text-xs">
-                      {revenueInBdt}
+                      {revenues.eur !== null
+                        ? `€${revenues.eur.toFixed(2)}`
+                        : "N/A"}
                     </TableCell>
                     <TableCell>
                       <Badge variant="outline" className="text-xs">

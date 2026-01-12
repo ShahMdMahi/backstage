@@ -38,7 +38,6 @@ export default function ReportingsLoadingPage() {
                   <TableHead>Reporting Month</TableHead>
                   <TableHead>Net Revenue(USD)</TableHead>
                   <TableHead>Net Revenue(EUR)</TableHead>
-                  <TableHead>Net Revenue(BDT)</TableHead>
                   <TableHead>Type</TableHead>
                   <TableHead>Currency</TableHead>
                   <TableHead>Hash</TableHead>
@@ -60,9 +59,6 @@ export default function ReportingsLoadingPage() {
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-4 w-32" />
-                    </TableCell>
-                    <TableCell>
-                      <Skeleton className="h-4 w-48" />
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-4 w-48" />
