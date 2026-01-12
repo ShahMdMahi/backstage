@@ -36,6 +36,7 @@ export default function ReportingsLoadingPage() {
                   <TableHead className="pl-4">ID</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Reporting Month</TableHead>
+                  <TableHead>Net Revenue</TableHead>
                   <TableHead>Uploader</TableHead>
                   <TableHead>Processor</TableHead>
                   <TableHead>Type</TableHead>
@@ -58,6 +59,9 @@ export default function ReportingsLoadingPage() {
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-4 w-32" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-4 w-48" />
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-4 w-48" />

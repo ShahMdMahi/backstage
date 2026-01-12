@@ -22,7 +22,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import {
-  REPORTING_TYPE,
   REPORTING_CURRENCY,
   REPORTING_DELIMITER,
   ROLE,
@@ -58,13 +57,6 @@ function getInitials(name: string | null | undefined): string {
 
 function formatRole(role: string): string {
   return role
-    .replace(/_/g, " ")
-    .toLowerCase()
-    .replace(/\b\w/g, (l) => l.toUpperCase());
-}
-
-function formatReportingType(type: REPORTING_TYPE): string {
-  return type
     .replace(/_/g, " ")
     .toLowerCase()
     .replace(/\b\w/g, (l) => l.toUpperCase());
@@ -131,11 +123,11 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
               <TableHead className="pl-4">ID</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Reporting Month</TableHead>
+              <TableHead>Net Revenue</TableHead>
               <TableHead>Uploader</TableHead>
               <TableHead>Processor</TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Currency</TableHead>
-              <TableHead>Net Revenue</TableHead>
               <TableHead>Delimiter</TableHead>
               <TableHead>Hash</TableHead>
               <TableHead>Created</TableHead>
@@ -181,6 +173,11 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                         }
                       </div>
                     </div>
+                  </TableCell>
+                  <TableCell className="font-mono text-xs">
+                    {reporting.netRevenue !== undefined
+                      ? reporting.netRevenue.toFixed(2)
+                      : "N/A"}
                   </TableCell>
                   <TableCell>
                     {reporting.uploader ? (
@@ -295,18 +292,13 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                   </TableCell>
                   <TableCell>
                     <Badge variant="outline" className="text-xs">
-                      {formatReportingType(reporting.type!)}
+                      {reporting.type}
                     </Badge>
                   </TableCell>
                   <TableCell>
                     <Badge variant="outline" className="text-xs">
                       {formatCurrency(reporting.currency!)}
                     </Badge>
-                  </TableCell>
-                  <TableCell className="font-mono text-xs">
-                    {reporting.netRevenue !== undefined
-                      ? reporting.netRevenue.toFixed(2)
-                      : "N/A"}
                   </TableCell>
                   <TableCell>
                     <Badge variant="outline" className="text-xs">
