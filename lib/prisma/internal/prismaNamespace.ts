@@ -415,6 +415,7 @@ export const ModelName = {
   User: "User",
   Session: "Session",
   SystemAccess: "SystemAccess",
+  Reporting: "Reporting",
   WorkspaceAccount: "WorkspaceAccount",
   Release: "Release",
   Track: "Track",
@@ -429,6 +430,7 @@ export const ModelName = {
   Label: "Label",
   Transaction: "Transaction",
   Withdrawal: "Withdrawal",
+  Report: "Report",
   SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
   RightsManagement: "RightsManagement",
   AuditLog: "AuditLog",
@@ -457,6 +459,7 @@ export type TypeMap<
       | "user"
       | "session"
       | "systemAccess"
+      | "reporting"
       | "workspaceAccount"
       | "release"
       | "track"
@@ -471,6 +474,7 @@ export type TypeMap<
       | "label"
       | "transaction"
       | "withdrawal"
+      | "report"
       | "sharedWorkspaceAccountAccess"
       | "rightsManagement"
       | "auditLog";
@@ -701,6 +705,82 @@ export type TypeMap<
           args: Prisma.SystemAccessCountArgs<ExtArgs>;
           result:
             | runtime.Types.Utils.Optional<Prisma.SystemAccessCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
+    Reporting: {
+      payload: Prisma.$ReportingPayload<ExtArgs>;
+      fields: Prisma.ReportingFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ReportingFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ReportingFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>;
+        };
+        findFirst: {
+          args: Prisma.ReportingFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ReportingFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>;
+        };
+        findMany: {
+          args: Prisma.ReportingFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>[];
+        };
+        create: {
+          args: Prisma.ReportingCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>;
+        };
+        createMany: {
+          args: Prisma.ReportingCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ReportingCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>[];
+        };
+        delete: {
+          args: Prisma.ReportingDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>;
+        };
+        update: {
+          args: Prisma.ReportingUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ReportingDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ReportingUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ReportingUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>[];
+        };
+        upsert: {
+          args: Prisma.ReportingUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportingPayload>;
+        };
+        aggregate: {
+          args: Prisma.ReportingAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReporting>;
+        };
+        groupBy: {
+          args: Prisma.ReportingGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ReportingGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ReportingCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ReportingCountAggregateOutputType>
             | number;
         };
       };
@@ -1769,6 +1849,82 @@ export type TypeMap<
         };
       };
     };
+    Report: {
+      payload: Prisma.$ReportPayload<ExtArgs>;
+      fields: Prisma.ReportFieldRefs;
+      operations: {
+        findUnique: {
+          args: Prisma.ReportFindUniqueArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload> | null;
+        };
+        findUniqueOrThrow: {
+          args: Prisma.ReportFindUniqueOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>;
+        };
+        findFirst: {
+          args: Prisma.ReportFindFirstArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload> | null;
+        };
+        findFirstOrThrow: {
+          args: Prisma.ReportFindFirstOrThrowArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>;
+        };
+        findMany: {
+          args: Prisma.ReportFindManyArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>[];
+        };
+        create: {
+          args: Prisma.ReportCreateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>;
+        };
+        createMany: {
+          args: Prisma.ReportCreateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        createManyAndReturn: {
+          args: Prisma.ReportCreateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>[];
+        };
+        delete: {
+          args: Prisma.ReportDeleteArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>;
+        };
+        update: {
+          args: Prisma.ReportUpdateArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>;
+        };
+        deleteMany: {
+          args: Prisma.ReportDeleteManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateMany: {
+          args: Prisma.ReportUpdateManyArgs<ExtArgs>;
+          result: BatchPayload;
+        };
+        updateManyAndReturn: {
+          args: Prisma.ReportUpdateManyAndReturnArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>[];
+        };
+        upsert: {
+          args: Prisma.ReportUpsertArgs<ExtArgs>;
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ReportPayload>;
+        };
+        aggregate: {
+          args: Prisma.ReportAggregateArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.AggregateReport>;
+        };
+        groupBy: {
+          args: Prisma.ReportGroupByArgs<ExtArgs>;
+          result: runtime.Types.Utils.Optional<Prisma.ReportGroupByOutputType>[];
+        };
+        count: {
+          args: Prisma.ReportCountArgs<ExtArgs>;
+          result:
+            | runtime.Types.Utils.Optional<Prisma.ReportCountAggregateOutputType>
+            | number;
+        };
+      };
+    };
     SharedWorkspaceAccountAccess: {
       payload: Prisma.$SharedWorkspaceAccountAccessPayload<ExtArgs>;
       fields: Prisma.SharedWorkspaceAccountAccessFieldRefs;
@@ -2109,6 +2265,26 @@ export const SystemAccessScalarFieldEnum = {
 export type SystemAccessScalarFieldEnum =
   (typeof SystemAccessScalarFieldEnum)[keyof typeof SystemAccessScalarFieldEnum];
 
+export const ReportingScalarFieldEnum = {
+  id: "id",
+  uploaderId: "uploaderId",
+  processorId: "processorId",
+  name: "name",
+  raw: "raw",
+  hash: "hash",
+  reportingMonth: "reportingMonth",
+  netRevenue: "netRevenue",
+  metadata: "metadata",
+  type: "type",
+  delimiter: "delimiter",
+  currency: "currency",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ReportingScalarFieldEnum =
+  (typeof ReportingScalarFieldEnum)[keyof typeof ReportingScalarFieldEnum];
+
 export const WorkspaceAccountScalarFieldEnum = {
   id: "id",
   ownerId: "ownerId",
@@ -2289,6 +2465,17 @@ export const WithdrawalScalarFieldEnum = {
 
 export type WithdrawalScalarFieldEnum =
   (typeof WithdrawalScalarFieldEnum)[keyof typeof WithdrawalScalarFieldEnum];
+
+export const ReportScalarFieldEnum = {
+  id: "id",
+  reportingId: "reportingId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ReportScalarFieldEnum =
+  (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum];
 
 export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   id: "id",
@@ -2734,6 +2921,60 @@ export type ListEnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<
 export type EnumRIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVELFieldRefInput<
   $PrismaModel,
 > = FieldRefInputType<$PrismaModel, "RIGHTS_MANAGEMENT_SYSTEM_ACCESS_LEVEL">;
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Float"
+>;
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Float[]"
+>;
+
+/**
+ * Reference to a field of type 'REPORTING_TYPE'
+ */
+export type EnumREPORTING_TYPEFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "REPORTING_TYPE"
+>;
+
+/**
+ * Reference to a field of type 'REPORTING_TYPE[]'
+ */
+export type ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_TYPE[]">;
+
+/**
+ * Reference to a field of type 'REPORTING_DELIMITER'
+ */
+export type EnumREPORTING_DELIMITERFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_DELIMITER">;
+
+/**
+ * Reference to a field of type 'REPORTING_DELIMITER[]'
+ */
+export type ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_DELIMITER[]">;
+
+/**
+ * Reference to a field of type 'REPORTING_CURRENCY'
+ */
+export type EnumREPORTING_CURRENCYFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_CURRENCY">;
+
+/**
+ * Reference to a field of type 'REPORTING_CURRENCY[]'
+ */
+export type ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel> =
+  FieldRefInputType<$PrismaModel, "REPORTING_CURRENCY[]">;
 
 /**
  * Reference to a field of type 'WORKSPACE_ACCOUNT_TYPE'
@@ -3247,6 +3488,7 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit;
   session?: Prisma.SessionOmit;
   systemAccess?: Prisma.SystemAccessOmit;
+  reporting?: Prisma.ReportingOmit;
   workspaceAccount?: Prisma.WorkspaceAccountOmit;
   release?: Prisma.ReleaseOmit;
   track?: Prisma.TrackOmit;
@@ -3261,6 +3503,7 @@ export type GlobalOmitConfig = {
   label?: Prisma.LabelOmit;
   transaction?: Prisma.TransactionOmit;
   withdrawal?: Prisma.WithdrawalOmit;
+  report?: Prisma.ReportOmit;
   sharedWorkspaceAccountAccess?: Prisma.SharedWorkspaceAccountAccessOmit;
   rightsManagement?: Prisma.RightsManagementOmit;
   auditLog?: Prisma.AuditLogOmit;

@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-export default async function ReportingsPage() {
+export default async function CreateReportingPage() {
   const session = await getCurrentSession();
   if (!session.success) redirect("/auth/login");
   if (!session?.data?.user) redirect("/auth/login");
@@ -24,7 +24,7 @@ export default async function ReportingsPage() {
       }
       if (
         !session?.data?.user?.systemAccess?.reportingAccessLevel.includes(
-          REPORTING_SYSTEM_ACCESS_LEVEL.VIEW
+          REPORTING_SYSTEM_ACCESS_LEVEL.CREATE
         )
       ) {
         redirect("/system");

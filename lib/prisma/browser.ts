@@ -32,6 +32,11 @@ export type Session = Prisma.SessionModel;
  */
 export type SystemAccess = Prisma.SystemAccessModel;
 /**
+ * Model Reporting
+ *
+ */
+export type Reporting = Prisma.ReportingModel;
+/**
  * Model WorkspaceAccount
  *
  */
@@ -102,6 +107,11 @@ export type Transaction = Prisma.TransactionModel;
  *
  */
 export type Withdrawal = Prisma.WithdrawalModel;
+/**
+ * Model Report
+ *
+ */
+export type Report = Prisma.ReportModel;
 /**
  * Model SharedWorkspaceAccountAccess
  *

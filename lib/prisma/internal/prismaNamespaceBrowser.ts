@@ -57,6 +57,7 @@ export const ModelName = {
   User: "User",
   Session: "Session",
   SystemAccess: "SystemAccess",
+  Reporting: "Reporting",
   WorkspaceAccount: "WorkspaceAccount",
   Release: "Release",
   Track: "Track",
@@ -71,6 +72,7 @@ export const ModelName = {
   Label: "Label",
   Transaction: "Transaction",
   Withdrawal: "Withdrawal",
+  Report: "Report",
   SharedWorkspaceAccountAccess: "SharedWorkspaceAccountAccess",
   RightsManagement: "RightsManagement",
   AuditLog: "AuditLog",
@@ -164,6 +166,26 @@ export const SystemAccessScalarFieldEnum = {
 
 export type SystemAccessScalarFieldEnum =
   (typeof SystemAccessScalarFieldEnum)[keyof typeof SystemAccessScalarFieldEnum];
+
+export const ReportingScalarFieldEnum = {
+  id: "id",
+  uploaderId: "uploaderId",
+  processorId: "processorId",
+  name: "name",
+  raw: "raw",
+  hash: "hash",
+  reportingMonth: "reportingMonth",
+  netRevenue: "netRevenue",
+  metadata: "metadata",
+  type: "type",
+  delimiter: "delimiter",
+  currency: "currency",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ReportingScalarFieldEnum =
+  (typeof ReportingScalarFieldEnum)[keyof typeof ReportingScalarFieldEnum];
 
 export const WorkspaceAccountScalarFieldEnum = {
   id: "id",
@@ -345,6 +367,17 @@ export const WithdrawalScalarFieldEnum = {
 
 export type WithdrawalScalarFieldEnum =
   (typeof WithdrawalScalarFieldEnum)[keyof typeof WithdrawalScalarFieldEnum];
+
+export const ReportScalarFieldEnum = {
+  id: "id",
+  reportingId: "reportingId",
+  metadata: "metadata",
+  createdAt: "createdAt",
+  updatedAt: "updatedAt",
+} as const;
+
+export type ReportScalarFieldEnum =
+  (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum];
 
 export const SharedWorkspaceAccountAccessScalarFieldEnum = {
   id: "id",

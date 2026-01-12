@@ -5,7 +5,12 @@ import { redirect } from "next/navigation";
 
 export const dynamic = "force-dynamic";
 
-export default async function ReportingsPage() {
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function ReportingPage({ params }: PageProps) {
+  const id = (await params).id;
   const session = await getCurrentSession();
   if (!session.success) redirect("/auth/login");
   if (!session?.data?.user) redirect("/auth/login");
@@ -41,7 +46,7 @@ export default async function ReportingsPage() {
           Reporting
         </h1>
         <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-          View and analyze system reports
+          View and analyze system reports for ID: {id}
         </p>
       </div>
     </div>

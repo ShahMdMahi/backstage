@@ -305,6 +305,133 @@ export type EnumSESSION_DEVICE_TYPEWithAggregatesFilter<$PrismaModel = never> =
     _max?: Prisma.NestedEnumSESSION_DEVICE_TYPEFilter<$PrismaModel>;
   };
 
+export type FloatFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedFloatFilter<$PrismaModel> | number;
+};
+
+export type EnumREPORTING_TYPEFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_TYPE
+    | Prisma.EnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_TYPE[]
+    | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_TYPE[]
+    | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_TYPEFilter<$PrismaModel>
+    | $Enums.REPORTING_TYPE;
+};
+
+export type EnumREPORTING_DELIMITERFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_DELIMITER
+    | Prisma.EnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_DELIMITER[]
+    | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_DELIMITER[]
+    | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_DELIMITERFilter<$PrismaModel>
+    | $Enums.REPORTING_DELIMITER;
+};
+
+export type EnumREPORTING_CURRENCYFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_CURRENCY
+    | Prisma.EnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_CURRENCYFilter<$PrismaModel>
+    | $Enums.REPORTING_CURRENCY;
+};
+
+export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedFloatWithAggregatesFilter<$PrismaModel> | number;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _avg?: Prisma.NestedFloatFilter<$PrismaModel>;
+  _sum?: Prisma.NestedFloatFilter<$PrismaModel>;
+  _min?: Prisma.NestedFloatFilter<$PrismaModel>;
+  _max?: Prisma.NestedFloatFilter<$PrismaModel>;
+};
+
+export type EnumREPORTING_TYPEWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_TYPE
+    | Prisma.EnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_TYPE[]
+    | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_TYPE[]
+    | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_TYPEWithAggregatesFilter<$PrismaModel>
+    | $Enums.REPORTING_TYPE;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumREPORTING_TYPEFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumREPORTING_TYPEFilter<$PrismaModel>;
+};
+
+export type EnumREPORTING_DELIMITERWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.REPORTING_DELIMITER
+      | Prisma.EnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.REPORTING_DELIMITER[]
+      | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.REPORTING_DELIMITER[]
+      | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumREPORTING_DELIMITERWithAggregatesFilter<$PrismaModel>
+      | $Enums.REPORTING_DELIMITER;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumREPORTING_DELIMITERFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumREPORTING_DELIMITERFilter<$PrismaModel>;
+  };
+
+export type EnumREPORTING_CURRENCYWithAggregatesFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_CURRENCY
+    | Prisma.EnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_CURRENCYWithAggregatesFilter<$PrismaModel>
+    | $Enums.REPORTING_CURRENCY;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumREPORTING_CURRENCYFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumREPORTING_CURRENCYFilter<$PrismaModel>;
+};
+
 export type EnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel = never> = {
   equals?:
     | $Enums.WORKSPACE_ACCOUNT_TYPE
@@ -1007,6 +1134,137 @@ export type NestedEnumSESSION_DEVICE_TYPEWithAggregatesFilter<
   _count?: Prisma.NestedIntFilter<$PrismaModel>;
   _min?: Prisma.NestedEnumSESSION_DEVICE_TYPEFilter<$PrismaModel>;
   _max?: Prisma.NestedEnumSESSION_DEVICE_TYPEFilter<$PrismaModel>;
+};
+
+export type NestedFloatFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedFloatFilter<$PrismaModel> | number;
+};
+
+export type NestedEnumREPORTING_TYPEFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_TYPE
+    | Prisma.EnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_TYPE[]
+    | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_TYPE[]
+    | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_TYPEFilter<$PrismaModel>
+    | $Enums.REPORTING_TYPE;
+};
+
+export type NestedEnumREPORTING_DELIMITERFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_DELIMITER
+    | Prisma.EnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_DELIMITER[]
+    | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_DELIMITER[]
+    | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_DELIMITERFilter<$PrismaModel>
+    | $Enums.REPORTING_DELIMITER;
+};
+
+export type NestedEnumREPORTING_CURRENCYFilter<$PrismaModel = never> = {
+  equals?:
+    | $Enums.REPORTING_CURRENCY
+    | Prisma.EnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_CURRENCYFilter<$PrismaModel>
+    | $Enums.REPORTING_CURRENCY;
+};
+
+export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>;
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>;
+  not?: Prisma.NestedFloatWithAggregatesFilter<$PrismaModel> | number;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _avg?: Prisma.NestedFloatFilter<$PrismaModel>;
+  _sum?: Prisma.NestedFloatFilter<$PrismaModel>;
+  _min?: Prisma.NestedFloatFilter<$PrismaModel>;
+  _max?: Prisma.NestedFloatFilter<$PrismaModel>;
+};
+
+export type NestedEnumREPORTING_TYPEWithAggregatesFilter<$PrismaModel = never> =
+  {
+    equals?:
+      | $Enums.REPORTING_TYPE
+      | Prisma.EnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+    in?:
+      | $Enums.REPORTING_TYPE[]
+      | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+    notIn?:
+      | $Enums.REPORTING_TYPE[]
+      | Prisma.ListEnumREPORTING_TYPEFieldRefInput<$PrismaModel>;
+    not?:
+      | Prisma.NestedEnumREPORTING_TYPEWithAggregatesFilter<$PrismaModel>
+      | $Enums.REPORTING_TYPE;
+    _count?: Prisma.NestedIntFilter<$PrismaModel>;
+    _min?: Prisma.NestedEnumREPORTING_TYPEFilter<$PrismaModel>;
+    _max?: Prisma.NestedEnumREPORTING_TYPEFilter<$PrismaModel>;
+  };
+
+export type NestedEnumREPORTING_DELIMITERWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.REPORTING_DELIMITER
+    | Prisma.EnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_DELIMITER[]
+    | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_DELIMITER[]
+    | Prisma.ListEnumREPORTING_DELIMITERFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_DELIMITERWithAggregatesFilter<$PrismaModel>
+    | $Enums.REPORTING_DELIMITER;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumREPORTING_DELIMITERFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumREPORTING_DELIMITERFilter<$PrismaModel>;
+};
+
+export type NestedEnumREPORTING_CURRENCYWithAggregatesFilter<
+  $PrismaModel = never,
+> = {
+  equals?:
+    | $Enums.REPORTING_CURRENCY
+    | Prisma.EnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  in?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  notIn?:
+    | $Enums.REPORTING_CURRENCY[]
+    | Prisma.ListEnumREPORTING_CURRENCYFieldRefInput<$PrismaModel>;
+  not?:
+    | Prisma.NestedEnumREPORTING_CURRENCYWithAggregatesFilter<$PrismaModel>
+    | $Enums.REPORTING_CURRENCY;
+  _count?: Prisma.NestedIntFilter<$PrismaModel>;
+  _min?: Prisma.NestedEnumREPORTING_CURRENCYFilter<$PrismaModel>;
+  _max?: Prisma.NestedEnumREPORTING_CURRENCYFilter<$PrismaModel>;
 };
 
 export type NestedEnumWORKSPACE_ACCOUNT_TYPEFilter<$PrismaModel = never> = {
