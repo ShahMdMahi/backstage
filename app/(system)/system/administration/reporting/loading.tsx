@@ -36,13 +36,14 @@ export default function ReportingsLoadingPage() {
                   <TableHead className="pl-4">ID</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Reporting Month</TableHead>
-                  <TableHead>Net Revenue</TableHead>
-                  <TableHead>Uploader</TableHead>
-                  <TableHead>Processor</TableHead>
+                  <TableHead>Net Revenue(USD)</TableHead>
+                  <TableHead>Net Revenue(EUR)</TableHead>
+                  <TableHead>Net Revenue(BDT)</TableHead>
                   <TableHead>Type</TableHead>
                   <TableHead>Currency</TableHead>
-                  <TableHead>Delimiter</TableHead>
                   <TableHead>Hash</TableHead>
+                  <TableHead>Uploader</TableHead>
+                  <TableHead>Processor</TableHead>
                   <TableHead>Created</TableHead>
                   <TableHead>Modified</TableHead>
                   <TableHead>Actions</TableHead>
@@ -67,38 +68,10 @@ export default function ReportingsLoadingPage() {
                       <Skeleton className="h-4 w-48" />
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-start gap-3">
-                        <div className="flex flex-col items-center gap-1">
-                          <Skeleton className="h-10 w-10 rounded-full" />
-                          <div className="flex flex-col gap-0.5">
-                            <Skeleton className="h-3 w-16" />
-                            <Skeleton className="h-3 w-16" />
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <Skeleton className="h-4 w-32" />
-                          <Skeleton className="h-3 w-40" />
-                          <Skeleton className="h-3 w-28" />
-                          <Skeleton className="h-3 w-48" />
-                        </div>
-                      </div>
+                      <Skeleton className="h-4 w-48" />
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-start gap-3">
-                        <div className="flex flex-col items-center gap-1">
-                          <Skeleton className="h-10 w-10 rounded-full" />
-                          <div className="flex flex-col gap-0.5">
-                            <Skeleton className="h-3 w-16" />
-                            <Skeleton className="h-3 w-16" />
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <Skeleton className="h-4 w-32" />
-                          <Skeleton className="h-3 w-40" />
-                          <Skeleton className="h-3 w-28" />
-                          <Skeleton className="h-3 w-48" />
-                        </div>
-                      </div>
+                      <Skeleton className="h-4 w-48" />
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-6 w-16" />
@@ -107,10 +80,41 @@ export default function ReportingsLoadingPage() {
                       <Skeleton className="h-6 w-12" />
                     </TableCell>
                     <TableCell>
-                      <Skeleton className="h-6 w-20" />
+                      <Skeleton className="h-4 w-48" />
                     </TableCell>
                     <TableCell>
-                      <Skeleton className="h-4 w-48" />
+                      <div className="flex items-start gap-3">
+                        <div className="flex flex-col items-center gap-1">
+                          <Skeleton className="h-10 w-10 rounded-full" />
+                          <div className="flex flex-col gap-0.5">
+                            <Skeleton className="h-3 w-16" />
+                            <Skeleton className="h-3 w-16" />
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <Skeleton className="h-4 w-32" />
+                          <Skeleton className="h-3 w-40" />
+                          <Skeleton className="h-3 w-28" />
+                          <Skeleton className="h-3 w-48" />
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-start gap-3">
+                        <div className="flex flex-col items-center gap-1">
+                          <Skeleton className="h-10 w-10 rounded-full" />
+                          <div className="flex flex-col gap-0.5">
+                            <Skeleton className="h-3 w-16" />
+                            <Skeleton className="h-3 w-16" />
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <Skeleton className="h-4 w-32" />
+                          <Skeleton className="h-3 w-40" />
+                          <Skeleton className="h-3 w-28" />
+                          <Skeleton className="h-3 w-48" />
+                        </div>
+                      </div>
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-4 w-48" />
@@ -120,6 +124,7 @@ export default function ReportingsLoadingPage() {
                     </TableCell>
                     <TableCell>
                       <div className="flex gap-2">
+                        <Skeleton className="h-8 w-8 rounded" />
                         <Skeleton className="h-8 w-8 rounded" />
                       </div>
                     </TableCell>

@@ -177,6 +177,11 @@ const accessCategories: AccessCategory[] = [
         label: "Process",
       },
       {
+        id: REPORTING_SYSTEM_ACCESS_LEVEL.EXPORT,
+        key: "export",
+        label: "Export",
+      },
+      {
         id: REPORTING_SYSTEM_ACCESS_LEVEL.DELETE,
         key: "delete",
         label: "Delete",

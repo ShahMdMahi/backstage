@@ -6,7 +6,7 @@ import { ShieldCheckIcon, UserIcon, CalendarIcon } from "lucide-react";
 const permissionRowsConfig = [
   7, // User Access
   8, // Workspace Access
-  5, // Reporting Access
+  6, // Reporting Access
   7, // Release Access
   5, // Track Access
   7, // Video Access
