@@ -632,6 +632,20 @@ export async function createReporting(data: CreateReportingData): Promise<{
 
     const content = await data.file.text();
 
+    const checkNameExists = await prisma.reporting.findUnique({
+      where: { name: data.name },
+      select: { id: true, name: true },
+    });
+
+    if (checkNameExists) {
+      return {
+        success: false,
+        message: "This reporting is already uploaded.",
+        data: null,
+        errors: new Error("Reporting name exists"),
+      };
+    }
+
     const checkHashExists = await prisma.reporting.findUnique({
       where: { hash: data.hash },
       select: { id: true, hash: true },
@@ -648,21 +662,20 @@ export async function createReporting(data: CreateReportingData): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
-    const newReporting = await prisma.reporting.create({
-      data: {
-        name: data.name,
-        raw: content,
-        hash: data.hash,
-        type: data.type,
-        currency: data.currency,
-        delimiter: data.delimiter,
-        netRevenue: data.netRevenue,
-        reportingMonth: data.reportingMonth,
-        uploader: { connect: { id: session.data.userId } },
-      },
-      select: {
-        id: true,
-      },
+    const newReporting = await prisma.$transaction(async (tx) => {
+      return tx.reporting.create({
+        data: {
+          name: data.name,
+          hash: data.hash,
+          type: data.type,
+          currency: data.currency,
+          delimiter: data.delimiter,
+          reportingMonth: data.reportingMonth,
+          netRevenue: data.netRevenue,
+          raw: content,
+          uploader: { connect: { id: session.data?.userId } },
+        },
+      });
     });
 
     if (!newReporting) {
