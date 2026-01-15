@@ -530,8 +530,8 @@ export default function ReportingForm() {
                         id="netRevenue"
                         value={
                           field.value !== undefined
-                            ? `${field.value.toFixed(2)} ${watch("currency") === REPORTING_CURRENCY.USD ? "USD" : "EUR"}`
-                            : "0.00"
+                            ? `${field.value.toFixed(3)} ${watch("currency") === REPORTING_CURRENCY.USD ? "USD" : "EUR"}`
+                            : "0.000"
                         }
                         placeholder="Auto-calculated from CSV"
                         disabled

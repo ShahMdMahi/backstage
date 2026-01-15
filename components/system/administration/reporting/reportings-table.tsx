@@ -234,12 +234,12 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                     </TableCell>
                     <TableCell className="font-mono text-xs">
                       {revenues.usd !== null
-                        ? `$${revenues.usd.toFixed(2)}`
+                        ? `$${revenues.usd.toFixed(3)}`
                         : "N/A"}
                     </TableCell>
                     <TableCell className="font-mono text-xs">
                       {revenues.eur !== null
-                        ? `€${revenues.eur.toFixed(2)}`
+                        ? `€${revenues.eur.toFixed(3)}`
                         : "N/A"}
                     </TableCell>
                     <TableCell>

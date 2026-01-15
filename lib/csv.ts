@@ -53,11 +53,15 @@ function parseRow(
 
 /**
  * Convert decimal string to integer millionths for perfect precision
+ * Handles negative values correctly
  * Returns as number (safe since values are reasonable)
  */
 function decimalStringToMillionths(decimalStr: string): number {
-  // Remove non-numeric characters except decimal point and minus
-  const cleaned = decimalStr.replace(/[^\d.-]/g, "");
+  // Check if value is negative
+  const isNegative = decimalStr.includes("-");
+
+  // Remove non-numeric characters except decimal point
+  const cleaned = decimalStr.replace(/[^\d.]/g, "");
 
   // Split by decimal point
   const parts = cleaned.split(".");
@@ -69,7 +73,14 @@ function decimalStringToMillionths(decimalStr: string): number {
   const paddedDecimal = decimalPart.padEnd(6, "0").slice(0, 6);
 
   // Combine: intPart * 1000000 + decimal part
-  return intPart * 1000000 + parseInt(paddedDecimal);
+  let result = intPart * 1000000 + parseInt(paddedDecimal);
+
+  // Apply negative sign if needed
+  if (isNegative) {
+    result = -result;
+  }
+
+  return result;
 }
 
 export function getCSVFormat(csvContent: string): {
@@ -130,7 +141,7 @@ export function getCSVFormat(csvContent: string): {
     // Ensure row has enough columns
     if (row.length <= Math.max(revIdx, dateIdx)) continue;
 
-    // 1. Calculate Revenue using BigInt for perfect precision
+    // 1. Calculate Revenue with perfect precision
     const revStr = row[revIdx];
     const revInMillionths = decimalStringToMillionths(revStr);
 
@@ -167,9 +178,9 @@ export function getCSVFormat(csvContent: string): {
     throw new Error("Could not parse reporting month from the CSV data.");
   }
 
-  // Convert from millionths to decimal, then round to 2 places
+  // Convert from millionths to decimal, then round to 3 decimal places
   const netRevenueDecimal = totalNetRevenueMillionths / 1000000;
-  const netRevenue = Math.round(netRevenueDecimal * 100) / 100;
+  const netRevenue = Math.round(netRevenueDecimal * 1000) / 1000;
 
   return {
     type,
