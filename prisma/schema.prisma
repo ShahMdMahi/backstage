@@ -630,7 +630,7 @@ model Reporting {
   processorId String?
 
   // Fields
-  name       String
+  name       String @unique
   raw        String @db.Text
   hash       String @unique
   netRevenue Float

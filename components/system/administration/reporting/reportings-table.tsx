@@ -165,7 +165,7 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
       <div className="relative">
         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
-          placeholder="Search by ID, name, type, currency, delimiter, hash, uploader, or processor..."
+          placeholder="Search by ID, name, type, currency, hash, uploader, or processor..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-9"
@@ -213,10 +213,8 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                     <TableCell className="pl-4 font-mono text-xs">
                       {reporting.id}
                     </TableCell>
-                    <TableCell className="max-w-48">
-                      <div className="truncate" title={reporting.name}>
-                        {reporting.name}
-                      </div>
+                    <TableCell className="font-mono text-xs">
+                      <div title={reporting.name}>{reporting.name}</div>
                     </TableCell>
                     <TableCell>
                       <div className="flex flex-col gap-0.5">
@@ -254,10 +252,8 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                         {formatCurrency(reporting.currency!)}
                       </Badge>
                     </TableCell>
-                    <TableCell className="font-mono text-xs max-w-32">
-                      <div className="truncate" title={reporting.hash}>
-                        {reporting.hash}
-                      </div>
+                    <TableCell className="font-mono text-xs">
+                      <div title={reporting.hash}>{reporting.hash}</div>
                     </TableCell>
                     <TableCell>
                       {reporting.uploader ? (

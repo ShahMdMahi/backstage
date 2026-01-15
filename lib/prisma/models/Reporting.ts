@@ -326,13 +326,13 @@ export type ReportingOrderByWithRelationInput = {
 export type ReportingWhereUniqueInput = Prisma.AtLeast<
   {
     id?: string;
+    name?: string;
     hash?: string;
     AND?: Prisma.ReportingWhereInput | Prisma.ReportingWhereInput[];
     OR?: Prisma.ReportingWhereInput[];
     NOT?: Prisma.ReportingWhereInput | Prisma.ReportingWhereInput[];
     uploaderId?: Prisma.StringNullableFilter<"Reporting"> | string | null;
     processorId?: Prisma.StringNullableFilter<"Reporting"> | string | null;
-    name?: Prisma.StringFilter<"Reporting"> | string;
     raw?: Prisma.StringFilter<"Reporting"> | string;
     netRevenue?: Prisma.FloatFilter<"Reporting"> | number;
     metadata?: Prisma.JsonNullableFilter<"Reporting">;
@@ -356,7 +356,7 @@ export type ReportingWhereUniqueInput = Prisma.AtLeast<
     > | null;
     reports?: Prisma.ReportListRelationFilter;
   },
-  "id" | "hash"
+  "id" | "name" | "hash"
 >;
 
 export type ReportingOrderByWithAggregationInput = {
