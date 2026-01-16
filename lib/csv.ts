@@ -55,11 +55,49 @@ function detectDistributor(header: string[]): Distributor {
   return believeScore >= ansScore ? "BELIEVE" : "ANS";
 }
 
+/* -------------------------- BELIEVE PARSER ------------------------ */
+/**
+ * Believe CSV rows are:
+ * - whole-line quoted
+ * - semicolon separated
+ * - use "" for escaped quotes
+ * PapaParse CANNOT parse this format correctly.
+ */
+function parseBelieveLine(line: string): string[] {
+  let cleaned = line.trim();
+
+  // Remove trailing comma
+  if (cleaned.endsWith(",")) {
+    cleaned = cleaned.slice(0, -1);
+  }
+
+  // Remove whole-row wrapping quotes
+  if (cleaned.startsWith('"') && cleaned.endsWith('"')) {
+    cleaned = cleaned.slice(1, -1);
+  }
+
+  return cleaned.split(";").map((field) =>
+    field
+      .trim()
+      .replace(/^"+|"+$/g, "")
+      .replace(/""/g, '"')
+      .trim()
+  );
+}
+
 /* ----------------------------- Parsing ---------------------------- */
 
-function parseLine(line: string, delimiter: REPORTING_DELIMITER): string[] {
+function parseLine(
+  line: string,
+  distributor: Distributor,
+  delimiter: REPORTING_DELIMITER
+): string[] {
+  if (distributor === "BELIEVE") {
+    return parseBelieveLine(line);
+  }
+
   const parsed = Papa.parse<string[]>(line, {
-    delimiter: delimiter === REPORTING_DELIMITER.SEMICOLON ? ";" : ",",
+    delimiter: delimiter === REPORTING_DELIMITER.COMMA ? "," : ";",
     quoteChar: '"',
     escapeChar: '"',
     skipEmptyLines: true,
@@ -98,17 +136,20 @@ export function getCSVFormat(csvContent: string): {
   rowErrors: RowValidationError[];
 } {
   const lines = csvContent.split(/\r?\n/).filter(Boolean);
+
   if (lines.length < 2) {
     throw new Error("CSV must contain header and data rows");
   }
 
-  /* -------- Header detection (try both delimiters) -------- */
+  /* -------- Header detection (BELIEVE vs ANS) -------- */
 
-  const commaHeader = Papa.parse<string[]>(lines[0]).data[0] ?? [];
+  const headerLine = lines[0];
+
+  const commaHeader =
+    Papa.parse<string[]>(headerLine, { delimiter: "," }).data[0] ?? [];
+
   const semiHeader =
-    Papa.parse<string[]>(lines[0], {
-      delimiter: ";",
-    }).data[0] ?? [];
+    Papa.parse<string[]>(headerLine, { delimiter: ";" }).data[0] ?? [];
 
   const header =
     semiHeader.length > commaHeader.length ? semiHeader : commaHeader;
@@ -125,15 +166,12 @@ export function getCSVFormat(csvContent: string): {
     : REPORTING_DELIMITER.COMMA;
 
   const type = isBelieve ? REPORTING_TYPE.BELIEVE : REPORTING_TYPE.ANS;
-
   const currency = isBelieve ? REPORTING_CURRENCY.EUR : REPORTING_CURRENCY.USD;
 
   const netRevenueKey = isBelieve ? "net revenue" : "net revenue in usd";
-
   const dateKey = isBelieve ? "reporting month" : "statement period";
 
   const revIdx = normalizedHeader.findIndex((h) => h.includes(netRevenueKey));
-
   const dateIdx = normalizedHeader.findIndex((h) => h.includes(dateKey));
 
   if (revIdx === -1 || dateIdx === -1) {
@@ -147,7 +185,7 @@ export function getCSVFormat(csvContent: string): {
   const rowErrors: RowValidationError[] = [];
 
   for (let i = 1; i < lines.length; i++) {
-    const row = parseLine(lines[i], delimiter);
+    const row = parseLine(lines[i], distributor, delimiter);
 
     if (row.length < normalizedHeader.length) {
       rowErrors.push({
@@ -174,11 +212,13 @@ export function getCSVFormat(csvContent: string): {
       const raw = sanitizeField(row[dateIdx]);
 
       if (isBelieve) {
+        // dd/mm/yyyy
         const [d, m, y] = raw.split("/");
         if (d && m && y) {
           reportingMonth = new Date(Date.UTC(+y, +m - 1, +d));
         }
       } else {
+        // yyyy-mm
         const [y, m] = raw.split("-");
         if (y && m) {
           reportingMonth = new Date(Date.UTC(+y, +m - 1, 1));
@@ -187,7 +227,7 @@ export function getCSVFormat(csvContent: string): {
     }
   }
 
-  if (!reportingMonth) {
+  if (!reportingMonth || isNaN(reportingMonth.getTime())) {
     throw new Error("Could not determine reporting month");
   }
 
