@@ -44,23 +44,6 @@ function sanitizeField(field: string): string {
   return f.replace(/""/g, '"').trim();
 }
 
-/* ---------------------- Distributor Detection --------------------- */
-
-function detectDistributor(header: string[]): Distributor {
-  let believeScore = 0;
-  let ansScore = 0;
-
-  for (const h of header) {
-    if (h.includes("reporting month")) believeScore += 3;
-    if (h === "net revenue") believeScore += 2;
-
-    if (h.includes("statement period")) ansScore += 3;
-    if (h.includes("net revenue in usd")) ansScore += 4;
-  }
-
-  return believeScore >= ansScore ? "BELIEVE" : "ANS";
-}
-
 /* -------------------------- BELIEVE PARSER ------------------------ */
 /**
  * Specialized parser for Believe lines.
@@ -171,7 +154,6 @@ export function getCSVFormat(csvContent: string): {
     firstLineRaw.includes("reporting month") || firstLineRaw.includes(";");
 
   const type = isBelieve ? REPORTING_TYPE.BELIEVE : REPORTING_TYPE.ANS;
-  const delimiterChar = isBelieve ? ";" : ",";
   const delimiter = isBelieve
     ? REPORTING_DELIMITER.SEMICOLON
     : REPORTING_DELIMITER.COMMA;
