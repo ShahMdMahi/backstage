@@ -132,6 +132,10 @@ export default function ReportingForm() {
           setValue("netRevenue", format.netRevenue);
         } catch (error) {
           console.error("Error reading file for hash generation:", error);
+          toast.error(
+            (error instanceof Error ? error.message : undefined) ||
+              "Failed to read file for processing. Please try again."
+          );
           setValue("hash", "");
         }
 
