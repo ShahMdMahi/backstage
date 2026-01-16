@@ -121,7 +121,7 @@ export default function ReportingForm() {
         // Generate hash from file content and detect format
         try {
           const content = await file.text();
-          const hash = getCSVHash(content);
+          const hash = await getCSVHash(content);
           setValue("hash", hash);
 
           const format = getCSVFormat(content);
