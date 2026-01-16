@@ -182,6 +182,7 @@ export const ReportingScalarFieldEnum = {
   createdAt: "createdAt",
   updatedAt: "updatedAt",
   reportingMonth: "reportingMonth",
+  processedAt: "processedAt",
 } as const;
 
 export type ReportingScalarFieldEnum =

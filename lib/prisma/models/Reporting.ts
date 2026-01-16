@@ -48,6 +48,7 @@ export type ReportingMinAggregateOutputType = {
   createdAt: Date | null;
   updatedAt: Date | null;
   reportingMonth: Date | null;
+  processedAt: Date | null;
 };
 
 export type ReportingMaxAggregateOutputType = {
@@ -64,6 +65,7 @@ export type ReportingMaxAggregateOutputType = {
   createdAt: Date | null;
   updatedAt: Date | null;
   reportingMonth: Date | null;
+  processedAt: Date | null;
 };
 
 export type ReportingCountAggregateOutputType = {
@@ -81,6 +83,7 @@ export type ReportingCountAggregateOutputType = {
   createdAt: number;
   updatedAt: number;
   reportingMonth: number;
+  processedAt: number;
   _all: number;
 };
 
@@ -106,6 +109,7 @@ export type ReportingMinAggregateInputType = {
   createdAt?: true;
   updatedAt?: true;
   reportingMonth?: true;
+  processedAt?: true;
 };
 
 export type ReportingMaxAggregateInputType = {
@@ -122,6 +126,7 @@ export type ReportingMaxAggregateInputType = {
   createdAt?: true;
   updatedAt?: true;
   reportingMonth?: true;
+  processedAt?: true;
 };
 
 export type ReportingCountAggregateInputType = {
@@ -139,6 +144,7 @@ export type ReportingCountAggregateInputType = {
   createdAt?: true;
   updatedAt?: true;
   reportingMonth?: true;
+  processedAt?: true;
   _all?: true;
 };
 
@@ -250,6 +256,7 @@ export type ReportingGroupByOutputType = {
   createdAt: Date;
   updatedAt: Date;
   reportingMonth: Date;
+  processedAt: Date | null;
   _count: ReportingCountAggregateOutputType | null;
   _avg: ReportingAvgAggregateOutputType | null;
   _sum: ReportingSumAggregateOutputType | null;
@@ -292,6 +299,11 @@ export type ReportingWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
+  processedAt?:
+    | Prisma.DateTimeNullableFilter<"Reporting">
+    | Date
+    | string
+    | null;
   uploader?: Prisma.XOR<
     Prisma.UserNullableScalarRelationFilter,
     Prisma.UserWhereInput
@@ -318,6 +330,7 @@ export type ReportingOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   reportingMonth?: Prisma.SortOrder;
+  processedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   uploader?: Prisma.UserOrderByWithRelationInput;
   processor?: Prisma.UserOrderByWithRelationInput;
   reports?: Prisma.ReportOrderByRelationAggregateInput;
@@ -346,6 +359,11 @@ export type ReportingWhereUniqueInput = Prisma.AtLeast<
     createdAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
     reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
+    processedAt?:
+      | Prisma.DateTimeNullableFilter<"Reporting">
+      | Date
+      | string
+      | null;
     uploader?: Prisma.XOR<
       Prisma.UserNullableScalarRelationFilter,
       Prisma.UserWhereInput
@@ -374,6 +392,7 @@ export type ReportingOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   reportingMonth?: Prisma.SortOrder;
+  processedAt?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.ReportingCountOrderByAggregateInput;
   _avg?: Prisma.ReportingAvgOrderByAggregateInput;
   _max?: Prisma.ReportingMaxOrderByAggregateInput;
@@ -418,6 +437,11 @@ export type ReportingScalarWhereWithAggregatesInput = {
     | Prisma.DateTimeWithAggregatesFilter<"Reporting">
     | Date
     | string;
+  processedAt?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"Reporting">
+    | Date
+    | string
+    | null;
 };
 
 export type ReportingCreateInput = {
@@ -433,6 +457,7 @@ export type ReportingCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   uploader?: Prisma.UserCreateNestedOneWithoutUploadedReportingsInput;
   processor?: Prisma.UserCreateNestedOneWithoutProcessedReportingsInput;
   reports?: Prisma.ReportCreateNestedManyWithoutReportingInput;
@@ -453,6 +478,7 @@ export type ReportingUncheckedCreateInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutReportingInput;
 };
 
@@ -475,6 +501,11 @@ export type ReportingUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   uploader?: Prisma.UserUpdateOneWithoutUploadedReportingsNestedInput;
   processor?: Prisma.UserUpdateOneWithoutProcessedReportingsNestedInput;
   reports?: Prisma.ReportUpdateManyWithoutReportingNestedInput;
@@ -501,6 +532,11 @@ export type ReportingUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   reports?: Prisma.ReportUncheckedUpdateManyWithoutReportingNestedInput;
 };
 
@@ -519,6 +555,7 @@ export type ReportingCreateManyInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
 };
 
 export type ReportingUpdateManyMutationInput = {
@@ -540,6 +577,11 @@ export type ReportingUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportingUncheckedUpdateManyInput = {
@@ -563,6 +605,11 @@ export type ReportingUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportingListRelationFilter = {
@@ -590,6 +637,7 @@ export type ReportingCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   reportingMonth?: Prisma.SortOrder;
+  processedAt?: Prisma.SortOrder;
 };
 
 export type ReportingAvgOrderByAggregateInput = {
@@ -610,6 +658,7 @@ export type ReportingMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   reportingMonth?: Prisma.SortOrder;
+  processedAt?: Prisma.SortOrder;
 };
 
 export type ReportingMinOrderByAggregateInput = {
@@ -626,6 +675,7 @@ export type ReportingMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
   reportingMonth?: Prisma.SortOrder;
+  processedAt?: Prisma.SortOrder;
 };
 
 export type ReportingSumOrderByAggregateInput = {
@@ -908,6 +958,7 @@ export type ReportingCreateWithoutUploaderInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   processor?: Prisma.UserCreateNestedOneWithoutProcessedReportingsInput;
   reports?: Prisma.ReportCreateNestedManyWithoutReportingInput;
 };
@@ -926,6 +977,7 @@ export type ReportingUncheckedCreateWithoutUploaderInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutReportingInput;
 };
 
@@ -957,6 +1009,7 @@ export type ReportingCreateWithoutProcessorInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   uploader?: Prisma.UserCreateNestedOneWithoutUploadedReportingsInput;
   reports?: Prisma.ReportCreateNestedManyWithoutReportingInput;
 };
@@ -975,6 +1028,7 @@ export type ReportingUncheckedCreateWithoutProcessorInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutReportingInput;
 };
 
@@ -1043,6 +1097,11 @@ export type ReportingScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
   reportingMonth?: Prisma.DateTimeFilter<"Reporting"> | Date | string;
+  processedAt?:
+    | Prisma.DateTimeNullableFilter<"Reporting">
+    | Date
+    | string
+    | null;
 };
 
 export type ReportingUpsertWithWhereUniqueWithoutProcessorInput = {
@@ -1086,6 +1145,7 @@ export type ReportingCreateWithoutReportsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
   uploader?: Prisma.UserCreateNestedOneWithoutUploadedReportingsInput;
   processor?: Prisma.UserCreateNestedOneWithoutProcessedReportingsInput;
 };
@@ -1105,6 +1165,7 @@ export type ReportingUncheckedCreateWithoutReportsInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
 };
 
 export type ReportingCreateOrConnectWithoutReportsInput = {
@@ -1154,6 +1215,11 @@ export type ReportingUpdateWithoutReportsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   uploader?: Prisma.UserUpdateOneWithoutUploadedReportingsNestedInput;
   processor?: Prisma.UserUpdateOneWithoutProcessedReportingsNestedInput;
 };
@@ -1179,6 +1245,11 @@ export type ReportingUncheckedUpdateWithoutReportsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportingCreateManyUploaderInput = {
@@ -1195,6 +1266,7 @@ export type ReportingCreateManyUploaderInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
 };
 
 export type ReportingCreateManyProcessorInput = {
@@ -1211,6 +1283,7 @@ export type ReportingCreateManyProcessorInput = {
   createdAt?: Date | string;
   updatedAt?: Date | string;
   reportingMonth: Date | string;
+  processedAt?: Date | string | null;
 };
 
 export type ReportingUpdateWithoutUploaderInput = {
@@ -1232,6 +1305,11 @@ export type ReportingUpdateWithoutUploaderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   processor?: Prisma.UserUpdateOneWithoutProcessedReportingsNestedInput;
   reports?: Prisma.ReportUpdateManyWithoutReportingNestedInput;
 };
@@ -1256,6 +1334,11 @@ export type ReportingUncheckedUpdateWithoutUploaderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   reports?: Prisma.ReportUncheckedUpdateManyWithoutReportingNestedInput;
 };
 
@@ -1279,6 +1362,11 @@ export type ReportingUncheckedUpdateManyWithoutUploaderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportingUpdateWithoutProcessorInput = {
@@ -1300,6 +1388,11 @@ export type ReportingUpdateWithoutProcessorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   uploader?: Prisma.UserUpdateOneWithoutUploadedReportingsNestedInput;
   reports?: Prisma.ReportUpdateManyWithoutReportingNestedInput;
 };
@@ -1324,6 +1417,11 @@ export type ReportingUncheckedUpdateWithoutProcessorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   reports?: Prisma.ReportUncheckedUpdateManyWithoutReportingNestedInput;
 };
 
@@ -1347,6 +1445,11 @@ export type ReportingUncheckedUpdateManyWithoutProcessorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   reportingMonth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  processedAt?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 /**
@@ -1406,6 +1509,7 @@ export type ReportingSelect<
     createdAt?: boolean;
     updatedAt?: boolean;
     reportingMonth?: boolean;
+    processedAt?: boolean;
     uploader?: boolean | Prisma.Reporting$uploaderArgs<ExtArgs>;
     processor?: boolean | Prisma.Reporting$processorArgs<ExtArgs>;
     reports?: boolean | Prisma.Reporting$reportsArgs<ExtArgs>;
@@ -1433,6 +1537,7 @@ export type ReportingSelectCreateManyAndReturn<
     createdAt?: boolean;
     updatedAt?: boolean;
     reportingMonth?: boolean;
+    processedAt?: boolean;
     uploader?: boolean | Prisma.Reporting$uploaderArgs<ExtArgs>;
     processor?: boolean | Prisma.Reporting$processorArgs<ExtArgs>;
   },
@@ -1458,6 +1563,7 @@ export type ReportingSelectUpdateManyAndReturn<
     createdAt?: boolean;
     updatedAt?: boolean;
     reportingMonth?: boolean;
+    processedAt?: boolean;
     uploader?: boolean | Prisma.Reporting$uploaderArgs<ExtArgs>;
     processor?: boolean | Prisma.Reporting$processorArgs<ExtArgs>;
   },
@@ -1479,6 +1585,7 @@ export type ReportingSelectScalar = {
   createdAt?: boolean;
   updatedAt?: boolean;
   reportingMonth?: boolean;
+  processedAt?: boolean;
 };
 
 export type ReportingOmit<
@@ -1498,7 +1605,8 @@ export type ReportingOmit<
   | "currency"
   | "createdAt"
   | "updatedAt"
-  | "reportingMonth",
+  | "reportingMonth"
+  | "processedAt",
   ExtArgs["result"]["reporting"]
 >;
 export type ReportingInclude<
@@ -1551,6 +1659,7 @@ export type $ReportingPayload<
       createdAt: Date;
       updatedAt: Date;
       reportingMonth: Date;
+      processedAt: Date | null;
     },
     ExtArgs["result"]["reporting"]
   >;
@@ -2194,6 +2303,7 @@ export interface ReportingFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Reporting", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Reporting", "DateTime">;
   readonly reportingMonth: Prisma.FieldRef<"Reporting", "DateTime">;
+  readonly processedAt: Prisma.FieldRef<"Reporting", "DateTime">;
 }
 
 // Custom InputTypes

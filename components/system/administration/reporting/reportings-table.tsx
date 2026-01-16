@@ -217,19 +217,16 @@ export default function ReportingsTable({ reportings }: ReportingsTableProps) {
                       <div title={reporting.name}>{reporting.name}</div>
                     </TableCell>
                     <TableCell>
-                      <div className="flex flex-col gap-0.5">
-                        <div className="text-sm">
-                          {
-                            formatDateAndTime(reporting.reportingMonth || null)
-                              .date
-                          }
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {
-                            formatDateAndTime(reporting.reportingMonth || null)
-                              .time
-                          }
-                        </div>
+                      <div className="text-sm">
+                        {reporting.reportingMonth
+                          ? format(
+                              toZonedTime(
+                                new Date(reporting.reportingMonth),
+                                "Asia/Dhaka"
+                              ),
+                              "dd MMM yyyy"
+                            )
+                          : "N/A"}
                       </div>
                     </TableCell>
                     <TableCell className="font-mono text-xs">

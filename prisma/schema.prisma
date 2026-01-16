@@ -647,9 +647,10 @@ model Reporting {
   reports   Report[]
 
   // Timestamps
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
   reportingMonth DateTime
+  processedAt    DateTime?
 
   // Indexes & Constraints
 }

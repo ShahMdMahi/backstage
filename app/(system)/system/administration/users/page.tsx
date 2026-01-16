@@ -50,10 +50,10 @@ export default async function UsersPage() {
   return (
     <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-              <Users className="size-5 text-primary" />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 sm:size-12">
+              <Users className="size-5 text-primary sm:size-6" />
             </div>
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Users</h1>
@@ -61,12 +61,14 @@ export default async function UsersPage() {
             </div>
           </div>
           {haveCreateAccess && (
-            <Button asChild>
-              <Link href="/system/administration/users/create">
-                <Plus className="mr-2 h-4 w-4" />
-                Create User
-              </Link>
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button asChild>
+                <Link href="/system/administration/users/create">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Create User
+                </Link>
+              </Button>
+            </div>
           )}
         </div>
         {!users.success ? (

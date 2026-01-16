@@ -1701,17 +1701,18 @@ export async function deleteUser(userId: string): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
-    await prisma.session.deleteMany({
-      where: { userId: userId },
-    });
-
-    await prisma.auditLog.deleteMany({
-      where: { userId: userId },
-    });
-
     const deletedUser = await prisma.user.delete({
       where: { id: userId },
     });
+
+    if (!deletedUser) {
+      return {
+        success: false,
+        message: "Failed to delete user.",
+        data: null,
+        errors: new Error("Deletion failed"),
+      };
+    }
 
     try {
       await logAuditEvent({

@@ -13,10 +13,10 @@ export default function AccessesLoadingPage() {
   return (
     <div className="w-full max-w-none px-0 py-1 sm:px-0 sm:py-2 md:px-0 md:py-4">
       <div className="mx-auto max-w-full space-y-6 sm:space-y-8">
-        <div className="flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-              <KeyIcon className="size-5 text-primary" />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10 sm:size-12">
+              <KeyIcon className="size-5 text-primary sm:size-6" />
             </div>
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Accesses</h1>
@@ -25,7 +25,9 @@ export default function AccessesLoadingPage() {
               </p>
             </div>
           </div>
-          <Skeleton className="h-10 w-36" />
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-10 w-36" />
+          </div>
         </div>
         <div className="space-y-4">
           <Skeleton className="h-10 w-full" />
