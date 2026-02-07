@@ -417,8 +417,8 @@ export default function ReportingForm() {
                           <SelectValue placeholder="Auto-detected from CSV" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value={REPORTING_TYPE.ANS}>
-                            ANS
+                          <SelectItem value={REPORTING_TYPE.REVELATOR}>
+                            REVELATOR
                           </SelectItem>
                           <SelectItem value={REPORTING_TYPE.BELIEVE}>
                             BELIEVE

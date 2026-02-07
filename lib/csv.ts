@@ -9,7 +9,7 @@ import {
 
 /* ----------------------------- Types ----------------------------- */
 
-type Distributor = "BELIEVE" | "ANS";
+type Distributor = "BELIEVE" | "REVELATOR";
 
 type RowValidationError = {
   rowNumber: number;
@@ -31,7 +31,7 @@ export async function getCSVHash(csvContent: string): Promise<string> {
 /* ----------------------------- Utils ----------------------------- */
 
 /**
- * Robustly cleans Believe/ANS fields by removing outer quotes,
+ * Robustly cleans Believe/Revelator fields by removing outer quotes,
  * unescaping double quotes, and trimming whitespace.
  */
 function sanitizeField(field: string): string {
@@ -79,7 +79,7 @@ function parseLine(
     return parseBelieveRow(line);
   }
 
-  // Use PapaParse for ANS format
+  // Use PapaParse for REVELATOR format
   const parsed = Papa.parse<string[]>(line, {
     delimiter: delimiter === REPORTING_DELIMITER.COMMA ? "," : ";",
     quoteChar: '"',
@@ -147,13 +147,13 @@ export function getCSVFormat(csvContent: string): {
     throw new Error("CSV must have at least a header and one data row");
   }
 
-  /* -------- Detect Format (BELIEVE vs ANS) -------- */
+  /* -------- Detect Format (BELIEVE vs REVELATOR) -------- */
 
   const firstLineRaw = lines[0].toLowerCase();
   const isBelieve =
     firstLineRaw.includes("reporting month") || firstLineRaw.includes(";");
 
-  const type = isBelieve ? REPORTING_TYPE.BELIEVE : REPORTING_TYPE.ANS;
+  const type = isBelieve ? REPORTING_TYPE.BELIEVE : REPORTING_TYPE.REVELATOR;
   const delimiter = isBelieve
     ? REPORTING_DELIMITER.SEMICOLON
     : REPORTING_DELIMITER.COMMA;
@@ -166,7 +166,7 @@ export function getCSVFormat(csvContent: string): {
   const monthKey = isBelieve ? "reporting month" : "statement period";
 
   // Parse Header with aggressive sanitization
-  const distributor: Distributor = isBelieve ? "BELIEVE" : "ANS";
+  const distributor: Distributor = isBelieve ? "BELIEVE" : "REVELATOR";
   const headerRow = parseLine(lines[0], distributor, delimiter);
   const header = headerRow.map(
     (h) => h.toLowerCase().replace(/["']/g, "").trim() // Remove ALL quotes for comparison
@@ -242,7 +242,7 @@ export function getCSVFormat(csvContent: string): {
           );
         }
       } else {
-        // ANS Format: yyyy-mm
+        // REVELATOR Format: yyyy-mm
         const parts = dateStr.split("-");
         if (parts.length >= 2) {
           reportingMonth = new Date(

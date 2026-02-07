@@ -28,7 +28,7 @@ export const createReportingSchema = z.object({
     .string()
     .min(1, "Hash is required")
     .max(64, "Hash must be 64 characters"),
-  type: z.enum([REPORTING_TYPE.ANS, REPORTING_TYPE.BELIEVE]),
+  type: z.enum([REPORTING_TYPE.REVELATOR, REPORTING_TYPE.BELIEVE]),
   currency: z.enum([REPORTING_CURRENCY.USD, REPORTING_CURRENCY.EUR]),
   delimiter: z.enum([REPORTING_DELIMITER.COMMA, REPORTING_DELIMITER.SEMICOLON]),
   reportingMonth: z.date(),
