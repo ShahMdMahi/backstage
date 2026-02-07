@@ -19,7 +19,6 @@
     "email:dev": "email dev"
   },
   "dependencies": {
-    "@aws-sdk/client-elasticache": "^3.981.0",
     "@fingerprintjs/fingerprintjs": "^5.0.1",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/adapter-pg": "^7.1.0",
@@ -57,7 +56,6 @@
     "date-fns-tz": "^3.2.0",
     "dedent": "^1.7.0",
     "dotenv": "^17.2.3",
-    "ioredis": "^5.9.2",
     "lucide-react": "^0.556.0",
     "next": "16.0.8",
     "next-pwa": "^5.6.0",

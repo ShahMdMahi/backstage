@@ -1,25 +1,13 @@
-import { Cluster } from "ioredis";
+import { createClient } from "redis";
 
 const globalForRedis = globalThis as unknown as {
-  redis: Cluster | undefined;
+  redis: ReturnType<typeof createClient> | undefined;
 };
 
-const client = new Cluster(
-  [
-    {
-      host: process.env.REDIS_HOST!,
-      port: parseInt(process.env.REDIS_PORT!),
-    },
-  ],
-  {
-    dnsLookup: (address, callback) => callback(null, address),
-    redisOptions: {
-      tls: {},
-    },
-  }
-);
+const client = createClient({
+  url: process.env.REDIS_URL!,
+});
 
-// Handle connection errors
 client.on("error", (err) => {
   console.error("Redis Client Error", err);
 });
