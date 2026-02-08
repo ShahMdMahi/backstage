@@ -4,8 +4,9 @@ import { telegramBot } from "@/lib/telegram";
 import { AuditLog, User } from "@/lib/prisma/client";
 import dedent from "dedent";
 import { formatInTimeZone } from "date-fns-tz";
+import { env } from "@/env";
 
-const telegramGroupId = process.env.TELEGRAM_GROUP_ID!;
+const telegramGroupId = env.TELEGRAM_GROUP_ID!;
 
 /**
  * Define a type for a generic object with string keys, used for type assertion

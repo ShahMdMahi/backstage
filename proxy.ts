@@ -35,6 +35,7 @@ import {
   User,
   WorkspaceAccount,
 } from "@/lib/prisma/client";
+import { env } from "@/env";
 
 export async function proxy(request: NextRequest) {
   const response = NextResponse.next();
@@ -535,7 +536,7 @@ export async function proxy(request: NextRequest) {
     });
     response.cookies.set("session_token", sessionToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: env.NODE_ENV === "production",
       sameSite: "strict",
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24), // 1 day
     });

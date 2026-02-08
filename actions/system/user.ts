@@ -36,6 +36,14 @@ import {
 } from "@/validators/system/user";
 import * as argon2 from "argon2";
 import z from "zod";
+import {
+  buildUserAvatarKey,
+  deleteFile,
+  downloadFile,
+  updateFile,
+  uploadFile,
+} from "@/lib/s3";
+import { Readable } from "stream";
 
 export async function getAllUsers(): Promise<{
   success: boolean;
@@ -149,10 +157,42 @@ export async function getAllUsers(): Promise<{
       };
     }
 
+    const avatars = new Map<string, string | null>();
+    for (const user of users) {
+      if (user.avatar) {
+        const data = await downloadFile(user.avatar).catch((error) => {
+          console.error(
+            `Error downloading avatar for user ${user.id} from S3:`,
+            error
+          );
+          return null;
+        });
+        if (data && data.Body) {
+          const stream = data.Body as Readable;
+          const chunks: Buffer[] = [];
+          for await (const chunk of stream) {
+            chunks.push(chunk);
+          }
+          const buffer = Buffer.concat(chunks);
+          avatars.set(
+            user.id,
+            `data:image/png;base64,${buffer.toString("base64")}`
+          );
+        } else {
+          avatars.set(user.id, null);
+        }
+      } else {
+        avatars.set(user.id, null);
+      }
+    }
+
     return {
       success: true,
       message: "Users retrieved successfully.",
-      data: users,
+      data: users.map((user) => ({
+        ...user,
+        avatar: avatars.get(user.id) || null,
+      })),
       errors: null,
     };
   } catch (error) {
@@ -296,10 +336,33 @@ export async function getUserById(userId: string): Promise<{
       };
     }
 
+    let avatar: string | null = null;
+    if (user.avatar) {
+      const data = await downloadFile(user.avatar).catch((error) => {
+        console.error(
+          `Error downloading avatar for user ${user.id} from S3:`,
+          error
+        );
+        return null;
+      });
+      if (data && data.Body) {
+        const stream = data.Body as Readable;
+        const chunks: Buffer[] = [];
+        for await (const chunk of stream) {
+          chunks.push(chunk);
+        }
+        const buffer = Buffer.concat(chunks);
+        avatar = `data:image/png;base64,${buffer.toString("base64")}`;
+      }
+    }
+
     return {
       success: true,
       message: "User retrieved successfully.",
-      data: user,
+      data: {
+        ...user,
+        avatar,
+      },
       errors: null,
     };
   } catch (error) {
@@ -988,10 +1051,37 @@ export async function getAllSystemUsers(): Promise<{
       };
     }
 
+    const avatars = new Map<string, string | null>();
+    for (const user of users) {
+      let avatar: string | null = null;
+      if (user.avatar) {
+        const data = await downloadFile(user.avatar).catch((error) => {
+          console.error(
+            `Error downloading avatar for user ${user.id} from S3:`,
+            error
+          );
+          return null;
+        });
+        if (data && data.Body) {
+          const stream = data.Body as Readable;
+          const chunks: Buffer[] = [];
+          for await (const chunk of stream) {
+            chunks.push(chunk);
+          }
+          const buffer = Buffer.concat(chunks);
+          avatar = `data:image/png;base64,${buffer.toString("base64")}`;
+        }
+      }
+      avatars.set(user.id, avatar);
+    }
+
     return {
       success: true,
       message: "System users retrieved successfully.",
-      data: users,
+      data: users.map((user) => ({
+        ...user,
+        avatar: avatars.get(user.id) || null,
+      })),
       errors: null,
     };
   } catch (error) {
@@ -1158,6 +1248,19 @@ export async function createUser(data: CreateUserData): Promise<{
         role: userRole,
       },
     });
+
+    if (validate.data.avatar) {
+      const key = buildUserAvatarKey(session.data!.user.id);
+      const avatarUpload = await uploadFile({
+        key: key,
+        body: Buffer.from(validate.data.avatar.split(",")[1], "base64"),
+        contentType: "image/",
+      });
+      await prisma.user.update({
+        where: { id: newUser.id },
+        data: { avatar: avatarUpload.key },
+      });
+    }
 
     try {
       await sendNewUserCreatedEmail(
@@ -1464,10 +1567,24 @@ export async function updateUser(data: UpdateUserData): Promise<{
     if (validate.data.phone) {
       updateData.phone = validate.data.phone;
     }
-    if (validate.data.avatar === "") {
+    if (!validate.data.avatar && userToUpdate.avatar) {
+      await deleteFile(userToUpdate.avatar);
       updateData.avatar = null;
-    } else if (validate.data.avatar) {
-      updateData.avatar = validate.data.avatar;
+    } else if (validate.data.avatar && !userToUpdate.avatar) {
+      const key = buildUserAvatarKey(session.data!.user.id);
+      const avatarUpload = await uploadFile({
+        key: key,
+        body: Buffer.from(validate.data.avatar.split(",")[1], "base64"),
+        contentType: "image/",
+      });
+      updateData.avatar = avatarUpload.key;
+    } else if (validate.data.avatar && userToUpdate.avatar) {
+      const avatarUpload = await updateFile({
+        key: userToUpdate.avatar,
+        body: Buffer.from(validate.data.avatar.split(",")[1], "base64"),
+        contentType: "image/",
+      });
+      updateData.avatar = avatarUpload.key;
     }
     if (newRole !== userToUpdate.role) updateData.role = newRole;
 

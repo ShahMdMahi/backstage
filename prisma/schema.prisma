@@ -509,7 +509,7 @@ model User {
   email    String  @unique
   password String
   phone    String
-  avatar   String? @db.Text
+  avatar   String?
   metadata Json?   @db.JsonB
 
   // Enums
@@ -631,7 +631,7 @@ model Reporting {
 
   // Fields
   name       String @unique
-  raw        String @db.Text
+  file       String
   hash       String @unique
   netRevenue Float
   metadata   Json?  @db.JsonB

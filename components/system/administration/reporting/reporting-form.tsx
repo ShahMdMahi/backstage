@@ -312,7 +312,7 @@ export default function ReportingForm() {
                 File Upload
               </CardTitle>
               <CardDescription>
-                Upload a CSV file for reporting (max 25MB)
+                Upload a CSV file for reporting (max 50MB)
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">

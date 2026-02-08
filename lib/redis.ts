@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { createClient } from "redis";
 
 const globalForRedis = globalThis as unknown as {
@@ -5,7 +6,7 @@ const globalForRedis = globalThis as unknown as {
 };
 
 const client = createClient({
-  url: process.env.REDIS_URL!,
+  url: env.REDIS_URL!,
 });
 
 client.on("error", (err) => {
@@ -19,4 +20,4 @@ if (!globalForRedis.redis) {
 
 export const redis = globalForRedis.redis ?? client;
 
-if (process.env.NODE_ENV !== "production") globalForRedis.redis = redis;
+if (env.NODE_ENV !== "production") globalForRedis.redis = redis;

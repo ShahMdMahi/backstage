@@ -226,7 +226,7 @@ export function UpdateProfileForm({ user }: UpdateProfileFormProps) {
               )}
             </div>
             <p className="text-xs text-muted-foreground text-center">
-              300x300px, max 50KB. Auto-compressed for optimization.
+              1:1 aspect ratio, max 5MB. Auto-compressed for optimization.
             </p>
           </div>
 

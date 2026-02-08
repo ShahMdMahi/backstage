@@ -14,6 +14,12 @@ import { AUDIT_LOG_ACTION, AUDIT_LOG_ENTITY } from "@/lib/prisma/enums";
 import { User } from "@/lib/prisma/client";
 import { getDeviceInfo } from "@/lib/device-info";
 import { getCurrentSession } from "@/actions/shared/session";
+import {
+  buildUserAvatarKey,
+  deleteFile,
+  updateFile,
+  uploadFile,
+} from "@/lib/s3";
 
 export async function updateMe(data: UpdateMeData): Promise<{
   success: boolean;
@@ -59,12 +65,34 @@ export async function updateMe(data: UpdateMeData): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
+    if (!validate.data.avatar && userExists.avatar) {
+      await deleteFile(userExists.avatar);
+    }
+    let avatarUploadKey;
+    if (validate.data.avatar && !userExists.avatar) {
+      const key = buildUserAvatarKey(session.data!.user.id);
+      const avatarUpload = await uploadFile({
+        key: key,
+        body: Buffer.from(validate.data.avatar.split(",")[1], "base64"),
+        contentType: "image/",
+      });
+      avatarUploadKey = avatarUpload.key;
+    }
+    if (validate.data.avatar && userExists.avatar) {
+      const avatarUpload = await updateFile({
+        key: userExists.avatar,
+        body: Buffer.from(validate.data.avatar.split(",")[1], "base64"),
+        contentType: "image/",
+      });
+      avatarUploadKey = avatarUpload.key;
+    }
+
     const updatedUser = await prisma.user.update({
       where: { id: session.data!.user.id },
       data: {
         name: validate.data.name,
         phone: validate.data.phone,
-        avatar: validate.data.avatar,
+        avatar: validate.data.avatar ? avatarUploadKey : null,
       },
     });
 

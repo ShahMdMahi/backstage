@@ -1,6 +1,6 @@
 /**
  * Avatar validation utilities
- * Validates avatar images for size (max 50KB) and dimensions (300x300px)
+ * Validates avatar images for size (max 5MB) and dimensions (1:1 aspect ratio)
  * Compresses images to 70% quality
  */
 
@@ -26,22 +26,22 @@ export async function validateAvatarFile(
     };
   }
 
-  // Check file size first (must be 50KB or less)
-  const maxSize = 50 * 1024; // 50KB in bytes
+  // Check file size first (must be 5MB or less)
+  const maxSize = 5 * 1024 * 1024; // 5MB in bytes
   if (file.size > maxSize) {
     return {
       success: false,
-      error: `Image is too large (${(file.size / 1024).toFixed(1)}KB). Maximum is 50KB.`,
+      error: `Image is too large (${(file.size / (1024 * 1024)).toFixed(1)}MB). Maximum is 5MB.`,
     };
   }
 
-  // Check dimensions (300x300px)
+  // Check dimensions (1:1 aspect ratio)
   try {
     const dimensions = await getImageDimensions(file);
-    if (dimensions.width !== 300 || dimensions.height !== 300) {
+    if (dimensions.width !== dimensions.height) {
       return {
         success: false,
-        error: "Image must be exactly 300x300 pixels",
+        error: "Image must be exactly 1:1 aspect ratio (e.g. 500x500 pixels)",
       };
     }
   } catch {
@@ -203,16 +203,16 @@ export async function validateAvatarBase64(
   try {
     // Check dimensions
     const dimensions = await getImageDimensionsFromBase64(base64String);
-    if (dimensions.width !== 300 || dimensions.height !== 300) {
+    if (dimensions.width !== dimensions.height) {
       return {
         success: false,
-        error: "Image must be exactly 300x300 pixels",
+        error: "Image must be exactly 1:1 aspect ratio (e.g. 500x500 pixels)",
       };
     }
 
-    // Check size (50KB = 51200 bytes)
+    // Check size (5MB = 5242880 bytes)
     const size = getBase64Size(base64String);
-    const maxSize = 50 * 1024;
+    const maxSize = 5 * 1024 * 1024;
 
     if (size <= maxSize) {
       return {
@@ -223,7 +223,7 @@ export async function validateAvatarBase64(
 
     return {
       success: false,
-      error: `Image is too large (${(size / 1024).toFixed(1)}KB). Maximum is 50KB.`,
+      error: `Image is too large (${(size / (1024 * 1024)).toFixed(1)}MB). Maximum is 5MB.`,
     };
   } catch {
     return {

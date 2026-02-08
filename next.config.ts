@@ -25,9 +25,11 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: "25mb",
+      bodySizeLimit: "50mb",
     },
+    proxyClientMaxBodySize: "50mb",
   },
+  output: "standalone",
 };
 
 export default nextConfig;

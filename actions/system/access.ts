@@ -19,6 +19,8 @@ import {
   sendUnsuspendedSystemAccessEmail,
   sendUpdatedSystemAccessEmail,
 } from "@/actions/shared/email";
+import { downloadFile } from "@/lib/s3";
+import { Readable } from "stream";
 
 export async function getAllSystemAccesses(): Promise<{
   success: boolean;
@@ -91,10 +93,50 @@ export async function getAllSystemAccesses(): Promise<{
       };
     }
 
+    const avatars = new Map<string, string | null>();
+    for (const systemAccess of systemAccesses) {
+      for (const userKey of ["user", "assigner"] as const) {
+        const user = systemAccess[userKey];
+        if (user && user.avatar) {
+          const data = await downloadFile(user.avatar).catch((error) => {
+            console.error(
+              `Error downloading avatar for user ${user.id} from S3:`,
+              error
+            );
+            return null;
+          });
+          if (data && data.Body) {
+            const stream = data.Body as Readable;
+            const chunks: Buffer[] = [];
+            for await (const chunk of stream) {
+              chunks.push(chunk);
+            }
+            const buffer = Buffer.concat(chunks);
+            avatars.set(
+              user.id,
+              `data:image/png;base64,${buffer.toString("base64")}`
+            );
+          } else {
+            avatars.set(user.id, null);
+          }
+        }
+      }
+    }
+
     return {
       success: true,
       message: "System accesses retrieved successfully.",
-      data: systemAccesses,
+      data: systemAccesses.map((systemAccess) => ({
+        ...systemAccess,
+        user: {
+          ...systemAccess.user,
+          avatar: avatars.get(systemAccess.user.id) || null,
+        },
+        assigner: {
+          ...systemAccess.assigner,
+          avatar: avatars.get(systemAccess.assigner.id) || null,
+        },
+      })),
       errors: null,
     };
   } catch (error) {
@@ -162,10 +204,48 @@ export async function getSystemAccessById(systemAccessId: string): Promise<{
       };
     }
 
+    const avatars = new Map<string, string | null>();
+    for (const userKey of ["user", "assigner"] as const) {
+      const user = systemAccess[userKey];
+      if (user && user.avatar) {
+        const data = await downloadFile(user.avatar).catch((error) => {
+          console.error(
+            `Error downloading avatar for user ${user.id} from S3:`,
+            error
+          );
+          return null;
+        });
+        if (data && data.Body) {
+          const stream = data.Body as Readable;
+          const chunks: Buffer[] = [];
+          for await (const chunk of stream) {
+            chunks.push(chunk);
+          }
+          const buffer = Buffer.concat(chunks);
+          avatars.set(
+            user.id,
+            `data:image/png;base64,${buffer.toString("base64")}`
+          );
+        } else {
+          avatars.set(user.id, null);
+        }
+      }
+    }
+
     return {
       success: true,
       message: "System access retrieved successfully.",
-      data: systemAccess,
+      data: {
+        ...systemAccess,
+        user: {
+          ...systemAccess.user,
+          avatar: avatars.get(systemAccess.user.id) || null,
+        },
+        assigner: {
+          ...systemAccess.assigner,
+          avatar: avatars.get(systemAccess.assigner.id) || null,
+        },
+      },
       errors: null,
     };
   } catch (error) {

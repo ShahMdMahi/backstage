@@ -20,6 +20,7 @@ import {
 import { render } from "@react-email/render";
 import { randomBytes } from "crypto";
 import { getBaseUrl } from "@/lib/utils";
+import { env } from "@/env";
 
 export async function sendWelcomeEmail(
   email: string,
@@ -31,7 +32,7 @@ export async function sendWelcomeEmail(
       WelcomeEmailTemplate({ name, email, dashboardUrl })
     );
     const res = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Welcome to Our Backstage Dashboard!",
       html: emailHtml,
@@ -54,7 +55,7 @@ export async function sendVerificationEmail(email: string): Promise<void> {
       VerificationEmailTemplate({ email, expiresIn, verificationUrl })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Verify Your Email Address",
       html: emailHtml,
@@ -76,7 +77,7 @@ export async function sendPasswordResetEmail(email: string): Promise<void> {
       PasswordResetEmailTemplate({ email, expiresIn, resetUrl })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Reset Your Password",
       html: emailHtml,
@@ -104,7 +105,7 @@ export async function sendNewLoginDetectedEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "New Login Detected",
       html: emailHtml,
@@ -124,7 +125,7 @@ export async function sendApprovedUserEmail(
       ApprovedUserEmailTemplate({ name, email, dashboardUrl })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Your Account Has Been Approved!",
       html: emailHtml,
@@ -144,7 +145,7 @@ export async function sendUserSuspendedEmail(
       UserSuspendedEmailTemplate({ name, email, dashboardUrl })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Your Account Has Been Suspended",
       html: emailHtml,
@@ -164,7 +165,7 @@ export async function sendUserUnsuspendedEmail(
       UserUnsuspendedEmailTemplate({ name, email, dashboardUrl })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Your Account Has Been Restored!",
       html: emailHtml,
@@ -190,7 +191,7 @@ export async function sendAssignedSystemAccessEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: userEmail,
       subject: "You Have Been Granted System Access",
       html: emailHtml,
@@ -214,7 +215,7 @@ export async function sendSuspendedSystemAccessEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: userEmail,
       subject: "Your System Access Has Been Suspended",
       html: emailHtml,
@@ -238,7 +239,7 @@ export async function sendUnsuspendedSystemAccessEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: userEmail,
       subject: "Your System Access Has Been Restored",
       html: emailHtml,
@@ -263,7 +264,7 @@ export async function sendUpdatedSystemAccessEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: userEmail,
       subject: "Your System Access Has Been Updated",
       html: emailHtml,
@@ -291,7 +292,7 @@ export async function sendNewUserCreatedEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Your Account Has Been Created!",
       html: emailHtml,
@@ -317,7 +318,7 @@ export async function sendUserUpdatedEmail(
       })
     );
     await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: env.RESEND_FROM_EMAIL!,
       to: email,
       subject: "Your Account Has Been Updated",
       html: emailHtml,

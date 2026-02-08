@@ -16,6 +16,8 @@ import {
 } from "@/validators/system/reporting";
 import z from "zod";
 import { getDeviceInfo } from "@/lib/device-info";
+import { buildReportKey, deleteFile, downloadFile, uploadFile } from "@/lib/s3";
+import { Readable } from "stream";
 
 export async function getAllReportings(): Promise<{
   success: boolean;
@@ -129,7 +131,6 @@ export async function getAllReportings(): Promise<{
           },
         },
       },
-      omit: { raw: true },
       orderBy: { reportingMonth: "desc" },
     });
 
@@ -142,10 +143,54 @@ export async function getAllReportings(): Promise<{
       };
     }
 
+    const avatars = new Map<string, string | null>();
+    for (const reporting of reportings) {
+      for (const userKey of ["uploader", "processor"] as const) {
+        const user = reporting[userKey];
+        if (user && user.avatar) {
+          const data = await downloadFile(user.avatar).catch((error) => {
+            console.error(
+              `Error downloading avatar for user ${user.id} from S3:`,
+              error
+            );
+            return null;
+          });
+          if (data && data.Body) {
+            const stream = data.Body as Readable;
+            const chunks: Buffer[] = [];
+            for await (const chunk of stream) {
+              chunks.push(chunk);
+            }
+            const buffer = Buffer.concat(chunks);
+            avatars.set(
+              user.id,
+              `data:image/png;base64,${buffer.toString("base64")}`
+            );
+          } else {
+            avatars.set(user.id, null);
+          }
+        }
+      }
+    }
+
     return {
       success: true,
       message: "Reportings fetched successfully.",
-      data: reportings,
+      data: reportings.map((reporting) => ({
+        ...reporting,
+        uploader: reporting.uploader
+          ? {
+              ...reporting.uploader,
+              avatar: avatars.get(reporting.uploader.id) || null,
+            }
+          : null,
+        processor: reporting.processor
+          ? {
+              ...reporting.processor,
+              avatar: avatars.get(reporting.processor.id) || null,
+            }
+          : null,
+      })),
       errors: null,
     };
   } catch (error) {
@@ -289,10 +334,52 @@ export async function getReportingById(reportingId: string): Promise<{
       };
     }
 
+    const avatars = new Map<string, string | null>();
+    for (const userKey of ["uploader", "processor"] as const) {
+      const user = reporting[userKey];
+      if (user && user.avatar) {
+        const data = await downloadFile(user.avatar).catch((error) => {
+          console.error(
+            `Error downloading avatar for user ${user.id} from S3:`,
+            error
+          );
+          return null;
+        });
+        if (data && data.Body) {
+          const stream = data.Body as Readable;
+          const chunks: Buffer[] = [];
+          for await (const chunk of stream) {
+            chunks.push(chunk);
+          }
+          const buffer = Buffer.concat(chunks);
+          avatars.set(
+            user.id,
+            `data:image/png;base64,${buffer.toString("base64")}`
+          );
+        } else {
+          avatars.set(user.id, null);
+        }
+      }
+    }
+
     return {
       success: true,
       message: "Reporting fetched successfully.",
-      data: reporting,
+      data: {
+        ...reporting,
+        uploader: reporting.uploader
+          ? {
+              ...reporting.uploader,
+              avatar: avatars.get(reporting.uploader.id) || null,
+            }
+          : null,
+        processor: reporting.processor
+          ? {
+              ...reporting.processor,
+              avatar: avatars.get(reporting.processor.id) || null,
+            }
+          : null,
+      },
       errors: null,
     };
   } catch (error) {
@@ -668,6 +755,16 @@ export async function createReporting(data: CreateReportingData): Promise<{
 
     const deviceInfo = await getDeviceInfo();
 
+    const key = buildReportKey(validate.data.hash);
+    const upload = await uploadFile({
+      key: key,
+      body: content,
+      contentType: data.file.type,
+    }).catch((error) => {
+      console.error("Error uploading reporting file to S3:", error);
+      throw new Error("Failed to upload reporting file");
+    });
+
     const newReporting = await prisma.$transaction(async (tx) => {
       return tx.reporting.create({
         data: {
@@ -678,7 +775,7 @@ export async function createReporting(data: CreateReportingData): Promise<{
           delimiter: data.delimiter,
           reportingMonth: data.reportingMonth,
           netRevenue: data.netRevenue,
-          raw: content,
+          file: upload.key,
           uploader: { connect: { id: session.data?.userId } },
         },
       });
@@ -825,6 +922,10 @@ export async function deleteReporting(reportingId: string): Promise<{
 
     const deletedReporting = await prisma.reporting.delete({
       where: { id: reportingId },
+    });
+
+    await deleteFile(deletedReporting.file).catch((error) => {
+      console.error("Error deleting reporting file from S3:", error);
     });
 
     if (!deletedReporting) {

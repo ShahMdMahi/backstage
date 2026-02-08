@@ -13,6 +13,9 @@ import {
 import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
 import { logAuditEvent } from "@/actions/shared/audit-log";
+import { env } from "@/env";
+import { downloadFile } from "@/lib/s3";
+import { Readable } from "stream";
 
 export async function createSession(
   userId: string,
@@ -64,7 +67,7 @@ export async function createSession(
     }
     cookieManager.set("session_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 24 * 60 * 60, // 1 day
     });
@@ -832,10 +835,27 @@ export async function getCurrentSession(): Promise<{
       }
     }
 
+    let avatar: string | null = null;
+    if (session.user.avatar) {
+      const data = await downloadFile(session.user.avatar).catch((error) => {
+        console.error("Error downloading user avatar from S3:", error);
+        return null;
+      });
+      if (data && data.Body) {
+        const stream = data.Body as Readable;
+        const chunks: Buffer[] = [];
+        for await (const chunk of stream) {
+          chunks.push(chunk);
+        }
+        const buffer = Buffer.concat(chunks);
+        avatar = `data:image/png;base64,${buffer.toString("base64")}`;
+      }
+    }
+
     return {
       success: true,
       message: "Session retrieved successfully",
-      data: session,
+      data: { ...session, user: { ...session.user, avatar } },
       errors: null,
     };
   } catch (error) {

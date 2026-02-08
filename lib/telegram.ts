@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import TelegramBot from "node-telegram-bot-api";
 
 const globalForTelegram = globalThis as unknown as {
@@ -6,7 +7,6 @@ const globalForTelegram = globalThis as unknown as {
 
 export const telegramBot =
   globalForTelegram.telegramBot ??
-  new TelegramBot(process.env.TELEGRAM_BOT_TOKEN!, { polling: false });
+  new TelegramBot(env.TELEGRAM_BOT_TOKEN!, { polling: false });
 
-if (process.env.NODE_ENV !== "production")
-  globalForTelegram.telegramBot = telegramBot;
+if (env.NODE_ENV !== "production") globalForTelegram.telegramBot = telegramBot;
