@@ -37,7 +37,6 @@ export function ProcessReportingButton({
     try {
       const result = await processReporting(reportingId);
       if (result.success) {
-        console.log(result.data);
         toast.success(result.message || "Reporting processed successfully");
         setIsProcessing(false);
         router.push("/system/administration/reporting");
