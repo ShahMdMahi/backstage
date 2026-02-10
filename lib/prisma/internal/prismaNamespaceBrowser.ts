@@ -372,9 +372,26 @@ export type WithdrawalScalarFieldEnum =
 export const ReportScalarFieldEnum = {
   id: "id",
   reportingId: "reportingId",
+  label: "label",
+  artist: "artist",
+  releaseTitle: "releaseTitle",
+  trackTitle: "trackTitle",
+  upc: "upc",
+  isrc: "isrc",
+  releaseCatalogId: "releaseCatalogId",
+  service: "service",
+  channel: "channel",
+  territory: "territory",
+  quantity: "quantity",
+  netRevenueInUsd: "netRevenueInUsd",
+  netRevenueInEur: "netRevenueInEur",
   metadata: "metadata",
+  reportingType: "reportingType",
+  reportingCurrency: "reportingCurrency",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
+  reportingMonth: "reportingMonth",
+  salesMonth: "salesMonth",
 } as const;
 
 export type ReportScalarFieldEnum =

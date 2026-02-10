@@ -20,53 +20,181 @@ export type ReportModel =
 
 export type AggregateReport = {
   _count: ReportCountAggregateOutputType | null;
+  _avg: ReportAvgAggregateOutputType | null;
+  _sum: ReportSumAggregateOutputType | null;
   _min: ReportMinAggregateOutputType | null;
   _max: ReportMaxAggregateOutputType | null;
+};
+
+export type ReportAvgAggregateOutputType = {
+  quantity: number | null;
+  netRevenueInUsd: number | null;
+  netRevenueInEur: number | null;
+};
+
+export type ReportSumAggregateOutputType = {
+  quantity: number | null;
+  netRevenueInUsd: number | null;
+  netRevenueInEur: number | null;
 };
 
 export type ReportMinAggregateOutputType = {
   id: string | null;
   reportingId: string | null;
+  label: string | null;
+  artist: string | null;
+  releaseTitle: string | null;
+  trackTitle: string | null;
+  upc: string | null;
+  isrc: string | null;
+  releaseCatalogId: string | null;
+  service: string | null;
+  channel: string | null;
+  territory: string | null;
+  quantity: number | null;
+  netRevenueInUsd: number | null;
+  netRevenueInEur: number | null;
+  reportingType: $Enums.REPORTING_TYPE | null;
+  reportingCurrency: $Enums.REPORTING_CURRENCY | null;
   createdAt: Date | null;
   updatedAt: Date | null;
+  reportingMonth: Date | null;
+  salesMonth: Date | null;
 };
 
 export type ReportMaxAggregateOutputType = {
   id: string | null;
   reportingId: string | null;
+  label: string | null;
+  artist: string | null;
+  releaseTitle: string | null;
+  trackTitle: string | null;
+  upc: string | null;
+  isrc: string | null;
+  releaseCatalogId: string | null;
+  service: string | null;
+  channel: string | null;
+  territory: string | null;
+  quantity: number | null;
+  netRevenueInUsd: number | null;
+  netRevenueInEur: number | null;
+  reportingType: $Enums.REPORTING_TYPE | null;
+  reportingCurrency: $Enums.REPORTING_CURRENCY | null;
   createdAt: Date | null;
   updatedAt: Date | null;
+  reportingMonth: Date | null;
+  salesMonth: Date | null;
 };
 
 export type ReportCountAggregateOutputType = {
   id: number;
   reportingId: number;
+  label: number;
+  artist: number;
+  releaseTitle: number;
+  trackTitle: number;
+  upc: number;
+  isrc: number;
+  releaseCatalogId: number;
+  service: number;
+  channel: number;
+  territory: number;
+  quantity: number;
+  netRevenueInUsd: number;
+  netRevenueInEur: number;
   metadata: number;
+  reportingType: number;
+  reportingCurrency: number;
   createdAt: number;
   updatedAt: number;
+  reportingMonth: number;
+  salesMonth: number;
   _all: number;
+};
+
+export type ReportAvgAggregateInputType = {
+  quantity?: true;
+  netRevenueInUsd?: true;
+  netRevenueInEur?: true;
+};
+
+export type ReportSumAggregateInputType = {
+  quantity?: true;
+  netRevenueInUsd?: true;
+  netRevenueInEur?: true;
 };
 
 export type ReportMinAggregateInputType = {
   id?: true;
   reportingId?: true;
+  label?: true;
+  artist?: true;
+  releaseTitle?: true;
+  trackTitle?: true;
+  upc?: true;
+  isrc?: true;
+  releaseCatalogId?: true;
+  service?: true;
+  channel?: true;
+  territory?: true;
+  quantity?: true;
+  netRevenueInUsd?: true;
+  netRevenueInEur?: true;
+  reportingType?: true;
+  reportingCurrency?: true;
   createdAt?: true;
   updatedAt?: true;
+  reportingMonth?: true;
+  salesMonth?: true;
 };
 
 export type ReportMaxAggregateInputType = {
   id?: true;
   reportingId?: true;
+  label?: true;
+  artist?: true;
+  releaseTitle?: true;
+  trackTitle?: true;
+  upc?: true;
+  isrc?: true;
+  releaseCatalogId?: true;
+  service?: true;
+  channel?: true;
+  territory?: true;
+  quantity?: true;
+  netRevenueInUsd?: true;
+  netRevenueInEur?: true;
+  reportingType?: true;
+  reportingCurrency?: true;
   createdAt?: true;
   updatedAt?: true;
+  reportingMonth?: true;
+  salesMonth?: true;
 };
 
 export type ReportCountAggregateInputType = {
   id?: true;
   reportingId?: true;
+  label?: true;
+  artist?: true;
+  releaseTitle?: true;
+  trackTitle?: true;
+  upc?: true;
+  isrc?: true;
+  releaseCatalogId?: true;
+  service?: true;
+  channel?: true;
+  territory?: true;
+  quantity?: true;
+  netRevenueInUsd?: true;
+  netRevenueInEur?: true;
   metadata?: true;
+  reportingType?: true;
+  reportingCurrency?: true;
   createdAt?: true;
   updatedAt?: true;
+  reportingMonth?: true;
+  salesMonth?: true;
   _all?: true;
 };
 
@@ -113,6 +241,18 @@ export type ReportAggregateArgs<
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    *
+   * Select which fields to average
+   **/
+  _avg?: ReportAvgAggregateInputType;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   *
+   * Select which fields to sum
+   **/
+  _sum?: ReportSumAggregateInputType;
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   *
    * Select which fields to find the minimum value
    **/
   _min?: ReportMinAggregateInputType;
@@ -145,6 +285,8 @@ export type ReportGroupByArgs<
   take?: number;
   skip?: number;
   _count?: ReportCountAggregateInputType | true;
+  _avg?: ReportAvgAggregateInputType;
+  _sum?: ReportSumAggregateInputType;
   _min?: ReportMinAggregateInputType;
   _max?: ReportMaxAggregateInputType;
 };
@@ -152,10 +294,29 @@ export type ReportGroupByArgs<
 export type ReportGroupByOutputType = {
   id: string;
   reportingId: string;
+  label: string | null;
+  artist: string | null;
+  releaseTitle: string | null;
+  trackTitle: string | null;
+  upc: string | null;
+  isrc: string | null;
+  releaseCatalogId: string | null;
+  service: string | null;
+  channel: string | null;
+  territory: string | null;
+  quantity: number | null;
+  netRevenueInUsd: number | null;
+  netRevenueInEur: number | null;
   metadata: runtime.JsonValue | null;
+  reportingType: $Enums.REPORTING_TYPE | null;
+  reportingCurrency: $Enums.REPORTING_CURRENCY | null;
   createdAt: Date;
   updatedAt: Date;
+  reportingMonth: Date | null;
+  salesMonth: Date | null;
   _count: ReportCountAggregateOutputType | null;
+  _avg: ReportAvgAggregateOutputType | null;
+  _sum: ReportSumAggregateOutputType | null;
   _min: ReportMinAggregateOutputType | null;
   _max: ReportMaxAggregateOutputType | null;
 };
@@ -179,9 +340,36 @@ export type ReportWhereInput = {
   NOT?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[];
   id?: Prisma.StringFilter<"Report"> | string;
   reportingId?: Prisma.StringFilter<"Report"> | string;
+  label?: Prisma.StringNullableFilter<"Report"> | string | null;
+  artist?: Prisma.StringNullableFilter<"Report"> | string | null;
+  releaseTitle?: Prisma.StringNullableFilter<"Report"> | string | null;
+  trackTitle?: Prisma.StringNullableFilter<"Report"> | string | null;
+  upc?: Prisma.StringNullableFilter<"Report"> | string | null;
+  isrc?: Prisma.StringNullableFilter<"Report"> | string | null;
+  releaseCatalogId?: Prisma.StringNullableFilter<"Report"> | string | null;
+  service?: Prisma.StringNullableFilter<"Report"> | string | null;
+  channel?: Prisma.StringNullableFilter<"Report"> | string | null;
+  territory?: Prisma.StringNullableFilter<"Report"> | string | null;
+  quantity?: Prisma.IntNullableFilter<"Report"> | number | null;
+  netRevenueInUsd?: Prisma.FloatNullableFilter<"Report"> | number | null;
+  netRevenueInEur?: Prisma.FloatNullableFilter<"Report"> | number | null;
   metadata?: Prisma.JsonNullableFilter<"Report">;
+  reportingType?:
+    | Prisma.EnumREPORTING_TYPENullableFilter<"Report">
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.EnumREPORTING_CURRENCYNullableFilter<"Report">
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Report"> | Date | string;
+  reportingMonth?:
+    | Prisma.DateTimeNullableFilter<"Report">
+    | Date
+    | string
+    | null;
+  salesMonth?: Prisma.DateTimeNullableFilter<"Report"> | Date | string | null;
   reporting?: Prisma.XOR<
     Prisma.ReportingScalarRelationFilter,
     Prisma.ReportingWhereInput
@@ -191,9 +379,26 @@ export type ReportWhereInput = {
 export type ReportOrderByWithRelationInput = {
   id?: Prisma.SortOrder;
   reportingId?: Prisma.SortOrder;
+  label?: Prisma.SortOrderInput | Prisma.SortOrder;
+  artist?: Prisma.SortOrderInput | Prisma.SortOrder;
+  releaseTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
+  trackTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
+  upc?: Prisma.SortOrderInput | Prisma.SortOrder;
+  isrc?: Prisma.SortOrderInput | Prisma.SortOrder;
+  releaseCatalogId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  service?: Prisma.SortOrderInput | Prisma.SortOrder;
+  channel?: Prisma.SortOrderInput | Prisma.SortOrder;
+  territory?: Prisma.SortOrderInput | Prisma.SortOrder;
+  quantity?: Prisma.SortOrderInput | Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrderInput | Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrderInput | Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  reportingType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  reportingCurrency?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrderInput | Prisma.SortOrder;
+  salesMonth?: Prisma.SortOrderInput | Prisma.SortOrder;
   reporting?: Prisma.ReportingOrderByWithRelationInput;
 };
 
@@ -204,9 +409,36 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<
     OR?: Prisma.ReportWhereInput[];
     NOT?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[];
     reportingId?: Prisma.StringFilter<"Report"> | string;
+    label?: Prisma.StringNullableFilter<"Report"> | string | null;
+    artist?: Prisma.StringNullableFilter<"Report"> | string | null;
+    releaseTitle?: Prisma.StringNullableFilter<"Report"> | string | null;
+    trackTitle?: Prisma.StringNullableFilter<"Report"> | string | null;
+    upc?: Prisma.StringNullableFilter<"Report"> | string | null;
+    isrc?: Prisma.StringNullableFilter<"Report"> | string | null;
+    releaseCatalogId?: Prisma.StringNullableFilter<"Report"> | string | null;
+    service?: Prisma.StringNullableFilter<"Report"> | string | null;
+    channel?: Prisma.StringNullableFilter<"Report"> | string | null;
+    territory?: Prisma.StringNullableFilter<"Report"> | string | null;
+    quantity?: Prisma.IntNullableFilter<"Report"> | number | null;
+    netRevenueInUsd?: Prisma.FloatNullableFilter<"Report"> | number | null;
+    netRevenueInEur?: Prisma.FloatNullableFilter<"Report"> | number | null;
     metadata?: Prisma.JsonNullableFilter<"Report">;
+    reportingType?:
+      | Prisma.EnumREPORTING_TYPENullableFilter<"Report">
+      | $Enums.REPORTING_TYPE
+      | null;
+    reportingCurrency?:
+      | Prisma.EnumREPORTING_CURRENCYNullableFilter<"Report">
+      | $Enums.REPORTING_CURRENCY
+      | null;
     createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string;
     updatedAt?: Prisma.DateTimeFilter<"Report"> | Date | string;
+    reportingMonth?:
+      | Prisma.DateTimeNullableFilter<"Report">
+      | Date
+      | string
+      | null;
+    salesMonth?: Prisma.DateTimeNullableFilter<"Report"> | Date | string | null;
     reporting?: Prisma.XOR<
       Prisma.ReportingScalarRelationFilter,
       Prisma.ReportingWhereInput
@@ -218,12 +450,31 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<
 export type ReportOrderByWithAggregationInput = {
   id?: Prisma.SortOrder;
   reportingId?: Prisma.SortOrder;
+  label?: Prisma.SortOrderInput | Prisma.SortOrder;
+  artist?: Prisma.SortOrderInput | Prisma.SortOrder;
+  releaseTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
+  trackTitle?: Prisma.SortOrderInput | Prisma.SortOrder;
+  upc?: Prisma.SortOrderInput | Prisma.SortOrder;
+  isrc?: Prisma.SortOrderInput | Prisma.SortOrder;
+  releaseCatalogId?: Prisma.SortOrderInput | Prisma.SortOrder;
+  service?: Prisma.SortOrderInput | Prisma.SortOrder;
+  channel?: Prisma.SortOrderInput | Prisma.SortOrder;
+  territory?: Prisma.SortOrderInput | Prisma.SortOrder;
+  quantity?: Prisma.SortOrderInput | Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrderInput | Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrderInput | Prisma.SortOrder;
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder;
+  reportingType?: Prisma.SortOrderInput | Prisma.SortOrder;
+  reportingCurrency?: Prisma.SortOrderInput | Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrderInput | Prisma.SortOrder;
+  salesMonth?: Prisma.SortOrderInput | Prisma.SortOrder;
   _count?: Prisma.ReportCountOrderByAggregateInput;
+  _avg?: Prisma.ReportAvgOrderByAggregateInput;
   _max?: Prisma.ReportMaxOrderByAggregateInput;
   _min?: Prisma.ReportMinOrderByAggregateInput;
+  _sum?: Prisma.ReportSumOrderByAggregateInput;
 };
 
 export type ReportScalarWhereWithAggregatesInput = {
@@ -236,64 +487,336 @@ export type ReportScalarWhereWithAggregatesInput = {
     | Prisma.ReportScalarWhereWithAggregatesInput[];
   id?: Prisma.StringWithAggregatesFilter<"Report"> | string;
   reportingId?: Prisma.StringWithAggregatesFilter<"Report"> | string;
+  label?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null;
+  artist?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null;
+  releaseTitle?:
+    | Prisma.StringNullableWithAggregatesFilter<"Report">
+    | string
+    | null;
+  trackTitle?:
+    | Prisma.StringNullableWithAggregatesFilter<"Report">
+    | string
+    | null;
+  upc?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null;
+  isrc?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null;
+  releaseCatalogId?:
+    | Prisma.StringNullableWithAggregatesFilter<"Report">
+    | string
+    | null;
+  service?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null;
+  channel?: Prisma.StringNullableWithAggregatesFilter<"Report"> | string | null;
+  territory?:
+    | Prisma.StringNullableWithAggregatesFilter<"Report">
+    | string
+    | null;
+  quantity?: Prisma.IntNullableWithAggregatesFilter<"Report"> | number | null;
+  netRevenueInUsd?:
+    | Prisma.FloatNullableWithAggregatesFilter<"Report">
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.FloatNullableWithAggregatesFilter<"Report">
+    | number
+    | null;
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"Report">;
+  reportingType?:
+    | Prisma.EnumREPORTING_TYPENullableWithAggregatesFilter<"Report">
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.EnumREPORTING_CURRENCYNullableWithAggregatesFilter<"Report">
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Report"> | Date | string;
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Report"> | Date | string;
+  reportingMonth?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"Report">
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.DateTimeNullableWithAggregatesFilter<"Report">
+    | Date
+    | string
+    | null;
 };
 
 export type ReportCreateInput = {
   id?: string;
+  label?: string | null;
+  artist?: string | null;
+  releaseTitle?: string | null;
+  trackTitle?: string | null;
+  upc?: string | null;
+  isrc?: string | null;
+  releaseCatalogId?: string | null;
+  service?: string | null;
+  channel?: string | null;
+  territory?: string | null;
+  quantity?: number | null;
+  netRevenueInUsd?: number | null;
+  netRevenueInEur?: number | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?: $Enums.REPORTING_TYPE | null;
+  reportingCurrency?: $Enums.REPORTING_CURRENCY | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth?: Date | string | null;
+  salesMonth?: Date | string | null;
   reporting: Prisma.ReportingCreateNestedOneWithoutReportsInput;
 };
 
 export type ReportUncheckedCreateInput = {
   id?: string;
   reportingId: string;
+  label?: string | null;
+  artist?: string | null;
+  releaseTitle?: string | null;
+  trackTitle?: string | null;
+  upc?: string | null;
+  isrc?: string | null;
+  releaseCatalogId?: string | null;
+  service?: string | null;
+  channel?: string | null;
+  territory?: string | null;
+  quantity?: number | null;
+  netRevenueInUsd?: number | null;
+  netRevenueInEur?: number | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?: $Enums.REPORTING_TYPE | null;
+  reportingCurrency?: $Enums.REPORTING_CURRENCY | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth?: Date | string | null;
+  salesMonth?: Date | string | null;
 };
 
 export type ReportUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
   reporting?: Prisma.ReportingUpdateOneRequiredWithoutReportsNestedInput;
 };
 
 export type ReportUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   reportingId?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportCreateManyInput = {
   id?: string;
   reportingId: string;
+  label?: string | null;
+  artist?: string | null;
+  releaseTitle?: string | null;
+  trackTitle?: string | null;
+  upc?: string | null;
+  isrc?: string | null;
+  releaseCatalogId?: string | null;
+  service?: string | null;
+  channel?: string | null;
+  territory?: string | null;
+  quantity?: number | null;
+  netRevenueInUsd?: number | null;
+  netRevenueInEur?: number | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?: $Enums.REPORTING_TYPE | null;
+  reportingCurrency?: $Enums.REPORTING_CURRENCY | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth?: Date | string | null;
+  salesMonth?: Date | string | null;
 };
 
 export type ReportUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
   reportingId?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportListRelationFilter = {
@@ -309,23 +832,86 @@ export type ReportOrderByRelationAggregateInput = {
 export type ReportCountOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   reportingId?: Prisma.SortOrder;
+  label?: Prisma.SortOrder;
+  artist?: Prisma.SortOrder;
+  releaseTitle?: Prisma.SortOrder;
+  trackTitle?: Prisma.SortOrder;
+  upc?: Prisma.SortOrder;
+  isrc?: Prisma.SortOrder;
+  releaseCatalogId?: Prisma.SortOrder;
+  service?: Prisma.SortOrder;
+  channel?: Prisma.SortOrder;
+  territory?: Prisma.SortOrder;
+  quantity?: Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrder;
   metadata?: Prisma.SortOrder;
+  reportingType?: Prisma.SortOrder;
+  reportingCurrency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
+  salesMonth?: Prisma.SortOrder;
+};
+
+export type ReportAvgOrderByAggregateInput = {
+  quantity?: Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrder;
 };
 
 export type ReportMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   reportingId?: Prisma.SortOrder;
+  label?: Prisma.SortOrder;
+  artist?: Prisma.SortOrder;
+  releaseTitle?: Prisma.SortOrder;
+  trackTitle?: Prisma.SortOrder;
+  upc?: Prisma.SortOrder;
+  isrc?: Prisma.SortOrder;
+  releaseCatalogId?: Prisma.SortOrder;
+  service?: Prisma.SortOrder;
+  channel?: Prisma.SortOrder;
+  territory?: Prisma.SortOrder;
+  quantity?: Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrder;
+  reportingType?: Prisma.SortOrder;
+  reportingCurrency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
+  salesMonth?: Prisma.SortOrder;
 };
 
 export type ReportMinOrderByAggregateInput = {
   id?: Prisma.SortOrder;
   reportingId?: Prisma.SortOrder;
+  label?: Prisma.SortOrder;
+  artist?: Prisma.SortOrder;
+  releaseTitle?: Prisma.SortOrder;
+  trackTitle?: Prisma.SortOrder;
+  upc?: Prisma.SortOrder;
+  isrc?: Prisma.SortOrder;
+  releaseCatalogId?: Prisma.SortOrder;
+  service?: Prisma.SortOrder;
+  channel?: Prisma.SortOrder;
+  territory?: Prisma.SortOrder;
+  quantity?: Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrder;
+  reportingType?: Prisma.SortOrder;
+  reportingCurrency?: Prisma.SortOrder;
   createdAt?: Prisma.SortOrder;
   updatedAt?: Prisma.SortOrder;
+  reportingMonth?: Prisma.SortOrder;
+  salesMonth?: Prisma.SortOrder;
+};
+
+export type ReportSumOrderByAggregateInput = {
+  quantity?: Prisma.SortOrder;
+  netRevenueInUsd?: Prisma.SortOrder;
+  netRevenueInEur?: Prisma.SortOrder;
 };
 
 export type ReportCreateNestedManyWithoutReportingInput = {
@@ -414,18 +1000,76 @@ export type ReportUncheckedUpdateManyWithoutReportingNestedInput = {
   deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[];
 };
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null;
+  increment?: number;
+  decrement?: number;
+  multiply?: number;
+  divide?: number;
+};
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null;
+  increment?: number;
+  decrement?: number;
+  multiply?: number;
+  divide?: number;
+};
+
+export type NullableEnumREPORTING_TYPEFieldUpdateOperationsInput = {
+  set?: $Enums.REPORTING_TYPE | null;
+};
+
+export type NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput = {
+  set?: $Enums.REPORTING_CURRENCY | null;
+};
+
 export type ReportCreateWithoutReportingInput = {
   id?: string;
+  label?: string | null;
+  artist?: string | null;
+  releaseTitle?: string | null;
+  trackTitle?: string | null;
+  upc?: string | null;
+  isrc?: string | null;
+  releaseCatalogId?: string | null;
+  service?: string | null;
+  channel?: string | null;
+  territory?: string | null;
+  quantity?: number | null;
+  netRevenueInUsd?: number | null;
+  netRevenueInEur?: number | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?: $Enums.REPORTING_TYPE | null;
+  reportingCurrency?: $Enums.REPORTING_CURRENCY | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth?: Date | string | null;
+  salesMonth?: Date | string | null;
 };
 
 export type ReportUncheckedCreateWithoutReportingInput = {
   id?: string;
+  label?: string | null;
+  artist?: string | null;
+  releaseTitle?: string | null;
+  trackTitle?: string | null;
+  upc?: string | null;
+  isrc?: string | null;
+  releaseCatalogId?: string | null;
+  service?: string | null;
+  channel?: string | null;
+  territory?: string | null;
+  quantity?: number | null;
+  netRevenueInUsd?: number | null;
+  netRevenueInEur?: number | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?: $Enums.REPORTING_TYPE | null;
+  reportingCurrency?: $Enums.REPORTING_CURRENCY | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth?: Date | string | null;
+  salesMonth?: Date | string | null;
 };
 
 export type ReportCreateOrConnectWithoutReportingInput = {
@@ -477,37 +1121,210 @@ export type ReportScalarWhereInput = {
   NOT?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[];
   id?: Prisma.StringFilter<"Report"> | string;
   reportingId?: Prisma.StringFilter<"Report"> | string;
+  label?: Prisma.StringNullableFilter<"Report"> | string | null;
+  artist?: Prisma.StringNullableFilter<"Report"> | string | null;
+  releaseTitle?: Prisma.StringNullableFilter<"Report"> | string | null;
+  trackTitle?: Prisma.StringNullableFilter<"Report"> | string | null;
+  upc?: Prisma.StringNullableFilter<"Report"> | string | null;
+  isrc?: Prisma.StringNullableFilter<"Report"> | string | null;
+  releaseCatalogId?: Prisma.StringNullableFilter<"Report"> | string | null;
+  service?: Prisma.StringNullableFilter<"Report"> | string | null;
+  channel?: Prisma.StringNullableFilter<"Report"> | string | null;
+  territory?: Prisma.StringNullableFilter<"Report"> | string | null;
+  quantity?: Prisma.IntNullableFilter<"Report"> | number | null;
+  netRevenueInUsd?: Prisma.FloatNullableFilter<"Report"> | number | null;
+  netRevenueInEur?: Prisma.FloatNullableFilter<"Report"> | number | null;
   metadata?: Prisma.JsonNullableFilter<"Report">;
+  reportingType?:
+    | Prisma.EnumREPORTING_TYPENullableFilter<"Report">
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.EnumREPORTING_CURRENCYNullableFilter<"Report">
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string;
   updatedAt?: Prisma.DateTimeFilter<"Report"> | Date | string;
+  reportingMonth?:
+    | Prisma.DateTimeNullableFilter<"Report">
+    | Date
+    | string
+    | null;
+  salesMonth?: Prisma.DateTimeNullableFilter<"Report"> | Date | string | null;
 };
 
 export type ReportCreateManyReportingInput = {
   id?: string;
+  label?: string | null;
+  artist?: string | null;
+  releaseTitle?: string | null;
+  trackTitle?: string | null;
+  upc?: string | null;
+  isrc?: string | null;
+  releaseCatalogId?: string | null;
+  service?: string | null;
+  channel?: string | null;
+  territory?: string | null;
+  quantity?: number | null;
+  netRevenueInUsd?: number | null;
+  netRevenueInEur?: number | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?: $Enums.REPORTING_TYPE | null;
+  reportingCurrency?: $Enums.REPORTING_CURRENCY | null;
   createdAt?: Date | string;
   updatedAt?: Date | string;
+  reportingMonth?: Date | string | null;
+  salesMonth?: Date | string | null;
 };
 
 export type ReportUpdateWithoutReportingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportUncheckedUpdateWithoutReportingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportUncheckedUpdateManyWithoutReportingInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string;
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  artist?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseTitle?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  trackTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  upc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  isrc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  releaseCatalogId?:
+    | Prisma.NullableStringFieldUpdateOperationsInput
+    | string
+    | null;
+  service?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  channel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  territory?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+  quantity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+  netRevenueInUsd?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
+  netRevenueInEur?:
+    | Prisma.NullableFloatFieldUpdateOperationsInput
+    | number
+    | null;
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue;
+  reportingType?:
+    | Prisma.NullableEnumREPORTING_TYPEFieldUpdateOperationsInput
+    | $Enums.REPORTING_TYPE
+    | null;
+  reportingCurrency?:
+    | Prisma.NullableEnumREPORTING_CURRENCYFieldUpdateOperationsInput
+    | $Enums.REPORTING_CURRENCY
+    | null;
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
+  reportingMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
+  salesMonth?:
+    | Prisma.NullableDateTimeFieldUpdateOperationsInput
+    | Date
+    | string
+    | null;
 };
 
 export type ReportSelect<
@@ -517,9 +1334,26 @@ export type ReportSelect<
   {
     id?: boolean;
     reportingId?: boolean;
+    label?: boolean;
+    artist?: boolean;
+    releaseTitle?: boolean;
+    trackTitle?: boolean;
+    upc?: boolean;
+    isrc?: boolean;
+    releaseCatalogId?: boolean;
+    service?: boolean;
+    channel?: boolean;
+    territory?: boolean;
+    quantity?: boolean;
+    netRevenueInUsd?: boolean;
+    netRevenueInEur?: boolean;
     metadata?: boolean;
+    reportingType?: boolean;
+    reportingCurrency?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    reportingMonth?: boolean;
+    salesMonth?: boolean;
     reporting?: boolean | Prisma.ReportingDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["report"]
@@ -532,9 +1366,26 @@ export type ReportSelectCreateManyAndReturn<
   {
     id?: boolean;
     reportingId?: boolean;
+    label?: boolean;
+    artist?: boolean;
+    releaseTitle?: boolean;
+    trackTitle?: boolean;
+    upc?: boolean;
+    isrc?: boolean;
+    releaseCatalogId?: boolean;
+    service?: boolean;
+    channel?: boolean;
+    territory?: boolean;
+    quantity?: boolean;
+    netRevenueInUsd?: boolean;
+    netRevenueInEur?: boolean;
     metadata?: boolean;
+    reportingType?: boolean;
+    reportingCurrency?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    reportingMonth?: boolean;
+    salesMonth?: boolean;
     reporting?: boolean | Prisma.ReportingDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["report"]
@@ -547,9 +1398,26 @@ export type ReportSelectUpdateManyAndReturn<
   {
     id?: boolean;
     reportingId?: boolean;
+    label?: boolean;
+    artist?: boolean;
+    releaseTitle?: boolean;
+    trackTitle?: boolean;
+    upc?: boolean;
+    isrc?: boolean;
+    releaseCatalogId?: boolean;
+    service?: boolean;
+    channel?: boolean;
+    territory?: boolean;
+    quantity?: boolean;
+    netRevenueInUsd?: boolean;
+    netRevenueInEur?: boolean;
     metadata?: boolean;
+    reportingType?: boolean;
+    reportingCurrency?: boolean;
     createdAt?: boolean;
     updatedAt?: boolean;
+    reportingMonth?: boolean;
+    salesMonth?: boolean;
     reporting?: boolean | Prisma.ReportingDefaultArgs<ExtArgs>;
   },
   ExtArgs["result"]["report"]
@@ -558,16 +1426,54 @@ export type ReportSelectUpdateManyAndReturn<
 export type ReportSelectScalar = {
   id?: boolean;
   reportingId?: boolean;
+  label?: boolean;
+  artist?: boolean;
+  releaseTitle?: boolean;
+  trackTitle?: boolean;
+  upc?: boolean;
+  isrc?: boolean;
+  releaseCatalogId?: boolean;
+  service?: boolean;
+  channel?: boolean;
+  territory?: boolean;
+  quantity?: boolean;
+  netRevenueInUsd?: boolean;
+  netRevenueInEur?: boolean;
   metadata?: boolean;
+  reportingType?: boolean;
+  reportingCurrency?: boolean;
   createdAt?: boolean;
   updatedAt?: boolean;
+  reportingMonth?: boolean;
+  salesMonth?: boolean;
 };
 
 export type ReportOmit<
   ExtArgs extends runtime.Types.Extensions.InternalArgs =
     runtime.Types.Extensions.DefaultArgs,
 > = runtime.Types.Extensions.GetOmit<
-  "id" | "reportingId" | "metadata" | "createdAt" | "updatedAt",
+  | "id"
+  | "reportingId"
+  | "label"
+  | "artist"
+  | "releaseTitle"
+  | "trackTitle"
+  | "upc"
+  | "isrc"
+  | "releaseCatalogId"
+  | "service"
+  | "channel"
+  | "territory"
+  | "quantity"
+  | "netRevenueInUsd"
+  | "netRevenueInEur"
+  | "metadata"
+  | "reportingType"
+  | "reportingCurrency"
+  | "createdAt"
+  | "updatedAt"
+  | "reportingMonth"
+  | "salesMonth",
   ExtArgs["result"]["report"]
 >;
 export type ReportInclude<
@@ -601,9 +1507,26 @@ export type $ReportPayload<
     {
       id: string;
       reportingId: string;
+      label: string | null;
+      artist: string | null;
+      releaseTitle: string | null;
+      trackTitle: string | null;
+      upc: string | null;
+      isrc: string | null;
+      releaseCatalogId: string | null;
+      service: string | null;
+      channel: string | null;
+      territory: string | null;
+      quantity: number | null;
+      netRevenueInUsd: number | null;
+      netRevenueInEur: number | null;
       metadata: runtime.JsonValue | null;
+      reportingType: $Enums.REPORTING_TYPE | null;
+      reportingCurrency: $Enums.REPORTING_CURRENCY | null;
       createdAt: Date;
       updatedAt: Date;
+      reportingMonth: Date | null;
+      salesMonth: Date | null;
     },
     ExtArgs["result"]["report"]
   >;
@@ -1212,9 +2135,26 @@ export interface Prisma__ReportClient<
 export interface ReportFieldRefs {
   readonly id: Prisma.FieldRef<"Report", "String">;
   readonly reportingId: Prisma.FieldRef<"Report", "String">;
+  readonly label: Prisma.FieldRef<"Report", "String">;
+  readonly artist: Prisma.FieldRef<"Report", "String">;
+  readonly releaseTitle: Prisma.FieldRef<"Report", "String">;
+  readonly trackTitle: Prisma.FieldRef<"Report", "String">;
+  readonly upc: Prisma.FieldRef<"Report", "String">;
+  readonly isrc: Prisma.FieldRef<"Report", "String">;
+  readonly releaseCatalogId: Prisma.FieldRef<"Report", "String">;
+  readonly service: Prisma.FieldRef<"Report", "String">;
+  readonly channel: Prisma.FieldRef<"Report", "String">;
+  readonly territory: Prisma.FieldRef<"Report", "String">;
+  readonly quantity: Prisma.FieldRef<"Report", "Int">;
+  readonly netRevenueInUsd: Prisma.FieldRef<"Report", "Float">;
+  readonly netRevenueInEur: Prisma.FieldRef<"Report", "Float">;
   readonly metadata: Prisma.FieldRef<"Report", "Json">;
+  readonly reportingType: Prisma.FieldRef<"Report", "REPORTING_TYPE">;
+  readonly reportingCurrency: Prisma.FieldRef<"Report", "REPORTING_CURRENCY">;
   readonly createdAt: Prisma.FieldRef<"Report", "DateTime">;
   readonly updatedAt: Prisma.FieldRef<"Report", "DateTime">;
+  readonly reportingMonth: Prisma.FieldRef<"Report", "DateTime">;
+  readonly salesMonth: Prisma.FieldRef<"Report", "DateTime">;
 }
 
 // Custom InputTypes

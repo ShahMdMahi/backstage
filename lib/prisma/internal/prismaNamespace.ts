@@ -2470,9 +2470,26 @@ export type WithdrawalScalarFieldEnum =
 export const ReportScalarFieldEnum = {
   id: "id",
   reportingId: "reportingId",
+  label: "label",
+  artist: "artist",
+  releaseTitle: "releaseTitle",
+  trackTitle: "trackTitle",
+  upc: "upc",
+  isrc: "isrc",
+  releaseCatalogId: "releaseCatalogId",
+  service: "service",
+  channel: "channel",
+  territory: "territory",
+  quantity: "quantity",
+  netRevenueInUsd: "netRevenueInUsd",
+  netRevenueInEur: "netRevenueInEur",
   metadata: "metadata",
+  reportingType: "reportingType",
+  reportingCurrency: "reportingCurrency",
   createdAt: "createdAt",
   updatedAt: "updatedAt",
+  reportingMonth: "reportingMonth",
+  salesMonth: "salesMonth",
 } as const;
 
 export type ReportScalarFieldEnum =
@@ -3102,6 +3119,22 @@ export type ListEnumWITHDRAWAL_STATUSFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "WITHDRAWAL_STATUS[]">;
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Int"
+>;
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+  $PrismaModel,
+  "Int[]"
+>;
+
+/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<
@@ -3366,22 +3399,6 @@ export type EnumAUDIT_LOG_ENTITYFieldRefInput<$PrismaModel> = FieldRefInputType<
  */
 export type ListEnumAUDIT_LOG_ENTITYFieldRefInput<$PrismaModel> =
   FieldRefInputType<$PrismaModel, "AUDIT_LOG_ENTITY[]">;
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "Int"
->;
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
-  $PrismaModel,
-  "Int[]"
->;
 
 /**
  * Batch Payload for updateMany & deleteMany & createMany

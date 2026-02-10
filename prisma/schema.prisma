@@ -1045,16 +1045,33 @@ model Report {
   reportingId String
 
   // Fields
-  metadata Json? @db.JsonB
+  label            String?
+  artist           String?
+  releaseTitle     String?
+  trackTitle       String?
+  upc              String?
+  isrc             String?
+  releaseCatalogId String?
+  service          String?
+  channel          String?
+  territory        String?
+  quantity         Int?
+  netRevenueInUsd  Float?
+  netRevenueInEur  Float?
+  metadata         Json?   @db.JsonB
 
   // Enums
+  reportingType     REPORTING_TYPE?
+  reportingCurrency REPORTING_CURRENCY?
 
   // Relations
   reporting Reporting @relation(fields: [reportingId], references: [id], onDelete: Cascade)
 
   // Timestamps
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  reportingMonth DateTime?
+  salesMonth     DateTime?
 
   // Indexes & Constraints
 }

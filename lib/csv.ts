@@ -337,11 +337,11 @@ const HEADER_MAP = {
 
 /**
  * Mapped CSV row data with standardized headers
- * Dates are formatted as YYYY-MM-DD strings
+ * Dates are returned as Date objects
  */
 export type MappedCSVRow = {
-  reportingMonth: string;
-  salesMonth: string;
+  reportingMonth: Date;
+  salesMonth: Date;
   label: string;
   artist: string;
   releaseTitle: string;
@@ -439,16 +439,29 @@ export function mapCSVHeaders(csvContent: string): MappedCSVResult {
     }
 
     // Map the row data using the column index map
-    // Dates are automatically formatted to YYYY-MM-DD
+    // Dates are parsed as Date objects
+    const reportingMonth = parseCSVDate(
+      row[columnIndexMap.reportingMonth] || "",
+      distributor
+    );
+    const salesMonth = parseCSVDate(
+      row[columnIndexMap.salesMonth] || "",
+      distributor
+    );
+
+    // Skip rows with invalid dates
+    if (!reportingMonth || !salesMonth) {
+      skippedRows.push({
+        rowNumber: i + 1,
+        reason: "Invalid date format",
+        row,
+      });
+      continue;
+    }
+
     const mappedRow: MappedCSVRow = {
-      reportingMonth: parseCSVDate(
-        row[columnIndexMap.reportingMonth] || "",
-        distributor
-      ),
-      salesMonth: parseCSVDate(
-        row[columnIndexMap.salesMonth] || "",
-        distributor
-      ),
+      reportingMonth,
+      salesMonth,
       label: row[columnIndexMap.label] || "",
       artist: row[columnIndexMap.artist] || "",
       releaseTitle: row[columnIndexMap.releaseTitle] || "",
@@ -478,18 +491,18 @@ export function mapCSVHeaders(csvContent: string): MappedCSVResult {
 }
 
 /**
- * Parses and formats dates from CSV based on distributor format
- * Returns dates in YYYY-MM-DD format to match codebase standard
+ * Parses dates from CSV based on distributor format
+ * Returns Date objects for consistent date handling
  *
  * @param dateStr - Date string from CSV
  * @param distributor - Type of CSV distributor
- * @returns Formatted date string in YYYY-MM-DD format or empty string if parsing fails
+ * @returns Date object or null if parsing fails
  */
 export function parseCSVDate(
   dateStr: string,
   distributor: Distributor
-): string {
-  if (!dateStr) return "";
+): Date | null {
+  if (!dateStr) return null;
 
   let date: Date | null = null;
 
@@ -509,25 +522,18 @@ export function parseCSVDate(
     }
   }
 
-  // Format as YYYY-MM-DD using toISOString().split("T")[0] pattern
-  return date && !isNaN(date.getTime()) ? date.toISOString().split("T")[0] : "";
+  return date && !isNaN(date.getTime()) ? date : null;
 }
 
 /**
  * Converts a mapped CSV row with date parsing
- * @deprecated Use MappedCSVRow instead - dates are now formatted by default
+ * @deprecated Use MappedCSVRow instead - dates are now Date objects by default
  */
-export type MappedCSVRowWithDates = Omit<
-  MappedCSVRow,
-  "reportingMonth" | "salesMonth"
-> & {
-  reportingMonth: string;
-  salesMonth: string;
-};
+export type MappedCSVRowWithDates = MappedCSVRow;
 
 /**
  * Maps CSV with parsed dates
- * @deprecated Use mapCSVHeaders instead - dates are now formatted by default
+ * @deprecated Use mapCSVHeaders instead - dates are now Date objects by default
  */
 export function mapCSVHeadersWithDates(csvContent: string): {
   type: REPORTING_TYPE;
@@ -536,6 +542,6 @@ export function mapCSVHeadersWithDates(csvContent: string): {
   rows: MappedCSVRowWithDates[];
   skippedRows: RowValidationError[];
 } {
-  // Dates are now formatted by default in mapCSVHeaders
+  // Dates are now Date objects by default in mapCSVHeaders
   return mapCSVHeaders(csvContent);
 }

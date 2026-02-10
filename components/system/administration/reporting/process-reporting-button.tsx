@@ -39,16 +39,17 @@ export function ProcessReportingButton({
       if (result.success) {
         console.log(result.data);
         toast.success(result.message || "Reporting processed successfully");
+        setIsProcessing(false);
         router.push("/system/administration/reporting");
       } else {
         toast.error(result.message || "Failed to process reporting");
         setOpen(false);
+        setIsProcessing(false);
       }
     } catch (error) {
       console.error("Error processing reporting:", error);
       toast.error("An error occurred while processing reporting");
       setOpen(false);
-    } finally {
       setIsProcessing(false);
     }
   };

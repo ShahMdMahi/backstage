@@ -7,6 +7,7 @@ import {
   REPORTING_SYSTEM_ACCESS_LEVEL,
   AUDIT_LOG_ACTION,
   AUDIT_LOG_ENTITY,
+  REPORTING_CURRENCY,
 } from "@/lib/prisma/enums";
 import { logAuditEvent } from "@/actions/shared/audit-log";
 import { getCurrentSession } from "@/actions/shared/session";
@@ -19,6 +20,10 @@ import { getDeviceInfo } from "@/lib/device-info";
 import { buildReportKey, deleteFile, downloadFile, uploadFile } from "@/lib/s3";
 import { Readable } from "stream";
 import { mapCSVHeaders } from "@/lib/csv";
+import {
+  getEurToUsdRate,
+  getUsdToEurRate,
+} from "@/actions/shared/currency-exchange";
 
 export async function getAllReportings(): Promise<{
   success: boolean;
@@ -946,12 +951,115 @@ export async function processReporting(reportingId: string): Promise<{
 
     const mappedCSVData = mapCSVHeaders(csvString);
 
+    if (!mappedCSVData) {
+      return {
+        success: false,
+        message: "Failed to map reporting.",
+        data: null,
+        errors: new Error("Reporting map failed"),
+      };
+    }
+
+    const currency = reportingExists.currency;
+    const dateStr = reportingExists.reportingMonth.toISOString().split("T")[0];
+
+    const conversionData =
+      currency === REPORTING_CURRENCY.USD
+        ? await getUsdToEurRate(new Date(dateStr))
+        : currency === REPORTING_CURRENCY.EUR
+          ? await getEurToUsdRate(new Date(dateStr))
+          : null;
+
+    if (!conversionData) {
+      return {
+        success: false,
+        message: "Failed to fetch currency conversion rate.",
+        data: null,
+        errors: new Error("Currency conversion rate fetch failed"),
+      };
+    }
+
+    if (!conversionData.success) {
+      return {
+        success: false,
+        message: "Failed to fetch currency conversion rate.",
+        data: null,
+        errors: new Error(
+          conversionData.message || "Currency conversion rate fetch failed"
+        ),
+      };
+    }
+
+    if (!conversionData.rate) {
+      return {
+        success: false,
+        message: "Currency conversion rate not found.",
+        data: null,
+        errors: new Error("Currency conversion rate not found"),
+      };
+    }
+
+    const parsedData = mappedCSVData.rows.map((row) => {
+      return {
+        reportingId: reportingExists.id,
+        reportingMonth: row.reportingMonth,
+        salesMonth: row.salesMonth,
+        label: row.label,
+        artist: row.artist,
+        releaseTitle: row.releaseTitle,
+        trackTitle: row.trackTitle,
+        upc: row.upc,
+        isrc: row.isrc,
+        releaseCatalogId: row.releaseCatalogId,
+        service: row.service,
+        channel: row.channel,
+        territory: row.territory,
+        quantity: Number(row.quantity),
+        netRevenueInUsd:
+          currency === REPORTING_CURRENCY.USD
+            ? Number(row.netRevenue)
+            : Number(row.netRevenue) * conversionData.rate!,
+        netRevenueInEur:
+          currency === REPORTING_CURRENCY.EUR
+            ? Number(row.netRevenue)
+            : Number(row.netRevenue) * conversionData.rate!,
+        reportingType: reportingExists.type,
+        reportingCurrency: reportingExists.currency,
+      };
+    });
+
+    const BATCH_SIZE = 2000;
+    const reporting = await prisma.$transaction(
+      async (tx) => {
+        // Insert reports in batches
+        for (let i = 0; i < parsedData.length; i += BATCH_SIZE) {
+          const batch = parsedData.slice(i, i + BATCH_SIZE);
+          await tx.report.createMany({
+            data: batch,
+            skipDuplicates: false,
+          });
+        }
+
+        // Update reporting with processedAt and processor
+        return await tx.reporting.update({
+          where: { id: reportingExists.id },
+          data: {
+            processedAt: new Date(),
+            processor: { connect: { id: session.data?.userId } },
+          },
+        });
+      },
+      {
+        timeout: 900000, // 15 minutes
+      }
+    );
+
     try {
       await logAuditEvent({
         action: AUDIT_LOG_ACTION.REPORTING_PROCESSED,
         entity: AUDIT_LOG_ENTITY.REPORTING,
-        entityId: reportingExists.id,
-        description: `Reporting "${reportingExists.name}" processed by user "${session.data.user.email}".`,
+        entityId: reporting.id,
+        description: `Reporting "${reporting.name}" processed ${parsedData.length} reports by user "${session.data.user.email}".`,
         metadata: { deviceInfo: JSON.stringify(deviceInfo) },
         user: { connect: { id: session.data.userId } },
       });
