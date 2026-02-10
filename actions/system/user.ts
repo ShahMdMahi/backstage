@@ -1524,15 +1524,7 @@ export async function updateUser(data: UpdateUserData): Promise<{
       }
 
       if (session.data.user.role === ROLE.SYSTEM_OWNER) {
-        // SYSTEM_OWNER cannot assign SYSTEM_ADMIN (validator prevents SYSTEM_OWNER)
-        if (validate.data.role === ROLE.SYSTEM_ADMIN) {
-          return {
-            success: false,
-            message: "System owner cannot assign system admin role.",
-            data: null,
-            errors: new Error("Insufficient permissions"),
-          };
-        }
+        // SYSTEM_OWNER can assign any role except SYSTEM_OWNER (validated elsewhere)
         newRole = validate.data.role as ROLE;
       } else if (session.data.user.role === ROLE.SYSTEM_ADMIN) {
         // SYSTEM_ADMIN cannot assign SYSTEM_ADMIN (validator prevents SYSTEM_OWNER)

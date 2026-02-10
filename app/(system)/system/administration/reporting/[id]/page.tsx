@@ -13,7 +13,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import { getInitials } from "@/lib/utils";
 import { formatInTimeZone } from "date-fns-tz";
 import {
@@ -31,6 +30,7 @@ import {
 } from "lucide-react";
 import { euroToUsd, usdToEuro } from "@/actions/shared/currency-exchange";
 import { DeleteReportingButton } from "@/components/system/administration/reporting/delete-reporting-button";
+import { ProcessReportingButton } from "@/components/system/administration/reporting/process-reporting-button";
 
 export const dynamic = "force-dynamic";
 
@@ -413,10 +413,10 @@ export default async function ReportingPage({ params }: PageProps) {
                 {/* Process Button */}
                 {canProcess && !reporting.processedAt && (
                   <div className="pt-2">
-                    <Button className="w-full sm:w-auto sm:min-w-32">
-                      <CogIcon className="size-4 mr-2" />
-                      Process Reports
-                    </Button>
+                    <ProcessReportingButton
+                      reportingId={reporting.id!}
+                      reportingName={reporting.name!}
+                    />
                   </div>
                 )}
               </div>

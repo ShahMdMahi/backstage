@@ -18,6 +18,7 @@ import z from "zod";
 import { getDeviceInfo } from "@/lib/device-info";
 import { buildReportKey, deleteFile, downloadFile, uploadFile } from "@/lib/s3";
 import { Readable } from "stream";
+import { mapCSVHeaders } from "@/lib/csv";
 
 export async function getAllReportings(): Promise<{
   success: boolean;
@@ -814,6 +815,164 @@ export async function createReporting(data: CreateReportingData): Promise<{
     return {
       success: false,
       message: "Failed to fetch reporting hash",
+      data: null,
+      errors: error,
+    };
+  }
+}
+
+export async function processReporting(reportingId: string): Promise<{
+  success: boolean;
+  message: string;
+  data: unknown | null;
+  errors: unknown;
+}> {
+  try {
+    const session = await getCurrentSession();
+    if (!session.success) {
+      return {
+        success: false,
+        message: session.message,
+        data: null,
+        errors: session.errors,
+      };
+    }
+    if (!session.data?.userId) {
+      return {
+        success: false,
+        message: "User is not authenticated.",
+        data: null,
+        errors: new Error("Unauthenticated user"),
+      };
+    }
+    if (
+      session.data.user.role !== ROLE.SYSTEM_OWNER &&
+      session.data.user.role !== ROLE.SYSTEM_ADMIN &&
+      session.data.user.role !== ROLE.SYSTEM_USER
+    ) {
+      return {
+        success: false,
+        message: "User does not have permission to access reportings.",
+        data: null,
+        errors: new Error("Insufficient permissions"),
+      };
+    }
+
+    if (session.data.user.role === ROLE.SYSTEM_USER) {
+      if (!session.data.user.systemAccess) {
+        return {
+          success: false,
+          message: "System access not found for the user.",
+          data: null,
+          errors: new Error("System access not found"),
+        };
+      }
+      if (session.data.user.systemAccess.expiresAt < new Date()) {
+        return {
+          success: false,
+          message: "User's system access has expired.",
+          data: null,
+          errors: new Error("System access expired"),
+        };
+      }
+      if (session.data.user.systemAccess.suspendedAt) {
+        return {
+          success: false,
+          message: "User's system access is suspended.",
+          data: null,
+          errors: new Error("System access suspended"),
+        };
+      }
+      if (session.data.user.systemAccess.reportingAccessLevel.length === 0) {
+        return {
+          success: false,
+          message: "User does not have permission to access reportings.",
+          data: null,
+          errors: new Error("Insufficient permissions"),
+        };
+      }
+      if (
+        !session.data.user.systemAccess.reportingAccessLevel.includes(
+          REPORTING_SYSTEM_ACCESS_LEVEL.PROCESS
+        )
+      ) {
+        return {
+          success: false,
+          message: "User does not have permission to process reporting.",
+          data: null,
+          errors: new Error("Insufficient permissions"),
+        };
+      }
+    }
+
+    const reportingExists = await prisma.reporting.findUnique({
+      where: { id: reportingId },
+    });
+
+    if (!reportingExists) {
+      return {
+        success: false,
+        message: "Reporting not found.",
+        data: null,
+        errors: new Error("Reporting not found"),
+      };
+    }
+
+    const deviceInfo = await getDeviceInfo();
+
+    const data = await downloadFile(reportingExists.file).catch((error) => {
+      console.error("Error downloading reporting file from S3:", error);
+      throw new Error("Failed to download reporting file");
+    });
+
+    if (!data || !data.Body) {
+      return {
+        success: false,
+        message: "Failed to download reporting file.",
+        data: null,
+        errors: new Error("Reporting file download failed"),
+      };
+    }
+    const csvString = await data.Body.transformToString("utf-8");
+
+    if (!csvString) {
+      return {
+        success: false,
+        message: "Failed to process reporting.",
+        data: null,
+        errors: new Error("Reporting processing failed"),
+      };
+    }
+
+    const mappedCSVData = mapCSVHeaders(csvString);
+
+    try {
+      await logAuditEvent({
+        action: AUDIT_LOG_ACTION.REPORTING_PROCESSED,
+        entity: AUDIT_LOG_ENTITY.REPORTING,
+        entityId: reportingExists.id,
+        description: `Reporting "${reportingExists.name}" processed by user "${session.data.user.email}".`,
+        metadata: { deviceInfo: JSON.stringify(deviceInfo) },
+        user: { connect: { id: session.data.userId } },
+      });
+    } catch (error) {
+      console.error(
+        "Error logging audit event for reporting processing:",
+        error
+      );
+    }
+
+    return {
+      success: true,
+      message: "Reporting processed successfully.",
+      data: mappedCSVData,
+      errors: null,
+    };
+  } catch (error) {
+    console.error("Error fetching reporting:", error);
+    return {
+      success: false,
+      message: "Failed to fetch reporting",
       data: null,
       errors: error,
     };
